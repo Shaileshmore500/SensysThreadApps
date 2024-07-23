@@ -1,0 +1,60 @@
+<?xml version="1.0" standalone="yes"?>
+<SensysERP>
+  <tbl_app>
+    <Application_Pid>Core</Application_Pid>
+    <AppName>Core</AppName>
+    <AppDescription>Core</AppDescription>
+    <SystemDefined>true</SystemDefined>
+    <AppCode>Core</AppCode>
+  </tbl_app>
+  <tbl_module>
+    <Module_Pid>CoreMasters</Module_Pid>
+    <Application_fid>Core</Application_fid>
+    <ModuleName>Core Masters</ModuleName>
+    <ModuleDescription>Core Masters</ModuleDescription>
+    <SystemDefined>true</SystemDefined>
+  </tbl_module>
+  <tbl_entity>
+    <entity_Pid>tbl_CORE_Category</entity_Pid>
+    <Module_Fid>CoreMasters</Module_Fid>
+    <DisplayName>Category</DisplayName>
+    <TableName>tbl_CORE_Category</TableName>
+    <SortOrder>10</SortOrder>
+    <SystemDefined>true</SystemDefined>
+    <IsDeactivated>false</IsDeactivated>
+  </tbl_entity>
+  <tbl_fieldinfo>
+    <FieldInfo_Pid>436e0343-d7eb-460e-9dc8-b6222e1a714a</FieldInfo_Pid>
+    <TableName>tbl_CORE_Category</TableName>
+    <Module_Fid>CoreMasters</Module_Fid>
+    <FieldName>Category_pid</FieldName>
+    <DisplayName>Category ID</DisplayName>
+    <IsSysCol>true</IsSysCol>
+    <FieldType>PrimaryKey</FieldType>
+  </tbl_fieldinfo>
+  <tbl_fieldinfo>
+    <FieldInfo_Pid>a0693eb3-e299-4d9a-b54f-722c6a924e06</FieldInfo_Pid>
+    <TableName>tbl_CORE_Category</TableName>
+    <Module_Fid>CoreMasters</Module_Fid>
+    <FieldName>categoryname</FieldName>
+    <DisplayName>category name</DisplayName>
+    <ToolTip>category name tp</ToolTip>
+    <FieldType>Text</FieldType>
+    <FieldLength>50</FieldLength>
+    <IsMandatory>0</IsMandatory>
+    <Disabled>,</Disabled>
+    <Hidden>,</Hidden>
+    <SortOrder>0</SortOrder>
+    <SystemDefined>false</SystemDefined>
+    <IsDeactivated>false</IsDeactivated>
+  </tbl_fieldinfo>
+  <tbl_fieldinfo>
+    <FieldInfo_Pid>ca4c06eb-87c0-4cda-b9d3-25f95a019866</FieldInfo_Pid>
+    <TableName>tbl_CORE_Category</TableName>
+    <Module_Fid>CoreMasters</Module_Fid>
+    <FieldName>eee_preview</FieldName>
+    <DisplayName>qwertyuu Preview</DisplayName>
+    <IsSysCol>true</IsSysCol>
+    <FieldType>Doc_Preview</FieldType>
+  </tbl_fieldinfo>
+</SensysERP>

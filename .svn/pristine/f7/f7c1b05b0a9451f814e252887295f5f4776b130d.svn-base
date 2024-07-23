@@ -1,0 +1,2188 @@
+﻿html, body, form
+{
+	height: 100%;
+}
+
+.CodeMirror
+        {
+            border: 2px solid #3EA1EA;
+            width: 100%;
+            height: 100%;
+        }
+
+        #divSet3 .CodeMirror
+        {
+            height: 250px;
+        }
+
+        .CodeMirror.codeDisable
+        {
+            background-color: #EFEFEF;
+        }
+
+            .CodeMirror.codeDisable span
+            {
+                color: #B0B0B0 !important;
+                text-shadow: 1px 1px 1px #FFF;
+            }
+
+        .cm-m-css.cm-builtin,
+        .cm-m-css.cm-qualifier
+        {
+            color: #480303;
+        }
+
+        .cm-m-css.cm-property
+        {
+            color: #f00;
+        }
+
+        .cm-m-css.cm-number,
+        .cm-m-css.cm-variable,
+        .cm-m-css.cm-keyword
+        {
+            color: #001dff;
+        }
+
+        .cm-m-javascript.cm-comment
+        {
+            color: #0F940F;
+        }
+
+        [type="checkbox"], [type="radio"] {
+ display:none;
+}
+#divLayout,#divCss,#divScript,#divServerScript{
+    position: absolute;
+    top: 38px;
+    left: 1px;
+    right: 2px;
+    bottom: 4px;
+}
+
+#toolbar
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	background-color: #f8f8f8;
+}
+
+	#toolbar a
+	{
+		font-family: fontawesome;
+		line-height: 35px;
+		width: 50px;
+		display: inline-block;
+		cursor: pointer;
+		outline: none !important;
+		font-size: 27px;
+		text-align: center;
+		border-right: solid 1px #e1e1e1;
+		color: #494949;
+		position: relative;
+	}
+        #toolbar a.selected {
+            background: #454545;
+            color: #fff;
+        }
+	#toolbar .save:before
+	{
+		content: "\f0c7";
+	}
+
+	#toolbar .saveas:before
+	{
+		content: "\f0c7";
+		font-size: 20px;
+	}
+
+	#toolbar .saveas i:before
+	{
+		content: "\f0c7";
+		position: absolute;
+		top: 5px;
+		left: 20px;
+		background-color: #fff;
+		height: 20px;
+		display: block;
+		line-height: 20px;
+		font-size: 22px;
+		font-style: normal;
+	}
+
+	#toolbar .undo:before
+	{
+		content: "\f0e2";
+	}
+
+	#toolbar .redo:before
+	{
+		content: "\f01e";
+	}
+
+	#toolbar .preview:before
+	{
+		content: "\f002";
+	}
+    #toolbar .designer:before
+	{
+		content: "\f022";
+	}
+	#toolbar .html:before
+	{
+		content: "\f1c9";
+	}
+
+	#toolbar .css:before
+	{
+		content: "\f016";
+	}
+
+	#toolbar .script:before
+	{
+		content: "\f016";
+	}
+
+	#toolbar .server:before
+	{
+		content: "\f016";
+	}
+
+	#toolbar .css i:before
+	{
+		font-family: sans-serif;
+		content: "CSS";
+		position: absolute;
+		top: 12px;
+		left: 16px;
+		height: 20px;
+		display: block;
+		line-height: 20px;
+		font-size: 8px;
+		font-style: normal;
+		font-weight: bold;
+	}
+
+	#toolbar .script i:before
+	{
+		font-family: sans-serif;
+		content: "JS";
+		position: absolute;
+		top: 11px;
+		left: 17px;
+		height: 20px;
+		display: block;
+		line-height: 20px;
+		font-size: 12px;
+		font-style: normal;
+		font-weight: bold;
+	}
+
+	#toolbar .server i:before
+	{
+		font-family: sans-serif;
+		content: "C#";
+		position: absolute;
+		top: 11px;
+		left: 17px;
+		height: 20px;
+		display: block;
+		line-height: 20px;
+		font-size: 12px;
+		font-style: normal;
+		font-weight: bold;
+	}
+
+#ctlDragContainer .control-item
+{
+	width: 100%;
+}
+
+.control-item
+{
+	margin: 0;
+	padding: 5px;
+	cursor: move;
+	font-size: 12px;
+	font-weight: bold;
+	color: #0f0f0f;
+	font-family: Roboto;
+	background: #FFF;
+	border-bottom: solid 1px #e8e8e8;
+	box-shadow: inset 0px 0px 0px #353B49;
+	position: relative;
+	white-space: nowrap;
+}
+
+	.control-item:before
+	{
+		font-family: fontawesome;
+		font-weight: normal;
+		font-size: 15px;
+		width: 25px;
+		display: inline-block;
+		vertical-align: middle;
+		content: "\f1c0";
+		line-height: 19px;
+		opacity: 0.6; 
+	}
+
+	.control-item.selected, .control-item:hover
+	{
+		transition: background 0.18s ease-in-out !important;
+		-webkit-transition: background 0.18s ease-in-out !important;
+		-moz-transition: background 0.18s ease-in-out !important;
+		background: #fff6b5;
+		box-shadow: none;
+		text-shadow: 0px 1px 1px #AAA9A9 !important;
+	}
+
+
+	.control-item.selected
+	{
+	}
+
+	.control-item.used
+	{
+		color: #d1c0aa;
+        text-shadow:none !important;
+	}
+
+.specialControls > span
+{
+	font-size: 12px;
+	font-weight: bold;
+	display: block;
+	background-color: #e6e6e6;
+	padding: 5px;
+	border-bottom: solid 1px #cecece;
+	border-top: solid 1px #cecece;
+	cursor: pointer;
+}
+
+	.specialControls > span:before
+	{
+		font-family: fontawesome;
+		content: "\f0d7";
+		width: 15px;
+		display: inline-block;
+	}
+
+	.specialControls > span.coll:before
+	{
+		content: "\f0da";
+	}
+
+.control-item.ctl-field:before
+{
+	font-size: 12px;
+	width: 16px;
+}
+
+.control-item.ctl-grid:before
+{
+	content: "\f00b";
+}
+
+.control-item.ctl-btn:before
+{
+	content: "\f141";
+	border: solid 1px #cacaca;
+	font-size: 9px;
+	text-align: center;
+	height: 11px;
+	line-height: 11px;
+	width: 16px;
+	margin-right: 10px;
+	box-shadow: 1px 1px 1px #dcdcdc;
+	border-radius: 4px;
+}
+.control-item.SplitButton:before
+{
+	content: "\f0d7";
+	border: solid 1px #cacaca;
+	font-size: 9px;
+	text-align: center;
+	height: 11px;
+	line-height: 11px;
+	width: 16px !important;
+	margin-right: 10px;
+	box-shadow: 1px 1px 1px #dcdcdc;
+	border-radius: 4px;
+}
+
+
+.specialControls .special:before
+{
+	font-family: fontawesome;
+	font-weight: normal;
+	font-size: 15px;
+	width: 25px;
+	display: inline-block;
+	vertical-align: middle;
+	text-shadow:none;
+}
+
+.specialControls .Text:before
+{
+	content: "ab";
+	border: solid 1px #808080;
+	width: 14px;
+	margin-right: 8px;
+	height: 9px;
+	font-family: sans-serif;
+	font-size: 10px;
+	line-height: 9px;
+}
+.specialControls .Number:before
+{
+	content: "12";
+	border: solid 1px #808080;
+	width: 14px;
+	margin-right: 8px;
+	height: 9px;
+	font-family: sans-serif;
+	font-size: 10px;
+	line-height: 9px;
+}
+.specialControls .Select:before {
+    content: "\f0d7";
+    border: solid 1px #808080;
+    width: 15px;
+    margin-right: 7px;
+    height: 9px;
+    text-indent: 8px;
+    font-size: 11px;
+    line-height: 11px;
+}
+.specialControls .Date:before {
+    content: "\f073";
+}
+.specialControls .Checkbox:before {
+    content: "\f046";
+}
+.specialControls .Radiobutton:before {
+    content: "\f192";
+}
+
+.specialControls .special Label
+{
+	vertical-align: middle;
+	color: #6e6e6e;
+	cursor: move;
+}
+
+.specialControls .Panel:before
+{
+	content: "\f0db";
+}
+.specialControls .Repeater > span:before {
+    font-family: fontawesome;
+    position: absolute;
+    left: 10px;
+    top: 16px;
+    font-size: 10px;
+    transform: rotatex(180deg);
+    content: "\f176";
+}
+.specialControls .Repeater:before,
+.specialControls .InlinePanel:before
+{
+	content: "\f178";
+    border: solid 1px #808080;
+    width: 12px;
+    margin-right: 11px;
+    height: 13px;
+    line-height: 14px;
+    font-size: 12px;
+    text-indent: 7px;
+}
+.specialControls .TabPanel:before
+{
+	content: "";
+	border: solid 1px #808080;
+	width: 13px;
+	margin-right: 9px;
+	height: 9px;
+}
+
+.specialControls .TabPanel span
+{
+	display: block;
+	position: absolute;
+	width: 7px;
+	height: 3px;
+	background-color: #808080;
+	top: 6px;
+	left: 5px;
+}
+
+.specialControls .CollapsiblePanel:before
+{
+	content: "";
+	border: solid 1px #808080;
+	border-top-width: 4px;
+	width: 13px;
+	margin-right: 9px;
+	height: 9px;
+}
+
+.specialControls .CollapsiblePanel span
+{
+	display: block;
+	position: absolute;
+	width: 15px;
+	height: 3px;
+	background-color: #808080;
+	top: 14px;
+	left: 5px;
+}
+
+.specialControls .Spacer:before
+{
+	content: "";
+	border: solid 1px #808080;
+	width: 14px;
+	margin-right: 8px;
+	height: 6px;
+	background: #dedede;
+}
+
+.specialControls .Line:before
+{
+	content: "\f07e";
+}
+
+.specialControls .Label:before
+{
+	content: "";
+	border: solid 5px #808080;
+	border-right-color: rgba(0, 0, 0, 0);
+	width: 5px;
+	margin-right: 11px;
+}
+
+.specialControls .HTML:before
+{
+	content: "\f121";
+}
+
+.specialControls .Menu:before
+{
+	content: "\f0c9";
+}
+
+.specialControls .Window:before
+{
+	content: "";
+	border: solid 1px #808080;
+	border-top-width: 4px;
+	width: 13px;
+	margin-right: 9px;
+	height: 9px;
+}
+
+.specialControls .Document:before
+{
+	content: "\f1c2";
+}
+
+.specialControls .PDF:before
+{
+	content: "\f1c1";
+}
+
+.specialControls .Spread:before
+{
+	content: "\f0ce";
+}
+
+.specialControls .Table:before
+{
+	content: "\f0ce";
+}
+.specialControls .UDF:before
+{
+	content: "\f03a";
+}
+.specialControls .Image:before
+{
+	content: "\f03e";
+}
+.specialControls .FileUpload:before
+{
+	  content:"\f093";
+}
+
+
+.specialControls .save SPAN
+{
+	background-position: -144px -410px;
+}
+
+.specialControls .saveas SPAN
+{
+	background-position: -295px -8px;
+}
+
+.specialControls .property SPAN
+{
+	background-position: -294px -114px;
+}
+
+.specialControls .preview SPAN
+{
+	background-position: -297px -211px;
+}
+
+.specialControls .close1 SPAN
+{
+	background-position: -296px -307px;
+}
+
+
+.SubqueryNode .rtIn,.ExpressionNode .rtIn{
+    text-decoration: underline;
+    color: #009fff;
+    font-weight: bold;
+}
+
+.PropertyList
+{
+	font-family: "Roboto", sans-serif;
+}
+
+	.PropertyList .prop-item
+	{
+		border-bottom: solid 1px #c7c7c7;
+		height: 25px;
+	}
+
+		.PropertyList .prop-item select
+		{
+			display: initial;
+			height: initial;
+			border: none;
+			padding: 0px;
+			outline: none !important;
+            margin-left: -4px;
+            background-color:#fff;
+		}
+		.PropertyList .prop-item option
+		{
+			padding: 4px 3px;
+			border-bottom: solid 1px #e8e8e8;
+		}
+
+
+		.PropertyList .prop-item input
+		{
+			margin: 0 !important;
+			padding: 0 !important;
+			border: none !important;
+			height: initial !important;
+			font-size: 11px;
+			outline: none !important;
+			box-shadow: none !important;
+            margin-top: -6px !important;
+		}
+
+		.PropertyList .prop-item .ovr
+		{
+			position: absolute;
+			opacity: 1;
+			height: 12px !important;
+			width: 12px !important;
+			left: initial;
+			right: 2px;
+            pointer-events:initial;
+			top: 6px;
+            display: inline-block;
+		}
+
+	.PropertyList .cat
+	{
+		display: block;
+		background-color: #e6e6e6;
+		font-size: 12px;
+		font-weight: bold;
+		padding: 3px 5px;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+		cursor: pointer;
+	}
+
+		.PropertyList .cat:before
+		{
+			content: "\f147";
+			font-family: Fontawesome;
+			display: inline-block;
+			width: 14px;
+			font-weight: normal;
+		}
+
+		.PropertyList .cat.coll:before
+		{
+			content: "\f196";
+		}
+
+	.PropertyList .subcat
+	{
+		display: block;
+		font-size: 12px;
+		padding: 3px 5px;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+		border-bottom: solid 1px #c7c7c7;
+		cursor: pointer;
+	}
+
+		.PropertyList .subcat:before
+		{
+			content: "\f0da";
+			font-family: Fontawesome;
+			display: inline-block;
+			width: 12px;
+		}
+
+		.PropertyList .subcat.exp:before
+		{
+			content: "\f0d7";
+		}
+
+	.PropertyList .prop-item .lhs,
+	.PropertyList .prop-item .rhs
+	{
+		display: block;
+		overflow: hidden;
+		height: 100%;
+		text-overflow: ellipsis;
+		border-right: solid 1px #c7c7c7;
+		box-sizing: border-box;
+		line-height: 20px;
+		margin: 0;
+		float: left;
+		padding: 3px 3px;
+		font-size: 11px;
+		white-space: nowrap;
+		position: relative;
+	}
+
+    .PropertyList .prop-item .lhs {
+        text-indent: 6px;
+        width: 45%;
+        max-width: 175px;
+    }
+
+	.PropertyList .subCtr .prop-item .lhs
+	{
+		text-indent: 25px;
+	}
+
+	.PropertyList .prop-item .rhs
+	{
+        float:none;
+		border: none;
+	}
+        .PropertyList .prop-item .rhs [type="checkbox"] {
+            display:none;
+        }
+    .PropertyList .multiline.prop-item .lhs {
+        display: block;
+        border-right: none;
+        float: none;
+        width: initial;
+        text-decoration: underline;
+        cursor: pointer;
+        color: #34a3e7;
+    }
+        .PropertyList .multiline.prop-item .lhs:after {
+            content: "\f0da";
+            font-family: Fontawesome;
+            display: inline-block;
+            margin-left: 5px;
+        }
+        .PropertyList .multiline.prop-item.exp .lhs:after {
+            content:"\f0d7";
+        }
+    .PropertyList .multiline.prop-item .rhs {
+        display: block;
+        float: none;
+        width: initial;
+        border-right: solid 1px #c7c7c7;
+        padding-left: 20px;
+        height: 0px;
+        overflow: hidden;
+        transition: height 0.5s;
+        padding-top:0;
+        padding-bottom:0;
+    }
+    .PropertyList .multiline.prop-item.exp .rhs {
+        display: block;
+        height: 80px;
+        transition: height 0.5s;
+         padding-top:0;
+        padding-bottom:0;
+    }
+    .PropertyList .multiline.prop-item,
+    .PropertyList .multiline textarea {
+        height: initial;
+        resize: none;
+    }
+     
+#editor-container
+{
+	
+	padding: 30px 65px;
+	background-color: #e6e6e6;
+	font-family: "Roboto", sans-serif;
+	min-width: 600px;
+	height: 100%;
+    box-sizing: border-box;
+}
+         .ui-autocomplete
+        {
+            z-index: 9999 !important;
+            font-size: 12px;
+        }
+            .ui-autocomplete.ui-menu .ui-menu-item a
+            {
+                color: #1a1ad0;
+            }
+#editor-content
+{
+	box-shadow: 0px 0 12px #808080;	
+    background: var(--page-bg);
+	/*dont apply position: relative;*/	
+	max-height: 100%;
+    overflow: auto;
+}
+.form-v1 #editor-content {
+    background: #fff;
+}
+#header-side-nav-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;   
+    background-color: rgba(0,0,0,0.5);
+    z-index: 997;
+   display:none;
+}
+	#editor-content MAIN
+	{
+		min-height: 250px !important;
+		padding-top: 10px;
+		padding-bottom: 25px;
+	}
+
+#editor-content main.showLP {
+    padding-left: 350px;   
+}
+#editor-content main.showRP {
+    padding-right: 350px;   
+}
+
+.fabParent.showLP {
+    padding-left: 350px;   
+}
+.fabParent.showRP {
+    padding-right: 350px;   
+}
+
+#editor-content main > .leftPane,#editor-content main > .rightPane {
+    display:none;
+    position: absolute;
+    background: var(--bg-color);
+    top: 15px;
+    width: 300px;
+    box-shadow: var(--shadow1);
+    min-height: 235px;
+}
+#editor-content main.showLP > .leftPane {
+    display:block;
+    left: 25px;
+}
+#editor-content main.showRP > .rightPane {
+    display:block;
+    right: 25px;
+}
+
+.ruler
+{
+	margin-bottom: 0 !important;
+}
+
+	.ruler .col
+	{
+		position: relative;
+	}
+
+		.ruler .col:first-child:before
+		{
+			position: absolute;
+			content: "";
+			display: block;
+			height: 12px;
+			width: 2px;
+			background-color: #bebebe;
+			left: 0;
+			top: -12px;
+		}
+
+		.ruler .col:after
+		{
+			position: absolute;
+			content: "";
+			display: block;
+			height: 12px;
+			width: 2px;
+			background-color: #bebebe;
+			right: 0;
+			top: -12px;
+		}
+
+		.ruler .col span
+		{
+			position: absolute;
+			right: -2px;
+			font-size: 12px;
+			top: -28px;
+			color: #5b5b5b;
+			text-shadow: 1px 1px 1px #fff;
+		}
+
+		.ruler .col._d2 span
+		{
+			right: -5px;
+		}
+
+.erp-SplitButton
+{
+	margin: 0;
+	display:inline-block;
+    position:relative;
+    padding-right: 0 !important;
+}
+    .erp-SplitButton:hover {
+        overflow:visible;
+    }
+    .erp-SplitButton .arrow {
+        content: "\f107";
+        font-family: fontawesome;
+        margin-left: 10px;
+        display: inline-block;
+        width: 42px;
+        text-align: center;
+        border-left: solid 1px #e7e7e7;
+    }
+        .erp-SplitButton .arrow:before {
+            content: "\f142";
+            font-family: fontawesome;
+        }
+.erp-SplitButton .btnctr {
+    left: 0;
+    text-align: left;
+    position: absolute;
+    margin: 0;
+    margin-top: 35px;
+    visibility: hidden;
+    background: white;
+    padding: 0;
+    padding-bottom: 20px;
+    z-index: 100;
+    box-shadow: 2px 3px 7px #646464;
+    min-width: 150px;
+    min-height: 50px;
+}
+    nav .erp-SplitButton .btnctr {
+        left: initial;
+        right:0;
+    }
+.erp-SplitButton .btnctr li  .erp-Button {
+   margin: 0;
+   background: #fff;
+    color: #898989;
+    box-shadow: none;
+    border: solid 1px #e7e7e7;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    display: block;
+    white-space: nowrap;
+    text-align: left;
+    height: 48px;
+    line-height: 48px;
+    float:none;
+}
+.erp-SplitButton .erp-Button {
+    margin: 0 !important;
+    display: block;
+    text-align: left;
+}
+.erp-SplitButton .btnctr li  .erp-Button span {
+        float:none;/*to prevent  wrapping against icon in case of long text/*/
+    }
+  
+    .erp-SplitButton.large .btnctr {
+        margin-top: 48px;
+    }
+    .erp-SplitButton.small .btnctr {
+        margin-top: 29px;
+    }
+    .erp-SplitButton:hover .btnctr {
+        visibility: visible;
+    }
+    .erp-SplitButton.icoBtn >.fa {
+        display:none;
+    }
+    .erp-SplitButton.icoBtn> .arrow {
+    margin-left: 0px;
+    width: 100%;
+    border-left: none;
+    display: block;
+}
+
+.fixed-action-btn
+{
+	position: absolute;	
+	bottom:45px;	
+	right: 92px;
+	z-index: 998;
+}
+    .fixed-action-bar {
+        position:relative !important;
+		padding:10px;
+        border: dashed 1px #000;
+       
+    }
+.fixed-action-bar>.btn-floating
+{
+	display:none !important;
+}
+        .fixed-action-bar .btnctr {
+            margin:0;
+             min-height:25px;
+        }
+		.fixed-action-bar .btnctr li
+		{
+			display:inline;
+			margin:0 2px;
+		}
+        .fixed-action-bar .btnctr li A
+		{
+			opacity:initial !important;
+            transform:none  !important;
+            margin:0;
+            margin-right: 10px  !important;
+		}
+.col
+{
+	position: relative;
+}
+
+.row.selected
+{
+	outline: dashed 1px #a5a5a5;
+	background-color: #f9f9f9;
+	opacity:0.95;
+}
+
+
+
+
+.ctl-hidden:before
+{
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	border: solid 1px #c3c3c3;
+	pointer-events: none;
+	background: #DADADA url(/../images/hidden.png) 50% 50% repeat !important;
+    opacity:0.5;
+}
+
+.ctl-disabled:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: solid 1px #c3c3c3;
+    pointer-events: none;
+    background: #DADADA url(/../images/disabled.png) 50% 50% repeat !important;
+    opacity: 0.5;
+}
+
+.ctl-selected:before
+{
+	content: "";
+	display: block;
+	position: absolute;
+	top: -1px;
+	left: 0px;
+	right: 0px;
+	bottom: -1px;
+	border: solid 2px #337ac3;
+	background-color: #d7f3ff;
+	pointer-events: none;
+	opacity: 0.5;
+    z-index:10;
+}
+
+.highlight:before
+{
+	content: "";
+	display: block;
+	position: absolute;
+	top: -1px;
+	left: 0px;
+	right: 0px;
+	bottom: -1px;
+	border: dashed 0px #007b15 !important;
+	opacity: 0.5;
+    pointer-events:none;
+}
+.erp-Header,
+.erp-Main,
+.erp-Footer
+{
+	position:relative;
+	margin-top: 0px !important;
+}
+.erp-Field.ctl-selected:before, .erp-Field.ctl-disabled:before,
+.erp-Field.ctl-hidden:before, .erp-Field.ctl-disabled:before
+{
+	top: -15px;
+}
+
+.highlight.allEdge:before
+{
+	background-color: #f1fff7;
+	border-width: 2px !important;
+	box-shadow: inset 0 0px 25px #b1ffc2;
+}
+
+.highlight.rightEdge:before
+{
+	border-right-width: 2px !important;
+}
+
+.highlight.leftEdge:before
+{
+	border-left-width: 2px !important;
+}
+
+.highlight.topEdge:before
+{
+	border-top-width: 2px !important;
+}
+
+.highlight.bottomEdge:before
+{
+	border-bottom-width: 2px !important;
+}
+
+#editor-content.highlight:before
+{
+	top: 0px;
+}
+
+#editor-content .ctr
+{
+	min-height: 15px;
+	/*position: relative;
+	margin-top: 2px;
+	margin-bottom: 2px;*/	
+}
+#editor-content .erp-Panel > .ctr,
+#editor-content .ctr.tab-ctr,
+#editor-content .erp-CollapsiblePanel>.ctr{
+min-height:55px;
+margin-bottom: 12px;
+}
+.erp-control.hasEvent:after {
+    content: "\f0e7";
+    font-family: fontawesome;
+    position: absolute;
+    top: -6px;
+    left: 1px;
+    font-size: 16px;
+    color: #ff7d00;
+}
+.row.ctr
+{
+	min-height: initial !important;
+    margin:0 !important;
+}
+
+.mandatory label:before
+{
+	content: "\f069";
+    color: red;
+    font-family: fontawesome;
+    font-size: 8px;
+    vertical-align: super;
+    margin-right: 2px;
+}
+
+.erp-container
+{
+	border-top: solid 2px transparent;
+	border-bottom: solid 2px rgba(230, 230, 230, 0.65);
+	position: relative;
+	margin: 0;
+	width: 100%;
+}
+.noShadow {
+    box-shadow:none !important;
+}
+.erp-Header
+{
+	/*border-bottom: solid 1px #9c9c9c;
+	box-shadow: 0 3px 5px #d3d3d3;*/
+}
+.erp-Header > .ctr
+{
+	min-height:20px !important;
+}
+.erp-TabPanel
+{
+	
+border: solid 1px var(--border-color);
+    
+    background: var(--bg-color);
+    box-shadow: var(--shadow1);
+    margin-bottom: 5px;
+
+}
+.erp-Panel {
+    border: solid 1px var(--primary-color);
+    margin: 25px 0 0 0;
+    
+}
+.erp-Panel.detail {   
+   
+    border: solid 1px  var(--border-color);
+    margin: 5px 0;
+    background: var(--bg-color);
+    box-shadow: var(--shadow1);
+    padding: 0 !important;
+    border-radius: 8px;
+}
+.erp-Panel>.panel-header
+{
+	height: 20px;
+    margin-top: -12px;
+}
+.noBorder.erp-Panel
+{
+	border-style: dashed;
+}
+
+.erp-Panel>.panel-header>.title
+{
+	margin-left: 15px;
+	background-color: #fff;	
+	padding: 0px 3px;	
+	color: var(--primary-color);
+	white-space: nowrap;
+}
+    
+	.erp-Panel>.panel-header>.title>.fa
+	{
+		margin-right: 5px;
+	}
+
+
+.erp-Panel.detail>.panel-header {
+   height: initial;
+    margin: 0px;
+    /* background: var(--bg-color-alt); */
+    padding: 1.25rem 0px 0.75rem 0;
+    border-bottom: solid 1px var(--border-color-light);
+    margin: 0 25px;
+}
+.panel-header.noTitle {
+    display:none;
+}
+
+.erp-Panel .ctr {
+    min-height: 50px;
+}
+
+.noBorder.erp-Panel
+{
+	border-style: dashed;
+     background: none;
+    box-shadow:none;
+}
+
+
+.noTitle.erp-Panel>.panel-header {
+    display:none;
+}
+
+.erp-Panel.detail>.panel-header>.title {
+    padding: 0px 3px;
+    color: var(--primary-color);
+    white-space: nowrap;
+    text-transform: capitalize;
+    font-size: 16px;
+    background: transparent;
+    margin: 0;
+}
+
+	.erp-Panel.detail>.panel-header>.title>.fa
+	{
+		margin-right: 5px;
+	}
+.erp-Panel>.panel-header>.desc {
+    display: none;
+}
+.erp-Panel.detail>.panel-header>.desc {
+    display: block;
+    font-size: 13px;
+    color: var(--label-color-light);
+    margin-left: 15px;
+    margin-top: 5px;
+}
+
+.erp-Panel>.panel-footer {
+    display:none;
+}
+.erp-Panel.showFooter>.panel-footer {
+    display:block;
+    position: relative;
+    background: #fbfbfb;
+    margin-bottom:0 !important;
+    text-align: right;
+    padding: 10px 25px;
+    min-height:55px !important;
+}
+
+#PnlOuterCtr.erp-Panel > .ctr {
+    min-height: 200px;
+}
+
+.erp-Spacer
+{
+	height: 15px;
+	border: dashed 1px #afaeae;
+	margin: 0;
+}
+
+.erp-Line {
+    border: none;
+    margin: 5px 0;
+    width: 100%;
+    position: relative;
+    height: 2px;
+    background: #bcbcbc;
+}
+    .erp-Line.break {
+        border-top-style: dashed;
+        height: 0 !important;
+        background: none !important;
+        background-color: transparent !important;
+        border-top-color: #000;
+    }
+        .erp-Line.thin {
+            height:1px;
+        }
+        .erp-Line.thick {
+            height:4px;
+        }
+.erp-Label
+{
+	margin: 0;
+	margin-top:25px;
+    color: var(--label-color);
+}
+.erp-Label.col
+{
+	    white-space: normal !important;
+    overflow: hidden;
+}
+.erp-Label.isDatabound>span:before
+{
+	font-family: fontawesome;
+    font-weight: normal;
+    font-size: 12px;
+    width: 16px;
+    display: inline-block;
+    vertical-align: middle;
+    content: "\f1c0";
+    line-height: 19px;
+    color: #808080;
+}
+
+	.erp-Label .fa
+	{
+		margin-right: 5px;
+	}
+
+.erp-Line.ctl-selected
+{
+	border-color: #7ccfff;
+}
+
+.erp-Line.highlight
+{
+	border-color: #007b15;
+}
+.erp-Repeater
+{
+	border: dashed 2px #9942b6  !important;
+	margin: 5px 0;
+	width: 100%;
+	min-height: 8px !important;
+}
+
+
+
+.erp-InlinePanel
+{
+	border: dashed 2px #d4d4d4 !important;
+	margin: 0;
+	width: 100%;
+	min-height: 8px !important;
+}
+
+
+	.erp-InlinePanel > .ctr
+	{
+		min-height:  8px !important;
+	}
+    .erp-ButtonPanel
+{
+	border: dashed 2px #d4d4d4 !important;
+	margin: 0;
+	width: 100%;
+	min-height: 8px !important;
+}
+
+	.erp-ButtonPanel > .ctr
+	{
+		min-height:  8px !important;
+	}
+
+	.inline > DIV
+	{
+		display: inline-block;		
+	}
+  
+	.inline > *
+	{
+		text-align:left;       
+        vertical-align: middle;
+	}
+     .inline > .erp-Label
+	{
+		margin-top:-10px;
+	}
+      .tmpl .inline > .erp-Label
+	{
+		margin:0px;
+	}
+.inline > .col {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+   float:none;
+   width:initial;
+}
+
+        .inline > .erp-Label.col,
+        .inline > .col.erp-container {
+            padding: 0;
+            
+        }
+  
+.inline > .erp-Spacer 
+{
+	padding:0;
+	width:5px;
+}
+.file-field input[type=file]
+{
+	pointer-events: none !important;
+}
+.erp-FileUpload i {
+    position: static !important;
+    margin-right: 8px !important;
+}
+.erp-Image
+{
+	position:relative;
+	text-align:center;
+	line-height: 1;
+}
+	.erp-Image span
+	{
+		font-family: fontawesome;
+		border: solid 1px #c8c8c8;
+		background-color: #ebebeb;
+		display:inline-block;
+		overflow:hidden;
+		text-align:center;
+	}
+
+.erp-Button
+{
+	transition:initial !important;
+	    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 0 2px;
+}
+.erp-SplitButton {
+    width:initial;
+}
+.row > .erp-Button
+{
+	margin-top:20px;
+    float:left;
+}
+.erp-Button.highlight:before
+{
+	border-color:#000  !important;
+}
+.fixed-action-btn .erp-Button
+{
+	overflow:visible !important;
+}
+.fixed-action-btn .erp-Button span
+{
+	position: absolute;
+    right: 43px;
+    top: 7px;
+    background: #808080;
+    padding: 4px 5px;
+    line-height: initial;
+}
+
+
+
+.erp-Window,.erp-PDF,.erp-Document,.erp-Spread,.erp-UDF
+{
+	border: dashed 2px #d4d4d4 !important;
+	margin: 0;
+	width: 100%;
+	height: 100px;
+	position:relative;
+}
+	.erp-Window:before,.erp-PDF:before,.erp-Document:before,.erp-Spread:before,.erp-UDF:before
+	{
+		content: attr(control-type);
+		display:block;
+		text-align: center;
+		font-size: 50px;
+		color: rgba(0, 0, 0, 0.08);
+		font-family: roboto;
+		font-weight: 600;
+	}
+
+.erp-Menu {
+        position: relative;
+       padding: 3px 0;
+    border: dashed 1px gray !important;
+}
+
+.erp-Menu > .ctr{
+    min-height: 30px !important;
+     padding: 7px 0;
+}
+.erp-MenuItem
+{
+        line-height: 48px;
+	padding: 0 !important;
+	border-bottom-color: transparent !important;
+    position:relative;
+}
+.erp-MenuItem a {
+     color:#000;
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    height: 48px;
+    line-height: 48px;
+}
+    .erp-MenuItem.ctl-selected:before {
+        display: none;
+    }
+   .erp-MenuItem.ctl-selected> a:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -1px;
+    left: 0px;
+    right: 0px;
+    bottom: -1px;
+    border: solid 2px #337ac3;
+    background-color: #d7f3ff;
+    pointer-events: none;
+    opacity: 0.5;
+}
+	.erp-MenuItem .arrow
+	{
+		display: none;
+	}
+    .erp-MenuItem.isparent > a .arrow {
+        display: inline-block;
+        position: absolute;
+        right: 0px;
+        width: 18px;
+        text-align: center;
+        font-size: 16px;
+    }
+	.erp-MenuItem .arrow:before
+	{
+		content: "\f0da";
+		font-family: Fontawesome;		
+	}
+	.erp-MenuItem.expand >a .arrow:before
+	{
+		content: "\f0d7";
+	}
+.erp-MenuItem > a
+{
+	padding: 0 10px !important;
+}
+	.erp-MenuItem > a > i
+	{
+		    margin: 0 !important;
+    width: 22px !important;
+    height: 48px;
+    display: block;
+    float: left;
+        text-align: center;
+	}
+.erp-MenuItem .menuitem-ctr {
+    display:none;
+    padding-left: 12px;
+}
+    .erp-MenuItem.expand > .menuitem-ctr
+{
+	display:block !important;
+}
+
+    
+.listMenu .erp-MenuItem {
+    line-height: 28px;
+}
+.listMenu .erp-MenuItem a{
+        line-height: 32px;
+    height: 32px !important;
+}
+.listMenu .erp-MenuItem > a span {
+    line-height: 28px;
+    height: 28px;
+}
+.listMenu .erp-MenuItem > a > i {
+    width: 18px !important;
+    line-height: 28px !important;
+    height: 28px !important;
+    font-size: 14px;
+}
+
+
+
+.erp-Menu.horizontal {
+          box-shadow: var(--shadow1);
+    background: var(--bg-color);
+    z-index: 100;
+}
+
+.erp-Menu.horizontal > .ctr {
+    min-height: 46px !important;
+     padding: 0;
+}
+
+.erp-Menu.horizontal .erp-MenuItem {
+    float:left;
+    width: initial;
+}
+
+.erp-Menu.horizontal .erp-MenuItem > a span {
+    max-width: 162px;
+}
+
+.erp-Menu.horizontal .erp-MenuItem.isparent  > A {
+        padding-right: 25px !important;
+    }
+ .erp-Menu.horizontal > .ctr > .erp-MenuItem > a > i:empty {
+            display:none !important;
+        }
+   .erp-Menu.horizontal > .ctr > .erp-MenuItem > a span   {
+            overflow:initial;
+            max-width:initial;
+        }
+  .erp-Menu.horizontal .menuitem-ctr .erp-MenuItem > a > i:empty {
+            display:initial;
+        }
+
+       .erp-Menu.horizontal .menuitem-ctr .erp-MenuItem  {
+            display:block;
+            float: none;
+        }
+        erp-Menu.horizontal .menuitem-ctr .erp-MenuItem  A{
+            padding-left:0 !important;
+        }
+.erp-Menu.horizontal .erp-MenuItem .menuitem-ctr {
+    box-shadow: var(--shadow1);
+    background: var(--bg-color);
+    margin-top: 20px;
+    position: absolute;
+    min-width: 250px;
+        padding: 0;
+}
+.erp-Menu.horizontal > .ctr >.erp-MenuItem > .menuitem-ctr {
+    margin-top: 3px;
+}
+
+.erp-Menu.horizontal .erp-MenuItem .menuitem-ctr .menuitem-ctr{
+    left: 252px;
+    top: 2px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.erp-Grid,.erp-ChildGrid {
+    position:relative;
+}
+
+.erp-ChildGrid {
+border: solid 1px gray !important;
+    background: #ffffff;
+    padding: 15px 0 0 0;
+}
+
+.col-ctr {
+       
+    border: solid 1px gray;
+    background: gray;
+    white-space:nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+.col-ctr > div {
+    background: #fff;
+    display:inline-block;
+    width:75px;
+    min-width:24px;
+    position:relative;
+    margin:0;
+    vertical-align: top;
+}
+.col-ctr .erp-GridColumn .ui-resizable-e {
+    height: 40px;
+    border-left: solid 1px #979797;
+    opacity: 0.25;
+}
+.erp-Grid.pc .col-ctr .erp-GridColumn .ui-resizable-e {
+   display:none !important;
+}
+
+.erp-ChildGrid .col-ctr {
+    border:none;
+}
+.erp-ChildGrid .col-ctr:empty:after {
+       content: "Select A View Source";
+    color: gray;
+    font-style: italic;
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    position: absolute;
+    top: 38px;
+    left: 0;
+    right: 0;
+}
+
+
+.erp-GridColumn.hidden {
+    display:none;
+}
+.erp-GridColumn .close {
+    position: absolute;
+    right: 5px;
+    top: 0px;
+    font-size: 20px;
+    color: #000;
+    display:none;
+}
+.erp-GridColumn:hover .close {
+    display:block;
+}
+.erp-GridColumn .close:hover {
+    color:red;
+}
+.noHeader .col-ctr .hdr, .noFooter .col-ctr .ftr{
+    display:none;
+}
+.colChk {
+    width: 66px;
+    text-align:center;
+}
+    .colChk label {
+         text-indent:initial !important;
+    }
+    .colChk label:before {
+        content: "" !important;
+        display: inline-block;
+        height: 18px;
+        width: 18px;
+        vertical-align: middle;
+        border: solid 2px gray;       
+    }
+
+.noChk .colChk {
+    display:none;
+}    
+.col-ctr > div > label {
+    display: block;
+    border-bottom: solid 1px gray;  
+    height:40px;
+    line-height:40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 13px;
+    text-transform:capitalize;
+    text-indent: 15px;
+    
+}
+.col-ctr > div > label.itm:before {
+    content:"asdasd";
+}
+.col-ctr > div > label.hdr {
+        font-weight:bold;
+    }
+.col-ctr > div > label.ftr:before {
+        display:none;
+    }
+.col-ctr > div > label.tmpl.itm {
+    min-height:40px;
+    height:initial;
+    line-height:initial;
+    text-indent:0;
+}
+.col-ctr > div > label.tmpl.itm:before {
+    content:"";
+}
+    .col-ctr > div > label.tmpl.itm > .inline:empty {
+        border: dashed 1px gray;
+        min-height: 36px !important;
+        margin: 2px;
+    }
+
+.erp-Grid.showLP {
+    padding-left:325px !important;
+}
+.erp-Grid.showRP {
+    padding-right:325px !important;
+}
+.erp-Grid .gridLeftPane {
+    display:none;
+    position: absolute;
+    background: #fff;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 300px;
+    box-shadow: 0 0 10px #c8c0c0;
+    overflow-y: auto;
+}
+.erp-Grid .gridRightPane {
+    display:none;
+    position: absolute;
+    background: #fff;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 300px;
+    box-shadow: 0 0 10px #c8c0c0;
+    overflow-y: auto;
+}
+.erp-Grid.showLP .gridLeftPane, .erp-Grid.showRP .gridRightPane {
+    display:block;
+}
+
+.gridBody {
+    position:relative;
+}
+
+.gridGroup {
+  position: absolute;
+    left: 1px;
+    top: 41px;
+    z-index: 10;
+}
+.erp-GridGroup{
+position: relative;
+    height: 40px;
+    line-height: 40px;
+    background-color: #fff;
+    border-bottom: solid 1px gray;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+    .erp-GridGroup:after {
+        content: "\f0da";
+    font-family: Fontawesome;
+    display: inline-block;
+    margin-left: 35px;
+    margin-right: 7px;
+    font-size: 18px;
+    float: left;
+    }
+
+.erp-Grid .erp-ButtonPanel > .ctr:empty:after {
+    content: "Drag To Add Buttons Here";
+    color: gray;
+    font-style: italic;
+    display: block;
+    text-align: center;
+    font-size: 12px;
+}
+
+.erp-ButtonPanel>.ctr > * {
+    margin:0 4px;
+}
+.erp-ButtonPanel .erp-Button{
+    /*height: 30.4px;
+    line-height: 30.4px;
+    font-size: 13px;*/   
+    margin-top: 10px;
+    padding: 0 12px;
+    background: #fff;
+    color: #898989;
+    box-shadow: none;
+    border: solid 1px #e7e7e7;
+}
+  
+    .erp-ButtonPanel .erp-Button i.left {
+        margin-right: 8px;
+    }
+    .erp-ButtonPanel .erp-Button i.right {
+        margin-left: 8px;
+    }
+/*material ui*/
+.tabs
+{
+	background-color: transparent;
+}
+
+	.tabs .tab a
+	{
+		border: solid 1px var(--primary-color);
+	background: var(--primary-color);
+    color: var(--primary-text-color);}
+
+.collapsible-header
+{
+	
+background-color: #f8f8f8;}
+
+.erp-CollapsiblePanel {
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+background: var(--bg-color);}
+.erp-CollapsiblePanel > .ctr{
+    padding:1rem;
+}
+.erp-CollapsiblePanel.lite {
+    box-shadow:none;
+}
+
+.erp-HTML {
+    position: relative;
+    border: dashed 2px #d4d4d4 !important;
+    margin: 0;
+    min-height: 8px !important;
+}
+
+
+
+
+.erp-Table
+{
+	border: 2px solid transparent;
+	position:relative;
+	overflow: initial;
+}
+.erp-Table table
+{
+	table-layout:fixed;
+	border-collapse:separate;
+	width:initial;
+	overflow: initial;
+    border-color:rgba(0, 0, 0, 0.12);
+}
+    .erp-Table table.pc  {
+        width:100%;
+    }
+.erp-Table TD, .erp-Table TH, .erp-Table TR {
+        border-color:rgba(0, 0, 0, 0.12);
+    }
+
+    .erp-Table table.tableOutline,
+    .erp-Table table.allRows,
+    .erp-Table table.allCols,
+    .erp-Table table.allCells .table-cell {
+        border-style: solid;
+        border-width: 1px;      
+    }
+    .erp-Table table.tableOutline TR,
+	.erp-Table table.allRows TR,
+	.erp-Table table.allCols TR,
+	.erp-Table table.allCells TR
+	{
+		border-style: none;
+       
+	}
+    .erp-Table table.allCells .table-cell {
+        border-width: 1px;     
+    }
+
+    .erp-Table table.allRows TR {
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+        border-color: inherit;
+    }
+
+    .erp-Table table.allCols TD {
+        border-left-style: solid;
+        border-left-width: 1px;
+        border-right-style: solid;
+        border-right-width: 1px;
+        border-color: inherit;
+    }
+    .erp-Table table.none TD,.erp-Table table.none TR {
+       border-style:dashed;
+    }
+.erp-Table .table-title
+{
+	display:block;
+	height:22px;
+}
+	.erp-Table table ._delCells
+	{
+		display:none;
+	}
+    .erp-Table TD, .erp-Table TH {
+        padding: 0 5px;
+        height: 48px;
+        border: dashed 1px #D8D8D8;
+        /* overflow:hidden; */
+    }
+		.erp-Table TD.ui-selected,
+        .erp-Table TD._sel
+		{
+			background-color:#B8DDFF;
+		}
+    .erp-Table .colHeader .ui-resizable-handle {
+        width: 8px;
+        height: 8px;
+        right: -4px;
+        top: 15px;
+        display:none !important;
+    }
+    
+    .erp-Table .colHeader:hover .ui-resizable-handle {
+       display:block !important;
+    }
+    .erp-Table .pc .colHeader .ui-resizable-handle {
+        display:none !important;
+    }
+.erp-Table .ui-resizable-handle 
+{
+	background-color: #50cbff;
+	border-radius: 50%;
+}
+	.erp-Table .ui-resizable-handle:hover
+{
+	background-color: #7BA94D;
+}
+.erp-Table .colHeader ,.erp-Table .rowHeader 
+{
+	/* background-color:#EFEAD6; */
+	/* border: solid 19px #D8D8D8; */
+}
+    
+    .erp-Table .cell-header {
+        background-color:#fff !important;
+    }
+.erp-Table .colHeader td
+{
+	height: 5px;
+	padding:0px;
+	overflow:visible;
+	border: none !important;
+	position: relative;
+}
+	.erp-Table .colHeader td>div
+	{
+		position: absolute;
+		height: 20px;
+		width: 100%;
+		/* background: green; */
+		margin-top: -18px;
+		z-index: 10;
+	}
+.erp-Table .rowHeader
+{
+	width: 5px;
+	padding:0px;
+	border: none !important;
+	position: relative;
+
+}
+.erp-Table .rowHeader>div
+	{
+		position: absolute;
+		height: 100%;
+		/* background: green; */
+		width: 20px;
+		/* pointer-events: none; */
+		top: 0px;
+		z-index: 10;
+		left: 0px;
+	}
+    
+
+    .erp-Table .mrgCell {
+        color: #fff5f5;
+        background: rgba(49, 41, 41, 0.5);
+        padding: 3px 5px;
+    }
+
+.erp-Table .addCol,.erp-Table .addRow,
+.erp-Table .delCol,.erp-Table .delRow
+{
+	text-decoration:none;
+	font-size: 16px;
+	position:absolute;
+	display:none;
+}
+.erp-Table .colHeader TD:hover .addCol,.erp-Table .rowHeader:hover .addRow,
+.erp-Table .colHeader TD:hover .delCol,.erp-Table .rowHeader:hover .delRow,
+.erp-Table .colHeader TD:hover .addRow,
+.erp-Table .colHeader TD > div:hover .addCol,.erp-Table .rowHeader > div:hover .addRow,
+.erp-Table .colHeader TD > div:hover .delCol,.erp-Table .rowHeader > div:hover .delRow,
+.erp-Table .colHeader TD > div:hover .addRow
+{
+	display:block;
+}
+
+.erp-Table .addCol:before,.erp-Table .addRow:before
+{	
+	color:#9f9f9f;
+	content: "\f067";
+	font-family:fontawesome;
+}
+.erp-Table .delCol:before,.erp-Table .delRow:before
+{
+	font-family:fontawesome;
+	content: "\f00d";
+	color:#9f9f9f;
+}
+.erp-Table .colHeader .addCol
+{
+	right: 10px;
+	top: 0px;
+}
+.erp-Table .colHeader .delCol
+{
+	left: 10px;
+	top: 0px;
+}
+.erp-Table .rowHeader .addRow
+{
+	bottom: 0px;
+	/* right: 2px; */
+}
+.erp-Table .rowHeader .delRow
+{top: 0px;/* left: 2px; */}
+
+.erp-Table .table-cell
+{
+	min-height:48px;
+    position:relative;
+}
+.erp-Table .cell-header.first >div
+{
+	width: 25px;
+    z-index: 25;
+}
+.erp-Table .cell-header.first .addCol
+{
+	left: 12px;
+	top: 0px;
+}
+.erp-Table .cell-header.first .addRow
+{
+	top: 11px;
+}
+
+.nav-wrapper .btnCtr.ctr {
+    min-width: 60px;
+    display: inline-block;
+    float: right;
+    border: dashed 1px #fff;
+    height: 56px;
+    position: relative;
+}
+
+.nav-wrapper .btnCtr.ctr >.erp-Button {
+        height: 56px;
+        min-width: 56px;
+        line-height: 56px;
+        background: none;
+        font-size: 22px;
+        box-shadow: none;
+        border-right: solid 1px var(--primary-color-lightest);
+        margin: 0;
+    }
+        .nav-wrapper .btnCtr.ctr >.erp-Button:first-child {
+            border-left: solid 1px var(--primary-color-lightest);
+        }
+        .nav-wrapper .btnCtr.ctr >.erp-Button i {
+            font-size: 28px;
+                margin-right: 12px;
+        }
+
+.nav-wrapper .btnCtr.ctr >.erp-Button.icoBtn.round {
+    padding: 0 !important;
+    text-decoration: none;
+    border-radius: 50%;
+    margin-right: 10px !important;
+    height: 48px !important;
+    width: 48px !important;
+    min-width: 48px !important;
+    border: solid 1px var(--primary-color-lightest);
+    margin-top: -4px;
+}
+        .nav-wrapper .btnCtr.ctr >.erp-Button.icoBtn.round  i{
+                line-height: 48px;
+        }

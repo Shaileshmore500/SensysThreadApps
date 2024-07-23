@@ -1,0 +1,17 @@
+.quickAdmin
+{
+   background-image: url(http://localhost:2500/Apps/App_ADMIN/icons8-Settings-2820.png);
+  
+  height: 28px;
+  width: 28px;
+  display: inline-block;
+  line-height: 30px;
+  vertical-align: middle;
+}
+.quickAdmin:hover
+{
+ background-image: url(http://localhost:2500/Apps/App_ADMIN/icons8-Settings-2820.png);
+}
+
+
+

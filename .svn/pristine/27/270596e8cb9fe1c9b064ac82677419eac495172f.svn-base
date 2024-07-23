@@ -1,0 +1,3 @@
+//ENTITY-CACHE
+alert("Erp.GetFieldValue('@tbl_core_contacts_createddate')")
+

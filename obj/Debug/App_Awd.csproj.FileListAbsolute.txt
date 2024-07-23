@@ -1,0 +1,13 @@
+E:\Shailesh\Thread Apps\Apps\App_Awd\bin\App_Awd.dll.config
+E:\Shailesh\Thread Apps\Apps\App_Awd\bin\App_Awd.dll
+E:\Shailesh\Thread Apps\Apps\App_Awd\bin\App_Awd.pdb
+E:\Shailesh\Thread Apps\Apps\App_Awd\bin\DevExpress.DataAccess.v20.1.dll
+E:\Shailesh\Thread Apps\Apps\App_Awd\bin\DevExpress.Docs.v20.1.dll
+E:\Shailesh\Thread Apps\Apps\App_Awd\bin\DevExpress.Office.v20.1.Core.dll
+E:\Shailesh\Thread Apps\Apps\App_Awd\bin\DevExpress.RichEdit.v20.1.Core.dll
+E:\Shailesh\Thread Apps\Apps\App_Awd\bin\DevExpress.Spreadsheet.v20.1.Core.dll
+E:\Shailesh\Thread Apps\obj\Debug\App_Awd.csprojAssemblyReference.cache
+E:\Shailesh\Thread Apps\obj\Debug\App_Awd.csproj.CoreCompileInputs.cache
+E:\Shailesh\Thread Apps\obj\Debug\App_Awd.csproj.CopyComplete
+E:\Shailesh\Thread Apps\obj\Debug\App_Awd.dll
+E:\Shailesh\Thread Apps\obj\Debug\App_Awd.pdb

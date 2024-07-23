@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="sensysindia" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="sensysindia" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="sensysindia">
+      <s:element name="GetAppList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="compGuid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAppListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAppListResult" type="tns:ArrayOfResourceItem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfResourceItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ResourceItem" nillable="true" type="tns:ResourceItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ResourceItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResVersion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResDetail" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResDate" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MaxImg" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResChangeLog" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResTag" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RequiredList" type="tns:ArrayOfRequiredResources" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfRequiredResources">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RequiredResources" nillable="true" type="tns:RequiredResources" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RequiredResources">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RequiredResName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResVersion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RequiredVersion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Mandatory" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResDate" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAppData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="resourceID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAppDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAppDataResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLicenseData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="data" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLicenseDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLicenseDataResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SyncClientLicenses">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="data" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SyncClientLicensesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SyncClientLicensesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActivateClientLicense">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="data" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActivateClientLicenseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ActivateClientLicenseResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResourceActivation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="actiData" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ResourceActivationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ResourceActivationResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetERPSettings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="enableLogging" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="compName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="compCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="companyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="compGuid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cdKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ip" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="versionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="versionNo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetERPSettingsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetERPSettingsResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="outputCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="outputMessage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetAppListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAppList" />
+  </wsdl:message>
+  <wsdl:message name="GetAppListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAppListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAppDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAppData" />
+  </wsdl:message>
+  <wsdl:message name="GetAppDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAppDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLicenseDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLicenseData" />
+  </wsdl:message>
+  <wsdl:message name="GetLicenseDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLicenseDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="SyncClientLicensesSoapIn">
+    <wsdl:part name="parameters" element="tns:SyncClientLicenses" />
+  </wsdl:message>
+  <wsdl:message name="SyncClientLicensesSoapOut">
+    <wsdl:part name="parameters" element="tns:SyncClientLicensesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ActivateClientLicenseSoapIn">
+    <wsdl:part name="parameters" element="tns:ActivateClientLicense" />
+  </wsdl:message>
+  <wsdl:message name="ActivateClientLicenseSoapOut">
+    <wsdl:part name="parameters" element="tns:ActivateClientLicenseResponse" />
+  </wsdl:message>
+  <wsdl:message name="ResourceActivationSoapIn">
+    <wsdl:part name="parameters" element="tns:ResourceActivation" />
+  </wsdl:message>
+  <wsdl:message name="ResourceActivationSoapOut">
+    <wsdl:part name="parameters" element="tns:ResourceActivationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetERPSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetERPSettings" />
+  </wsdl:message>
+  <wsdl:message name="GetERPSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetERPSettingsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ThreadServicesSoap">
+    <wsdl:operation name="GetAppList">
+      <wsdl:input message="tns:GetAppListSoapIn" />
+      <wsdl:output message="tns:GetAppListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAppData">
+      <wsdl:input message="tns:GetAppDataSoapIn" />
+      <wsdl:output message="tns:GetAppDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLicenseData">
+      <wsdl:input message="tns:GetLicenseDataSoapIn" />
+      <wsdl:output message="tns:GetLicenseDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SyncClientLicenses">
+      <wsdl:input message="tns:SyncClientLicensesSoapIn" />
+      <wsdl:output message="tns:SyncClientLicensesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ActivateClientLicense">
+      <wsdl:input message="tns:ActivateClientLicenseSoapIn" />
+      <wsdl:output message="tns:ActivateClientLicenseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResourceActivation">
+      <wsdl:input message="tns:ResourceActivationSoapIn" />
+      <wsdl:output message="tns:ResourceActivationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetERPSettings">
+      <wsdl:input message="tns:GetERPSettingsSoapIn" />
+      <wsdl:output message="tns:GetERPSettingsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ThreadServicesSoap" type="tns:ThreadServicesSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAppList">
+      <soap:operation soapAction="sensysindia/GetAppList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAppData">
+      <soap:operation soapAction="sensysindia/GetAppData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLicenseData">
+      <soap:operation soapAction="sensysindia/GetLicenseData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SyncClientLicenses">
+      <soap:operation soapAction="sensysindia/SyncClientLicenses" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActivateClientLicense">
+      <soap:operation soapAction="sensysindia/ActivateClientLicense" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResourceActivation">
+      <soap:operation soapAction="sensysindia/ResourceActivation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetERPSettings">
+      <soap:operation soapAction="sensysindia/GetERPSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ThreadServicesSoap12" type="tns:ThreadServicesSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAppList">
+      <soap12:operation soapAction="sensysindia/GetAppList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAppData">
+      <soap12:operation soapAction="sensysindia/GetAppData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLicenseData">
+      <soap12:operation soapAction="sensysindia/GetLicenseData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SyncClientLicenses">
+      <soap12:operation soapAction="sensysindia/SyncClientLicenses" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActivateClientLicense">
+      <soap12:operation soapAction="sensysindia/ActivateClientLicense" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResourceActivation">
+      <soap12:operation soapAction="sensysindia/ResourceActivation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetERPSettings">
+      <soap12:operation soapAction="sensysindia/GetERPSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ThreadServices">
+    <wsdl:port name="ThreadServicesSoap" binding="tns:ThreadServicesSoap">
+      <soap:address location="http://reg.sensysindia.com/sensysservices/ThreadServices.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ThreadServicesSoap12" binding="tns:ThreadServicesSoap12">
+      <soap12:address location="http://reg.sensysindia.com/sensysservices/ThreadServices.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

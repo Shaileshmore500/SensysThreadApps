@@ -1,0 +1,46 @@
+﻿using App_Rs.Apps.App_Rs;
+using DevExpress.Compression;
+using DevExpress.Spreadsheet;
+using DevExpress.XtraReports.Parameters;
+using Erp.Base.ScriptInterface;
+using Erp.Base.Security;
+using Erp.Common;
+using HelperLib.Conversion;
+using HelperLib.DAL;
+using HelperLib.Extensions;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Data;
+using System.IO;
+
+using System.IO.Compression;
+using System.IO.Packaging;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+
+
+
+namespace App_Rs.Apps.App_RS
+{
+    public class ScheduleRunReport : ImplTaskScript, ITaskScript
+    {
+        ApplicationInfo _app;
+        IDBConfiguration _cfg;
+        public StringBuilder ErrorList;
+       
+        public void Init(ApplicationInfo app, IDBConfiguration cfg, Dictionary<string, object> taskInfo)
+        {
+           
+
+            Erp.Base.Scheduling.TaskScheduler.AddJobLog("Started", "1.1");
+            GenerateReport RunSchedule = new GenerateReport();
+
+            RunSchedule.Init(app, cfg);
+            RunSchedule.RunReport(taskInfo["instanceID"].C2Str());
+        }
+
+       
+    }
+}

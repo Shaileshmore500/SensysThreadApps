@@ -1,0 +1,143 @@
+function InitUI() {$('#PageTitle').children('._i').html('&#xF040;').next().html("GSTIN Summary ");PkIds=[];
+var ddl=$('#ddrp1');ddl.parent().addClass('ui-list');ddl.data('FieldID','dd73ae0b-6266-452e-a154-4e05df562073');ddl.data('LookupCode','Lu_taxregno');ddl.data('Eids','tbl_ERP_taxreg');ddl.data('FieldType','SINGLESELECT_TABLE');ddl.data('Multi',false);enableKeyboardForList(ddl);ddl.parent().on('click',function(){showSearchList($(this));});
+Erp.FieldInfo.push({Name:"tbl_erp_t_taxreg",ID:"ddrp1",Disabled:false,Type:"Ddl",DataType:"SINGLESELECT_TABLE",CustomRender:false,Mandatory:true,IsDescriptive:false,ReqForCalc:true,Data:null});
+$('#Button-2').on('click',function(){onFieldChange(setparamtaxreg,$(this));});
+DbReferences.push({Type:"Simple",Id:"db_fld_0",Columns:"field.taxreg.taxreg_pid"});window.db_fld_0='';
+
+FunctionList.push({Name:'setparamtaxreg',Refs:['db_fld_0']});
+
+DbReferences.push({Id:"loadtaxreg",Type:"Value",OnDemand:0,EntityId:"",Columns:"",Xml:"<Subquery Table=\"tbl_ERP_taxreg\" Target=\"8a711fa9-a998-4ee8-bb9a-fe2424e33d2d\" TargetType=\"Single\" EntityPath=\"\" Summary=\"First\" Logic=\"\"\><Sort\><ColInfo\></ColInfo\></Sort\><Parameters\></Parameters\></Subquery\>",AlwaysLoad:false });window.loadtaxreg='';
+DbReferences.push({Id:"loadmonth",Type:"Value",OnDemand:1,EntityId:"",Columns:"",Xml:"<Subquery Table=\"tbl_ERP_taxformperiod\" Target=\"b2fc43fb-b6ab-40d3-bd8e-552f21210356\" TargetType=\"Single\" EntityPath=\"\" Summary=\"None\" Logic=\"1 and 2\"\><Condition Name=\"ddc0981f-bff8-43e6-82c8-a511924cd544\" EntityPath=\"\" Operator=\"GreaterThanOrEqualTo\" Value=\"startdate\" ValueSrc=\"Parameter\" ValueEntityPath=\"\" WFEID=\"\" WFName=\"\" SessionID=\"\" Srno=\"1\"\></Condition\><Condition Name=\"85664962-7a7b-4d50-86e8-5856a4a2ff09\" EntityPath=\"\" Operator=\"LessThanOrEqualTo\" Value=\"enddate\" ValueSrc=\"Parameter\" ValueEntityPath=\"\" WFEID=\"\" WFName=\"\" SessionID=\"\" Srno=\"2\"\></Condition\><Sort\><ColInfo\></ColInfo\></Sort\><Parameters\><Param Key=\"startdate\" /\><Param Key=\"enddate\" /\></Parameters\></Subquery\>",AlwaysLoad:false });window.loadmonth='';
+ mxEntityList={};
+
+window.userTaxRegID='10cedb7e-540c-4e21-b967-bf2acf21ae35';
+
+
+};
+var startdate;
+var enddate;
+var gstin;
+var userTaxRegID;
+Erp.OnLoad.Register(LoadFunction);
+function LoadFunction(){
+  
+  
+  $("a").css({cursor:"default"});
+ 
+
+  Erp.CreateField('SINGLESELECT',{Label: 'Month',Id:'ddlmonth', Entity:'tbl_ERP_taxformperiod',FormCode:'Lu_month',Parent:'parentCtr', Width:150, ShowBorder:true, Mandatory:true});
+  Erp.RegisterEvent('ddlmonth','change',abc);
+  if(!Fn.IsEmpty(userTaxRegID))
+   gstin=userTaxRegID;
+  //alert(gstin);
+}
+function setparamtaxreg()
+{
+  
+ gstin=Fn.CStr(db_fld_0);
+  
+  
+  Erp.SetParam(window,'taxreg',gstin);
+   Erp.SetParam(window,'startdate',startdate);
+   Erp.SetParam(window,'enddate',enddate);
+   
+ //alert(Erp.GetParam(window,'enddate'));
+  Erp.LoadVariable('tbl_trans',setvaldash);
+}
+function loadparamtaxreg()
+{
+  if(Fn.IsEmpty(gstin))
+   gstin=loadtaxreg;
+  Erp.SetFieldValue('@taxreg',gstin);
+  var date = new Date();
+var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+  
+  Erp.SetParam(window,'taxreg',gstin);
+   Erp.SetParam(window,'startdate',Fn.Format(firstDay,'{0:yyyy-MM-dd}'));
+   Erp.SetParam(window,'enddate',Fn.Format(lastDay,'{0:yyyy-MM-dd}'));
+  
+  Erp.LoadVariable('loadmonth',true);
+  Erp.SetFieldValue('ddlmonth',loadmonth);
+  
+  startdate=firstDay;
+  enddate=lastDay;
+ setvaldash();
+  
+}
+
+Erp.OnLoadComplete.Register(LoadCompleteFunction);
+function LoadCompleteFunction(){
+loadparamtaxreg();
+  
+}
+
+function openwin(sender)
+{
+  var formcode=sender[0].id;  
+  var params;
+  var title;
+  if(formcode=="view_S")
+  {
+    params="vtype=S";
+    title="Sale";
+  }
+  else if(formcode=="view_S_CN")
+  {
+    params="vtype=CN&_nm=S&tm=AgainstSales";
+    title="Sale Credit Note";
+  }
+  else if(formcode=="view_S_DN")
+  {
+    params="vtype=DN&_nm=S&tm=AgainstSales";
+    title="Sale Debit Note";
+  }
+  else if(formcode=="view_AR")
+  {
+    params="vtype=R&subvtype=AR";
+    title="Advance Receipt";
+  }
+  else if(formcode=="view_P")
+  {
+    params="vtype=P";
+    title="Purchase";
+  }
+  else if(formcode=="view_P_CN")
+  {
+    params="vtype=CN&_nm=P&tm=AgainstPurchase";
+    title="Purchase Credit Note";
+  }
+  else if(formcode=="view_P_DN")
+  {
+    params="vtype=DN&_nm=P&tm=AgainstPurchase";
+    title="Purchase Debit Note";
+  }
+  else if(formcode=="view_AP")
+  {
+    params="vtype=PY&subvtype=AP";
+    title="Advance Payment";
+  }
+  params=params+"&isfromdashboard=01&startdate="+Fn.Format(startdate,'{0:yyyy-MM-dd}')+"&enddate="+Fn.Format(enddate,'{0:yyyy-MM-dd}')+"&taxreg="+Erp.GetFieldValue('@taxreg');
+  Erp.OpenWindow({"Action":"VIEWFORM","Entity":"tbl_ERP_t","Form":formcode,"Refresh":false,"Global":false,"Title":title,"Params":params,"Location":"Self"});
+    
+
+  
+  
+}
+function setvaldash()
+{
+  
+  Erp.ServerCommand('cmd1',{},function(cmd){});
+
+  
+}
+function abc(elem,data,field)
+{
+ // alert('1');
+  startdate=data.Keys[0];
+  enddate=data.Keys[1];
+
+}
+
+
+

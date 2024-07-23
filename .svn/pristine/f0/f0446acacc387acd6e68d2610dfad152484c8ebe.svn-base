@@ -1,0 +1,16 @@
+.quickAdmin {
+  font-family: fontawesome;
+  color:#FFF;
+   font-size:20px;
+  display: inline-block;
+  line-height: 30px;
+  /*vertical-align: middle;*/
+  outline: none !important;
+  text-decoration: none;
+}
+.quickAdmin:before{
+  content: "\f19c";
+}
+
+
+

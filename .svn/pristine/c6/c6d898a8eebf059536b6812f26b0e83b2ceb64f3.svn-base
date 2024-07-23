@@ -1,0 +1,103 @@
+var Telephony={
+};
+Telephony.UserActive=false;
+Telephony.ConnectClientToAgent=function(entityId,recordId,callback){
+  if(!recordId)
+    return;
+  Erp.ShowBusyMessage("Please Wait...")
+  Erp.ExecuteTaskScript('ac89fcd2-4aad-47e9-9941-4374138a65cc',{
+    '@Entity':entityId,'@ID':recordId,'_CallType':"CALL"}
+                        ,
+                        function(r){
+                          if(typeof callback=="function")
+                            callback(r);
+                          ConnectClientToAgentCallback(r);
+                        }
+                       );
+}
+function ConnectClientToAgentCallback(result){
+  Erp.HideBusyMessage();
+  if(!result || !result["Success"])
+    Erp.ShowMessage((result || Fn.IsEmpty(result["Error"])?"Error Occured":result["Error"]),"error");
+  else
+    Erp.ShowMessage("Call Placed Successfully","success");
+  console.log(result)
+}
+
+
+Telephony.DialNumber=function(num,callback){  
+  Erp.ExecuteTaskScript('ac89fcd2-4aad-47e9-9941-4374138a65cc',{
+    'DialTo':num,'_CallType':"DIALNUMBER"}
+                        ,
+                        function(r){
+                          if(typeof callback=="function")
+                            callback(r);                          
+                        }
+                       );
+}
+
+Telephony.RegisterUser=function(callback){
+  Erp.ExecuteTaskScript('ac89fcd2-4aad-47e9-9941-4374138a65cc',{
+    'RegisterUser':true}
+                        ,function(r){
+                          Telephony.UserActive=true;
+                          console.log(r);
+                          Telephony.BeginPolling();
+                          if(typeof callback=="function")
+                            callback();
+                        }
+                       );
+}
+Telephony.DeRegisterUser=function(callback){
+  Erp.ExecuteTaskScript('ac89fcd2-4aad-47e9-9941-4374138a65cc',{
+    'DeRegisterUser':true}
+                        ,function(r){
+                          Telephony.UserActive=false;
+                          console.log(r);
+                          if(typeof callback=="function")
+                            callback();
+                        }
+                       );
+}
+var __callbackSet=false;
+Telephony.BeginPolling=function(callback){
+  if(__callbackSet)
+    return;
+  __callbackSet=true;
+  Erp.WebApi.Connect(Users.UserID+"_CallPopup", true, 1, function(d){
+    if(!Telephony.UserActive)
+      return;
+    console.log(d);
+    if(!d || Fn.IsEmpty(d.Entity))
+      return;
+    Erp.OpenWindow({
+      Entity:d.Entity,"Action":(Fn.IsEmpty(d.RecordID)?"ADDFORM":"EDITFORM"),"Form":d.Layout,"RecordID":d.RecordID,"Params":(Fn.IsEmpty(d.RecordID)?"&Phone="+d.Phone:""),"Location":"NEW"}
+                  )
+  }
+                    );
+}
+Telephony.ShowButton=function(ids,entity,callback){
+  ids=(ids?ids:"__asdfg");
+  //ids maybe blank
+  if(Fn.IsEmpty(ids)||Fn.IsEmpty(entity))
+    return;
+  var arr=ids.split(',');
+  ids="";
+  for(var i=0;i<arr.length;i++){
+    if(!Fn.IsEmpty(arr[i]))      
+      ids+="#"+arr[i]+",";
+  }
+  ids=ids.Trim(',');
+  $(ids).hide();
+  Erp.ExecuteTaskScript('ac89fcd2-4aad-47e9-9941-4374138a65cc',{
+    'CheckApplicable':true,"@Entity":entity}
+                        ,function(r){
+                          if(r && r["Visible"])
+                            $(ids).show();
+                          if(typeof callback=="function")
+                            callback(r["Visible"]);
+                        }
+                       );
+}
+
+

@@ -1,0 +1,791 @@
+function InitUI() {$('#PageTitle').children('._i').html('&#xF0E8;').next().html("Amit Mehta 2");PkIds=[];
+var ddl=$('#htmlleadtag');ddl.data('FieldID','71821a71-9ee7-4fe3-8e10-bd73eafd9fe2');ddl.data('FieldType','MULTISELECT_TABLE');ddl.data('Eids','tbl_SC_leadtag');ddl.data('LookupCode','');ddl.data('Multi',true);ddl.multiSelect({ onItemAdding:onMixSelectItemAdding,onChange: ( typeof Showsavebutton=='function'?function(obj,data){onFieldChange(Showsavebutton,obj,data,Erp.GetField('htmlleadtag'));}:null), onDropDownShowing: showSearchList});
+Erp.FieldInfo.push({Name:"tbl_sc_lead_leadtag",ID:"htmlleadtag",Disabled:false,Type:"Multi",DataType:"MULTISELECT_TABLE",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+$('#Button-9').on('click',function(){onFieldChange(SaveTage,$(this));});
+$('#btn_editlead').on('click',function(){onFieldChange(OpenEditWindow,$(this));});
+$('#CollParent-19 > div').accordion({ heightStyle: "content",collapsible: true,activate: function( event, ui ) { Erp.RedrawLayout();}});
+$('#SaveNote').on('click',function(){onFieldChange(SaveNoteNote,$(this));});
+$('#CollParent-20 > div').accordion({ heightStyle: "content",collapsible: true,activate: function( event, ui ) { Erp.RedrawLayout();}});
+$('#winaction').iframeAutoHeight({minHeight:50,heightOffset:10,triggerFunctions:[function(resizeFunction, iframe){$('#winaction').on('resize',function () { resizeFunction(iframe);});}]});
+$('#CollParent-21 > div').accordion({ heightStyle: "content",collapsible: true,activate: function( event, ui ) { Erp.RedrawLayout();}});
+DbReferences.push({Type:"Simple",Id:"db_fld_0",Columns:"user.mobile"});window.db_fld_0='';
+DbReferences.push({Type:"Simple",Id:"db_fld_1",Columns:"field.contactpersonname"});window.db_fld_1='';
+DbReferences.push({Type:"Simple",Id:"db_fld_2",Columns:"field.contactpersonname"});window.db_fld_2='';
+DbReferences.push({Type:"Simple",Id:"db_fld_3",Columns:"field.contactpersonname"});window.db_fld_3='';
+DbReferences.push({Type:"Simple",Id:"db_fld_4",Columns:"field.contactpersonname"});window.db_fld_4='';
+DbReferences.push({Type:"Simple",Id:"db_fld_5",Columns:"field.contactpersonname"});window.db_fld_5='';
+DbReferences.push({Type:"Simple",Id:"db_fld_6",Columns:"user.users_pid"});window.db_fld_6='';
+DbReferences.push({Type:"Simple",Id:"db_fld_7",Columns:"company.company_pid"});window.db_fld_7='';
+DbReferences.push({Type:"Simple",Id:"db_fld_8",Columns:"user.users_pid"});window.db_fld_8='';
+DbReferences.push({Type:"Simple",Id:"db_fld_9",Columns:"company.company_pid"});window.db_fld_9='';
+
+FunctionList.push({Name:'createleadactivity',Refs:['db_fld_0','db_fld_1','db_fld_0','db_fld_1','db_fld_0','db_fld_1','db_fld_0','db_fld_1','db_fld_0','db_fld_1','db_fld_0','db_fld_1','db_fld_0','db_fld_1','db_fld_0','db_fld_1']});
+FunctionList.push({Name:'CallToCustomer',Refs:['db_fld_0','db_fld_1']});
+FunctionList.push({Name:'callstatus',Refs:['db_fld_1','db_fld_1']});
+FunctionList.push({Name:'entitySuccess',Refs:['db_fld_1','db_fld_1']});
+FunctionList.push({Name:'ActivityDropdown',Refs:['db_fld_0','db_fld_1','db_fld_0','db_fld_1','db_fld_0','db_fld_1','db_fld_0','db_fld_1','db_fld_0','db_fld_1','db_fld_0','db_fld_1','db_fld_0','db_fld_1','db_fld_0','db_fld_1']});
+FunctionList.push({Name:'HideShowActivity',Refs:['db_fld_0','db_fld_1','db_fld_0','db_fld_1','db_fld_0','db_fld_1','db_fld_0','db_fld_1','db_fld_0','db_fld_1','db_fld_0','db_fld_1','db_fld_0','db_fld_1','db_fld_0','db_fld_1']});
+FunctionList.push({Name:'TakeAction',Refs:['db_fld_0','db_fld_1','db_fld_0','db_fld_1']});
+FunctionList.push({Name:'ViewPrevious',Refs:['db_fld_6','db_fld_7','db_fld_6','db_fld_7']});
+FunctionList.push({Name:'SetCustMobileNo',Refs:['db_fld_0','db_fld_1']});
+
+DbReferences.push({Id:"LeadDetails",Type:"Table",OnDemand:1,EntityId:"tbl_SC_lead",Columns:"",Xml:"<Layout\><Grid Id=\"tbl_SC_lead\"\><ColInfo\><Cols Type=\"\" Name=\"afdb78cd-f8b8-4aca-9c1e-abb71970a656\" EntityPath=\"\" Title=\"salutation\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"5f1cc532-38da-4463-a04d-7c787d69fb4c\" EntityPath=\"\" Title=\"contactpersonname\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"6112834d-22a7-439b-b19a-a5eedde02484\" EntityPath=\"\" Title=\"interestedproducttype\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"a7bd13d6-99aa-4895-aead-c810fb98dcb9\" EntityPath=\"\" Title=\"interestedproducts\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"bd7a5036-67e9-4833-a434-60bd2f9ed157\" EntityPath=\"\" Title=\"budgetmin\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"209bb89a-d506-4388-904a-7bb9ce1d84f8\" EntityPath=\"\" Title=\"budgetmax\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"26216bd5-cfa7-4191-bc6f-6320a525e945\" EntityPath=\"location:tbl_SC_location\" Title=\"locationname\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"d7898e93-7639-49bf-81a6-a3703b7e311f\" EntityPath=\"\" Title=\"current_leadstage\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"28ef0eb1-d758-409b-bc93-1a0d3311b3eb\" EntityPath=\"current_leadstage:tbl_SC_leadstage\" Title=\"leadstage_pid\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"673ffdcf-3ecf-4a0b-abd2-4cefc7bdeabb\" EntityPath=\"\" Title=\"mobile1\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"fbe414c4-a160-4e2e-9fb5-7af9234e821b\" EntityPath=\"\" Title=\"personalemail\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"71821a71-9ee7-4fe3-8e10-bd73eafd9fe2\" EntityPath=\"\" Title=\"leadtag\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"186b774e-3f0c-4053-895a-3de782d6a912\" EntityPath=\"contact:tbl_SC_contact\" Title=\"primarymobile\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"3d5cdc0c-0541-4243-82db-56cada1d836a\" EntityPath=\"contact:tbl_SC_contact\" Title=\"secondarymobile\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\></ColInfo\></Grid\></Layout\><Filter Limit=\"\" Id=\"tbl_SC_lead\" Logic=\"1\"\><Condition Name=\"5e294de6-3ef4-4829-b531-233ab1af4cc0\" EntityPath=\"\" Operator=\"EqualTo\" Value=\"LeadId\" ValueSrc=\"Parameter\" ValueEntityPath=\"\" WFEID=\"\" WFName=\"\" SessionID=\"\" Srno=\"1\"\></Condition\><Sort\><ColInfo\></ColInfo\></Sort\><Parameters\><Param Key=\"LeadId\" /\></Parameters\></Filter\>",AlwaysLoad:false });window.LeadDetails='';
+DbReferences.push({Id:"leadactivity",Type:"Table",OnDemand:1,EntityId:"tbl_SC_leadactivity",Columns:"",Xml:"<Layout\><Grid Id=\"tbl_SC_leadactivity\"\><ColInfo\><Cols Type=\"\" Name=\"5e294de6-3ef4-4829-b531-233ab1af4cc0\" EntityPath=\"lead:tbl_SC_lead\" Title=\"lead_pid\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"f14cfc6a-67e3-48d9-975d-944ced65b454\" EntityPath=\"\" Title=\"activitydate\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"207f2106-b2dd-476d-a0df-64c1ce18096a\" EntityPath=\"leadactivitycategory:tbl_SC_leadactivitycategory\" Title=\"leadactivitycategorycode\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"d6bb82b1-a1ca-48cd-82d2-2adfda699677\" EntityPath=\"leadactivitytype:tbl_SC_leadactivitytype\" Title=\"leadactivitytypecode\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"f7ea3942-64f2-4f81-abcc-9efb60449b34\" EntityPath=\"\" Title=\"schedulestart\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"c50cf244-4da0-4e40-abf1-0fc03da646a8\" EntityPath=\"\" Title=\"scheduleend\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"24000088-b279-441e-a48e-bf2819d4140d\" EntityPath=\"\" Title=\"activityuser\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"f381692b-5fa7-4063-8951-e27fba608366\" EntityPath=\"\" Title=\"ispickuprequired\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"57e1f886-0543-4677-b5bc-4278be835994\" EntityPath=\"\" Title=\"pickupdate\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"dcdfd3e0-85c5-4b5e-b29e-5d656e92384a\" EntityPath=\"\" Title=\"agenda\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"eecd4636-7e5e-4595-ab08-a50002fc2eb3\" EntityPath=\"\" Title=\"subject\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"48d38186-c05c-4cd3-80f2-19c59cad7c8c\" EntityPath=\"\" Title=\"note\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"8ef7921d-b073-4ceb-93f2-e2a618e2dbd2\" EntityPath=\"\" Title=\"feeddescription\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"ed0767e3-94e3-4746-a3b6-85b46513d844\" EntityPath=\"\" Title=\"isscheduleperformed\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"140bd97d-bfae-4878-9f88-6a6729b946cb\" EntityPath=\"leadfeedback:tbl_SC_leadfeedback\" Title=\"leadfeedbackcode\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"6806cb05-4d48-4692-8306-407b359e236e\" EntityPath=\"product:tbl_SC_product\" Title=\"productname\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"0951a174-0d4f-4ab9-ab12-aaa299e4cefb\" EntityPath=\"\" Title=\"smsmessage\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"56384888-91cb-4b64-9bd4-a57c6afcb722\" EntityPath=\"createdBy_User_Fid:tbl_SYS_Users\" Title=\"createduser\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"a2d898f1-5b2b-4c91-a617-aedb251cbb7c\" EntityPath=\"pickuplocation:tbl_SC_pickuplocation\" Title=\"displaylocation\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"16fe29a7-1cde-4093-a58b-85e66aeb3e61\" EntityPath=\"\" Title=\"leadactivity_pid\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"441a3041-01f9-4ce5-bb99-ae3b11fc3e89\" EntityPath=\"lead:tbl_SC_lead\" Title=\"mobile2\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"673ffdcf-3ecf-4a0b-abd2-4cefc7bdeabb\" EntityPath=\"lead:tbl_SC_lead\" Title=\"mobile1\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"88b49913-d873-486f-a98d-7ca8e01c96f3\" EntityPath=\"product:tbl_SC_product\" Title=\"product_pid\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"f43cdf61-bfc9-496e-83dd-d4d4b579980a\" EntityPath=\"smstemplate:tbl_SC_smstemplate\" Title=\"smstemplatecode\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"ca95a817-97ab-4598-840b-e6274783abfb\" EntityPath=\"\" Title=\"followupdate\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"edff62c1-b988-4523-86a3-deee1ce0a17d\" EntityPath=\"\" Title=\"activitystatus\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"63198e30-4a40-4aa6-b9c4-cd65e7435cd5\" EntityPath=\"\" Title=\"leadfeedbackstatusremark\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"0291718b-0517-4bf4-8215-e1eb3d6e917e\" EntityPath=\"\" Title=\"mainoriginleadactivityfid\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"4f7dae1d-873d-4cd5-97bc-0ea43fd6c1ec\" EntityPath=\"\" Title=\"previousoriginleadactivityfid\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"8b1c5950-ced6-4267-85b7-475a0be06727\" EntityPath=\"leadactivitytype:tbl_SC_leadactivitytype\" Title=\"leadactivitytypename\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"98b52270-0cd8-4eab-8a40-d4ab014f7ea3\" EntityPath=\"calllogid:tbl_CLT_calldatarecordings\" Title=\"resource_url\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"036a8586-94f2-4c4e-8b04-318165872544\" EntityPath=\"calllogid:tbl_CLT_calldatarecordings\" Title=\"internalcallstatus\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"0b70856a-f309-4cb4-acbf-e7ed09a28bd2\" EntityPath=\"\" Title=\"tasktype\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\></ColInfo\></Grid\></Layout\><Filter Limit=\"\" Id=\"tbl_SC_leadactivity\" Logic=\"1\"\><Condition Name=\"5e294de6-3ef4-4829-b531-233ab1af4cc0\" EntityPath=\"lead:tbl_SC_lead\" Operator=\"EqualTo\" Value=\"LeadId\" ValueSrc=\"Parameter\" ValueEntityPath=\"\" WFEID=\"\" WFName=\"\" SessionID=\"\" Srno=\"1\"\></Condition\><Sort\><ColInfo\><Cols Name=\"f14cfc6a-67e3-48d9-975d-944ced65b454\" EntityPath=\"\" Sort=\"Desc\" fieldtype=\"-999\" /\></ColInfo\></Sort\><Parameters\><Param Key=\"LeadId\" /\></Parameters\></Filter\>",AlwaysLoad:false });window.leadactivity='';
+DbReferences.push({Id:"LeadActivityCategory",Type:"Table",OnDemand:0,EntityId:"tbl_SC_leadactivitycategory",Columns:"",Xml:"<Layout\><Grid Id=\"tbl_SC_leadactivitycategory\"\><ColInfo\><Cols Type=\"\" Name=\"8f61d72f-29f6-4973-946c-993476171574\" EntityPath=\"\" Title=\"leadactivitycategory_pid\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"dda032f3-fe67-4e26-a1c8-975fa8944dc3\" EntityPath=\"\" Title=\"leadactivitycategoryname\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"207f2106-b2dd-476d-a0df-64c1ce18096a\" EntityPath=\"\" Title=\"leadactivitycategorycode\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\></ColInfo\></Grid\></Layout\>",AlwaysLoad:false });window.LeadActivityCategory='';
+DbReferences.push({Id:"resendSMS",Type:"Table",OnDemand:1,EntityId:"tbl_SC_leadactivity",Columns:"",Xml:"<Layout\><Grid Id=\"tbl_SC_leadactivity\"\><ColInfo\><Cols Type=\"\" Name=\"16fe29a7-1cde-4093-a58b-85e66aeb3e61\" EntityPath=\"\" Title=\"leadactivity_pid\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"88b49913-d873-486f-a98d-7ca8e01c96f3\" EntityPath=\"product:tbl_SC_product\" Title=\"product_pid\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"673ffdcf-3ecf-4a0b-abd2-4cefc7bdeabb\" EntityPath=\"lead:tbl_SC_lead\" Title=\"mobile1\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"441a3041-01f9-4ce5-bb99-ae3b11fc3e89\" EntityPath=\"lead:tbl_SC_lead\" Title=\"mobile2\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"f43cdf61-bfc9-496e-83dd-d4d4b579980a\" EntityPath=\"smstemplate:tbl_SC_smstemplate\" Title=\"smstemplatecode\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"cb71ce8b-b85c-4f37-8da5-749af329d2e0\" EntityPath=\"smstemplate:tbl_SC_smstemplate\" Title=\"smstemplatetemplate\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"e672a624-9f09-4a67-9ef5-2034fcefa78e\" EntityPath=\"\" Title=\"leadactivitycategory\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"0951a174-0d4f-4ab9-ab12-aaa299e4cefb\" EntityPath=\"\" Title=\"smsmessage\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"6806cb05-4d48-4692-8306-407b359e236e\" EntityPath=\"product:tbl_SC_product\" Title=\"productname\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"5e294de6-3ef4-4829-b531-233ab1af4cc0\" EntityPath=\"lead:tbl_SC_lead\" Title=\"lead_pid\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"subquery\" Title=\"leadactivitytypecode\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" Status=\"1\"\><Subquery Table=\"tbl_SC_leadactivitytype\" Target=\"5c3d6232-db81-4066-a756-734784e909ec\" TargetType=\"Single\" EntityPath=\"\" Summary=\"None\" Logic=\"1 and 2\"\><Condition Name=\"207f2106-b2dd-476d-a0df-64c1ce18096a\" EntityPath=\"leadactivitycategory:tbl_SC_leadactivitycategory\" Operator=\"EqualTo\" Value=\"SMS\" ValueSrc=\"Input\" WFName=\"\" SessionID=\"\" Srno=\"1\"\></Condition\><Condition Name=\"d6bb82b1-a1ca-48cd-82d2-2adfda699677\" EntityPath=\"\" Operator=\"EqualTo\" Value=\"Outgoing\" ValueSrc=\"Input\" WFName=\"\" SessionID=\"\" Srno=\"2\"\></Condition\><Sort\><ColInfo\></ColInfo\></Sort\><Parameters\></Parameters\></Subquery\></Cols\></ColInfo\></Grid\></Layout\><Filter Limit=\"\" Id=\"tbl_SC_leadactivity\" Logic=\"1\"\><Condition Name=\"16fe29a7-1cde-4093-a58b-85e66aeb3e61\" EntityPath=\"\" Operator=\"EqualTo\" Value=\"leadActivityID\" ValueSrc=\"Parameter\" ValueEntityPath=\"\" WFEID=\"\" WFName=\"\" SessionID=\"\" Srno=\"1\"\></Condition\><Sort\><ColInfo\></ColInfo\></Sort\><Parameters\><Param Key=\"leadActivityID\" /\></Parameters\></Filter\>",AlwaysLoad:false });window.resendSMS='';
+DbReferences.push({Id:"leadactivitylastvisit",Type:"Value",OnDemand:1,EntityId:"",Columns:"",Xml:"<Subquery Table=\"tbl_SC_leadactivity\" Target=\"f14cfc6a-67e3-48d9-975d-944ced65b454\" TargetType=\"Single\" EntityPath=\"\" Summary=\"First\" Logic=\"1 and 2 and 3\"\><Condition Name=\"76621c82-807c-4311-86fc-b4600a104e45\" EntityPath=\"\" Operator=\"EqualTo\" Value=\"LeadId\" ValueSrc=\"Parameter\" ValueEntityPath=\"\" WFEID=\"\" WFName=\"\" SessionID=\"\" Srno=\"1\"\></Condition\><Condition Name=\"edff62c1-b988-4523-86a3-deee1ce0a17d\" EntityPath=\"\" Operator=\"EqualTo\" Value=\"SiteVisitCompleted\" ValueSrc=\"Input\" WFName=\"\" SessionID=\"\" Srno=\"2\"\></Condition\><Condition Name=\"207f2106-b2dd-476d-a0df-64c1ce18096a\" EntityPath=\"leadactivitycategory:tbl_SC_leadactivitycategory\" Operator=\"EqualTo\" Value=\"Site Visit\" ValueSrc=\"Input\" WFName=\"\" SessionID=\"\" Srno=\"3\"\></Condition\><Sort\><ColInfo\><Cols Name=\"f14cfc6a-67e3-48d9-975d-944ced65b454\" EntityPath=\"\" Sort=\"Desc\" fieldtype=\"-999\" /\></ColInfo\></Sort\><Parameters\><Param Key=\"LeadId\" /\></Parameters\></Subquery\>",AlwaysLoad:false });window.leadactivitylastvisit='';
+DbReferences.push({Id:"LeadTagName",Type:"Table",OnDemand:0,EntityId:"tbl_SC_leadtag",Columns:"",Xml:"<Layout\><Grid Id=\"tbl_SC_leadtag\"\><ColInfo\><Cols Type=\"\" Name=\"b132cf22-c35d-41f6-909f-9da132017b37\" EntityPath=\"\" Title=\"leadtag_pid\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"7270ab7a-3b16-4df6-b137-622e6219866b\" EntityPath=\"\" Title=\"leadtagcode\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\></ColInfo\></Grid\></Layout\>",AlwaysLoad:false });window.LeadTagName='';
+DbReferences.push({Id:"LeadStageName",Type:"Table",OnDemand:0,EntityId:"tbl_SC_leadstage",Columns:"",Xml:"<Layout\><Grid Id=\"tbl_SC_leadstage\"\><ColInfo\><Cols Type=\"\" Name=\"28ef0eb1-d758-409b-bc93-1a0d3311b3eb\" EntityPath=\"\" Title=\"leadstage_pid\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"4c4905bb-8b1a-40b8-a81e-2d8797242d1d\" EntityPath=\"\" Title=\"stagecode\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\></ColInfo\></Grid\></Layout\>",AlwaysLoad:false });window.LeadStageName='';
+DbReferences.push({Id:"leadactivitycategoryNotes",Type:"Value",OnDemand:1,EntityId:"",Columns:"",Xml:"<Subquery Table=\"tbl_SC_leadactivitycategory\" Target=\"8f61d72f-29f6-4973-946c-993476171574\" TargetType=\"Single\" EntityPath=\"\" Summary=\"None\" Logic=\"1\"\><Condition Name=\"dda032f3-fe67-4e26-a1c8-975fa8944dc3\" EntityPath=\"\" Operator=\"EqualTo\" Value=\"Notes\" ValueSrc=\"Input\" WFName=\"\" SessionID=\"\" Srno=\"1\"\></Condition\><Sort\><ColInfo\></ColInfo\></Sort\><Parameters\></Parameters\></Subquery\>",AlwaysLoad:false });window.leadactivitycategoryNotes='';
+ mxEntityList={};
+
+
+
+};
+var lead_ID;
+var leadActivityid="";
+var outgoinglogid;
+
+var tags = new Array();
+
+Erp.OnInit.Register(InitFunction);
+function InitFunction(){
+  
+  
+  //$('._i').after('Contact Person:  ');
+  $('#PageTitle').append($('#btn_editlead'));
+  $('#btn_editlead').after($('#RelatedField-151'));
+}
+Erp.OnLoad.Register(LoadFunction);
+function LoadFunction()
+{
+  tags = Erp.GetFieldValue('htmlleadtag');
+  
+  if(Fn.GetProp('mode')=="fromcall")
+  { 
+    leadActivityid=Fn.GetProp('leadactivityID');
+    Erp.OpenWindow({"Action":"EDITFORM","Entity":"tbl_SC_leadactivity","Form":"Layout_CallActivity","RecordID":leadActivityid,"Refresh":false,"Global":false,"Title":"Incoming Call","Params":"","Location":"Popup","PopHt":"276","PopWd":"718"});
+  }
+  lead_ID = Fn.GetProp('ID');
+  Erp.SetParam(window,'LeadId',lead_ID);
+  Erp.LoadVariable('LeadTagName',true);
+  Erp.LoadVariable('LeadStageName',true);
+  Erp.LoadVariable('leadactivitylastvisit',true);
+  Erp.LoadVariable('LeadDetails',true);
+  Erp.LoadVariable('leadactivitycategoryNotes',true);
+  Erp.LoadVariable('leadactivity',createleadactivity);
+  Erp.LoadVariable('LeadActivityCategory',ActivityDropdown);
+  Erp.OpenWindow({"Action":"ADDFORM","Entity":"tbl_SC_leadactivity","Form":"Add_Follow_Up","Refresh":false,"Global":false,"Title":"Task","Params":"_noPadding=1&lead_ID="+lead_ID+""} ,'winaction');
+  //Erp.OpenWindow({"Action":"ADDFORM","Entity":"tbl_SC_leadactivity","Form":"LeadActivityNote","Refresh":false,"Global":false,"Title":"Notes","Params":"_noPadding=1&lead_ID="+lead_ID+""},'Window-3');
+  $("#all").parents().find('td span').removeClass('currentClass');
+  $("#all").addClass('currentClass');
+  $('#FilterSearch').hide();
+  $('#FilterIcon').click(function () {
+  $('#FilterSearch').toggle();
+  });
+    $("#parentCtr").html(""); 
+    Erp.CreateField('MULTILINE',{Label: '', Id:'note', Parent:'parentCtr',ShowBorder:true, Tooltip:'Note'});
+}
+function createleadactivity()
+{
+  var htmlContent="";
+  if(leadactivity!=null )
+  {
+   
+    htmlContent = htmlContent + "<div id ='NorecordDiv' style='display:none'> No Record To Display </div>";
+    for(var a=0;a<leadactivity.length;a++)
+    {
+       var subDivclass = "";
+       var spanclass = "";
+       var maincontent = "";
+      
+      htmlContent = htmlContent + "<div >";
+      var leadactivitycategorycode =  leadactivity[a]["leadactivitycategorycode"];
+      if (leadactivitycategorycode == "SMS")
+      {
+        subDivclass = "SMS";
+        if (leadactivity[a]["leadactivitytypename"] =="Outgoing"){
+          spanclass = "<span class='circle messageicon'><span class='icon-stack'><a class='message'></a><a class='arrowSend'></a></span></span>";
+        }
+        if (leadactivity[a]["leadactivitytypename"] =="Incoming"){
+          spanclass = "<span class='circle messageicon'><span class='icon-stack'><a class='message'></a><a class='arrowReciv'></a></span></span>";
+        }
+        maincontent = leadactivity[a]["smsmessage"];
+      }
+      if (leadactivitycategorycode == "Email")
+      {
+        subDivclass = "Email";
+        if (leadactivity[a]["leadactivitytypename"] =="Outgoing"){
+          spanclass = "<span class='circle emailicon'><span class='icon-stack'><a class='email'></a><a class='arrowSend'></a></span></span>";
+        }
+        if (leadactivity[a]["leadactivitytypename"] =="Incoming"){
+          spanclass = "<span class='circle emailicon'><span class='icon-stack'><a class='email'></a><a class='arrowReciv'></a></span></span>";
+        }
+        maincontent = leadactivity[a]["subject"];
+      }
+      if (leadactivitycategorycode == "Notes")
+      {
+        subDivclass = "Note";
+        spanclass = "<span class='circlesingle NOTE'></span>";
+        maincontent = "Note : "+ leadactivity[a]["note"];
+      }
+      if (leadactivitycategorycode == "Followup")
+      {
+        subDivclass = "FollowUp";
+        spanclass = "<span class='circlesingle FollowUp'></span>";
+        if (leadactivity[a]["feeddescription"] == ""){
+          maincontent =  "Task Added for "+Fn.Format(leadactivity[a]["followupdate"],'{0:dd-mm-yyyy hh:mm:ss}');
+        }
+        else{
+          maincontent =  "Task Added for "+Fn.Format(leadactivity[a]["followupdate"],'{0:dd-mm-yyyy hh:mm:ss}') +" </br>   Discription : "+leadactivity[a]["feeddescription"] +"";
+        }
+      }
+      if (leadactivitycategorycode == "Site Visit") 
+      {
+        subDivclass = "SiteVisit";
+        spanclass = "<span class='circlesingle sitevisit'></span>";
+        
+          maincontent = "Site Visit Scheduled On "+Fn.Format(leadactivity[a]["schedulestart"],'{0:dd-MM-yyyy}')+" between "+Fn.Format(leadactivity[a]["schedulestart"],'{0:hh:mm:ss}')+" To "+Fn.Format(leadactivity[a]["scheduleend"],'{0:hh:mm:ss}')+ " for "+ leadactivity[a]["productname"] +"";
+        if ( leadactivity[a]["ispickuprequired"] == true)
+        {
+           maincontent =+ "<br> Pick Up at "+leadactivity[a]["displaylocation"]+" at "+Fn.Format(leadactivity[a]["pickupdate"],'{0:hh:mm:ss}');
+        }
+      }
+      if (leadactivitycategorycode == "Calls") 
+      {
+        subDivclass = "Call";
+        if (leadactivity[a]["leadactivitytypename"] =="Outgoing"){
+          spanclass = "<span class='circle callicon'><span class='icon-stack'><a class='icall'></a><a class='arrowSend'></a></span></span>";
+        }
+        if (leadactivity[a]["leadactivitytypename"] =="Incoming"){
+          spanclass = "<span class='circle callicon'><span class='icon-stack'><a class='icall'></a><a class='arrowReciv'></a></span></span>";
+        }
+      
+        if (leadactivity[a]["feeddescription"] == null)
+        {
+          maincontent = "<br>";
+        }
+        else {
+          maincontent = maincontent +"Discription : " +leadactivity[a]["feeddescription"]+"</br>";
+        }
+        if (leadactivity[a]["resource_url"] != null)
+        {
+          var  resource_url = "\""+leadactivity[a]["resource_url"]+"\"";
+          maincontent = maincontent +"<audio controls>";
+          maincontent = maincontent +"<source src="+resource_url+" type='audio/mpeg'>";
+          maincontent = maincontent +"</audio>";
+          maincontent = maincontent +"</div>";
+        }
+        else {
+          maincontent =maincontent +" "+ leadactivity[a]["internalcallstatus"]+"</br>";
+        }
+      }
+      if (leadactivitycategorycode == "Additional Feed")
+      {
+        subDivclass = "Feed";
+        spanclass = "<span class='circlesingle AdditionalField'></span>";
+        maincontent = leadactivity[a]["feeddescription"];
+      }
+      var act_pid = "\""+leadactivity[a]['leadactivity_pid']+"\"";
+      var layoutframe = "\""+subDivclass+"\"";
+      htmlContent = htmlContent + "<div class='subMainDiv "+subDivclass+""+1+"'  style='margin-bottom: -14px !important;'>";
+      htmlContent = htmlContent + "<table cellspacing='0' cellpadding='0' class='maintable'>";
+      htmlContent = htmlContent + "           <tr>";
+      htmlContent = htmlContent + "               <td rowspan='4' style='width:50px;'>";
+      htmlContent = htmlContent + "" +spanclass+"";
+      htmlContent = htmlContent + "               </td>";
+      htmlContent = htmlContent + "               <td colspan='2'>";
+      htmlContent = htmlContent + "                   <div class='DateTime'>";
+      htmlContent = htmlContent + "                       <span>"+Fn.Format(leadactivity[a]["activitydate"],'{0:dd/mm/yyyy hh:mm:ss}')+"</span>";
+      htmlContent = htmlContent + "                   </div>";
+      htmlContent = htmlContent + "               </td>";
+  
+      htmlContent = htmlContent + "           </tr>";
+      htmlContent = htmlContent + "           <tr>";
+      htmlContent = htmlContent + "               <td class='Subject' >"+maincontent+" </td>";
+       htmlContent = htmlContent + "                <td   style='text-align: right !important;color: #dc67bf;width: 20%;'><strong>"+leadactivity[a]["createduser"]+"</strong></td>";
+      htmlContent = htmlContent + "           </tr>";
+      htmlContent = htmlContent + "           <tr>";
+      htmlContent = htmlContent + "               <td colspan='2'>";
+      if (leadactivity[a]['isscheduleperformed'] != true )
+      {
+        if (leadactivity[a]['activitystatus'] == null  ) 
+        {
+          var seid = "Action"+a;
+          var selectid = "\""+seid+"\"";
+          var mainoriginleadactivityfid1 =   leadactivity[a]['mainoriginleadactivityfid'];
+          if (mainoriginleadactivityfid1 == null)
+          {
+            mainoriginleadactivityfid1 = "";
+          }
+          var mainoriginleadactivityfid =  "\""+  mainoriginleadactivityfid1+"\"";
+          var ActivityDate =  "\""+  leadactivity[a]['activitydate']+"\"";
+          //   if (subDivclass == "SMS")
+          //   {
+          //   htmlContent = htmlContent + "  <select id='Action"+a+"' ";
+          //   htmlContent = htmlContent + ">";
+          //   htmlContent = htmlContent + " <option value='PleaseSelect'>-Please Select-</option>";
+          //   htmlContent = htmlContent + "  <option value='SendSMS'>Send SMS</option>";
+          //   htmlContent = htmlContent + "  </select>";
+          //   htmlContent = htmlContent + " <a href='javascript:TakeAction("+act_pid+","+layoutframe+","+selectid+","+act_pid+","+mainoriginleadactivityfid+")' class='buttontake'>Take Action</a>";
+          //   }
+          if (subDivclass == "Email")
+          {
+            if ( leadactivity[a]["leadactivitytypename"] =="Incoming"){
+              htmlContent = htmlContent + " <select id='Action"+a+"' ";
+              htmlContent = htmlContent + ">";
+              htmlContent = htmlContent + " <option value='PleaseSelect'>-Please Select-</option>";
+              htmlContent = htmlContent + "  <option value='ReplyEmail'>Reply</option>";
+              //   else
+              // {
+              //     htmlContent = htmlContent + "  <option value='SendEmail'>Send Email</option>";
+              //    }
+              htmlContent = htmlContent + "  </select>";
+              htmlContent = htmlContent + " <a href='javascript:TakeAction("+act_pid+","+layoutframe+","+selectid+","+act_pid+","+mainoriginleadactivityfid+")' class='buttontake'>Take Action</a>";
+            }
+          }
+          if (subDivclass == "FollowUp")
+          {
+            htmlContent = htmlContent + " <select id='Action"+a+"' ";
+            htmlContent = htmlContent + ">";
+            htmlContent = htmlContent + " <option value='PleaseSelect'>-Please Select-</option>";
+            htmlContent = htmlContent + "  <option value='FollowupReshedule'>Reschedule</option>";
+            htmlContent = htmlContent + "  <option value='FollowupCompleted'>Completed</option>";
+            if (leadactivity[a]["tasktype"] == "Call")
+            {
+              htmlContent = htmlContent + "  <option value='FollowupCall'>Call</option>";
+            }
+            if (leadactivity[a]["tasktype"] == "Email"){
+              htmlContent = htmlContent + "  <option value='SendEmail'>Send Email</option>";
+            }
+            htmlContent = htmlContent + "  </select>";
+            htmlContent = htmlContent + " <a href='javascript:TakeAction("+act_pid+","+layoutframe+","+selectid+","+act_pid+","+mainoriginleadactivityfid+")' class='buttontake'>Take Action</a>";
+          }
+          if (subDivclass == "SiteVisit")
+          {
+            htmlContent = htmlContent + " <select id='Action"+a+"' ";
+            htmlContent = htmlContent + ">";
+            htmlContent = htmlContent + " <option value='PleaseSelect'>-Please Select-</option>";
+            htmlContent =htmlContent + "  <option value='SiteVisitReshedule'>Reschedule</option>";
+            htmlContent =htmlContent + "  <option value='SiteVisitCompleted'>Completed</option>";
+            htmlContent =htmlContent + "  <option value='SiteVisitCall'>Call</option>";
+            htmlContent = htmlContent + "  </select>";
+            htmlContent = htmlContent + " <a href='javascript:TakeAction("+act_pid+","+layoutframe+","+selectid+","+act_pid+","+mainoriginleadactivityfid+")' class='buttontake'>Take Action</a>";
+          }
+        }
+        else
+        {
+          if (leadactivity[a]['activitystatus'] == "FollowupReshedule" || leadactivity[a]['activitystatus'] == "SiteVisitReshedule")
+          {
+            htmlContent =  htmlContent + "Reshedule Reason : "+leadactivity[a]['leadfeedbackstatusremark']+"";
+          }
+          else if (leadactivity[a]['activitystatus'] == "ReplyEmail")
+          {
+            htmlContent =  htmlContent + "Replied";
+          }
+          else if (leadactivity[a]['activitystatus'] == "SendEmail")
+          {
+            htmlContent =  htmlContent + "Send";
+          }
+          else {
+            htmlContent =  htmlContent + ""+leadactivity[a]['leadfeedbackstatusremark']+"";
+          }
+        }
+      }
+      else {
+        htmlContent = htmlContent + "<span class='Subject' >Activity Completed ("+leadactivity[a]['leadfeedbackstatusremark']+")</span>";
+      }
+      htmlContent = htmlContent + "               </td>";
+  
+      htmlContent = htmlContent + "           </tr>";
+      htmlContent = htmlContent + "           <tr>";
+      htmlContent = htmlContent + "               <td colspan='2'>";
+      htmlContent = htmlContent + "                   <div class='OtherLink'>";
+      htmlContent = htmlContent + "                       <span onclick='ViewActivity("+act_pid+","+layoutframe+")'>View Details </span>|";
+      htmlContent = htmlContent + "                       <span onclick='ShowLog("+mainoriginleadactivityfid+","+ActivityDate+","+act_pid+")'> Show Log</span>";
+      htmlContent = htmlContent + "                   </div>";
+      htmlContent = htmlContent + "               </td>";
+   
+      htmlContent = htmlContent + "           </tr>";
+      htmlContent = htmlContent + "           <tr >";
+      htmlContent = htmlContent + "               <td colspan='3'><hr /> </td>";
+      htmlContent = htmlContent + "           </tr>";
+      htmlContent = htmlContent + "       </table>";
+      htmlContent = htmlContent + "   </div>";
+      spanclass = "";
+    }
+    htmlContent = htmlContent + "   </div>";
+  }
+  if (leadactivity.length == 0){
+    htmlContent = htmlContent + "<div> No Record To Display </div>";
+  }
+  $("#LeadActivity_Regarding").html(htmlContent);
+}
+function OpenEmailWindow(){
+     if (LeadDetails[0]["personalemail"] == "" || LeadDetails[0]["personalemail"] == null)
+   {
+      Erp.ShowMessage("Customer Personal Email Is Not Avalable");
+      return false;
+   }
+  
+  $(window).scrollTop();
+  Erp.OpenWindow({
+    "Action":"ADDFORM","Entity":"tbl_SC_leadactivity","Form":"LeadActivityEmail","Refresh":false,"Global":false,"Title":"EMAIL","Params":"lead_ID="+lead_ID+"","Location":"Popup","PopHt":"645","PopWd":"700"}
+                );
+}
+function openSMSWindow(){
+    if (LeadDetails[0]['mobile1'] == null ){
+    Erp.ShowMessage(" Customer Mobile No Not Available");
+    return false;
+  }
+  $(window).scrollTop();
+  Erp.OpenWindow({
+    "Action":"ADDFORM","Entity":"tbl_SC_leadactivity","Form":"LeadActivitySMS","Refresh":false,"Global":false,"Title":"SMS","Params":"lead_ID="+lead_ID+"","Location":"Popup","PopHt":"320","PopWd":"700"}
+                );
+}
+function openWindowNote(){
+  $(window).scrollTop();
+  Erp.OpenWindow({
+    "Action":"ADDFORM","Entity":"tbl_SC_leadactivity","Form":"LeadActivityNote","Refresh":false,"Global":false,"Title":"NOTE","Params":"lead_ID="+lead_ID+"","Location":"Popup","PopHt":"400","PopWd":"700"}
+                );
+}
+function OpenFollowupWindow(){
+  $(window).scrollTop();
+  Erp.OpenWindow({
+    "Action":"ADDFORM","Entity":"tbl_SC_leadactivity","Form":"Add_Follow_Up","Refresh":false,"Global":false,"Title":"Task","Params":"lead_ID="+lead_ID+"","Location":"Popup","PopHt":"400","PopWd":"700"}
+                );
+}
+function OpenVisitSiteWindow(){
+  $(window).scrollTop();
+  Erp.OpenWindow({
+    "Action":"ADDFORM","Entity":"tbl_SC_leadactivity","Form":"Add_Visit_Site","Refresh":false,"Global":false,"Title":"VISIT SITE","Params":"lead_ID="+lead_ID+"","Location":"Popup","PopHt":"310","PopWd":"700"}
+                );
+}
+function OpenEditWindow(){
+  $(window).scrollTop();
+  Erp.OpenWindow({
+    "Action":"EDITFORM","Entity":"tbl_SC_lead","Form":"Layout Lead Real Estate V2","RecordID":lead_ID,"Refresh":false,"Global":false,"Title":"EDIT LEAD","Params":"lead_ID="+lead_ID+"","Location":"Self"}
+                );
+}
+
+
+function OpenConvertToOpportunityWindow (){
+    $(window).scrollTop();
+    Erp.OpenWindow({"Action":"EDITFORM","Entity":"tbl_SC_lead","Form":"LayoutConvertToOpportunity","RecordID":lead_ID,"Refresh":false,"Global":false,"Title":"Convert To Opportunity","Params":"leadID="+lead_ID+"","Location":"Self"});
+}
+function CallToCustomer(a)
+{
+  
+ var MobileType1 = Erp.GetParam(window,'MobileType');
+  alert (MobileType1);
+   return false;
+  
+  if (LeadDetails[0]['primarymobile'] == null ){
+    Erp.ShowMessage(" Customer Primary Mobile No Not Available");
+    return false;
+  } 
+  if (LeadDetails[0]['secondarymobile'] == null ){
+    Erp.ShowMessage(" Customer Secondary Mobile No Not Available");
+    return false;
+  } 
+  
+  if (LeadDetails[0]['mobile1'] == null ){
+    Erp.ShowMessage(" Customer Mobile No Not Available");
+    return false;
+  }
+  var currentusermobile =db_fld_0;
+  if (Fn.IsEmpty(currentusermobile))
+  {
+    Erp.ShowMessage("Agent Number Not Available");
+    return false;
+  }
+  Erp.BeginProgress();
+  Erp.SetProgress("Wait While Connecting To "+db_fld_1+"...",20);
+  Telephony.ConnectClientToAgent({entityId:'tbl_SC_lead',recordId:Erp.RecordID,callback:callstatus,btn:a});
+  return false;
+}
+function callstatus(result)
+{
+  Erp.SetProgress("Wait While Connecting To "+db_fld_1+"...",40);
+  if(result.Success)
+  {
+    var ent = new Erp.Entity('tbl_SC_leadactivity',);
+    ent.Data('lead',Erp.RecordID);
+    ent.Data('leadactivitytype',"160c2921-4f88-4caf-8fe6-1199aa26f898");
+    ent.Data('calllogid',result.LogID);
+    ent.Data('leadactivitycategory',"f3532784-0922-4017-a32e-1209095d2e12");
+    Erp.SetProgress("Wait While Connecting To "+db_fld_1+"...",60);
+    ent.Save(entitySuccess);
+  }
+}
+function entitySuccess(result) {
+  Erp.SetProgress("Wait While Connecting To "+db_fld_1+"...",80);
+  console.log(result);
+  Erp.SetProgress("Wait While Connecting To "+db_fld_1+"...",100);
+  Erp.EndProgress();
+  
+ //  PreviousOriginID
+  // MainOriginID
+ // if ()
+  
+  
+  Erp.OpenWindow({"Action":"EDITFORM","Entity":"tbl_SC_leadactivity","Form":"Layout_CallActivity","RecordID":result.RecordID,"Refresh":false,"Global":false,"Title":"Outgoing Call","Params":"&mode=Tocall","Location":"Popup","PopHt":"276","PopWd":"718"})
+}
+function ViewActivity(pid,frame)
+{
+  var formcode="";
+  var title ="";
+  if (frame =="Email")
+  {
+    formcode="LeadActivityEmail";
+    title = "EMAIL";
+  }
+  if (frame =="SMS")
+  {
+    formcode="LeadActivitySMS";
+    title = "SMS";
+  }
+  if (frame =="Note")
+  {
+    formcode="LeadActivityNote";
+    title = "NOTE";
+  }
+  if (frame =="FollowUp")
+  {
+    formcode="Add_Follow_Up";
+    title = "Task";
+  }
+  if (frame =="SiteVisit")
+  {
+    formcode="Add_Visit_Site";
+    title = "VISIT SITE";
+  }
+  if (frame =="Call")
+  {
+    formcode="LeadActivityCalls";
+    title = "Calls";
+  }
+  if (frame =="Feed")
+  {
+    formcode="LayoutAdditionalFeed";
+    title = "Additional Feed";
+  }
+  Erp.OpenWindow({
+    "Action":"EDITFORM","Entity":"tbl_SC_leadactivity","Form":formcode,"RecordID":pid,"Refresh":false,"Global":false,"Title":title,"Params":"lead_ID="+lead_ID+"","Location":"Popup","PopHt":"400","PopWd":"700"}
+                );
+}
+function ActivityDropdown (){
+  var htmlContent = "<div style='margin-left: 200px;'> Filter Activity By ";
+  htmlContent =  htmlContent + "<select id='LeadActivityCategory' onchange='HideShowActivity()'>";
+  htmlContent =  htmlContent + "<option value='PleaseSelect'>-Please Select-</option>";
+  htmlContent =  htmlContent + "<option value='All'>All</option>";
+  for (var a=0;a<LeadActivityCategory.length;a++){
+    htmlContent =  htmlContent + "<option value='"+LeadActivityCategory[a]["leadactivitycategorycode"]+"'>"+LeadActivityCategory[a]["leadactivitycategoryname"]+"</option>";
+  }
+  htmlContent = htmlContent + "</select></div>";
+  $("#HTML-3").html(htmlContent);
+}
+function HideShowActivity (Categoryname){
+  $("#"+Categoryname+"").parents().find('td span').removeClass('currentClass');
+  $("#"+Categoryname+"").addClass('currentClass');
+  if(Categoryname == "PleaseSelect" || Categoryname == "all"){
+    createleadactivity();
+    return false;
+  }
+  var i =0;
+  $('.subMainDiv').each(function (){
+    var className = $(this).attr('class').split(' ');
+    if (className[1] == (Categoryname+""+1))
+    {
+      $(this).show();
+      i++;
+    }
+    else {
+      $(this).hide();
+    }
+  });
+  if (i==0){
+    $('#NorecordDiv').show();
+  }
+  else {
+    $('#NorecordDiv').hide();
+  }
+}
+function TakeAction (pid,frame,id,act_pid,mainoriginleadactivityfid)
+{
+  var getSelectedvalue = document.getElementById(id).value;
+  if (getSelectedvalue == "SendSMS"){
+    
+   if (LeadDetails[0]['mobile1'] == null ){
+    Erp.ShowMessage(" Customer Mobile No Not Available");
+    return false;
+  }
+    
+    
+    $('html').animate({
+      "scrollTop":0}
+                      ,'500');
+    Erp.OpenWindow({
+      "Action":"ADDFORM","Entity":"tbl_SC_leadactivity","Form":"LeadActivitySMS","Refresh":false,"Global":false,"Title":"SMS","Params":"lead_ID="+lead_ID+"&ActivityStatus="+getSelectedvalue+"&act_pid="+act_pid+"&mainoriginleadactivityfid="+mainoriginleadactivityfid+"","Location":"Popup","PopHt":"320","PopWd":"700"}
+                  );
+  }
+  if(getSelectedvalue == "ReSendSMS")		
+  {
+    Erp.SetParam(window,"leadActivityID",pid);
+    Erp.LoadVariable("resendSMS",readSMSDetails);
+  }
+  if (getSelectedvalue == "SendEmail"){
+  
+     if (LeadDetails[0]["personalemail"] == "" || LeadDetails[0]["personalemail"] == null)
+   {
+      Erp.ShowMessage("Customer Personal Email Is Not Avalable");
+      return false;
+   }
+    
+    
+    
+    $('html').animate({
+      "scrollTop":0}
+                      ,'500');
+    Erp.OpenWindow({
+      "Action":"ADDFORM","Entity":"tbl_SC_leadactivity","Form":"LeadActivityEmail","Refresh":false,"Global":false,"Title":"EMAIL","Params":"lead_ID="+lead_ID+"&ActivityStatus="+getSelectedvalue+"&act_pid="+act_pid+"&mainoriginleadactivityfid="+mainoriginleadactivityfid+"","Location":"Popup","PopHt":"645","PopWd":"700"}
+                  );
+  }
+  if (getSelectedvalue == "ReplyEmail"){
+    
+     if (LeadDetails[0]["personalemail"] == "" || LeadDetails[0]["personalemail"] == null)
+   {
+      Erp.ShowMessage("Customer Personal Email Is Not Avalable");
+      return false;
+   }  
+    
+    
+    
+    Erp.OpenWindow({
+      "Action":"ADDFORM","Entity":"tbl_SC_leadactivity","Form":"LeadActivityEmail","Refresh":false,"Global":false,"Title":"EMAIL","Params":"lead_ID="+lead_ID+"&ActivityStatus="+getSelectedvalue+"&act_pid="+act_pid+"&mainoriginleadactivityfid="+mainoriginleadactivityfid+"","Location":"Popup","PopHt":"400","PopWd":"700"}
+                  );
+  }
+  if (getSelectedvalue == "AddNote"){
+    $('html').animate({
+      "scrollTop":0}
+                      ,'500');
+    Erp.OpenWindow({
+      "Action":"ADDFORM","Entity":"tbl_SC_leadactivity","Form":"LeadActivityNote","Refresh":false,"Global":false,"Title":"NOTE","Params":"lead_ID="+lead_ID+"&ActivityStatus="+getSelectedvalue+"&act_pid="+act_pid+"&mainoriginleadactivityfid="+mainoriginleadactivityfid+"","Location":"Popup","PopHt":"400","PopWd":"700"}
+                  );
+  }
+  if (getSelectedvalue == "FollowupReshedule"){
+    //$('html').animate({"scrollTop":0},'500');
+    Erp.OpenWindow({
+      "Action":"ADDFORM","Entity":"tbl_SC_leadactivity","Form":"Add_Follow_Up","Refresh":false,"Global":false,"Title":"Task","Params":"lead_ID="+lead_ID+"&ActivityStatus="+getSelectedvalue+"&act_pid="+act_pid+"&mainoriginleadactivityfid="+mainoriginleadactivityfid+"","Location":"Popup","PopHt":"340","PopWd":"700"}
+                  );
+  }
+  if (getSelectedvalue == "FollowupCompleted"){
+    Erp.OpenWindow({
+      "Action":"EDITFORM","Entity":"tbl_SC_leadactivity","Form":"CompleteRemark","RecordID":act_pid,"Refresh":false,"Global":false,"Title":"Task","Params":"lead_ID="+lead_ID+"&ActivityStatus="+getSelectedvalue+"","Location":"Popup","PopHt":"260","PopWd":"700"}
+                  );
+  }
+  if (getSelectedvalue == "FollowupCall"){
+    
+   //  if (mainoriginleadactivityfid = null)
+   //  {
+   //   Erp.SetParam(window,'MainOriginID',mainoriginleadactivityfid);
+ //    }
+  //   else
+  //   {
+   //     Erp.SetParam(window,'MainOriginID',act_pid);
+   //  }
+  //      Erp.SetParam(window,'PreviousOriginID',act_pid);
+        CallToCustomer();
+    }
+ 
+  if (getSelectedvalue == "SiteVisitReshedule"){
+    //$('html').animate({"scrollTop":0},'300');
+    Erp.OpenWindow({"Action":"ADDFORM","Entity":"tbl_SC_leadactivity","Form":"Add_Visit_Site","Refresh":false,"Global":false,"Title":"SITE VISIT","Params":"lead_ID="+lead_ID+"&ActivityStatus="+getSelectedvalue+"&act_pid="+act_pid+"&mainoriginleadactivityfid="+mainoriginleadactivityfid+"","Location":"Popup","PopHt":"380","PopWd":"700"});
+  }
+  if (getSelectedvalue == "SiteVisitCompleted"){
+    Erp.OpenWindow({
+      "Action":"EDITFORM","Entity":"tbl_SC_leadactivity","Form":"CompleteRemark","RecordID":act_pid,"Refresh":false,"Global":false,"Title":"SITE VISIT","Params":"lead_ID="+lead_ID+"&ActivityStatus="+getSelectedvalue+"","Location":"Popup","PopHt":"260","PopWd":"700"}
+                  );
+  }
+  if (getSelectedvalue == "SiteVisitCall"){
+    CallToCustomer();
+  }
+}
+function UpdateMassage(){
+  Erp.ShowMessage("Updated Successfully");
+  LoadFunction();
+}
+function readSMSDetails()
+{
+  var lead_id= resendSMS[0]["leadactivity_pid"];
+  var product =resendSMS[0]["product_pid"];
+  var smstempcode = resendSMS[0]["smstemplatecode"];
+  var smstext = resendSMS[0]["smsmessage"];
+  var mobile1 = resendSMS[0]["mobile1"];
+  var mobile2 = resendSMS[0]["mobile2"];
+  var activitycategory =resendSMS[0]["leadactivitycategory"];
+  var leadactivitytypecode = resendSMS[0]["leadactivitytypecode"];
+  Erp.ServerCommand('sendSMS',{
+    lead_id:lead_id,activitycategory:activitycategory,product:product,smstemplate:smstempcode,smstext:smstext,mobileno1:mobile1,mobile2:mobile2}
+                    ,function(){
+                    }
+                   );
+}
+function readIncomingSMS()
+{
+}
+function ViewPrevious (){
+}
+//function SaveTage (){
+//      Erp.OpenWindow({"Action":"EDITFORM","Entity":"tbl_SC_lead","Form":"LeadTagChange","RecordID":""+lead_ID+"","Refresh":false,"Global":false,"Title":"Lead Stage","Params":"lead_ID="+lead_ID+"","Location":"Popup","PopHt":"250","PopWd":"700"});
+//}
+function SaveTage (){
+  var ent = new Erp.Entity('tbl_SC_lead',lead_ID);
+  ent.ModifiedBy = db_fld_6;
+  ent.CompanyID = db_fld_7;
+  //ent.MetaData=_app.MetaData;
+  ent.Data('leadtag',Erp.GetFieldValue('@leadtag'));
+  Erp.SaveEntity([ent],SaveTagemessage);
+  
+  var comma = " , ";
+  var tagLength = LeadTagName.length;
+  var leadtagCode = "";
+
+  var currTagsLen = Erp.GetFieldValue('@leadtag').length;
+  var leadtagID = "";
+  
+  for(var j =0;j<currTagsLen;j++)
+  {
+    leadtagID = Erp.GetFieldValue('@leadtag')[j];
+  for(var i=0;i<tagLength;i++)
+  {
+    if(leadtagID==LeadTagName[i]["leadtag_pid"])
+    {
+      if(!Fn.IsEmpty(leadtagCode))
+        leadtagCode = leadtagCode+comma+LeadTagName[i]["leadtagcode"];
+      else
+        leadtagCode = leadtagCode+LeadTagName[i]["leadtagcode"];
+    }
+  }
+  }
+  
+  var leadactivitycategoryLength = LeadActivityCategory.length;
+  var leadActivityCategoryCode = "";
+  
+  for(var k=0;k<leadactivitycategoryLength;k++) //getting category code
+  {
+  if(LeadActivityCategory[k]["leadactivitycategorycode"]=="Additional Feed")
+    leadActivityCategoryCode = LeadActivityCategory[k]["leadactivitycategory_pid"];
+  }
+  
+  //tags = Erp.GetFieldValue('htmlleadtag');
+   
+  var previousTags=""; 
+  var tagsLength = tags.length;
+  var tbltagsLength = LeadTagName.length;
+  
+  if(!Fn.IsEmpty(tags))
+  {
+    for(var i=0;i<tagsLength;i++)
+    {
+      for(var j=0;j<tbltagsLength;j++)
+      {
+      	if(tags[i]==LeadTagName[j]["leadtag_pid"]&&!Fn.IsEmpty(previousTags))
+      	{
+           previousTags+=comma;
+      	previousTags+= LeadTagName[j]["leadtagcode"];
+         
+      	}
+      	else if(tags[i]==LeadTagName[j]["leadtag_pid"])
+     	 {
+        	previousTags+= LeadTagName[j]["leadtagcode"];
+      	}
+        else{}
+      }
+    }
+  tags = Erp.GetFieldValue('htmlleadtag');
+    console.log(tags);
+  }
+ 
+  
+  if(!Fn.IsEmpty(leadtagCode))
+  {
+  var ent_leadactivity = new Erp.Entity('tbl_SC_leadactivity','');
+  ent_leadactivity.ModifiedBy = db_fld_6;
+  ent_leadactivity.CompanyID = db_fld_7;
+  //ent.MetaData=_app.MetaData;
+    ent_leadactivity.Data('lead',lead_ID);
+  ent_leadactivity.Data('feeddescription','Lead Tag '+previousTags+' changed To ' +leadtagCode);
+  ent_leadactivity.Data('leadactivitycategory',leadActivityCategoryCode);
+  Erp.SaveEntity([ent_leadactivity],loadleadactivitywindow);
+  }
+}
+function SaveStage (){
+  var Stagename ="" ;
+  //Erp.GetFieldValue('@current_leadstage');
+  Erp.OpenWindow({
+    "Action":"ADDFORM","Entity":"tbl_SC_leadstagehistory","Form":"","RecordID":"","Refresh":false,"Global":false,"Title":"Lead Stage","Params":"lead_ID="+lead_ID+"&Stagename="+Stagename+"","Location":"Popup","PopHt":"310","PopWd":"700"}
+                );
+}
+function SaveTagemessage (){
+  Erp.ShowMessage('Tag Save Successfully','success');
+ 
+}
+function ShowLog (mainorigin , Activitydate,act_pid) {
+  if (mainorigin==null){
+    mainorigin =act_pid;
+  }
+  Erp.OpenWindow({
+    "Action":"ADDFORM","Entity":"tbl_SC_leadactivity","Form":"ViewLogActivity","Refresh":false,"Global":false,"Title":"","Params":"lead_ID="+lead_ID+"&act_pid="+act_pid+"&Activitydate="+Activitydate+"&mainoriginleadactivityfid="+mainorigin+"","Location":"Popup","PopHt":"380","PopWd":"700"}
+                );
+}
+function Showsavebutton (){
+  Erp.SetDisplay('Button-9',true);
+}
+
+
+function loadleadactivitywindow(){
+  Erp.LoadVariable('leadactivity',createleadactivity);
+}
+
+
+function SaveNoteNote (){
+   if ( Erp.GetFieldValue('note') == "" )
+   {
+      Erp.ShowMessage('Please Add Note First');
+      return false;
+   }
+     var note = Erp.GetFieldValue('note');
+     var entnote = new Erp.Entity('tbl_SC_leadactivity');
+     entnote.Data('lead',lead_ID);
+     entnote.Data('note',note);
+     entnote.Data('leadactivitycategory',leadactivitycategoryNotes);
+     entnote.Save(loadleadactivitywindow);
+     Erp.SetFieldValue('note',"") ;
+} 
+function SelectType (){
+  
+  Erp.OpenWindow({ "Action":"ADDFORM","Entity":"tbl_SC_lead","Form":"mobileNopreference","Refresh":false,"Global":false,"Title":"Select Mobile No Type","Params":"","Location":"Popup","PopHt":"200","PopWd":"350"} );
+}
+
+function SetCustMobileNo (MobileType)
+{
+   Erp.SetParam(window,'MobileType',MobileType);
+   CallToCustomer();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

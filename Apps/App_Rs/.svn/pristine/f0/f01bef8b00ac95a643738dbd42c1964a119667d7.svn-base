@@ -1,0 +1,390 @@
+﻿using CsvHelper;
+using CsvHelper.Configuration;
+using DevExpress.Spreadsheet;
+using Erp.Common;
+using HelperLib.Conversion;
+using HelperLib.DAL;
+using HelperLib.Extensions;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Web;
+namespace App_Rs.Apps.App_Rs
+{
+    /// <summary>
+    /// Helper class for managing file path and byte array  in the form of a Dictionary.
+    /// </summary>
+    public class ExportFileHelper
+    {
+        GenerateReport generateReport;
+        Workbook workbook;
+        MemoryStream stream;
+        Dictionary<string, byte[]> dic;
+        /// <summary>
+        /// Returns a new  Dictionary containing string filepath and CSV byte array values.
+        /// </summary>
+        public Dictionary<string, byte[]> getCSVByte(ApplicationInfo app, IDBConfiguration cfg, string filepath, DataTable maindt, DataTable combinationdt, MatchCollection matches, bool iscomdt, string delimeter, bool issupresscolumnname, DataTable dt_details, System.Diagnostics.Stopwatch sw, StringBuilder ErrorList)
+        {
+            generateReport = new GenerateReport();
+            generateReport.Init(app, cfg);
+            if (Fn.IsEmpty(generateReport.ErrorList))
+            {
+                generateReport.ErrorList = new StringBuilder();
+            }
+            try
+            {
+                dic = new Dictionary<string, byte[]>();
+                for (var j = 0;
+                     j < combinationdt.Rows.Count;
+                     j++)
+                {
+                    DataTable dt_sorted = maindt.Clone();
+                    DataRowView[] dr_sorted = null;
+                    if (iscomdt)
+                        dr_sorted = maindt.DefaultView.FindRows(combinationdt.Rows[j].ItemArray);
+                    else
+                    {
+                        dr_sorted = maindt.DefaultView.Cast<DataRowView>().ToArray();
+                    }
+                    var actualFilePath = filepath;
+                    for (var k = 0;
+                         k < matches.Count;
+                         k++)
+                    {
+                        if (matches[k].Value.Contains("@@"))
+                        {
+                            actualFilePath = actualFilePath.Replace(matches[k].Value, dr_sorted[0][matches[k].Value.C2Str().Replace("[@@", "").Replace("]", "")].C2Str());
+                        }
+                        else if (matches[k].Value.ToLower().Contains("@datetime"))
+                        {
+                            actualFilePath = actualFilePath.Replace(matches[k].Value.C2Str(), DateTime.Now.ToString("yyyyMMddhhmmssms") + "" + j);
+                        }
+                    }
+                    foreach (DataRowView drv in dr_sorted)
+                    {
+                        dt_sorted.Rows.Add(drv.Row.ItemArray);
+                    }
+                    using (var memoryStream = new MemoryStream())
+                    using (var writer = new StreamWriter(memoryStream))
+                    using (var csv = new CsvWriter(writer, new CsvConfiguration(CultureInfo.InvariantCulture)
+                    {
+                        Delimiter = delimeter,
+                        HasHeaderRecord = true // Set to false if you don't want a header row.
+                    }
+                                                  ))
+                    {
+                        if (!issupresscolumnname)
+                        {
+                            //foreach (DataColumn column in dt_sorted.Columns)
+                            //{
+                            //    csv.WriteField(column.ColumnName);
+                            //}
+
+                            for (var i = 0; i < dt_details.Rows.Count; i++)
+                            {
+                                csv.WriteField(dt_details.Rows[i]["displayname"]);
+                            }
+                            csv.NextRecord();
+
+
+
+
+                        }
+                        foreach (DataRow row in dt_sorted.Rows)
+                        {
+                            if (dt_details.Rows.Count > 0)
+                            {
+                                foreach (DataRow d in dt_details.Rows)
+                                {
+                                    if (d["isexported"].C2Bool())
+                                        csv.WriteField(row[d["spcolumnnames"].C2Str().Trim()]);
+                                }
+                            }
+                            else
+                            {
+                                for (int i = 0;
+                                     i < dt_sorted.Columns.Count;
+                                     i++)
+                                {
+                                    csv.WriteField(row[i]);
+                                }
+                            }
+                            csv.NextRecord();
+                        }
+                        writer.Flush();
+                        dic.Add(actualFilePath, memoryStream.ToArray());
+                    }
+                }
+                return dic;
+            }
+            catch (Exception e)
+            {
+                generateReport.ErrorList.Append("  {   \"ConfigurationName\" : " + C.JsonDataEncode("") + " , \"Error\" : " + C.JsonDataEncode(e.Message) + " } ");
+            }
+            return null;
+        }
+        /// <summary>
+        /// Returns a new  Dictionary containing string filepath and Excel byte array values.
+        /// </summary>
+        public Dictionary<string, byte[]> getExcelByte(ApplicationInfo app, IDBConfiguration cfg, string filepath, DataTable maindt, DataTable combinationdt, DataTable tbl_configdetails, DataTable tbl_config, MatchCollection matches, bool iscomdt, System.Diagnostics.Stopwatch sw, StringBuilder ErrorList)
+        {
+            dic = new Dictionary<string, byte[]>();
+            generateReport = new GenerateReport();
+            generateReport.Init(app, cfg);
+            int dataStratingpos = tbl_config.Rows[0]["datastartingposition"].C2Int();
+            int colnamestartingrownumber = tbl_config.Rows[0]["colnamestartingrownumber"].C2Int();
+            var _given_excelByte = tbl_config.Rows[0]["excelattachment"];
+            string configName = tbl_config.Rows[0]["configurationtext"].C2Str();
+            string sheetname = tbl_config.Rows[0]["sheetname"].C2Str();
+            bool enablecopyinsertrow = tbl_config.Rows[0]["enablecopyinsertrow"].C2Bool();
+            bool isCustomeTemplate = tbl_config.Rows[0]["iscustometemplate"].C2Bool();
+            bool isencryptedfile = tbl_config.Rows[0]["isencryptedfile"].C2Bool();
+            string password = tbl_config.Rows[0]["filepassword"].C2Str();
+            bool issupresscolumnname = tbl_config.Rows[0]["issupresscolumnname"].C2Bool();
+            bool isexportcolumnifnotnull = tbl_config.Rows[0]["isexportcolumnifnotnull"].C2Bool();
+            Byte[] excelBytes = null;
+            if (generateReport.ErrorList == null)
+                generateReport.ErrorList = new StringBuilder();
+
+
+            try
+            {
+                if (tbl_configdetails.Rows.Count <= 0)
+                {
+                    generateReport.ErrorList.Append("  {   \"ConfigurationName\" : " + C.JsonDataEncode(configName) + " , \"Error\" : " + C.JsonDataEncode("Configuration Details Not Found...") + " } ");
+                    return null;
+                }
+                else if (!Fn.IsEmpty(_given_excelByte) && isCustomeTemplate)
+                {
+                    excelBytes = (Byte[])_given_excelByte;
+                }
+
+                else if (tbl_configdetails.Rows.Count > 0)
+                {
+                    //if user not uploade the excel but get configuration details write column in excel
+                    try
+                    {
+                        if (!issupresscolumnname)
+                        {
+                            workbook = new Workbook();
+                            Worksheet worksheet = workbook.Worksheets[0];
+                            for (var _i = 0;
+                                 _i < tbl_configdetails.Rows.Count;
+                                 _i++)
+                            {
+                                worksheet.Cells[colnamestartingrownumber - 1, tbl_configdetails.Rows[_i]["columnnumber"].C2Int()].Value = tbl_configdetails.Rows[_i]["displayname"].C2Str();
+                            }
+                            using (MemoryStream stream2 = new MemoryStream())
+                            {
+                                stream2.Position = 0;
+                                workbook.SaveDocument(stream2, DocumentFormat.Xls);
+                                excelBytes = stream2.ToArray();
+                            }
+                        }
+                        generateReport.addToLog("7:" + sw.ElapsedMilliseconds + " - " + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt"));
+                    }
+                    catch (Exception e)
+                    {
+                        generateReport.ErrorList.Append("  {   \"ConfigurationName\" : " + C.JsonDataEncode(configName) + " , \"Error\" : " + C.JsonDataEncode(e.Message) + " } ");
+                    }
+                }
+                // combinationdt contains how many files will be created 
+                //find data in main table to save this in file 
+                for (var j = 0; j < combinationdt.Rows.Count; j++)
+                {
+                    generateReport.addToLog("10." + j + ":" + sw.ElapsedMilliseconds + " - " + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt"));
+                    DataRowView[] sorted_dr = null;
+                    if (iscomdt)
+                        sorted_dr = maindt.DefaultView.FindRows(combinationdt.Rows[j].ItemArray);
+                    else
+                    {
+                        sorted_dr = maindt.DefaultView.Cast<DataRowView>().ToArray();
+                    }
+                    generateReport.addToLog("11." + j + ":" + sw.ElapsedMilliseconds + " - " + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt"));
+                    #region write excel
+                    //excelBytes =[];
+                    //using (stream = new MemoryStream((Byte[])excelBytes))
+                    using (workbook = new Workbook())
+                    {
+                        if (!Fn.IsEmpty(excelBytes))
+                        {
+                            stream = new MemoryStream((Byte[])excelBytes);
+                            workbook.LoadDocument(stream);
+                        }
+                        //load worksheet 
+                        Worksheet worksheet = null;
+                        try
+                        {
+                            if (Fn.IsEmpty(sheetname) || !isCustomeTemplate)
+                                worksheet = workbook.Worksheets[0];
+                            else
+                                worksheet = workbook.Worksheets[sheetname];
+                        }
+                        catch (Exception e)
+                        {
+                            ErrorList.Append("  {   \"ConfigurationName\" : " + C.JsonDataEncode(configName) + " , \"Error\" : " + C.JsonDataEncode("The Sheet Name " + sheetname + " Not Found In Excel ") + " } ");
+                        }
+                        var actualFilePath = filepath;
+                        //replace the @parameter in excel 
+                        for (var i = 0;
+                             i < dataStratingpos;
+                             i++)
+                        {
+                            int latUsedColumn = worksheet.GetUsedRange().ColumnCount;
+                            for (var _j = 0;
+                                 _j < latUsedColumn;
+                                 _j++)
+                            {
+                                var value = worksheet.Cells[i, _j].Value.C2Str();
+                                if (!Fn.IsEmpty(value))
+                                {
+                                    MatchCollection regex = Regex.Matches(value, @"\[(.*?)\]");
+                                    if (regex.Count > 0)
+                                    {
+                                        for (var _i = 0;
+                                             _i < regex.Count;
+                                             _i++)
+                                        {
+                                            if (sorted_dr[0].Row.Table.Columns.Contains(regex[_i].Value.C2Str().Replace("[", "").Replace("]", "").Replace("@", "")))
+                                            {
+                                                try
+                                                {
+                                                    worksheet.Cells[i, _j].Value = value.Replace(regex[_i].Value, sorted_dr[0][regex[_i].Value.C2Str().Replace("[", "").Replace("]", "").Replace("@", "")].C2Str());
+                                                }
+                                                catch (Exception e)
+                                                {
+                                                    ErrorList.Append("  {   \"ConfigurationName\" : " + C.JsonDataEncode(configName) + " , \"Error\" : " + C.JsonDataEncode($"{regex[_i].Value} Not Found In Data Base...") + " } ");
+                                                }
+                                            }
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+                        //replaceing  the @@ from path 
+                        for (var k = 0;
+                             k < matches.Count;
+                             k++)
+                        {
+                            if (matches[k].Value.Contains("@@"))
+                            {
+                                actualFilePath = actualFilePath.Replace(matches[k].Value, sorted_dr[0][matches[k].Value.C2Str().Replace("[@@", "").Replace("]", "")].C2Str());
+                            }
+                            else if (matches[k].Value.ToLower().Contains("@datetime"))
+                            {
+                                actualFilePath = actualFilePath.Replace(matches[k].Value.C2Str(), DateTime.Now.ToString("yyyyMMddhhmmssms") + "" + j);
+                            }
+
+                        }
+                        generateReport.addToLog("12." + j + ":" + sw.ElapsedMilliseconds + " - " + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt"));
+                        workbook.BeginUpdate();
+                        workbook.CalculateFullRebuild();
+                        //if (enablecopyinsertrow)
+                        {
+                            //for copy insert 
+                            //worksheet.Rows.Insert(dataStratingpos + 1, sorted_dr.Length, RowFormatMode.None);
+                            //CellRange sourceRange = worksheet.Range.FromLTRB(0, dataStratingpos, worksheet.GetUsedRange().ColumnCount, dataStratingpos);
+                            //CellRange targetRange = worksheet.Range.FromLTRB(0, dataStratingpos + 1, worksheet.GetUsedRange().ColumnCount, sorted_dr.Length);
+                            //targetRange.CopyFrom(sourceRange, PasteSpecial.All);
+                            //sourceRange.Copy(targetRange, PasteSpecial.All);
+
+
+                            worksheet.Rows.Insert(dataStratingpos, sorted_dr.Length, RowFormatMode.None);
+                            CellRange sourceRange = worksheet.Range.FromLTRB(0, dataStratingpos - 1, worksheet.GetUsedRange().ColumnCount, dataStratingpos - 1);
+                            CellRange targetRange = worksheet.Range.FromLTRB(0, dataStratingpos, worksheet.GetUsedRange().ColumnCount, sorted_dr.Length);
+                            targetRange.CopyFrom(sourceRange, PasteSpecial.All);
+
+                        }
+                        generateReport.addToLog("13." + j + ":" + sw.ElapsedMilliseconds + " - " + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt"));
+                        //write the data in worksheet to save and data filterd by dr of combinationdt
+                        for (var _i = 0;
+                             _i < sorted_dr.Length;
+                             _i++)
+                        {
+                            if (isCustomeTemplate || tbl_configdetails.Rows.Count > 0)
+                            {
+                                foreach (DataRow d in tbl_configdetails.Rows)
+                                {
+                                    if (d["isexported"].C2Bool())
+                                        worksheet.Cells[(dataStratingpos - 1) + _i, d["columnnumber"].C2Int()].Value = sorted_dr[_i][d["spcolumnnames"].C2Str()].C2Str();
+                                }
+                            }
+                            //else
+                            //{
+                            //    for (var _j = 0;
+                            //         _j < maindt.Columns.Count;
+                            //         _j++)
+                            //    {
+                            //        worksheet.Cells[dataStratingpos + _i, _j].Value = sorted_dr[_i][maindt.Columns[_j].ColumnName.C2Str()].C2Str();
+                            //    }
+                            //}
+                        }
+                        generateReport.addToLog("14." + j + ":" + sw.ElapsedMilliseconds + " - " + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt"));
+
+                        //hide column if null
+                        if (isexportcolumnifnotnull)
+                        {
+
+                            var colcount = worksheet.GetUsedRange().ColumnCount;
+                            var rowcount = worksheet.GetDataRange().BottomRowIndex;
+                            for (var i = colcount - 1; i >= 0; i--)
+                            {
+                                bool isEmpty = true;
+                                for (var _i = dataStratingpos - 1; _i < rowcount; _i++)
+                                {
+
+                                    var abc = worksheet.Cells[_i, i].Value;
+                                    if (!Fn.IsEmpty(worksheet.Cells[_i, i].Value) && worksheet.Cells[_i, i].Value.C2Str() != "0")
+                                    {
+                                        isEmpty = false;
+                                        break;
+
+                                    }
+
+                                }
+                                if (isEmpty)
+                                {
+                                    // worksheet.Columns[i].Visible = false;
+                                    worksheet.Columns.Remove(i);
+                                }
+
+                            }
+                        }
+
+
+
+                        //add byte[] data in dictionay`
+                        using (MemoryStream m = new MemoryStream())
+                        {
+                            //workbook.Calculate();
+                            workbook.EndUpdate();
+                            if (isencryptedfile)
+                                worksheet.Protect(password, WorksheetProtectionPermissions.Default);
+                            workbook.SaveDocument(m, DocumentFormat.Xls);
+                            dic.Add(actualFilePath, m.ToArray());
+                        }
+                        if (!Fn.IsEmpty(stream))
+                            stream.Flush();
+                        generateReport.addToLog("15." + j + ":" + sw.ElapsedMilliseconds + " - " + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt"));
+                    }
+                    #endregion
+                }
+                return dic;
+            }
+            catch (Exception e)
+            {
+                generateReport.ErrorList.Append(ErrorList.Append("  {   \"ConfigurationName\" : " + C.JsonDataEncode("") + " , \"Error\" : " + C.JsonDataEncode(e.Message) + " } "));
+            }
+            return null;
+        }
+
+
+        
+    }
+}

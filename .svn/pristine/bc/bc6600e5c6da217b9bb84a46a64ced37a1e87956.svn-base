@@ -1,0 +1,44 @@
+﻿
+@font-face {
+  font-family: 'fontawesome';
+  font-style: normal;
+  font-weight: normal;
+  src: url("fontawesome.eot"); /* FOR IEs */
+  src: local('CustomFont'),url('fontawesome.ttf') format('woff');
+}
+@font-face {
+  font-family: 'ArchivoNarrow';
+  font-style: normal;
+  font-weight: normal;
+  src: url("ArchivoNarrow.eot"); /* FOR IEs */
+  src: local('CustomFont'),url('ArchivoNarrow.ttf') format('woff');
+}
+
+@font-face {
+  font-family: 'OpenSans';
+  font-style: normal;
+  font-weight: normal;
+  src: url("OpenSans.eot"); /* FOR IEs */
+  src: local('CustomFont'),url('OpenSans.ttf') format('woff');
+}
+@font-face {
+  font-family: 'nunitoregular';
+  font-style: normal;
+  font-weight: normal;
+  src: url("Nunito-Regular.eot"); /* FOR IEs */
+  src: local('CustomFont'),url('Roboto-Regular.ttf') format('woff');
+}
+@font-face {
+  font-family: 'nunitolight';
+  font-style: normal;
+  font-weight: normal;
+  src: url("Nunito-Light.eot"); /* FOR IEs */
+  src: local('CustomFont'),url('Roboto-Light.ttf') format('woff');
+}
+@font-face {
+  font-family: 'nunitobold';
+  font-style: normal;
+  font-weight: normal;
+  src: url("Nunito-Bold.eot"); /* FOR IEs */
+  src: local('CustomFont'),url('Roboto-Bold.ttf') format('woff');
+}

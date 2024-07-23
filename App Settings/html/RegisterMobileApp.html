@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,user-scalable=yes" />
+    <script src="../Scripts/jquery.js"></script>
+    <script src="../Scripts/json2.js"></script>
+	<style>
+body {font-family: calibri;font-size: 14px;padding: 0px;}
+.form{border:1px solid #ccc;border-radius:4px;}
+.brand{text-align:center;vertical-align:middle;background-color:#ECECEC;}
+.box{padding:10px;}
+.innr-box {border: 1px solid #ECECEC;padding: 10px;border-radius: 2px;}
+.innr-validate {background: #ECECEC;padding: 10px;border-radius: 2px;margin-top: 10px;}
+.head, label {color: #898989;margin-right: 10px;vertical-align: middle;line-height: 20px;}
+.select-box {float: right;width: 60%;padding: 2px;border: 1px solid rgb(204, 204, 204);border-radius: 2px;
+background-image: linear-gradient(45deg, transparent 50%, #808080 50%), linear-gradient(135deg, #808080 50%, transparent 50%), linear-gradient(to right, #CCC, #CCC);background-position: calc(100% - 12px) calc(0.5em + 2px), calc(100% - 7px) calc(0.5em + 2px), calc(100% - 1.7em);background-size: 5px 5px, 5px 5px, 1px 1.5em;background-repeat: no-repeat;}
+.database, .company {width: 100%;display: block;margin-top: 10px;}
+select:focus > option:checked, select:focus > optgroup > option:checked {background-color: #007BFF !important;color: #FFF !important;}
+#divUrl input[type="text"], #divKey input[type="text"] {width: 100%;border: 1px solid #CCC;border-radius: 2px;background: #FFF none repeat scroll 0% 0%;
+margin: 5px 0px 8px;padding: 5px 5px !important;box-sizing: border-box;}
+.bttn-box {border: medium none !important;margin: 15px 0px 10px;min-width: 100%;padding: 0px;width: 100%;box-sizing: border-box;}
+.bttn {color: #FFF;background: #007BFF;cursor: pointer;margin: 0px 0px 5px;text-align: center;display: block;text-decoration: none;padding: 10px 0px;}
+.bttn-validate {border: medium none !important;margin: 10px 0px 10px;text-align: right;min-width: 100%;padding: 0px;width: 100%;box-sizing: border-box;}
+.validate {color: #FFF;background: #007BFF none repeat scroll 0% 0%;cursor: pointer;margin: 0px 0px 5px;text-align: center;text-decoration: none;
+padding: 7px 30px;position: relative;}
+.checkboxes-and-radios input {display: none;}
+.checkboxes-and-radios label {cursor: pointer;padding-right: 35px;position: relative;<!-- display: block; -->font-family: calibri;font-size: 14px;
+  padding: 0px 40px 0px 0px;}
+.checkboxes-and-radios input[type="checkbox"],
+.checkboxes-and-radios input[type="radio"] {position: absolute;visibility: hidden !important;}
+.checkboxes-and-radios input[type="checkbox"] + label:before,
+.checkboxes-and-radios input[type="radio"] + label:before,
+.checkboxes-and-radios input[type="checkbox"] + label:after,
+.checkboxes-and-radios input[type="radio"] + label:after {content: '';position: absolute;top: 50%;margin-top: -7.5px;box-sizing: border-box;}
+.checkboxes-and-radios input[type="checkbox"] + label:before,
+.checkboxes-and-radios input[type="radio"] + label:before {width: 30px;height: 15px;right: 0px;background: #fff;border: 1px solid #e4e3e1;border-radius: 15px;}
+.checkboxes-and-radios input[type="checkbox"] + label:after,
+.checkboxes-and-radios input[type="radio"] + label:after {width: 15px;height: 15px;right: 15px;background: #BDBDBD;border-radius: 50%;transition: all 200ms ease-out;}
+.checkboxes-and-radios input[type="checkbox"]:checked + label:after,
+.checkboxes-and-radios input[type="radio"]:checked + label:after {right: 0px;background: #007BFF;}
+.container {display: inline;position: relative;padding-left: 20px;margin-bottom: 12px;cursor: pointer;font-size: 14px;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;}
+/* Hide the browser's default checkbox */
+.container input {position: absolute;opacity: 0;cursor: pointer;}
+/* Create a custom checkbox */
+.checkmark {position: absolute;top: 0;left: 0;height: 18px;width: 18px;background-color: #eee;}
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {background-color: #ccc;}
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {background-color: #2196F3;}
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {content: "";position: absolute;display: none;}
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {display: block;}
+/* Style the checkmark/indicator */
+.container .checkmark:after {left: 5px;top: 2px;width: 4px;height: 9px;border: solid white;border-width: 0 3px 3px 0;-webkit-transform: rotate(45deg);-ms-transform: rotate(45deg);transform: rotate(45deg);}
+.svg_icon {position: absolute;display: none;top: 4px;right: 4px;}
+.select-box:after {position: absolute;content: "";top: 14px;right: 10px;width: 0;height: 0;border: 6px solid transparent;border-color: #fff transparent transparent transparent;}
+
+
+
+
+
+
+
+
+/* Create a custom radio button */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 15px;
+    width: 15px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+    background-color: #007BFF ;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+ 	top: 4px;
+left: 4px;
+width: 4px;
+height: 4px;
+border-radius: 50%;
+background: white;
+}
+</style>
+</head>
+<body>
+    <div id="divEditor" class="form" >
+		<div class="brand"><img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Trustwave.png" width="180px" /></div>
+		<div class="box">
+		
+		<div class="innr-box">
+		
+        <span class="head"><b>Choose Mode</b></span><br/>
+
+		
+		
+<label class="container">Organisation Key
+  <input type="radio" name="source" id="rdoKey" value="1" checked onclick="showUrl()">
+  <span class="checkmark"></span>
+</label>
+
+<label class="container">Url Based
+  <input type="radio" name="source" id="rdoUrl" onclick="showUrl()" value="2">
+  <span class="checkmark"></span>
+</label>
+
+		
+
+        <div id="divKey" style="display:none">
+            <input type="text" placeholder="Enter Key" id="txtKey" />
+        </div>
+        <div id="divUrl"  style="display:none">
+            <input type="text" placeholder="Enter Url" id="txtUrl" />
+            <input type="text" placeholder="Enter Key" id="txtUrlKey" />
+			
+		
+
+		<div class="checkboxes-and-radios">
+			
+			<input type="checkbox" name="checkbox-cats[]" id="chkSecure" value="1">
+			<label for="chkSecure">Secure Site</label>
+			
+		</div>	
+		
+			
+			
+        </div>
+        <div class="bttn-validate"><a href="javascript:void(0)" class=" validate" onclick="ValidateUrl()">Validate <i class="svg_icon"><svg width="25" height="25" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" stroke="#fff">
+	<g fill="none" fill-rule="evenodd" stroke-width="2">
+		<circle cx="22" cy="22" r="6.91623">
+			<animate attributeName="r" begin="0s" dur="1.8s" values="1;20" calcMode="spline" keyTimes="0;1" keySplines="0.165, 0.84, 0.44, 1" repeatCount="indefinite"></animate>
+			<animate attributeName="stroke-opacity" begin="0s" dur="1.8s" values="1;0" calcMode="spline" keyTimes="0;1" keySplines="0.3, 0.61, 0.355, 1" repeatCount="indefinite"></animate>
+		</circle>
+		<circle cx="22" cy="22" r="18.9498">
+			<animate attributeName="r" begin="-0.9s" dur="1.8s" values="1;20" calcMode="spline" keyTimes="0;1" keySplines="0.165, 0.84, 0.44, 1" repeatCount="indefinite"></animate>
+			<animate attributeName="stroke-opacity" begin="-0.9s" dur="1.8s" values="1;0" calcMode="spline" keyTimes="0;1" keySplines="0.3, 0.61, 0.355, 1" repeatCount="indefinite"></animate>
+		</circle>
+	</g>
+</svg></i></a></div>
+
+		</div>
+
+        <div class="innr-validate" id="divDbList" style="display: none">
+
+            <div id="divDb" class="database">
+                <label>Select Database</label>
+                <select class="select-box" onchange="loadComp()" id="ddlDb"></select>
+			</div>
+            <div id="divComp" class="company">
+                <label>Select Company</label>
+                <select class="select-box" id="ddlComp"></select>
+			</div>
+
+        </div>
+		
+		
+		</div>
+    </div>
+
+
+    <div class="bttn-box"><a href="javascript:void(0)" class="bttn" onclick="SaveSettings()">Save Settings</a></div>
+
+
+</body>
+<script>
+    var arrDbList = [{ text: "Database 1", val: "db1", items: ["comp1", "comp2"] }, { text: "Database 2", val: "db2", items: ["comp3", "comp4"] }];
+    function ValidateUrl() {
+        var url = "";
+        //$.ajax({
+        //    crossDomain: true,
+        //    type: "GET",
+        //    url: "http://localhost:2500/core/erpapi.asmx/GetCompList",
+        //    data: {key: "Z0006017"},
+        //    contentType: "application/json; charset=utf-8",
+        //    dataType: "jsonp",
+        //    success: function (r) { alert(r); },
+        //    failure: function (r) { alert(r); }
+        //});
+
+
+        //show loader
+        window.setTimeout(function () {
+            //remove loader
+            $("#ddlDb").empty();
+            $("#ddlDb").append("<option value='0'>Please Select</option>")
+            $("#ddlComp").empty();		
+            $("#ddlComp").append("<option value='0'>Please Select</option>")
+            for (var i = 0; i < arrDbList.length; i++) {
+                $("#ddlDb").append("<option value='" + arrDbList[i].val + "'>" + arrDbList[i].text + "</option>")
+            }
+            $("#divDbList").show();
+			$(".svg_icon").hide();
+        }, 5000);
+    }
+    showUrl()
+    function showUrl() {
+        if ($("#rdoKey").is(":checked")) {
+            $("#divKey").show(); $("#divUrl").hide();
+        }
+        else {
+            $("#divKey").hide(); $("#divUrl").show();
+        }
+    }
+    function loadComp() {
+        $("#ddlComp").empty();
+        $("#ddlComp").append("<option value='0'>Please Select</option>")
+        for (var i = 0; i < arrDbList.length; i++) {
+            if (arrDbList[i].val == $("#ddlDb").val()) {
+                for (var x = 0; x < arrDbList[i].items.length; x++)
+                    $("#ddlComp").append("<option value='" + arrDbList[i].items[x] + "'>" + arrDbList[i].items[x] + "</option>")
+                break;
+            }
+        }
+    }
+    function SaveSettings() {
+        var data = "{\"Type\": \"SaveSettings\", \"Mode\": \"" + ($("#rdoKey").is(":checked") ? "KEY" : "URL") + "\", \"Key\": \"" + ($("#rdoKey").is(":checked") ? $("#txtKey").val() : $("#txtUrlKey").val()) + "\", \"Url\": \"" + $("#txtUrlKey").val() + "\", \"Secure\": \"" + ($("#chkSecure").is(":checked") ? 1 : 0)
+            + "\", \"Db\": \"" + $("#ddlDb").val() + "\", \"DbTitle\": \"" + $("#ddlDb").find("option:selected").text() + "\", \"CompanyCode\": \"" + $("#ddlComp").val() + "\"}";
+        console.log(data)
+
+        //jsBridge.invokeAction(data);
+        Native("callback", {
+            Type: "SaveSettings",
+            Key: $("#txtKey").val(),
+            Secure: $("#chkSecure").is(":checked") ? 1 : 0,
+            CompanyCode: $("#txtCompCode").val()
+        });
+    }
+
+    function NativeLoaded() {
+        Native("callback", { Type: "GetData" })
+    }
+
+    function __nativeLoaded() {
+        if (typeof Native != "function") {
+            window.setTimeout(__nativeLoaded, 100);
+            return false;
+        }
+        NativeLoaded();
+        return true;
+    }
+    __nativeLoaded();
+    function LoadData(data) {
+        //$(document.body).append("<span>"+data+"</span>")
+        try {
+            data = JSON.parse(data);
+        } catch (e) { alert(e.message); data = null; }
+        if (data) {
+            $("#txtKey").val(data.Key);
+            $("#txtCompCode").val(data.CompanyCode);
+            $("#chkSecure").checked(data.Secure == 1);
+        }
+
+        showUrl()
+    }
+	$(".validate").click(function(){
+		$(".svg_icon").show();
+	});
+</script>
+</html>

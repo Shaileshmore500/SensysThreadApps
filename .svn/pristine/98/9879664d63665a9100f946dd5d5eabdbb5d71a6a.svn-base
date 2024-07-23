@@ -1,0 +1,1 @@
+$('#lnkCompany').after("<a class='quickAdmin' title='Manage Business' onclick=\"Erp.OpenWindow({'Action':'EDITFORM','Entity':'tbl_CORE_Company','Form':'Quick_companyAdd','RecordID':'','Refresh':false,'Global':false,'Title':'','Params':'','Location':''});\" href='javascript:void(0)'></a>")

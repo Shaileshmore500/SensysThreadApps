@@ -1,0 +1,455 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using DevExpress.Spreadsheet;
+using System.IO;
+using Erp.Base.ScriptInterface;
+using Erp.Common;
+using HelperLib.DAL;
+using System.Data;
+using HelperLib.Extensions;
+using System.Text.RegularExpressions;
+using System.Text;
+using HelperLib.Conversion;
+
+namespace App_Rs.Apps.App_Rs
+{
+    public class GenerateReport : ImplEntityScript, IEntityScript
+    {
+        ApplicationInfo _app; IDBConfiguration _cfg;
+        public StringBuilder ErrorList;
+        Erp.Base.ScriptInterface.ErpScriptObject _erp;
+        public void Init(ApplicationInfo app, IDBConfiguration cfg)
+        {
+            _app = app; _cfg = cfg;
+            _erp = new Erp.Base.ScriptInterface.ErpScriptObject(_app, _cfg);
+
+
+        }
+        public  void RunReport(string instanceID)
+        {
+            string Error = "";
+            Dictionary<string, object> dicParams = null;
+            DataTable dt = _erp.ExecuteSql<DataTable>("select * from tbl_RS_configurationparameterdetail where generatereport_fid = '" + instanceID + "'",
+                new Dictionary<string, object>() {
+                                                                        {
+                                                                          "@CompanyID", _app.CompanyID }
+                                                                        }
+                                                                        , out Error);
+
+
+            if (dt.Rows.Count > 0)
+            {
+                for (var i = 0; i < dt.Rows.Count; i++)
+                {
+                    dicParams.Add(dt.Rows[i]["spparametername"].C2Str(), dt.Rows[i]["parametervalue	"]);
+                }
+
+            }
+
+
+
+            var ent = new ErpEntity("tbl_RS_generatereport", instanceID, _cfg);
+            ent.LoadEntity("configuration_fid");
+            var configid = ent["configuration_fid"].ToString();
+            generateReport(configid, dicParams);
+        }
+        public void generateReport(string configid, Dictionary<string, object> dicParams)
+        {
+            Dictionary<string, byte[]> dic_result = GenerateReportBytes(configid, dicParams);
+            if (dic_result.Count > 0 && Fn.IsEmpty(ErrorList))
+            {
+                var ent = new ErpEntity("tbl_RS_configuration", configid, _cfg);
+                ent.LoadEntity();
+                //do for loop on dic and save file to disk or email or db
+                var isSaveDisk = ent["savelocationdisk"].C2Bool();
+                var isSaveDB = ent["savelocation_db"].C2Bool();
+                var isSaveEmail = ent["savelocation_email"].C2Bool();
+                foreach (KeyValuePair<string, byte[]> dic in dic_result)
+                {
+                    byte[] excelBytes = dic.Value;
+                    var filepath = dic.Key;
+                    if (isSaveDisk)
+                    {
+                        if (!Directory.Exists(Path.GetDirectoryName(dic.Key)))
+                        {
+                            Directory.CreateDirectory(Path.GetDirectoryName(dic.Key));
+                        }
+                        using (Stream stream = new MemoryStream((byte[])excelBytes))
+                        using (Workbook workbook = new Workbook())
+                        {
+                            workbook.LoadDocument(stream);
+                            workbook.SaveDocument(dic.Key, DocumentFormat.OpenXml);
+                        }
+
+                    }
+                    if (isSaveDB)
+                    {
+                        var entity = new ErpEntity("tbl_RS_reportdata", "", _cfg);
+                        entity["reportdata"] = excelBytes;
+                        entity["triggereddate"] = Fn.Today();
+                        entity["reportdata_preview"] = Path.GetFileName(dic.Key);
+                        entity.CreatedBy = _app.CurrentUserID;
+                        entity.CompanyID = _app.CompanyID;
+                        entity.MetaData = _app.MetaData;
+                        bool success = entity.Save();
+                    }
+
+                }
+
+
+            }
+
+        }
+        // this method return  dictionary of byte array and file path
+        public Dictionary<string, byte[]> GenerateReportBytes(string ConfigurationID, Dictionary<string, object> dicParams)
+        {
+
+            Dictionary<string, byte[]> dic_ByteData = new Dictionary<string, byte[]>();
+            Workbook workbook;
+            MemoryStream stream;
+            Dictionary<string, byte[]> dic_ReportData = new Dictionary<string, byte[]>();
+            DataTable tbl_config = new DataTable();
+            var tbl_configdetails = new DataTable();
+            var tbl_spmaster = new DataTable();
+            var dssetting = GetConfigDT(ConfigurationID, _erp, _app, _cfg);
+
+            if (dssetting != null && dssetting.Tables.Count > 0)
+            {
+                tbl_config = dssetting.Tables["tbl_config"];
+                tbl_configdetails = dssetting.Tables["tbl_configdetails"];
+                tbl_spmaster = dssetting.Tables["tbl_spmaster"];
+            }
+            string Spname = tbl_spmaster.Rows[0]["spname"].C2Str();
+            string outputPath = tbl_config.Rows[0]["folderstructure"].C2Str();
+            string GroupingColanme = tbl_config.Rows[0]["groupingcolname"].C2Str();
+            int dataStratingpos = tbl_config.Rows[0]["datastartingposition"].C2Int();
+            int colNameStaringPos = tbl_config.Rows[0]["colnamestartingrownumber"].C2Int();
+            var _Given_excelByte = tbl_config.Rows[0]["excelattachment"];
+            string mappingcolname = tbl_config.Rows[0]["mappingcolname"].C2Str();
+            string emailconfigid = tbl_config.Rows[0]["emailconfig_fid"].C2Str();
+            string templateName = tbl_config.Rows[0]["templatename"].C2Str();
+            string ConfigName = tbl_config.Rows[0]["configurationtext"].C2Str();
+            string Emailids = tbl_config.Rows[0]["emailids"].C2Str();
+            string sheetname = tbl_config.Rows[0]["sheetname"].C2Str();
+            string prerequisitesp_fid = tbl_config.Rows[0]["prerequisitesp_fid"].C2Str();
+            bool enablecopyinsertrow = tbl_config.Rows[0]["enablecopyinsertrow"].C2Bool();
+            bool isCustomeTemplate = tbl_config.Rows[0]["iscustometemplate"].C2Bool();
+            string fileExtension = Fn.IsEmpty(tbl_config.Rows[0]["filetype"].C2Str()) ? "xls" : tbl_config.Rows[0]["filetype"].C2Str();
+            var isSaveDisk = tbl_config.Rows[0]["savelocationdisk"].C2Bool();
+            var isSaveDB = tbl_config.Rows[0]["savelocation_db"].C2Bool();
+            var isSaveEmail = tbl_config.Rows[0]["savelocation_email"].C2Bool();
+            var FilePath = "";
+            var ActualFilePath = "";
+            var dtr = new HelperLib.DAL.MSDataTier(_cfg);
+            if (!Fn.IsEmpty(prerequisitesp_fid))
+            {
+                DataTable dt_prerequestedsp = dtr.GetDataTable(prerequisitesp_fid, dicParams);
+                if (!Fn.IsEmpty(dtr.ErrorMessage))
+                {
+                    ErrorList.Append("  {   \"ConfigurationName\" : " + C.JsonDataEncode(ConfigName) + " , \"Error\" : " + C.JsonDataEncode(dtr.ErrorMessage) + " } ");
+                    return null;
+                }
+            }
+            if (Fn.IsEmpty(outputPath))
+                outputPath = _app.StorageDirectory + "\\Reports";
+            FilePath = outputPath + "\\" + templateName + "." + fileExtension;
+            //FilePath = "E:\\pravin\\ThreadApp\\ThreadApp\\Store\\Reports\\temp_[@@departmentname].xls";
+            string pattern_single = @"\[@(?!@)([^\[\]]*)\]";
+            string pattern_double = @"\[@@(.*?)\]";
+            MatchCollection matches1 = Regex.Matches(FilePath, pattern_single);
+            MatchCollection matches2 = Regex.Matches(FilePath, pattern_double);
+            DataTable combinationdt = new DataTable();
+            string err = "";
+            DataTable maindt = dtr.GetDataTable(Spname, dicParams);
+            if (maindt.Rows.Count > 0)
+            {
+                string[] pathVariable = new string[matches2.Count];
+                //replace @ from file path
+                for (var i = 0; i < matches1.Count; i++)
+                {
+                    var colName = matches1[i].Value.C2Str().Replace("[", "").Replace("]", "").Replace("@", "");
+                    if (matches1[i].Value.C2Str().Contains("@datetime"))
+                    {
+                        string currentTimestamp = DateTime.Now.ToString("yyyyMMddhhmmss");
+                        FilePath = FilePath.Replace(matches1[i].Value.C2Str(), currentTimestamp);
+                    }
+                    else if (maindt.Columns.Contains(colName))
+                        FilePath = FilePath.Replace(matches1[i].Value.C2Str(), maindt.Rows[0][colName].C2Str());
+                    else if (dicParams.ContainsKey(matches1[i].Value.C2Str().Replace("[", "").Replace("]", "")))
+                        FilePath = FilePath.Replace(matches1[i].Value.C2Str(), dicParams[matches1[i].Value.C2Str().Replace("[", "").Replace("]", "")].ToString());
+                    else
+                        FilePath = FilePath.Replace(matches1[i].Value.C2Str(), "");
+                }
+                string sortorder = "";
+                //replace @@ from file path
+                for (var i = 0; i < matches2.Count; i++)
+                {
+                    pathVariable[i] = matches2[i].Value.ToString().Replace("[@@", "").Replace("]", "");
+                    sortorder += matches2[i].Value.ToString().Replace("[@@", "").Replace("]", "") + " asc ,";
+                }
+
+                #region Read Excel or Create Excel
+                Byte[] excelBytes = null;
+                //if user uploade the excel with configuration details
+                if (!Fn.IsEmpty(_Given_excelByte) && isCustomeTemplate)
+                {
+                    excelBytes = (Byte[])_Given_excelByte;
+                }
+                //if user not uploade the excel but get configuration details
+                else if (tbl_configdetails.Rows.Count > 0)
+                {
+                    try
+                    {
+                        workbook = new Workbook();
+                        Worksheet worksheet = workbook.Worksheets[0];
+
+                        for (var _i = 0; _i < tbl_configdetails.Rows.Count; _i++)
+                        {
+
+                            worksheet.Cells[dataStratingpos - 1, tbl_configdetails.Rows[_i]["columnnumber"].C2Int()].Value = tbl_configdetails.Rows[_i]["displayname"].C2Str();
+                        }
+
+
+                        using (MemoryStream stream2 = new MemoryStream())
+                        {
+                            stream2.Position = 0;
+                            workbook.SaveDocument(stream2, DocumentFormat.Xls);
+                            excelBytes = stream2.ToArray();
+
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        ErrorList.Append("  {   \"ConfigurationName\" : " + C.JsonDataEncode(ConfigName) + " , \"Error\" : " + C.JsonDataEncode(e) + " } ");
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        workbook = new Workbook();
+                        Worksheet worksheet = workbook.Worksheets[0];
+
+                        for (var _i = 0; _i < maindt.Columns.Count; _i++)
+                        {
+                            worksheet.Cells[dataStratingpos - 1, _i].Value = maindt.Columns[_i].C2Str();
+                        }
+
+
+                        using (MemoryStream stream2 = new MemoryStream())
+                        {
+                            stream2.Position = 0;
+                            workbook.SaveDocument(stream2, DocumentFormat.Xls);
+                            excelBytes = stream2.ToArray();
+
+
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        ErrorList.Append("  {   \"ConfigurationName\" : " + C.JsonDataEncode(ConfigName) + " , \"Error\" : " + C.JsonDataEncode(e) + " } ");
+                    }
+
+                }
+                #endregion
+
+                DataView dataView = maindt.DefaultView;
+                bool iscomdt = true;
+                if (pathVariable.Length > 0)
+                    combinationdt = dataView.ToTable(true, pathVariable);
+                else
+                {
+                    combinationdt.Columns.Add("dum");
+                    DataRow dr = combinationdt.NewRow();
+                    dr["dum"] = "dummy";
+                    combinationdt.Rows.Add();
+                    iscomdt = false;
+
+                }
+                maindt.DefaultView.Sort = sortorder.TrimEnd(',');
+                for (var j = 0; j < combinationdt.Rows.Count; j++)
+                {
+                    DataRowView[] sorted_dr = null;
+                    if (iscomdt)
+                        sorted_dr = maindt.DefaultView.FindRows(combinationdt.Rows[j].ItemArray);
+                    else
+                    {
+                        sorted_dr = maindt.DefaultView.Cast<DataRowView>().ToArray();
+                    }
+                    #region write excel
+
+                    using (stream = new MemoryStream((Byte[])excelBytes))
+                    using (workbook = new Workbook())
+                    {
+                        workbook.LoadDocument(stream);
+                        //workbook.Options.CalculationMode = WorkbookCalculationMode.Manual;
+
+                        Worksheet worksheet = null;
+                        try
+                        {
+                            if (Fn.IsEmpty(sheetname) || !isCustomeTemplate)
+                                worksheet = workbook.Worksheets[0];
+                            else
+                                worksheet = workbook.Worksheets[sheetname];
+                        }
+                        catch (Exception e)
+                        {
+                            ErrorList.Append("  {   \"ConfigurationName\" : " + C.JsonDataEncode(ConfigName) + " , \"Error\" : " + C.JsonDataEncode("The Sheet Name " + sheetname + " Not Found In Excel ") + " } ");
+                        }
+
+                        ActualFilePath = FilePath;
+                        for (var k = 0; k < matches2.Count; k++)
+                        {
+                            ActualFilePath = ActualFilePath.Replace(matches2[k].Value, sorted_dr[0][matches2[k].Value.ToString().Replace("[@@", "").Replace("]", "")].C2Str());
+
+                        }
+
+                        workbook.BeginUpdate();
+                        workbook.CalculateFullRebuild();
+                        if (enablecopyinsertrow)
+                        {
+                            worksheet.Rows.Insert(dataStratingpos + 1, sorted_dr.Length, RowFormatMode.None);
+
+                            CellRange sourceRange = worksheet.Range.FromLTRB(0, dataStratingpos, worksheet.GetUsedRange().ColumnCount, dataStratingpos);
+                            CellRange targetRange = worksheet.Range.FromLTRB(0, dataStratingpos + 1, worksheet.GetUsedRange().ColumnCount, sorted_dr.Length);
+                            targetRange.CopyFrom(sourceRange, PasteSpecial.All);
+                            //sourceRange.Copy(targetRange, PasteSpecial.All);
+
+
+                        }
+
+                        for (var _i = 0; _i < sorted_dr.Length; _i++)
+                        {
+
+
+                            if (isCustomeTemplate || tbl_configdetails.Rows.Count > 0)
+                            {
+                                if (enablecopyinsertrow)
+                                {
+
+                                    //if (tbl_configdetails.Rows.Count > 0 && isCustomeTemplate)
+                                    //{
+
+                                    //    //CellRange sourceRange = worksheet.Rows[dataStratingpos + _i];
+                                    //    // worksheet.Rows.Insert(dataStratingpos + _i + 1, 1);
+                                    //    //worksheet.Rows[dataStratingpos + _i + 1].CopyFrom(sourceRange, PasteSpecial.All);
+
+
+
+
+                                    //}
+                                }
+
+                                foreach (DataRow d in tbl_configdetails.Rows)
+                                {
+                                    if (d["isexported"].C2Bool())
+                                        worksheet.Cells[dataStratingpos + _i, d["columnnumber"].C2Int()].Value = sorted_dr[_i][d["spcolumnnames"].C2Str()].ToString();
+
+                                }
+
+                            }
+                            else
+                            {
+                                for (var _j = 0; _j < maindt.Columns.Count; _j++)
+                                {
+                                    worksheet.Cells[dataStratingpos + _i, _j].Value = sorted_dr[_i][maindt.Columns[_j].ColumnName.C2Str()].C2Str();
+
+                                }
+                            }
+
+
+
+
+
+
+
+
+
+                        }
+                        using (MemoryStream m = new MemoryStream())
+                        {
+                            //workbook.Calculate();
+                            workbook.EndUpdate();
+                            workbook.SaveDocument(m, DocumentFormat.Xls);
+                            dic_ByteData.Add(ActualFilePath, m.ToArray());
+                            workbook.LoadDocument(stream);
+                            worksheet = null;
+                            if (Fn.IsEmpty(sheetname) || !isCustomeTemplate)
+                                worksheet = workbook.Worksheets[0];
+                            else
+                                worksheet = workbook.Worksheets[sheetname];
+                        }
+
+
+                    }
+
+
+
+                    #endregion
+
+                }
+
+
+
+            }
+            else
+            {
+                ErrorList.Append("  {   \"ConfigurationName\" : " + C.JsonDataEncode(ConfigName) + " , \"Error\" : " + C.JsonDataEncode("Data Not Found in Stored Procedure For Generate Report....") + " } ");
+            }
+
+
+
+
+
+            //dt.DefaultView.ToTable(true,"departmentname branchname".Split(' '))
+            //cmdt=new()
+            //var bracnhwisedt=maindt.DefaultView.ToTable(true, "branch");
+            //forloop(bracnhwisedt)
+            //    cmdt[branch] = bracnhwisedt[i];
+
+            //forloop(cmdt){
+            //    maindt.default.rowfilter = "branch=cmdt[i]"
+            // var location = maindt.ToTable(true, "location");
+            //}
+
+
+
+
+            return dic_ByteData;
+        }
+
+        //get Configuration dataset
+        public DataSet GetConfigDT(string ConfigId, ErpScriptObject _erp, ApplicationInfo _app, IDBConfiguration _cfg)
+        {
+            string condition = "and 1=1";
+            string condition2 = "and 1=1";
+            if (!Fn.IsEmpty(ConfigId))
+            {
+                condition = "and configuration_pid='" + ConfigId + @"'";
+                condition2 = "and configuration_fid='" + ConfigId + @"'";
+            }
+            string sqlsetting = @"
+                                --[tbl_config]
+                                SELECT * from tbl_rs_configuration
+                                WHERE company_fid = @CompanyID " + condition + @"
+
+--[tbl_configdetails]
+select * from tbl_RS_configurationdetails     
+WHERE company_fid = @CompanyID " + condition2 + @";
+--[tbl_spmaster]
+select tbl_RS_spmaster.spname from tbl_RS_spmaster left join tbl_RS_configuration on spmaster_fid=spmaster_pid where  tbl_RS_spmaster.company_fid = @CompanyID " + condition + @";
+                                ";
+            string Error = "";
+            DataSet DtRs = new DataSet();
+            DtRs = _erp.ExecuteSql<DataSet>(sqlsetting, new Dictionary<string, object>() {
+                                                                        {
+                                                                          "@CompanyID", _app.CompanyID }
+                                                                        }
+                                                                        , out Error);
+            return DtRs;
+        }
+
+
+    }
+}

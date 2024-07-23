@@ -1,0 +1,88 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MetaMain.master.cs" Inherits="SensysErp.Meta.MetaMain" %>
+
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+<!DOCTYPE html>
+
+<html runat="server" id="htmlDoc" xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+   <%# HelperLib.Web.WebResources.GetResource("~/Scripts/modernizr.js")%>
+
+    <%# HelperLib.Web.WebResources.GetResource("~/css/normalize.css")%>
+    <%# HelperLib.Web.WebResources.GetResource("~/fonts/font.css")%>   
+    <%# HelperLib.Web.WebResources.GetResource("~/css/CustomControl/CustomControl.css")%>
+
+ 
+
+  <%# Request.QueryString["_rspv"]!="1"?("<link id='lnkTheme' href='../Css/"+(Request.QueryString["_ns"] == null && Context.Items["_ns"] == null?ErpModel.Globals.Users.ThemeName:"Grey")+"/jquery-ui-1.10.3.custom.css' rel='stylesheet' type='text/css' />"):""%>
+
+    <%# HelperLib.Web.WebResources.GetResource("~/Scripts/System.js")%>
+     <%# HelperLib.Web.WebResources.GetResource("~/Scripts/jquery.js")%>
+     <%# HelperLib.Web.WebResources.GetResource("~/Scripts/jquery-ui-1.10.3.custom.min.js")%>
+     <%# HelperLib.Web.WebResources.GetResource("~/Scripts/jqHelper.js")%>
+     <%# HelperLib.Web.WebResources.GetResource("~/Scripts/UiHelper.js")%>
+     <%# HelperLib.Web.WebResources.GetResource("~/Scripts/CustomControls.js")%>
+     <%# HelperLib.Web.WebResources.GetResource("~/Scripts/moment.min.js")%>
+
+
+    <script>
+        function changeTheme(theme) {
+            $("#lnkTheme").attr("href", "../Css/" + theme + "/jquery-ui-1.10.3.custom.css?ts=" + (new Date() / 1))
+            $(document.documentElement).removeClass("GreyTheme DarkTheme BlueGlossTheme GreenTheme OrangeTheme RedTheme").addClass(theme + "Theme")
+            var ifr = $("#ContentPlaceHolder1_iFrmConfiguration")[0];
+            if (ifr && ifr.contentWindow && typeof ifr.contentWindow.changeTheme == "function")
+                ifr.contentWindow.changeTheme(theme);
+        }
+        function RefreshGrid(id) {
+            if (typeof id == "undefined")
+                id = $(".RadGrid").eq(0).attr("id");
+            RadGrid_Refresh(id);
+        }
+        function RefreshParent(close,id) {
+            if (window.opener && typeof window.opener.RefreshGrid == "function") {
+                window.opener.RefreshGrid(id);
+                if (close)
+                    closeForm();
+            }
+            else if (parent.IsWrapperPage) {
+                parent.RefreshParent(close, id);
+            }
+            else if (window.frameElement && typeof parent.RefreshGrid == "function") {
+                if (close)
+                    closeForm();
+                
+                if (parent && typeof parent.toggleDetailsForm == "function")
+                    window.setTimeout(function () { parent.RefreshGrid(id); }, 800);
+                else
+                    parent.RefreshGrid(id);
+            }
+        }
+        function closeForm() {
+            if (window.frameElement && $(window.frameElement).parent().hasClass("Popup")) {
+                $(window.frameElement).parent().prev().remove();
+                $(window.frameElement).parent().remove();
+            }
+            else if (parent.IsWrapperPage) {
+                parent._closeWin();
+            }
+            else if (parent && typeof parent.toggleDetailsForm == "function")
+                parent.toggleDetailsForm(false);
+
+            else
+                window.close();
+        }
+    </script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true"></asp:ScriptManager>
+        <%= HelperLib.Web.WebResources.GetResource("~/css/base.css")%>
+       <%= HelperLib.Web.WebResources.GetResource( Request.QueryString["_rspv"]!="1"?"~/css/form.css":"~/css/main.css")%>
+        <div class="divOuterMain" id="divOuterMain" style="padding: 20px 0 0 20px;height:100%;width:100%;box-sizing:border-box">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,142 @@
+﻿
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('fontawesome.eot?v=4.7.0');
+  src: url('fontawesome.eot?#iefix&v=4.7.0') format('embedded-opentype'), url('fontawesome.woff2?v=4.7.0') format('woff2'), url('fontawesome.woff?v=4.7.0') format('woff'), url('fontawesome.ttf?v=4.7.0') format('truetype'), url('fontawesome.svg?v=4.7.0#fontawesomeregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'FontAwesome';  
+  src:  url('fa-light-300.woff2?v=6.0.0') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'MaterialSymbols';
+  font-style: normal;
+  font-weight: 100 700;
+  src: url('MaterialIconFont.woff2?v=1.0.0') format('woff2');
+}
+@font-face {
+  font-family: 'ArchivoNarrow';
+  font-style: normal;
+  font-weight: normal;
+  src: url("ArchivoNarrow.eot"); /* FOR IEs */
+  src: local('CustomFont'),url('ArchivoNarrow.ttf') format('woff');
+}
+
+@font-face {
+  font-family: 'OpenSans';
+  font-style: normal;
+  font-weight: normal;
+  src: url("OpenSans.eot"); /* FOR IEs */
+  src: local('CustomFont'),url('OpenSans.ttf') format('woff');
+}
+@font-face {
+  font-family: 'nunitoregular';
+  font-style: normal;
+  font-weight: normal;
+  src: url("Roboto-Regular.eot"); /* FOR IEs */
+  src: local('CustomFont'),url('Roboto-Regular.ttf') format('woff');
+}
+@font-face {
+  font-family: 'nunitolight';
+  font-style: normal;
+  font-weight: normal;
+  src: url("Roboto-Light.eot"); /* FOR IEs */
+  src: local('CustomFont'),url('Roboto-Light.ttf') format('woff');
+}
+@font-face {
+  font-family: 'nunitobold';
+  font-style: normal;
+  font-weight: normal;
+  src: url("Roboto-Bold.eot"); /* FOR IEs */
+  src: local('CustomFont'),url('Roboto-Bold.ttf') format('woff');
+}
+
+@font-face
+{
+	font-family: "Roboto";
+	src: local(Roboto Thin),url("../fonts/roboto/Roboto-Thin.eot");
+	src: url("../fonts/roboto/Roboto-Thin.eot?#iefix") format("embedded-opentype"),url("../fonts/roboto/Roboto-Thin.woff2") format("woff2"),url("../fonts/roboto/Roboto-Thin.woff") format("woff"),url("../fonts/roboto/Roboto-Thin.ttf") format("truetype");
+	font-weight: 200;
+}
+
+@font-face
+{
+	font-family: "Roboto";
+	src: local(Roboto Light),url("../fonts/roboto/Roboto-Light.eot");
+	src: url("../fonts/roboto/Roboto-Light.eot?#iefix") format("embedded-opentype"),url("../fonts/roboto/Roboto-Light.woff2") format("woff2"),url("../fonts/roboto/Roboto-Light.woff") format("woff"),url("../fonts/roboto/Roboto-Light.ttf") format("truetype");
+	font-weight: 300;
+}
+
+@font-face
+{
+	font-family: "Roboto";
+	src: local(Roboto Regular),url("../fonts/roboto/Roboto-Regular.eot");
+	src: url("../fonts/roboto/Roboto-Regular.eot?#iefix") format("embedded-opentype"),url("../fonts/roboto/Roboto-Regular.woff2") format("woff2"),url("../fonts/roboto/Roboto-Regular.woff") format("woff"),url("../fonts/roboto/Roboto-Regular.ttf") format("truetype");
+	font-weight: 400;
+}
+
+@font-face
+{
+	font-family: "Roboto";
+	src: url("../fonts/roboto/Roboto-Medium.eot");
+	src: url("../fonts/roboto/Roboto-Medium.eot?#iefix") format("embedded-opentype"),url("../fonts/roboto/Roboto-Medium.woff2") format("woff2"),url("../fonts/roboto/Roboto-Medium.woff") format("woff"),url("../fonts/roboto/Roboto-Medium.ttf") format("truetype");
+	font-weight: 500;
+}
+
+@font-face
+{
+	font-family: "Roboto";
+	src: url("../fonts/roboto/Roboto-Bold.eot");
+	src: url("../fonts/roboto/Roboto-Bold.eot?#iefix") format("embedded-opentype"),url("../fonts/roboto/Roboto-Bold.woff2") format("woff2"),url("../fonts/roboto/Roboto-Bold.woff") format("woff"),url("../fonts/roboto/Roboto-Bold.ttf") format("truetype");
+	font-weight: 700;
+}
+
+.menuIcon svg {
+    width: 0.875em;
+    height: 1em;
+    display: inline-block;
+    font-size: inherit !important;
+    overflow: visible;
+}
+.menuIcon .small-icon {
+    display:none !important;
+}
+.menuIcon img {
+    max-width: 85%;
+    max-height: 32px;
+}
+.menuIcon path {
+   fill: currentColor !important;
+}
+
+.ico svg {
+    width: 0.875em;
+    height: 1em;
+    display: inline-block;
+    font-size: inherit !important;
+    overflow: visible;
+}
+.ico path {
+   fill: currentColor !important;
+}
+
+
+m1 {
+    font-family:materialsymbols;
+    font-size:1.6rem;
+    float:left;
+    font-variation-settings:'FILL' 0,  'wght' 300,  'GRAD' 0,  'opsz' 48;
+
+}
+
+m2 {
+    font-family:materialsymbols;
+    font-size:1.6rem;
+    float:left;
+    font-variation-settings:'FILL' 1,  'wght' 300,  'GRAD' 0,  'opsz' 48;
+
+}

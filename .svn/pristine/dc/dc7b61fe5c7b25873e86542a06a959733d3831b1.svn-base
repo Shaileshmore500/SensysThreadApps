@@ -1,0 +1,2903 @@
+﻿
+#topBar {
+    position: absolute;
+    z-index: 103;
+    height: 40px;
+    left: 0;
+    top: 0;
+    right: 0;
+    background-color: #f0f0f0;
+    color: #656565;
+    border-bottom: solid 1px #cecece;
+  
+}
+
+
+	
+
+
+#hoverHidePnl
+{
+	position: absolute;
+	z-index: 110;
+	top: 142px;
+	left:0;
+	right: 0;
+	bottom: 0;
+	display: none;
+}
+
+#homeButton
+{
+    position: absolute;
+    top: 8px;
+    left: 100px;
+    font-size: 29px;
+    color: #D0D0D0;
+    font-family: FontAwesome;
+    z-index: 10000;
+    transition: 0.35s;
+    text-decoration: none;
+    outline: none !important;
+}
+	#homeButton.selected
+	{
+		color: #0285fa;
+	}
+	#homeButton:before
+	{
+		content: "\f015";
+	}
+    #homeButton:hover {
+        color: #0285fa;
+        transition: 0.35s;
+    }
+	#homeButton:hover:before
+	{
+	}
+
+#FirstLevel_Selected {
+position: absolute;
+    z-index: 112;
+    margin-left: 44px;
+    width: 36px;
+    display: inline-block;
+    height: 31px;
+    padding-top: 7px;
+    top: 0px;
+    left: 85px;
+    font-size: 26px;
+    color: #656565;
+    cursor: pointer;
+    text-align: center;
+    border: solid 2px transparent;
+}
+#FirstLevel_Selected:before {
+    content:"\f00a";
+    font-family:fontawesome;
+}
+    #FirstLevel_Selected:hover {
+        color: #0285fa;
+        transition:color 0.35s,text-shadow 0.35s;
+    }
+    #FirstLevel_Selected.toggle {
+      
+    border: solid 2px #b6b6b6;
+    background-color: #f4f4f4;    
+    border-bottom: none;
+     border-top-color: transparent;
+    color: #0073d9;
+    }
+#FirstLevel
+{	
+background-color: #f4f4f4;
+    position: absolute;
+    z-index: 111;
+    display: none;
+    flex-wrap:wrap;
+    padding: 5px 10px 15px 10px;
+    width: 725px;
+    top: 38px;
+    left: 129px;
+    border-top: solid 2px #b6b6b6;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    color: #4f4f4f;
+    box-shadow: 2px 2px 5px #424242;
+}
+
+#SecondLevel
+{
+    height: 40px !important;
+    display: none;
+    position: absolute;
+    left: 175px;
+    min-width: 250px;
+    top: 0px;
+    z-index: 105;
+    color:#131313;
+}
+
+
+#divCollapseH
+{
+	position: absolute;
+	height: 8px;
+	left: 0px;
+	right: 0px;
+	bottom: 0;
+	cursor: row-resize;
+	z-index: 10;
+}
+
+	#divCollapseH:hover
+	{
+		background-color: #FFB84E;
+	}
+
+#ThirdLevel
+{
+	width: 200px;
+    position: absolute;
+    border-right: solid 2px #d8d8d8;
+    bottom: 0px;
+    left: 0px;
+    background-color: #fff;
+    z-index: 105;
+	
+}
+    #ThirdLevel.coll {
+        border-right:none !important;
+    }
+
+#divCollapseV
+{
+position: absolute;
+    width: 8px;
+    right: 0px;
+    top: 0;
+    bottom: 0;
+    z-index: 10;
+    display: none;
+    left: 0px;
+    padding-left: 3px;
+}
+
+	#divCollapseV:hover1
+	{
+		background-color: #FFB84E;
+	}
+
+	.verticalTitle
+	{
+		
+font-size: 23px;
+    background-color: #006890;
+    color: #FFF;
+    text-align: center;
+    font-family: nunitolight;
+    word-wrap: break-word;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    overflow: hidden;
+    position: absolute !important;
+    padding-left: 56px;
+    line-height: 33px;
+	}
+#divCollapseV.verticalTitle
+{
+	width: 28px;
+    display:block;
+}
+.menuItem, .menuItemGroup
+{
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	text-transform: capitalize;
+}
+.menuIcon {
+    font-family:fontawesome;
+}
+
+#SecondLevel .menuSet
+{
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+#SecondLevel .menuSet
+{
+    overflow: hidden;
+    white-space: nowrap;
+    height: 100%;
+    color: inherit;
+}
+
+#FirstLevel .menuItem
+{
+display: inline-block;
+    padding: 8px;
+    padding-bottom: 3px;
+    font-size: 13px;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    border-bottom: solid 2px #d8d8d8;
+    outline: none !important;
+    width: 209px;
+    margin: 5px;
+   
+    color: inherit;
+    position: relative;
+    white-space: nowrap;
+	
+}
+#FirstLevel .menuItem .menuTxt {
+    font-size: 15px;
+    vertical-align: middle;
+    width: 175px;
+    display: inline-block;
+    box-sizing: border-box;
+    font-family: nunitoregular;
+    text-shadow: 1px 1px 2px #fff;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 18px;
+    text-transform: capitalize;
+}
+#FirstLevel .menuItem .menuIcon {
+font-size: 38px;
+  margin-bottom: 5px;
+    font-family: fontawesome;
+    vertical-align: middle;
+    display: block;
+    box-sizing: border-box;
+    padding-top: 10px;
+    font-weight: normal;
+    text-align: center;
+}
+    #FirstLevel .menuItem:hover {
+        transition: 0.75s;
+        border-color: #0267c7;
+        box-shadow: 0 2px 0px #0083ff, 0 3px 0px #004e99;
+        color: #0267c7;
+    }
+    #FirstLevel .menuItem.selected {
+    color: #ffffff;
+    border-color: #4073be;
+    background-color: #0172d9;
+    }
+
+#FirstLevel .menuItem.selected .menuTxt {
+    text-shadow:none;
+}
+
+
+#SecondLevel .menuItem
+{
+    min-width: 65px;
+    border: solid 1px transparent;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 11px;
+    font-weight: bold;
+    font-family: Arial;
+    position: relative;
+    margin-right: 5px;    
+    height: 100%;
+    box-sizing: border-box;
+    padding: 0 4px;
+    color: inherit;
+}
+
+#moreBtn
+{
+    display:none;
+    position: absolute;
+    top: 13px;
+    color: inherit;
+    cursor: pointer;
+    outline: none;
+    font-family: fontawesome;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+
+#moreItems {
+    position: absolute;
+    z-index: 112;
+    background: #f1f1f1;
+    top: 41px;
+    display: none;
+    min-width: 210px;
+    border: solid 1px #cecece;
+    box-shadow: 2px 2px 5px #5a5a5a;
+    border-top: none;
+    padding-top: 10px;
+    color: #3c3c3c;
+
+}
+#moreItems .menuItem
+{
+    white-space: nowrap;
+    cursor: pointer;
+    display: block;
+    font-size: 11px;
+    font-weight: bold;
+    font-family: Arial;
+    position: relative;
+    color:inherit;
+    height: 100%;
+    padding: 0 5px;
+    border:solid 1px transparent;
+    border-bottom: solid 1px #dedede;
+   
+}
+#moreItems .menuItem .menuIcon {
+    font-family: fontawesome;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 30px;
+    vertical-align: top;
+    width: 20px;
+    margin-left: 5px;
+}
+
+#moreItems .menuItem .menuTxt {
+    font-weight: normal;
+    line-height: 30px;
+    white-space: nowrap;
+    font-size: 16px;
+    font-family: ArchivoNarrow;
+    /* width: 130px; */
+    display: inline-block;
+    /* overflow: hidden; */
+    margin-left: 6px;
+    vertical-align: top;
+    /* text-overflow: ellipsis; */
+}
+
+#ThirdLevel .menuItem:last-child
+{
+	margin-bottom: 18px;
+}
+
+
+#moreItems .menuItem.selected,
+#SecondLevel .menuItem.selected
+{
+	color:#0085fa ;	
+}
+
+
+
+
+
+
+
+#SecondLevel .menuItem .menuTxt {
+    font-weight: normal;
+    line-height: 40px;
+    white-space: nowrap;
+    font-size: 15px;
+    font-family: ArchivoNarrow;
+    display: inline-block;
+    vertical-align: top;
+}
+
+
+#SecondLevel .menuItem .menuIcon
+{
+    font-family: fontawesome;
+    display: inline-block;
+    font-size: 14px;
+    width: 20px;
+    font-weight: normal;
+    line-height: 40px;
+    vertical-align: top;
+    text-align: center;
+    margin-right: 1px;
+}
+
+#ThirdLevel .menuItem
+{
+cursor: pointer;
+    padding: 0 10px;
+    display: block;
+    padding-left: 15px;
+    display: block;
+    font-family: nunitoregular;
+    font-size: 13px;
+    text-decoration: none;
+    color: #404040;
+    min-height: 22px;
+    line-height: 22px;
+    outline: none;
+    text-indent: -6px;
+    padding-left: 28px;
+    margin-left: 3px;
+    border-left: solid 3px transparent;
+}
+
+	#ThirdLevel .menuItem.selected,
+	#ThirdLevel .menuItem:hover
+	{		
+		color: #0285fa;
+		text-decoration: underline;
+		font-family: nunitobold;
+		transition:color 0.25s;
+	}
+	#ThirdLevel .menuItem.selected
+	{
+		border-left-color:#ff0500;
+	}
+
+		#ThirdLevel .menuItem:hover:before,
+		#ThirdLevel .menuItem:hover:after
+		{
+			display: none;
+		}
+
+		#ThirdLevel .menuItem.selected:hover:before,
+		#ThirdLevel .menuItem.selected:hover:after
+		{
+			display: initial !important;
+		}
+
+.menuItemGroup
+{
+    display: block;
+    color: #000000;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 3px 0;
+    min-height: 21px;
+    font-family: nunitobold;
+    margin-bottom: 1px;
+    text-indent: -18px;
+    padding-left: 28px;
+    cursor: pointer;
+    position: relative;
+}
+	.menuItemGroup .toggle
+	{
+    position: absolute;
+    right: -6px;
+        margin-top: 2px;
+	}
+.menuItemGroup .toggle:after
+{
+	
+	content: "\f107";
+	font-size:17px;
+	font-family:fontawesome;
+	margin-right:5px;
+	cursor:pointer;
+}
+		.menuItemGroup .toggle.down:after
+		{
+			content:"\f106";
+		}
+.secondLevelTitle
+{
+	position: absolute !important;
+    top: 0;
+    left: 0;
+	display: block;
+	right: -3px;
+	font-size: 25px;
+	background-color: #006890;
+	color: #FFF;
+	text-align: center;
+	overflow: hidden;
+	font-family: ArchivoNarrow;
+	padding: 7px 0;
+	background-image: url(../images/gloss.png);
+	background-position: 0 -46px;
+    z-index:10;
+}
+#ThirdLevel .menuSet
+{
+	display: block;    
+    overflow-y: auto;   
+    padding-top: 42px;
+    box-sizing: border-box;
+}
+
+#spnAppTitle
+{
+    display: inline-block;
+    width: 95px;
+    height: 40px;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+    position: absolute;
+    left: 0;
+    top: 0px;
+    overflow: hidden;
+}
+    #spnAppTitle img {
+        height: auto;
+        width: auto;
+        margin: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        max-height: 100%;
+        max-width: 100%;
+    }
+
+
+#ThirdLevel .menuItemGroup .menuIcon,
+#ThirdLevel .menuItem .menuIcon {
+    font-style: normal;
+    font-family: fontawesome;
+    font-size: 18px;
+    font-weight:normal;
+    margin: 2px 5px !important;   
+    vertical-align: middle !important;
+    display: inline-block !important;
+    width: 18px !important;
+    text-align: center;
+    margin-right: 0 !important;
+}
+#ThirdLevel .menuItem .menuIcon {
+     margin-left: -18px !important;
+}
+
+#ThirdLevel .menuIcon img {
+    max-width: 0.875em;
+    max-height: 1em;
+}
+#ThirdLevel .menuIcon m1, #ThirdLevel .menuIcon m2{
+ float:none;
+ font-size: 1.2rem;
+}
+
+	
+#usrMenu
+{
+	position: absolute;
+    right: 0px;
+    top: 41px;
+    bottom:0px;
+    background-color: transparent;
+	background-image: url(../images/transbg.png);
+    display: none;
+    z-index: 100005;
+}
+#usrMenuInner
+{
+color: #191919;
+    font-family: nunitoregular;
+    width: 425px;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 5px;
+}
+#divQuickAdd,
+#divSearch {
+    position: absolute;
+    top: 41px;
+    right: 0px;
+    bottom: 0px;
+    display: block;
+    width: 425px;
+    z-index: 102;
+    padding: 10px;
+    background: #f1f1f1;
+    padding-top: 30px;
+        box-sizing: border-box;
+    /* box-shadow: -1px 0px 3px #151515; */
+
+}
+#usrMenuInner,#divQuickAdd,
+#divSearch {
+        border-left: solid 2px #cac8c8;
+    background: #fdfdfd; 
+    background: linear-gradient(to right, #fbfbfb 0%,#f3f3f3 47%,#ffffff 100%);
+}
+#divQuickAdd {
+    padding-top: 10px;
+}
+
+#usrMenuInner .title
+{
+	font-family: nunitoregular;
+    font-size: 18px;
+    font-weight: normal;
+    margin-left: 2px;
+    color: #696969;
+    display: block;
+    border-top: solid 1px #D6D6D6;
+    margin-top: 10px;
+    padding-top: 10px;
+    margin-bottom: 10px;
+}
+#usrMenuInner>A,
+	#usrMenuInner .themeList A
+	{
+		display: inline-block;
+		padding: 5px 10px;
+		color: #191919;
+		text-decoration: none;		
+		font-family: Arial;
+		font-size: 14px;
+		text-shadow: 1px 1px 1px #CECECE;
+		white-space: nowrap;
+		min-width: 75px;
+		outline:none !important;
+	}
+#usrMenuInner > A
+{
+	min-width: 95px;
+}
+		#usrMenu .themeList A:last-child
+		{
+			border-bottom: none;
+		}
+
+		#usrMenuInner > A:hover
+		{
+			color: #0285fa;		
+			transition:all 0.7s;	
+		}
+		#usrMenuInner > A SPAN		
+		{
+			font-family: fontawesome;
+			font-weight: normal;
+			font-size: 18px;
+			text-shadow: none;
+			margin-right: 10px;
+			line-height: 16px;
+		}
+
+	#usrMenuInner .themeList
+	{
+		padding-left:50px;
+	}
+	#usrMenuInner .themeList A:hover
+	{
+		background: #ceefb0;
+		color: #000;
+	}
+
+	#usrMenuInner .themeList A SPAN
+	{
+		display: inline-block;
+		height: 14px;
+		width: 14px;
+		border-radius: 4px;
+		vertical-align: middle;
+		border: solid 1px #808080;
+		font-family: fontawesome;
+		line-height: 14px;
+		font-size: 14px;
+		color: #fff;
+	}
+#txtExtImg
+{
+	border: none;
+    border-bottom: Solid 1px #7D5C5C;
+    color: #920127;
+    font-family: nunitoregular;
+    font-size: 14px;
+    width: 305px;
+    padding: 3px 0;
+    margin-top: 5px;
+    outline: none;
+    font-style: italic;
+}
+#usrPanel .rcpPalette
+{	
+	padding: 10px;
+	width:195px !important;
+	border:solid 1px gray;
+	background-color:#fff;
+	background-image:none !important;
+}
+#usrPanel .rcpRoundedRight, 
+#usrPanel .rcpRoundedBottomRight, 
+#usrPanel .rcpRoundedBottomLeft, 
+#usrPanel .rcpRightShadow, 
+#usrPanel .rcpCornerShadow, 
+#usrPanel .rcpBottomShadow
+{
+	display:none;
+}
+#usrPanel .rcpHeader
+{
+	display:none;
+}
+#usrPanel .rcpInputsWrapper
+{
+	display:none;
+}
+#divCompList
+{
+width:350px;
+    position:absolute;
+    z-index:100000;
+    display:none;
+    padding:15px;
+     background: white;
+}
+#divCompList ._title {
+    font-size: 22px;
+    font-family: NunitoLight;
+    margin-top: -9px;
+    display: block;
+    text-decoration: underline;
+    margin-bottom: 10px;
+}
+#lnkCompany:before,
+#divCompList ._title:before {
+    font-family: fontawesome;
+    content: "\f1ad";
+    margin-right: 8px;
+    display: inline-block;
+}
+    #divCompList ._inner {
+        width: 100%;
+        min-height: 200px;
+        overflow: auto;
+    }
+
+	#divCompList ._inner A
+	{
+display: block;
+    padding: 5px 10px;
+    color: #020E06;
+    text-decoration: none;
+    border-bottom: solid 2px #f5f5f5;
+    font-family: nunitolight;
+    font-size: 15px;
+    text-shadow: 1px 1px 1px #CECECE;
+    white-space: nowrap;
+	}
+
+	#divCompList .globalView
+	{
+		color: red;
+	}
+
+	#divCompList ._inner  A:last-child
+	{
+		border-bottom: none;
+	}
+
+	#divCompList ._inner A:hover
+	{
+		color: #1185fa;		
+	}
+
+	#divCompList .globalView:hover
+	{
+		color: #FFEB00;
+	}
+
+
+#spnBtn
+{
+	position: absolute;
+    right: 56px;
+    bottom: 0px;
+    font-size: 12px;
+    font-family: nunitoregular;
+    top: 0px;
+    background-color: inherit;
+    background: inherit;
+    color: inherit;
+}
+
+	#spnBtn A
+	{
+		   font-family: fontawesome;
+    font-size: 20px;
+    outline: none !important;
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
+    display: inline-block;
+    padding-top: 16px;
+    box-sizing: border-box;
+    border-left: solid 1px transparent;
+    border-right: solid 1px transparent;
+    width: 32px;
+    line-height: normal !important;
+	}
+        #spnBtn A.sel {
+            background-color: inherit;
+            border-color:gray;
+        }
+	#spnBtn .quick:before
+	{
+		content: "\f067";
+	}
+	#spnBtn .search:before
+	{
+		content: "\f002";
+	}
+	#spnBtn .notifications:before
+	{		
+		content: "\f0e0";
+	}
+	#spnBtn .history:before
+	{
+		content: "\f1da";
+	}
+	#spnBtn .notifications
+	{
+		color: #d8d8d8;
+		position:relative;
+	}
+	#spnBtn ._active.notifications
+	{
+		color: #575757;
+	}
+
+#spnBtn  .dash-list:before
+{
+	content: "\f009";
+}
+
+#spnBtn A:hover
+	{
+		color: #0285fa;
+	}
+
+#notifyLink ._c
+{
+	display: none;
+}
+
+
+#notifyLink._active ._c
+{
+	display: inline-block;
+}
+
+
+
+#notifyLink ._c
+{
+position: absolute;
+    color: #fff;
+    left: 16px;
+    text-align: center;
+    top: 10px;
+    font-family: nunitolight;
+    background-color: red;
+    border-radius: 5px;
+    padding: 0px 3px;
+    font-size: 11px;
+}
+#txtSearch
+{
+	display: block;
+    padding: 8px 5px;
+    box-sizing: border-box;
+    width: 100%;
+    border: solid 1px #d0d0d0;
+    font-size: 14px;
+    background-color: #fff;
+    font-family: nunitobold;
+	color: #636363;
+	box-shadow: inset 4px 4px 8px #efefef;
+}
+
+
+
+
+._chk-menu, ._chk-ent
+{
+	font-family: fontawesome;
+    opacity: 0.5;
+    text-decoration: none;
+    color: #212121;
+    font-size: 15px;
+    position: relative;
+    margin: 4px 9px;
+    display: inline-block;
+    text-shadow: 1px 1px 2px #b1b1b1;
+	outline:none !important;
+}
+	._chk-menu:hover, ._chk-ent:hover
+	{
+		color:#2f9eff;
+		transition:1s;
+		opacity:1;
+	}
+._chk-ent:before
+{
+	content: "\f1c0";
+}
+._chk-menu:before
+{
+	content: "\f0e8";
+}
+._chk-menu._on, ._chk-ent._on
+{
+	opacity:1;
+	transition:1s;
+}
+	._chk-menu._on:after, ._chk-ent._on:after
+	{
+		content: "\f00c";
+		font-size: 8px;
+		left: 13px;
+		top: -1px;
+		position: absolute;
+	}
+#divQuickAdd .bkTitle,
+#divQuickAdd .qkTitle
+{
+	display: block;
+	font-family: Nunitolight;
+	font-size: 22px;
+	margin: 5px 3px;
+	color: #000;
+}
+	#divQuickAdd .qkTitle:before
+	{
+		 content: "\f067";
+		font-family:FontAwesome;
+		margin-right:5px;
+	}
+	#divQuickAdd .bkTitle:before
+	{
+		 content:"\f02e";
+		font-family:FontAwesome;
+		margin-right:5px;
+	}
+#divQuickAdd a
+{
+	font-size:15px !important;
+	margin-left: 12px !important;
+    outline: none !important;
+}
+#divBookmarks .closeBtn
+{	
+	position:absolute;
+	right:2px;
+	top:6px;
+	width: 14px !important;
+}
+#divBookmarks .reorder
+{
+	width: 18px;
+	display: inline-block;
+}
+#divBookmarks .reorder:before
+{
+	content: "\f0c9";
+    font-family: fontawesome;
+    cursor: move;
+    opacity: 0.4;
+}
+
+#divBookmarks a:hover .closeBtn
+{
+	background-color: #eefffd;
+    color: #f00 !important;
+}
+#divBookmarks a
+{
+	font-size:13px !important;
+	position:relative;
+	padding-right:14px !important;
+}
+#divQuickAdd a:hover
+{
+	   
+}
+#divQuickAdd a ._ico
+{
+	font-family: FontAwesome;
+    width: 24px;
+    display: inline-block;
+}
+
+#divSearchResult
+{	
+	min-height:200px;
+	text-transform:capitalize;
+}
+	#divSearchResult ._menutitle, #divSearchResult ._enttitle
+	{
+		display:block;
+		font-family: Nunitolight;
+		font-size:35px;
+		margin:5px 3px;
+		color:#696969;
+	}
+	#divSearchResult ._menutitle:before
+	{
+		font-family:fontawesome;
+		content: "\f0e8";		
+		margin-right:7px;
+	}
+	#divSearchResult ._enttitle:before
+	{
+		font-family:fontawesome;
+		content: "\f1c0";		
+		margin-right:7px;
+	}
+	#divSearchResult ._ent,
+	#divSearchResult ._menu
+	{
+		overflow-y:auto;
+		position:relative;
+	}
+	#divSearchResult ._ent._nodata:after,
+	#divSearchResult ._menu._nodata:after,
+	._nobookdata
+	{
+		font-family: Nunitolight;
+		content: "No menu items found";
+		color: #808080;
+		display: block;
+		text-align: center;
+		font-size: 15px;
+		font-style: italic;
+	}
+	#divSearchResult ._ent._nodata:after
+	{
+		font-family: Nunitolight;
+		content: "No records found";
+	}
+		#divSearchResult ._ent._prog
+		{
+			min-height: 80px;
+			text-align: center;
+		}
+		#divSearchResult ._ent._prog:before
+		{
+			position: absolute;
+    font-family: fontawesome;
+    content: "\f021";
+    font-size: 60px;
+    color: #696969;
+    margin: auto 50%;
+    display: block;
+    animation: animSpinner 2s infinite linear;
+		}
+		
+
+	#divSearchResult ._groupName
+	{
+		display: block;
+    font-size: 20px;
+    font-family: Nunitoregular;
+    padding: 4px 3px;
+    color: #131313;
+    margin-left: 22px;   
+	}
+		#divSearchResult ._groupName span
+		{
+			font-family: fontawesome;
+			margin-right: 5px;
+			font-size: 24px;
+		}
+	#divQuickAdd A,
+	#divSearchResult A
+	{
+		display: block;
+		font-size: 13px;
+		font-family: Nunitoregular;
+		padding: 4px 3px;
+		border-bottom: solid 1px #e4e4e4;
+		color: #404040;
+		text-transform: capitalize;
+		text-decoration: none;
+		outline: none !important;
+		margin-left: 20px;
+	}
+        #divQuickAdd A:hover,
+        #divSearchResult A:hover {
+            background-color: #0285fa;
+            color: #ffffff !important;
+            transition: background-color 0.5s,color 0.5s;
+        }
+	#divSearchResult A._inactive
+	{
+		color:gray;
+	}
+	#divSearchResult A ._ico
+	{
+		font-family: fontawesome;
+		display: inline-block;
+		width: 22px;
+	}
+#divNotificationList
+{
+    position: absolute;
+    background-color: #373737;
+    width: 425px;
+    z-index: 100000;
+    border: solid 1px #767676;
+    top: 41px;
+    right: 0px;
+    bottom: 0px;
+    box-sizing: border-box;
+}
+
+	#divNotificationList ._hdr
+	{
+		position: absolute;
+		top: 5px;
+		left: 10px;
+		font-size: 15px;
+		font-family: nunitoregular;
+		color: #fff;
+	}
+
+	#divNotificationList ._vw
+	{
+		position: absolute;
+		top: 6px;
+		right: 10px;
+		font-size: 12px;
+		font-family: nunitoregular;
+		color: #00ECFF;
+		outline: none !important;
+	}
+
+	#divNotificationList ._vh
+	{
+       position: absolute;
+    top: 8px;
+    right: 10px;
+    font-size: 12px;
+    font-family: nunitoregular;
+    color: #51deff;
+    outline: none !important;
+	}
+
+
+
+	#divNotificationList ._inner
+	{
+    overflow-y: auto;
+    padding: 0 0 0 10px;
+    box-sizing: border-box;
+    position: absolute;
+    top: 28px;
+    bottom: 10px;
+    right: 5px;
+    left: 0px;
+    border-top: solid 1px transparent;
+	}
+
+	#divNotificationList .notif-items,
+	#divNotificationList .notif-history
+	{
+		overflow-x: hidden;
+	}
+
+    #divNotificationList .notif-item {
+         background-color: #ececec;
+    position: relative;
+    padding: 5px;
+    font-family: nunitoregular;
+    cursor: pointer;
+    white-space: nowrap;
+    border-bottom: solid 1px #c3c3c3;
+    color: #505050;
+    position: relative;
+    box-sizing: border-box;
+    }
+
+	#divNotificationList .notif-item
+	{
+		left: -300px;
+	}
+
+	#divNotificationList.play .notif-item
+	{
+		left: 0px;
+	}
+
+	#divNotificationList .notif-item:hover
+	{
+		background-color: #0285fa;
+        color: #fff;
+		transition: background-color 0.75s !important;
+		-webkit-transition: background-color 0.75s !important;
+		-moz-transition: background-color 0.75s !important;
+	}
+
+
+	
+	#divNotificationList .notif-item .notif-icon
+	{
+		display: inline-block;
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		overflow: hidden;
+		text-align: center;
+		background-color: #373737;
+		vertical-align: top;
+		position: relative;
+		margin-left: 0px;
+		margin-right: 0px;
+        color:#fff;
+	}
+    #divNotificationList .notif-item:hover .notif-icon {
+        background-color: #ffffff;
+        color: #000;
+        width: 40px !important;
+        height: 40px !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+		#divNotificationList .notif-item.visited:hover .notif-icon span,
+		#divNotificationList .notif-item .notif-icon span
+		{
+			font-family: FontAwesome;
+			font-size: 25px;
+			font-weight: normal;
+			line-height: 40px;
+			color: inherit;
+		}
+
+    #divNotificationList .notif-item.visited:hover .notif-icon img,
+    #divNotificationList .notif-item .notif-icon img {
+        max-height: 40px;
+        max-width: 40px;
+        margin: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+
+	#divNotificationList .notif-item .notif-content
+	{
+		vertical-align: top;
+    display: inline-block;
+    width: 315px;
+    margin-left: 5px;
+	}
+
+		#divNotificationList .notif-item .notif-content .notif-title
+		{
+			text-transform: capitalize;
+			font-size: 11px;
+			font-family: nunitobold;
+			text-decoration: underline;
+			max-width: 265px;
+			display: inline-block;
+			white-space: normal;
+		}
+
+		#divNotificationList .notif-item .notif-content .notif-date
+		{
+			font-size: 11px;
+			font-family: nunitobold;
+			position: absolute;
+			right: 21px;
+			top: 3px;
+			font-style: italic;
+		}
+
+		#divNotificationList .notif-item.visited:hover .notif-content .notif-msg,
+		#divNotificationList .notif-item .notif-content .notif-msg
+		{
+			display: block;
+			margin-top: 2px;
+			margin-left: 10px;
+			overflow-x: hidden;
+			text-transform: capitalize;
+			white-space: normal;
+		}
+
+	#divNotificationList .notif-item.visited
+	{
+		background-color:transparent;
+		color: #fff;
+		max-height: 28px;
+		overflow: hidden;
+	}
+
+		#divNotificationList .notif-item.visited:hover
+		{
+			transition: max-height 1.5s !important;
+			transition-delay: 0.5s !important;
+			-moz-transition: max-height 1.5s !important;
+			-moz-transition-delay: 0.5s !important;
+			max-height: 100px;
+		}
+
+
+        #divNotificationList .notif-item.visited .notif-icon {
+            width: 20px;
+            height: 20px;
+            margin-left: 10px;
+            margin-right: 10px;
+            background-color: transparent;
+            color: #fff;
+        }
+
+
+
+		#divNotificationList .notif-item.visited .notif-content .notif-msg
+		{
+			display: none;
+		}
+
+		#divNotificationList .notif-item.visited .notif-icon span
+		{
+			font-size: 18px;
+			line-height: 20px;
+		}
+
+		#divNotificationList .notif-item.visited .notif-icon img
+		{
+			height: 20px;
+			width: 20px;
+		}
+
+	#divNotificationList .notif-item .notif-close
+	{
+		outline: none !important;
+		color:inherit;
+		position: absolute;
+		top: 3px;
+		right: -1px;
+		font-size: 11px;
+		font-family: arial;
+		font-weight: bold;
+		text-decoration: none;
+		height: 16px;
+		width: 16px;
+		border-radius: 8px;
+		text-indent: 4px;
+		line-height: 16px;
+	}
+
+		#divNotificationList .notif-item .notif-close:hover
+		{
+			background-color: #4C4C4C;
+			color: #FFF;
+		}
+
+	#divNotificationList .notif-history .notif-item .notif-close
+	{
+		display: none;
+	}
+
+	#divNotificationList .notif-noitem
+	{
+		background-color: #DDD;
+		padding: 5px;
+		font-family: nunitoregular;
+		width: 400px;
+		text-align: center;
+	}
+
+		#divNotificationList .notif-noitem .notif-icon
+		{
+			font-family: FontAwesome;
+			font-size: 40px;
+			font-weight: normal;
+			line-height: 50px;
+			color: #A5A5A5;
+			display: block;
+			text-shadow: 1px 2px 2px #FFF;
+		}
+
+		#divNotificationList .notif-noitem .notif-title
+		{
+			text-transform: capitalize;
+			font-size: 18px;
+			font-family: nunitoregular;
+			text-shadow: 2px 1px 1px #FFF;
+			color: #717171;
+		}
+
+
+
+
+
+#usrPanel
+{
+	position: absolute;
+	right: 0px;
+	z-index: 100001;
+	
+}
+
+	#usrPanel .inner
+	{
+		-webkit-border-bottom-left-radius: 10px;
+		-moz-border-radius-bottomleft: 10px;
+		border-bottom-left-radius: 10px;
+	}
+
+#spnUserCtr
+{
+	float: left;
+	min-width: 150px;
+	display: block;
+	text-align: right;
+	margin-top: 10px;
+	margin-right: 10px;
+}
+#spnUserCtr1
+{
+	display: block;
+    border-bottom: solid 1px #D6D6D6;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+#spnUser,#spnRole,.lnkCompany
+{
+    white-space: nowrap;
+    display: block;
+    font-size: 15px;
+    text-transform: capitalize;
+    text-indent: 3px;
+	margin-top: 5px;
+    color:inherit;
+}
+
+#spnRole
+{
+	font-size: 12px;
+}
+
+#spnUser:before {
+   content: "\f007";
+    font-family: fontawesome;
+    margin-right: 8px;
+    font-size: 20px;
+    color: #002721;
+}
+#spnRole:before {
+    content: "Role : ";
+	color:#5f5f5f;
+}
+#usrPanel .iconBtn
+{
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	opacity: 0;
+	position: absolute;
+	left: 58px;
+	font-family: fontawesome;
+	color: #fff;
+	font-size: 18px;
+	text-decoration: none;
+}
+
+	#usrPanel .iconBtn:hover
+	{
+		color: #F83232;
+	}
+
+#imgUserCtr
+{
+    position: absolute;
+    cursor: pointer;
+    right: 8px;
+    bottom: 0px;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    overflow: hidden;
+    border: solid 2px #dedede;
+    box-sizing: border-box;
+}
+#imgUser {
+height: auto !important;
+    width: auto !important;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    max-width: 38px;
+}
+#usrPanel1:hover
+{
+	padding: 0 0 50px 50px;
+	height: 92px;
+	transition: all 0.35s ease-in-out;
+	-webkit-transition: all 0.35s ease-in-out;
+	-moz-transition: all 0.35s ease-in-out;
+	overflow:visible;
+}
+
+	#usrPanel1:hover .inner
+	{
+		background: #4E5157;
+		border-left: solid 2px #EBEBEB;
+		border-bottom: solid 2px #EBEBEB;
+		box-shadow: 0 5px 5px #BEBEBE;
+		height: 80px;
+		padding-top: 10px;
+		transition: all 0.35s ease-in-out;
+		-webkit-transition: all 0.35s ease-in-out;
+		-moz-transition: all 0.35s ease-in-out;
+		transition-property: height, width, padding, border, box-shadow;
+		-webkit-transition-property: height, width, padding, border, box-shadow;
+		-moz-transition-property: height, width, padding, border, box-shadow;
+	}
+
+
+
+	#usrPanel1:hover #spnUser
+	{
+		color: #3EFFF7;
+		margin-left: 10px;
+		margin-top: 5px;
+		overflow:visible;
+		max-width:none;
+
+	}
+
+	#usrPanel1:hover #spnRole
+	{
+		transition: all 1.75s ease-in-out;
+		-webkit-transition: all 1.75s ease-in-out;
+		-moz-transition: all 1.75s ease-in-out;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+		opacity: 1;
+	}
+
+	#usrPanel1:hover #imgUser
+	{
+		transition: all 0.35s ease-in-out;
+		-webkit-transition: all 0.35s ease-in-out;
+		-moz-transition: all 0.35s ease-in-out;
+		height: 70px !important;
+	}
+
+	#usrPanel1:hover .iconBtn
+	{
+		transition: all 0.35s ease-in-out;
+		-webkit-transition: all 0.35s ease-in-out;
+		-moz-transition: all 0.35s ease-in-out;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+		opacity: 1;
+	}
+
+#divWallpaper
+{
+	z-index: -3;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+#imgWallPaper
+{
+	height: 100%;
+	width: 100%;
+}
+
+#divDashboard
+{
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+	z-index: 100;
+	-webkit-transform: rotateX(0deg) rotateY(0deg);
+	-webkit-transform-style: preserve-3d;
+	-webkit-backface-visibility: hidden;
+	-moz-transform: rotateX(0deg) rotateY(0deg);
+	-moz-transform-style: preserve-3d;
+	-moz-backface-visibility: hidden;
+	-o-transition: all .5s ease-in-out;
+	-ms-transition: all .5s ease-in-out;
+	-moz-transition: -moz-transform .5s ease-in-out;
+	-webkit-transition: -webkit-transform .5s ease-in-out;
+	/*transition: all .5s ease-in-out;*/
+}
+
+.HideDash #divDashboard
+{
+	z-index: -10;
+	border-color: #EEE;
+	-webkit-transform: rotateY(180deg);
+	-moz-transform: rotateY(180deg);
+	/*display:none;*/
+}
+
+.HideDash #ifrCtr
+{
+	z-index: 100;
+	-webkit-transform: rotateX(0deg) rotateY(0deg);
+	-moz-transform: rotateX(0deg) rotateY(0deg);
+	display:block;
+}
+.no-csstransforms.HideDash #divDashboard
+{
+	display:none;
+}
+.no-csstransforms #ifrCtr
+{
+	display:none;
+}
+.no-csstransforms .HideDash #ifrCtr
+{
+	display:block;
+}
+#divDashboard iframe
+{
+	height: 100%;
+	width: 100%;
+	background-color: transparent;
+	visibility:visible !important;/*for radcolorpicker bug*/
+}
+
+#ifrCtr
+{
+	position: absolute;
+	top: 108px;
+	left: 225px;
+	right: 0px;
+	bottom: 0px;
+	
+	z-index: 99;
+	display:none;
+}
+
+	#ifrCtr.win-maximize
+	{
+		z-index: 1000 !important;
+		position: absolute;
+		top: 0px !important;
+		left: 0px !important;
+		right: 0px !important;
+		bottom: 0px !important;
+		background-color: #FFF;
+	}
+
+#ifrView
+{
+	height: 100%;
+	width: 100%;	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+	background-color:transparent;
+	visibility:visible !important;/*for radcolorpicker bug*/
+}
+
+#divCommands
+{
+	height: 25px;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	background: #ECECEC;
+	box-shadow: 0 4px 7px #D7D7D7;
+	/*z-index: 5;*/
+}
+
+	#divCommands .win-cmd
+	{
+		display: inline-block;
+		font-family: fontawesome;
+		text-decoration: none;
+		color: #BBB;
+		font-weight: normal;
+		font-size: 18px;
+		margin-left: 15px;
+		line-height: 25px;
+		text-shadow: 1px 1px 2px #FFF;
+		outline: 0 !important;
+	}
+
+		#divCommands .win-cmd.active
+		{
+			color: #5E5E5E;
+		}
+
+			#divCommands .win-cmd.active:hover
+			{
+				color: #00661D;
+				text-shadow: 1px 1px 2px #FFF;
+			}
+
+
+	#divCommands .win-title
+	{
+		color: #BBB;
+		font-weight: normal;
+		font-size: 18px;
+		margin-left: 15px;
+		line-height: 25px;
+		text-shadow: 1px 1px 2px #FFF;
+		white-space: nowrap;
+		font-family: ArchivoNarrow;
+	}
+
+		#divCommands .win-title:before
+		{
+			content: "\f142";
+			font-family: fontawesome;
+			margin-right: 7px;
+			font-weight: normal;
+			color: #DBDBDB;
+			text-shadow: 1px 1px 2px #FFF;
+		}
+
+
+.ScrollBtn
+{
+position: absolute;
+    display: block;
+    text-align: center;
+    z-index: 10000;
+    font-family: fontawesome;
+    text-decoration: none;
+    outline: none !important;
+    color: #000;
+    left: 0px;
+    right: -3px;
+    background: #f3f3f3;
+    border: solid 1px #bcbcbc;
+    box-shadow: -1px 0px 8px #1f1f1f;
+    line-height: 10px;
+    font-size: 15px;
+}
+	.ScrollBtn.disable
+	{
+		display: none !important;
+	}
+
+.DarkTheme .ScrollBtn
+{
+	color: #ab9b7d;
+}
+
+
+#ThirdLevel.coll .ScrollBtn {
+    display:none !important;
+}
+
+
+
+
+.dash-cmd {
+    position: absolute;
+    top: 0px;
+    left: 172px;
+    padding: 5px;
+    padding-top: 12px;
+    height: 24px;
+    z-index: 112;
+    border-left: solid 1px transparent;
+    border-right: solid 1px transparent;
+}
+.dash-cmd.open {
+    background: #efeff0;
+    border-color:#b6b6b6;    
+}
+.HideDash .dash-cmd {
+    display:none;
+}
+
+
+.dash-item {
+    color: #000;
+    font-family: archivonarrow;
+    font-size: 20px;
+    margin-right: 15px;
+    text-decoration: none;
+    border-bottom: none 3px #FFF;
+    padding: 0 5px 5px 5px;
+    display: inline-block;
+    white-space: nowrap;
+    text-transform: capitalize;
+    position: relative;
+    min-width:100px;
+    outline:none !important;
+}
+   
+    .dash-item:after {
+        content: "\f078";
+        font-family: fontawesome;
+        font-size: 13px;
+        font-weight: normal;
+        margin-left: 5px;
+        vertical-align: middle;
+    }
+
+
+
+
+
+/* -------------------------Light THEME---------------------------*/
+
+.GreyTheme #FirstLevel .menuItem
+{
+	/*color: #302C2C;
+	background: #B1B1B1;
+	border-color: #969696;*/
+}
+
+	.GreyTheme #FirstLevel .menuItem.selected
+	{
+    color: #ffffff;
+    background-color: #0067C7;
+	}
+
+
+.GreyTheme #ThirdLevel {
+    border-right-color: #E7E7E7;
+    background-color: #eaeaea;
+    background: linear-gradient(to right, #f7f6f6 0%,#ffffff 47%,#fdfdfd 100%);
+}
+
+
+
+
+	.GreyTheme #ThirdLevel .menuItem
+	{
+		color: #1F1F1F;
+	}
+
+	.GreyTheme #ThirdLevel .menuItemGroup
+	{
+		color: #000;		
+	}
+.GreyTheme #moreItems .menuItem:hover,
+.GreyTheme #SecondLevel .menuItem:hover
+{
+	background-color: #727481 !important;
+	color: #F8F8F8 !important;
+	border: solid 1px #A0A0A0;
+}
+
+
+
+.GreyTheme #ThirdLevel .menuItem.selected,
+.GreyTheme #ThirdLevel .menuItem:hover
+{
+	color: #0285fa;
+}
+.GreyTheme #ThirdLevel .menuItem.selected
+{
+	border-left-color: #0285fa;
+}
+/* -------------------------Dark THEME---------------------------*/
+
+
+
+.DarkTheme #topBar {
+    color: #ececec;
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#737881+0,454545+100 */
+background: #737881; /* Old browsers */
+background: -moz-linear-gradient(top, #737881 0%, #454545 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #737881 0%,#454545 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #737881 0%,#454545 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#737881', endColorstr='#454545',GradientType=0 ); /* IE6-9 */
+border-color:#717171;
+}
+.DarkTheme #spnBtn A:hover,
+.DarkTheme #FirstLevel_Selected:hover,
+.DarkTheme #homeButton.selected,
+.DarkTheme #homeButton:hover {
+    color: #ffca00;
+    transition: 0.35s;
+}
+.DarkTheme #spnBtn .notifications {
+    color: #929292;
+}
+.DarkTheme #spnBtn ._active.notifications {
+    color: #ffffff;
+}
+.DarkTheme #imgUserCtr {
+    border-color:#757373;
+}
+.DarkTheme #FirstLevel_Selected {
+    color: #d8d8d8;
+}
+.DarkTheme #FirstLevel 
+{
+color: #a9a9a9;
+    border-color: #6f6f6f;
+    background: #3e3f42;
+    box-shadow: 2px 2px 5px #000000;
+}
+
+.DarkTheme #FirstLevel_Selected.toggle {
+    border-color: #6f6f6f;
+    color: #ffca00;
+    background-color: #3e3f42;
+}
+.DarkTheme #FirstLevel .menuItem
+{   
+	    border-color: #383838;
+    box-shadow: 0 2px 0px #575656, 0 3px 0px #515151;
+}
+.DarkTheme #FirstLevel .menuItem .menuTxt {
+    text-shadow: none;
+
+}
+.DarkTheme #FirstLevel .menuItem:hover {  
+    border-color: #faa800;
+    box-shadow: 0 2px 0px #ff8721, 0 3px 0px #ffb000;
+    color: #faa800;
+    }
+
+	.DarkTheme #FirstLevel .menuItem.selected
+	{
+		color: #ffffff;
+    border-color: #f5a938;
+    background-color: #faa800;
+	}
+    
+
+.DarkTheme #SecondLevel,.DarkTheme .dash-item {
+   color: #ececec;
+
+}
+.DarkTheme #moreItems {
+color: #c2c1c1;
+    background: #5d5d5d;
+    border-color: #828282;
+    box-shadow: 2px 2px 5px #000000;
+}
+
+.DarkTheme #SecondLevel .menuItem:hover,.DarkTheme #moreItems .menuItem:hover
+{
+	    color: #fff !important;   
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffc247+0,ee9f00+50,feb420+100 */
+background: #ffc247; /* Old browsers */
+background: -moz-linear-gradient(top, #ffc247 0%, #ee9f00 50%, #feb420 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #ffc247 0%,#ee9f00 50%,#feb420 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #ffc247 0%,#ee9f00 50%,#feb420 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffc247', endColorstr='#feb420',GradientType=0 ); /* IE6-9 */
+}
+    .DarkTheme #moreItems .menuItem {
+        border-bottom-color:#6d6d6d;
+    }
+
+.DarkTheme #usrMenuInner,.DarkTheme #divQuickAdd,
+.DarkTheme #divSearch {
+    border-left-color: #676767;
+    background: #24272e;
+}
+
+
+.DarkTheme #divQuickAdd .bkTitle, .DarkTheme #divQuickAdd .qkTitle,.DarkTheme #divSearchResult ._groupName {
+    color: #9fb4ca;
+}
+.DarkTheme #divQuickAdd A, .DarkTheme #divSearchResult A,
+.DarkTheme #usrMenuInner>A, .DarkTheme #usrMenuInner .themeList A
+ {
+        color: #69ccfd;
+        border-bottom-color:#464646;
+        text-shadow:none;
+}
+.DarkTheme #divQuickAdd A:hover, .DarkTheme #divSearchResult A:hover {
+    background-color: #009cad;
+}
+
+.DarkTheme #divSearchResult ._menutitle, .DarkTheme #divSearchResult ._enttitle,.DarkTheme #usrMenuInner .title {
+    color:#9fb4ca;
+}
+
+.DarkTheme  #divBookmarks .closeBtn {
+    color: #737373 !important;  
+    border-color:#6f6f6f;
+}
+.DarkTheme #usrMenuInner {
+        color: #68ccfd;
+}
+.DarkTheme #spnUser:before,
+.DarkTheme #spnRole:before {
+    color: #9fb4ca;
+}
+.DarkTheme #txtExtImg {
+        color: #f3f3f3;
+}
+
+.DarkTheme #ThirdLevel
+{
+border-right-color: #404040;
+    background: #24272e;
+}
+
+	.DarkTheme #ThirdLevel .menuItem
+	{
+		color: #bbbbbb;
+	}
+
+	.DarkTheme #ThirdLevel .menuItemGroup
+	{
+		color: #fff;
+	}
+
+	.DarkTheme #SecondLevel .menuItem.selected,.DarkTheme #moreItems .menuItem.selected,
+	.DarkTheme #ThirdLevel .menuItem.selected,
+	.DarkTheme #ThirdLevel .menuItem:hover
+	{
+		color: #ffca00;
+	}
+	.DarkTheme #ThirdLevel .menuItem.selected
+	{
+		border-left-color:#ffca00;
+	}
+
+
+
+.DarkTheme .dash-cmd.open {
+    background: #292929;
+    border-color: #868686;
+}
+.DarkTheme #txtSearch {
+    color: #d4d4d4;
+    background-color: #2f2f2f;
+    box-shadow: inset 4px 4px 8px #383838;
+}
+.DarkTheme ._chk-menu, ._chk-ent {
+    color: #9a9a9a;
+    text-shadow:none;
+}
+
+
+
+Html.DarkTheme
+{
+	background-color: #404040;
+}
+
+
+
+.DarkTheme #usrPanel:hover .inner
+{
+	box-shadow: 0 5px 5px #000;
+}
+
+.DarkTheme #divCommands
+{
+	background-color: #404040;
+	box-shadow: 1px 5px 9px #3C3C3C;
+}
+
+	.DarkTheme #divCommands .win-cmd
+	{
+		color: #6F6F6F;
+		text-shadow: none;
+	}
+
+		.DarkTheme #divCommands .win-cmd.active
+		{
+			color: #2AA9B4;
+		}
+
+			.DarkTheme #divCommands .win-cmd.active:hover
+			{
+				color: #02E6FA;
+				text-shadow: none;
+			}
+
+	.DarkTheme #divCommands .win-title
+	{
+		color: #BBB;
+		text-shadow: none;
+	}
+
+		.DarkTheme #divCommands .win-title:before
+		{
+			color: #BBB;
+			text-shadow: none;
+		}
+
+
+
+        
+.DarkTheme #divNotificationList {
+    background-color: #24272f;
+    border-color: #a4a4a4;
+}
+
+    .DarkTheme #divNotificationList .notif-item {
+         background-color: transparent;
+    border-color: #5a5a5a;
+    color: #e2e2e2;
+    }
+
+    .DarkTheme #divNotificationList .notif-item:hover {
+    background-color: #ff8201;
+    color: #fff;
+}
+        .DarkTheme #divNotificationList .notif-item .notif-icon {
+            background-color: #63666d;
+            color: #fff;
+        }
+
+        .DarkTheme #divNotificationList .notif-item:hover .notif-icon {
+            background-color: #ffffff;
+            color: #000;
+        }
+
+        .DarkTheme #divNotificationList .notif-item.visited {
+              color: #000;
+    background-color: #aaaaaa;
+        }
+
+            .DarkTheme #divNotificationList .notif-item.visited .notif-icon {
+                color: #000;
+                background-color:transparent;
+            }
+
+    .DarkTheme #divNotificationList ._vh {
+        color: #f2f2f2;
+    }
+
+    .DarkTheme #divNotificationList ._hdr {
+        color: #f2f2f2;
+    }
+.DarkTheme #divNotificationList ._inner {
+    border-color:#5a5a5a;
+}
+/* -------------------------Blue THEME---------------------------*/
+
+.BlueGlossTheme #FirstLevel 
+{
+    color: #405f80;
+    border-color: #bbe3ff;
+    background: #fafdff;
+}
+.BlueGlossTheme #FirstLevel_Selected.toggle {
+    border-color: #a2e4ff;   
+    color: #00afd9;
+}
+.BlueGlossTheme #FirstLevel .menuItem
+{   
+	border-color: #cee9ff;
+}
+    .BlueGlossTheme #FirstLevel .menuItem:hover {
+        border-color: #0089ff;
+        box-shadow: 0 2px 0px #0075da, 0 3px 0px #00325d;
+        color: #0089ff;
+    }
+    .BlueGlossTheme #FirstLevel .menuItem.selected {
+            color: #FFF;
+    border-color: #0089ff;
+    background-color: #0089ff;
+    }
+
+.BlueGlossTheme #topBar {
+    color: #003d7d;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f3faff+1,edf8ff+49,ebf7ff+100 */
+    background: #f3faff; /* Old browsers */
+    background: -moz-linear-gradient(top, #f3faff 1%, #edf8ff 49%, #ebf7ff 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #f3faff 1%,#edf8ff 49%,#ebf7ff 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #f3faff 1%,#edf8ff 49%,#ebf7ff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3faff', endColorstr='#ebf7ff',GradientType=0 ); /* IE6-9 */
+}
+.BlueGlossTheme #imgUserCtr {
+    border-color: #cce5f3;
+}
+.BlueGlossTheme #SecondLevel,.BlueGlossTheme .dash-item {
+    color: #013d7c;
+}
+.BlueGlossTheme #moreItems {
+        background: #f0f9ff;
+         color: #003d7d;
+}
+
+.BlueGlossTheme #SecondLevel .menuItem:hover,.BlueGlossTheme #moreItems .menuItem:hover
+{
+	    color: #F8F8F8 !important;   
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#47cbff+0,00a9ed+50,20bffe+100 */
+background: #47cbff; /* Old browsers */
+background: -moz-linear-gradient(top, #47cbff 0%, #00a9ed 50%, #20bffe 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #47cbff 0%,#00a9ed 50%,#20bffe 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #47cbff 0%,#00a9ed 50%,#20bffe 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#47cbff', endColorstr='#20bffe',GradientType=0 ); /* IE6-9 */
+}
+
+
+.BlueGlossTheme #usrMenuInner,.BlueGlossTheme #divQuickAdd,
+.BlueGlossTheme #divSearch {
+        border-left: solid 2px #cac8c8;
+   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f3faff+1,edf8ff+49,ebf7ff+100 */
+background: #f3faff; /* Old browsers */
+background: -moz-linear-gradient(left, #f3faff 1%, #edf8ff 49%, #ebf7ff 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left, #f3faff 1%,#edf8ff 49%,#ebf7ff 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right, #f3faff 1%,#edf8ff 49%,#ebf7ff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3faff', endColorstr='#ebf7ff',GradientType=1 ); /* IE6-9 */
+}
+
+
+.BlueGlossTheme #divQuickAdd .bkTitle, .BlueGlossTheme #divQuickAdd .qkTitle,.BlueGlossTheme #divSearchResult ._groupName {
+    color: #007784;
+}
+.BlueGlossTheme #divQuickAdd A, .BlueGlossTheme #divSearchResult A,
+.BlueGlossTheme #usrMenuInner>A, .BlueGlossTheme #usrMenuInner .themeList A
+ {
+        color: #0dacbd;
+}
+.BlueGlossTheme #divQuickAdd A:hover, .BlueGlossTheme #divSearchResult A:hover {
+    background-color: #009cad;
+}
+
+.BlueGlossTheme #divSearchResult ._menutitle, .BlueGlossTheme #divSearchResult ._enttitle,.BlueGlossTheme #usrMenuInner .title {
+    color:#69c0ca;
+}
+
+
+.BlueGlossTheme #usrMenuInner {
+        color: #00626d;
+}
+
+
+.BlueGlossTheme #ThirdLevel
+{
+	    border-right-color: #EFF5FF;
+    background: #fff;
+}
+
+	.BlueGlossTheme #ThirdLevel .menuItem
+	{
+		color: #1493d2;
+	}
+
+	.BlueGlossTheme #ThirdLevel .menuItemGroup
+	{
+		color: #036a94;
+	}
+
+	.BlueGlossTheme #SecondLevel .menuItem.selected,.BlueGlossTheme #moreItems .menuItem.selected,
+	.BlueGlossTheme #ThirdLevel .menuItem.selected,
+	.BlueGlossTheme #ThirdLevel .menuItem:hover
+	{
+		color: #c72600;
+	}
+	.BlueGlossTheme #ThirdLevel .menuItem.selected
+	{
+		border-left-color:#c72600;
+	}
+
+
+
+.BlueGlossTheme .dash-cmd.open {
+    background: #f7fbff;
+    border-color: #a2e4ff;
+}
+
+
+.BlueGlossTheme #divNotificationList {
+ background-color: #edf8ff;
+    border-color: #073671;
+}
+
+    .BlueGlossTheme #divNotificationList .notif-item {
+       background-color: transparent;
+    border-color: #a9ebff;
+    color: #101023;
+    }
+
+    .BlueGlossTheme #divNotificationList .notif-item:hover {
+    background-color: #016b82;
+    color: #fff;
+}
+        .BlueGlossTheme #divNotificationList .notif-item .notif-icon {
+            background-color: #006b83;
+            color: #fff;
+        }
+
+        .BlueGlossTheme #divNotificationList .notif-item:hover .notif-icon {
+            background-color: #ffffff;
+            color: #000;
+        }
+
+        .BlueGlossTheme #divNotificationList .notif-item.visited {
+           color: #fff;
+    background-color: #537292;
+        }
+
+            .BlueGlossTheme #divNotificationList .notif-item.visited .notif-icon {
+                color: #fff;
+                background-color:transparent;
+            }
+
+    .BlueGlossTheme #divNotificationList ._vh {
+        color: #013d7c;
+    }
+
+    .BlueGlossTheme #divNotificationList ._hdr {
+        color: #013d7c;
+    }
+.BlueGlossTheme #divNotificationList ._inner {
+    border-color:#a8ebff;
+}
+/* -------------------------GREEN THEME---------------------------*/
+
+
+
+
+
+.GreenTheme #topBar {
+    color: #127d00;
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f3fff3+1,eeffed+49,ebffeb+100 */
+background: #f3fff3; /* Old browsers */
+background: -moz-linear-gradient(left, #f3fff3 1%, #eeffed 49%, #ebffeb 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left, #f3fff3 1%,#eeffed 49%,#ebffeb 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right, #f3fff3 1%,#eeffed 49%,#ebffeb 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3fff3', endColorstr='#ebffeb',GradientType=1 ); /* IE6-9 */
+}
+.GreenTheme #imgUserCtr {
+    border-color: #d0e4ca;
+}
+.GreenTheme #spnBtn A:hover,
+.GreenTheme #FirstLevel_Selected:hover,
+.GreenTheme #homeButton.selected,
+.GreenTheme #homeButton:hover {
+    color: #0ab500;
+    transition: 0.35s;
+}
+.GreenTheme #FirstLevel 
+{
+color: #4f714e;
+    border-color: #c8d8ad;
+    background: #fafffb;
+}
+.GreenTheme #FirstLevel_Selected.toggle {
+    border-color: #c8d8ad;
+    color: #107100;
+    background-color: #fafffb;
+}
+.GreenTheme #FirstLevel .menuItem
+{   
+	border-color: #e6f9dd;
+}
+
+	.GreenTheme #FirstLevel .menuItem:hover {
+       border-color: #18a900;
+    box-shadow: 0 2px 0px #147804, 0 3px 0px #083a00;
+    color: #18a900;
+    }
+
+    .GreenTheme #FirstLevel .menuItem.selected {
+       color: #ffffff;
+    border-color: #008c11;
+    background-color: #107100;
+    }
+
+
+
+.GreenTheme #SecondLevel,.GreenTheme .dash-item {
+    color: #117100;
+}
+.GreenTheme #moreItems {
+background: #f6fff5;
+    color: #127c00;
+}
+
+.GreenTheme #SecondLevel .menuItem:hover,.GreenTheme #moreItems .menuItem:hover
+{
+	    color: #FFF !important;   
+            border: solid 1px #38c32e;
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#99e000+0,70a400+50,87c501+100 */
+background: #99e000; /* Old browsers */
+background: -moz-linear-gradient(top, #99e000 0%, #70a400 50%, #87c501 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #99e000 0%,#70a400 50%,#87c501 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #99e000 0%,#70a400 50%,#87c501 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99e000', endColorstr='#87c501',GradientType=0 ); /* IE6-9 */
+}
+
+
+.GreenTheme #usrMenuInner,.GreenTheme #divQuickAdd,
+.GreenTheme #divSearch {
+        border-left-color:#b2d0b0;
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f3fff3+1,eeffed+49,ecffeb+100 */
+background: #f3fff3; /* Old browsers */
+background: -moz-linear-gradient(left, #f3fff3 1%, #eeffed 49%, #ecffeb 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left, #f3fff3 1%,#eeffed 49%,#ecffeb 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right, #f3fff3 1%,#eeffed 49%,#ecffeb 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3fff3', endColorstr='#ecffeb',GradientType=1 ); /* IE6-9 */
+}
+
+
+.GreenTheme #divQuickAdd .bkTitle, .GreenTheme #divQuickAdd .qkTitle,.GreenTheme #divSearchResult ._groupName {
+    color: #637d00;
+}
+.GreenTheme #divQuickAdd A, .GreenTheme #divSearchResult A,
+.GreenTheme #usrMenuInner>A, .GreenTheme #usrMenuInner .themeList A
+ {
+        color: #127d00;
+}
+.GreenTheme #divQuickAdd A:hover, .GreenTheme #divSearchResult A:hover {
+    background-color: #009cad;
+}
+
+.GreenTheme #divSearchResult ._menutitle, .GreenTheme #divSearchResult ._enttitle,.GreenTheme #usrMenuInner .title {
+    color:#7daf76;
+}
+
+
+.GreenTheme #usrMenuInner {
+        color: #127d00;
+}
+.GreenTheme #spnUser:before, .GreenTheme #spnRole:before {
+    color: #7eaf76;
+}
+
+.GreenTheme #ThirdLevel
+{
+border-right-color: #d7e8d5;
+    background: #fdfffd;
+}
+
+	.GreenTheme #ThirdLevel .menuItem
+	{
+		color: #138800;
+	}
+
+	.GreenTheme #ThirdLevel .menuItemGroup
+	{
+		color: #066b00;
+	}
+
+	.GreenTheme #SecondLevel .menuItem.selected,.GreenTheme #moreItems .menuItem.selected,
+	.GreenTheme #ThirdLevel .menuItem.selected,
+	.GreenTheme #ThirdLevel .menuItem:hover
+	{
+		color: #d80000;
+	}
+	.GreenTheme #ThirdLevel .menuItem.selected
+	{
+		border-left-color:#d80000;
+	}
+
+
+
+
+.GreenTheme .dash-cmd.open {
+   background: #fdfffe;
+    border-color: #c8d8ad;
+}
+
+
+
+.GreenTheme #divNotificationList {
+    background-color: #fefffe;
+    border-color: #00963c;
+}
+
+    .GreenTheme #divNotificationList .notif-item {
+       background-color: transparent;
+    border-color: #a9ffc3;
+    color: #101023;
+    }
+
+    .GreenTheme #divNotificationList .notif-item:hover {
+    background-color: #1a7f34;
+    color: #fff;
+}
+        .GreenTheme #divNotificationList .notif-item .notif-icon {
+            background-color: #1b7f22;
+            color: #fff;
+        }
+
+        .GreenTheme #divNotificationList .notif-item:hover .notif-icon {
+            background-color: #ffffff;
+            color: #000;
+        }
+
+        .GreenTheme #divNotificationList .notif-item.visited {
+           color: #fff;
+    background-color: #637f5b;
+        }
+
+            .GreenTheme #divNotificationList .notif-item.visited .notif-icon {
+                color: #fff;
+                background-color:transparent;
+            }
+
+    .GreenTheme #divNotificationList ._vh {
+        color: #127d00;
+    }
+
+    .GreenTheme #divNotificationList ._hdr {
+        color: #127d00;
+    }
+.GreenTheme #divNotificationList ._inner {
+    border-color:#a9ffc3;
+}
+/* -------------------------ORANGE THEME---------------------------*/
+
+
+
+.OrangeTheme #topBar {
+    color: #7d3500;
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fff9ef+1,fff5e9+49,fff5e7+100 */
+background: #fff9ef; /* Old browsers */
+background: -moz-linear-gradient(top, #fff9ef 1%, #fff5e9 49%, #fff5e7 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #fff9ef 1%,#fff5e9 49%,#fff5e7 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #fff9ef 1%,#fff5e9 49%,#fff5e7 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff9ef', endColorstr='#fff5e7',GradientType=0 ); /* IE6-9 */
+}
+.OrangeTheme #imgUserCtr {
+    border-color: #ffdfcd;
+}
+.OrangeTheme #spnBtn A:hover,
+.OrangeTheme #FirstLevel_Selected:hover,
+.OrangeTheme #homeButton.selected,
+.OrangeTheme #homeButton:hover {
+    color: #7d3500;
+    transition: 0.35s;
+}
+.OrangeTheme #FirstLevel 
+{
+color: #8e6b50;
+    border-color: #ffe9c5;
+    background: #fffefa;
+}
+.OrangeTheme #FirstLevel_Selected.toggle {
+border-color: #f5dfcf;
+    color: #7d3500;
+    background-color: #fffefa;
+}
+.OrangeTheme #FirstLevel .menuItem
+{   
+	border-color: #fff2e7;
+}
+
+	.OrangeTheme #FirstLevel .menuItem:hover {
+            border-color: #f96300;
+    box-shadow: 0 2px 0px #ff6d0d, 0 3px 0px #d8712e;
+    color: #f96300;
+    }
+    .OrangeTheme #FirstLevel .menuItem.selected {
+        color: #ffffff;
+    border-color: #ff9047;
+    background-color: #ff7112;
+    }
+
+
+
+.OrangeTheme #SecondLevel,.OrangeTheme .dash-item {
+    color: #7d3500;
+}
+.OrangeTheme #moreItems {
+background: #fffcf6;
+    color: #7d3500;
+}
+
+.OrangeTheme #SecondLevel .menuItem:hover,.OrangeTheme #moreItems .menuItem:hover
+{
+	    color: #FFF !important;   
+            border: solid 1px #ff5b00;
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ff9429+0,fa7d00+50,ff8a15+100 */
+background: #ff9429; /* Old browsers */
+background: -moz-linear-gradient(top, #ff9429 0%, #fa7d00 50%, #ff8a15 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #ff9429 0%,#fa7d00 50%,#ff8a15 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #ff9429 0%,#fa7d00 50%,#ff8a15 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff9429', endColorstr='#ff8a15',GradientType=0 ); /* IE6-9 */
+}
+
+
+.OrangeTheme #usrMenuInner,.OrangeTheme #divQuickAdd,
+.OrangeTheme #divSearch {
+        border-left-color:#fdeddc;
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fffcf9+1,fffbf7+49,fffaf5+100 */
+background: #fffcf9; /* Old browsers */
+background: -moz-linear-gradient(left, #fffcf9 1%, #fffbf7 49%, #fffaf5 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left, #fffcf9 1%,#fffbf7 49%,#fffaf5 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right, #fffcf9 1%,#fffbf7 49%,#fffaf5 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fffcf9', endColorstr='#fffaf5',GradientType=1 ); /* IE6-9 */
+}
+
+
+.OrangeTheme #divQuickAdd .bkTitle, .OrangeTheme #divQuickAdd .qkTitle,.OrangeTheme #divSearchResult ._groupName {
+    color: #7d3b00;
+}
+.OrangeTheme #divQuickAdd A, .OrangeTheme #divSearchResult A,
+.OrangeTheme #usrMenuInner>A, .OrangeTheme #usrMenuInner .themeList A
+ {
+        color: #7d3500;
+}
+.OrangeTheme #divQuickAdd A:hover, .OrangeTheme #divSearchResult A:hover {
+    background-color: #ad5e00;
+}
+
+.OrangeTheme #divSearchResult ._menutitle, .OrangeTheme #divSearchResult ._enttitle,.OrangeTheme #usrMenuInner .title {
+    color:#af8976;
+}
+
+
+.OrangeTheme #usrMenuInner {
+        color: #7d3500;
+}
+.OrangeTheme #spnUser:before, .OrangeTheme #spnRole:before {
+    color: #d4b49d;
+}
+
+.OrangeTheme #ThirdLevel
+{
+border-right-color: #e8dfd5;
+    background: #fffffd;
+}
+
+	.OrangeTheme #ThirdLevel .menuItem
+	{
+		color: #331600;
+	}
+
+	.OrangeTheme #ThirdLevel .menuItemGroup
+	{
+		color: #190700;
+	}
+
+	.OrangeTheme #SecondLevel .menuItem.selected,.OrangeTheme #moreItems .menuItem.selected,
+	.OrangeTheme #ThirdLevel .menuItem.selected,
+	.OrangeTheme #ThirdLevel .menuItem:hover
+	{
+		color: #ff0000;
+	}
+	.OrangeTheme #ThirdLevel .menuItem.selected
+	{
+		border-left-color:#ff0000;
+	}
+
+
+
+
+.OrangeTheme .dash-cmd.open {
+   background: #fdfffe;
+    border-color: #c8d8ad;
+}
+
+
+
+.OrangeTheme #divNotificationList {
+    background-color: #fffdf8;
+    border-color: #965a00;
+}
+
+    .OrangeTheme #divNotificationList .notif-item {
+       background-color: transparent;
+  border-color: #ffd5a9;
+    color: #5c1a00;
+    }
+
+    .OrangeTheme #divNotificationList .notif-item:hover {
+    background-color: #e47400;
+    color: #fff;
+}
+        .OrangeTheme #divNotificationList .notif-item .notif-icon {
+            background-color: #b95e00;
+            color: #fff;
+        }
+
+        .OrangeTheme #divNotificationList .notif-item:hover .notif-icon {
+            background-color: #ffffff;
+            color: #000;
+        }
+
+        .OrangeTheme #divNotificationList .notif-item.visited {
+           color: #fff;
+    background-color: #7f6c5b;
+        }
+
+            .OrangeTheme #divNotificationList .notif-item.visited .notif-icon {
+                color: #fff;
+                background-color:transparent;
+            }
+
+    .OrangeTheme #divNotificationList ._vh {
+        color: #7d3500;
+    }
+
+    .OrangeTheme #divNotificationList ._hdr {
+        color: #7d3500;
+    }
+.OrangeTheme #divNotificationList ._inner {
+    border-color:#ffd5a9;
+}
+/* -------------------------RED THEME---------------------------*/
+
+
+.RedTheme #topBar {
+    color: #7d0000;
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fff3f3+1,ffedee+49,ffebeb+100 */
+background: #fff3f3; /* Old browsers */
+background: -moz-linear-gradient(top, #fff3f3 1%, #ffedee 49%, #ffebeb 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #fff3f3 1%,#ffedee 49%,#ffebeb 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #fff3f3 1%,#ffedee 49%,#ffebeb 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff3f3', endColorstr='#ffebeb',GradientType=0 ); /* IE6-9 */
+}
+.RedTheme #imgUserCtr {
+    border-color: #f3decc;
+}
+.RedTheme #spnBtn A:hover,
+.RedTheme #FirstLevel_Selected:hover,
+.RedTheme #homeButton.selected,
+.RedTheme #homeButton:hover {
+    color: #7d0000;
+    transition: 0.35s;
+}
+.RedTheme #FirstLevel 
+{
+color: #884b4b;
+    border-color: #ffd7d7;
+    background: #fffbfb;
+}
+.RedTheme #FirstLevel_Selected.toggle {
+    border-color: #ffd7d7;
+    color: #7d0000;
+    background-color: #fffbfb;
+}
+.RedTheme #FirstLevel .menuItem
+{   
+	border-color: #ffe7e7;
+}
+.RedTheme #FirstLevel .menuItem:hover {
+    border-color: #f30000;
+    box-shadow: 0 2px 0px #ff7a7a, 0 3px 0px #ff0000;
+    color: #f30000;
+    }
+
+    .RedTheme #FirstLevel .menuItem.selected {
+       color: #ffffff;
+     border-color: #8c1c00;
+    background-color: #a50909;
+    }
+
+
+
+.RedTheme #SecondLevel,.RedTheme .dash-item {
+    color: #7d0000;
+}
+.RedTheme #moreItems {
+background: #fff0f0;
+    color: #7d0000;
+}
+
+.RedTheme #SecondLevel .menuItem:hover,.RedTheme #moreItems .menuItem:hover
+{
+	    color: #FFF !important;   
+            border: solid 1px #c30303;
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fa2100+0,c41a00+50,e21e00+100 */
+background: #fa2100; /* Old browsers */
+background: -moz-linear-gradient(top, #fa2100 0%, #c41a00 50%, #e21e00 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #fa2100 0%,#c41a00 50%,#e21e00 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #fa2100 0%,#c41a00 50%,#e21e00 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fa2100', endColorstr='#e21e00',GradientType=0 ); /* IE6-9 */
+}
+
+
+.RedTheme #usrMenuInner,.RedTheme #divQuickAdd,
+.RedTheme #divSearch {
+        border-left-color:#efe0d5;
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fff8f3+1,fff3ed+49,fff2eb+100 */
+background: #fff8f3; /* Old browsers */
+background: -moz-linear-gradient(left, #fff8f3 1%, #fff3ed 49%, #fff2eb 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left, #fff8f3 1%,#fff3ed 49%,#fff2eb 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right, #fff8f3 1%,#fff3ed 49%,#fff2eb 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff8f3', endColorstr='#fff2eb',GradientType=1 ); /* IE6-9 */
+}
+
+
+.RedTheme #divQuickAdd .bkTitle, .RedTheme #divQuickAdd .qkTitle,.RedTheme #divSearchResult ._groupName {
+    color: #da7575;
+}
+.RedTheme #divQuickAdd A, .RedTheme #divSearchResult A,
+.RedTheme #usrMenuInner>A, .RedTheme #usrMenuInner .themeList A
+ {
+        color: #7d0000;
+}
+.RedTheme #divQuickAdd A:hover, .RedTheme #divSearchResult A:hover {
+    background-color: #ad0000;
+}
+
+.RedTheme #divSearchResult ._menutitle, .RedTheme #divSearchResult ._enttitle,.RedTheme #usrMenuInner .title {
+    color:#b78181;
+}
+
+
+.RedTheme #usrMenuInner {
+        color: #7d3500;
+}
+.RedTheme #spnUser:before, .RedTheme #spnRole:before {
+    color: #b78181;
+}
+
+.RedTheme #ThirdLevel
+{
+border-right-color: #e8d5d5;
+    background: #fffbfb;
+}
+
+	.RedTheme #ThirdLevel .menuItem
+	{
+		color: #7d0000;
+	}
+
+	.RedTheme #ThirdLevel .menuItemGroup
+	{
+		color: #420000;
+	}
+
+	.RedTheme #SecondLevel .menuItem.selected,.RedTheme #moreItems .menuItem.selected,
+	.RedTheme #ThirdLevel .menuItem.selected,
+	.RedTheme #ThirdLevel .menuItem:hover
+	{
+		color: #ff0000;
+	}
+	.RedTheme #ThirdLevel .menuItem.selected
+	{
+		border-left-color:#ff0000;
+	}
+
+
+.RedTheme .dash-cmd.open {
+  background: #fffafa;
+    border-color: #ffd7d7;
+}
+
+
+
+
+
+.RedTheme #divNotificationList {
+    background-color: #fefffe;
+    border-color: #00963c;
+}
+
+    .RedTheme #divNotificationList .notif-item {
+       background-color: transparent;
+       border-color: #ffd0d0;
+    color: #390000;
+    }
+
+    .RedTheme #divNotificationList .notif-item:hover {
+    background-color: #e20000;
+    color: #fff;
+}
+        .RedTheme #divNotificationList .notif-item .notif-icon {
+            background-color: #7f1b1b;
+            color: #fff;
+        }
+
+        .RedTheme #divNotificationList .notif-item:hover .notif-icon {
+            background-color: #ffffff;
+            color: #000;
+        }
+
+        .RedTheme #divNotificationList .notif-item.visited {
+           color: #fff;
+    background-color: #7f5b5b;
+        }
+
+            .RedTheme #divNotificationList .notif-item.visited .notif-icon {
+                color: #fff;
+                background-color:transparent;
+            }
+
+    .RedTheme #divNotificationList ._vh {
+        color: #7d0000;
+    }
+
+    .RedTheme #divNotificationList ._hdr {
+        color: #7d0000;
+    }
+.RedTheme #divNotificationList ._inner {
+    border-color:#ffd0d0;
+}

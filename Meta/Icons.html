@@ -1,0 +1,1085 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="../Css/normalize.css" rel="stylesheet" />
+    <link href="../fonts/font.css" rel="stylesheet" />
+    <script src="../Scripts/System.js"></script>
+    <script src="../Scripts/jquery.js"></script>
+    <script src="../Scripts/jqHelper.js"></script>
+    <style>
+        html, form, body
+        {
+            height: 100%;
+            width: 100%;
+            background-color: #fff;
+        }
+
+        .icon-category
+        {
+            margin-bottom: 20px;
+            font-family: fontawesome;
+        }
+
+        .icon-header
+        {
+            font-family: arial;
+            font-size: 18px;
+            font-weight: bold;
+            border-bottom: solid 2px #E0E0E0;
+            padding: 8px 0 5px 10px;
+        }
+
+        .icon-list
+        {
+            list-style-type: none;
+        }
+
+            .icon-list LI
+            {
+                display: inline-block;
+                height: 30px;
+                width: 30px;
+                text-align: center;
+                font-size: 32px;
+                padding: 15px;
+                cursor: pointer;
+                border: solid 1px transparent;
+            }
+
+                .icon-list LI:hover
+                {
+                    border: solid 1px #000;
+                }
+
+        #btnApplyFA,#btnApplyFA1 {
+            font-family: fontawesome;
+            border: solid 1px gray;
+            height: 52px;
+            width: 52px;
+            display: inline-block;
+            line-height: 52px;
+            text-align: center;
+            font-size: 36px;
+            position:relative;
+            margin-right: 10px;
+        }
+        #btnApplyFA1 {
+            font-weight:600;
+        }
+        #btnApplyMat,#btnApplyMat1 {
+            font-family:materialsymbols;
+            border: solid 1px gray;
+            height: 52px;
+            width: 52px;
+            display: inline-block;
+            line-height: 52px;
+            text-align: center;
+            font-size: 36px;
+            position:relative;
+            margin-right: 10px;
+            font-variation-settings:'FILL' 0,  'wght' 300,  'GRAD' 0,  'opsz' 48;
+
+        }
+            #btnApplyFA:before, #btnApplyMat:before {
+                content: "Outline";
+                font-family: arial;
+                font-size: 12px;
+                position: absolute;
+                bottom: -34px;
+                left: 6px;
+                font-weight:normal;
+            }
+            #btnApplyFA1:before, #btnApplyMat1:before {
+                content: "Solid";
+                font-family: arial;
+                font-size: 12px;
+                position: absolute;
+                bottom: -34px;
+                left: 6px;
+                font-weight:normal;
+
+            }
+        #btnApplyMat1 {
+            font-variation-settings:'FILL' 1,  'wght' 300,  'GRAD' 0,  'opsz' 48;
+        }
+        ._br1 {
+            font-weight:700;
+        }
+        .divQuickEdit {
+        }
+            .divQuickEdit span {
+                margin-bottom: 20px;
+                background: #f8f8f8;
+                padding: 15px 10px;
+                width: 375px;
+                display: inline-block;
+                margin-right: 15px;
+                border: solid 1px #e7e7e7;
+            }
+        .divQuickEdit input {
+            padding: 5px;
+            width: 85px;
+        }
+         .divQuickEdit span *{
+             vertical-align:bottom;
+        }
+            .divQuickEdit .lnk {
+                margin-bottom: 12px;
+                display: inline-block;
+            }
+                .divQuickEdit .lnk:before {
+                    content: "\f35d";
+                    font-family: fontawesome;
+                    margin-right: 5px;
+                    display: inline-block;
+                }
+    </style>
+</head>
+<body>
+    <div id="divIcons" style="height: 100%; width: 100%">  
+        <div class="divQuickEdit">
+        <span><a class="lnk" href="https://fontawesome.com/search?o=r&s=light&f=classic" target="_blank">FontAwesome Complete List</a><br />Glyph / Unicode : <input type="text" style="margin-right:5px" value="\f015" id="txtFA"/><a id="btnApplyFA"></a><a id="btnApplyFA1"></a></span>
+          <span><a class="lnk" href="https://fonts.google.com/icons?icon.set=Material+Symbols" target="_blank">MaterialSymbols List</a><br />Name / Unicode : <input type="text"  style="margin-right:5px" value="\e88a" id="txtMat"/><a id="btnApplyMat"></a><a id="btnApplyMat1"></a></span>
+      </div>
+        <div class='icon-category'>
+            <div class='icon-header'>Web Application Icons</div>
+            <ul class='icon-list'>
+                <li>&#xf2b9;</li>
+                <li>&#xf2ba;</li>
+                <li>&#xf2bb;</li>
+                <li>&#xf2bc;</li>
+                <li>&#xf042;</li>
+                <li>&#xf2a3;</li>
+                <li>&#xf13d;</li>
+                <li>&#xf187;</li>
+                <li>&#xf1fe;</li>
+                <li>&#xf047;</li>
+                <li>&#xf07e;</li>
+                <li>&#xf07d;</li>
+                <li>&#xf2a2;</li>
+                <li>&#xf069;</li>
+                <li>&#xf1fa;</li>
+                <li>&#xf29e;</li>
+                <li>&#xf24e;</li>
+                <li>&#xf05e;</li>
+                <li>&#xf080;</li>
+                <li>&#xf02a;</li>
+                <li>&#xf0c9;</li>
+                <li>&#xf2cd;</li>
+                <li>&#xf244;</li>
+                <li>&#xf240;</li>
+                <li>&#xf242;</li>
+                <li>&#xf243;</li>
+                <li>&#xf241;</li>
+                <li>&#xf236;</li>
+                <li>&#xf0fc;</li>
+                <li>&#xf0f3;</li>
+                <li>&#xf0a2;</li>
+                <li>&#xf1f6;</li>
+                <li>&#xf1f7;</li>
+                <li>&#xf206;</li>
+                <li>&#xf1e5;</li>
+                <li>&#xf1fd;</li>
+                <li>&#xf29d;</li>
+                <li>&#xf293;</li>
+                <li>&#xf294;</li>
+                <li>&#xf0e7;</li>
+                <li>&#xf1e2;</li>
+                <li>&#xf02d;</li>
+                <li>&#xf02e;</li>
+                <li>&#xf097;</li>
+                <li>&#xf2a1;</li>
+                <li>&#xf0b1;</li>
+                <li>&#xf188;</li>
+                <li>&#xf1ad;</li>
+                <li>&#xf0f7;</li>
+                <li>&#xf0a1;</li>
+                <li>&#xf140;</li>
+                <li>&#xf207;</li>
+                <li>&#xf1ec;</li>
+                <li>&#xf073;</li>
+                <li>&#xf274;</li>
+                <li>&#xf272;</li>
+                <li>&#xf133;</li>
+                <li>&#xf271;</li>
+                <li>&#xf273;</li>
+                <li>&#xf030;</li>
+                <li>&#xf083;</li>
+                <li>&#xf1b9;</li>
+                <li>&#xf150;</li>
+                <li>&#xf191;</li>
+                <li>&#xf152;</li>
+                <li>&#xf151;</li>
+                <li>&#xf218;</li>
+                <li>&#xf217;</li>
+                <li>&#xf20a;</li>
+                <li>&#xf0a3;</li>
+                <li>&#xf00c;</li>
+                <li>&#xf058;</li>
+                <li>&#xf05d;</li>
+                <li>&#xf14a;</li>
+                <li>&#xf046;</li>
+                <li>&#xf1ae;</li>
+                <li>&#xf111;</li>
+                <li>&#xf10c;</li>
+                <li>&#xf1ce;</li>
+                <li>&#xf1db;</li>
+                <li>&#xf017;</li>
+                <li>&#xf24d;</li>
+                <li>&#xf0c2;</li>
+                <li>&#xf0ed;</li>
+                <li>&#xf0ee;</li>
+                <li>&#xf121;</li>
+                <li>&#xf126;</li>
+                <li>&#xf0f4;</li>
+                <li>&#xf013;</li>
+                <li>&#xf085;</li>
+                <li>&#xf075;</li>
+                <li>&#xf0e5;</li>
+                <li>&#xf27a;</li>
+                <li>&#xf27b;</li>
+                <li>&#xf086;</li>
+                <li>&#xf0e6;</li>
+                <li>&#xf14e;</li>
+                <li>&#xf1f9;</li>
+                <li>&#xf25e;</li>
+                <li>&#xf09d;</li>
+                <li>&#xf283;</li>
+                <li>&#xf125;</li>
+                <li>&#xf05b;</li>
+                <li>&#xf1b2;</li>
+                <li>&#xf1b3;</li>
+                <li>&#xf0f5;</li>
+                <li>&#xf1c0;</li>
+                <li>&#xf2a4;</li>
+                <li>&#xf108;</li>
+                <li>&#xf219;</li>
+                <li>&#xf192;</li>
+                <li>&#xf019;</li>
+                <li>&#xf141;</li>
+                <li>&#xf142;</li>
+                <li>&#xf0e0;</li>
+                <li>&#xf003;</li>
+                <li>&#xf2b6;</li>
+                <li>&#xf2b7;</li>
+                <li>&#xf199;</li>
+                <li>&#xf12d;</li>
+                <li>&#xf0ec;</li>
+                <li>&#xf12a;</li>
+                <li>&#xf06a;</li>
+                <li>&#xf071;</li>
+                <li>&#xf08e;</li>
+                <li>&#xf14c;</li>
+                <li>&#xf06e;</li>
+                <li>&#xf070;</li>
+                <li>&#xf1fb;</li>
+                <li>&#xf1ac;</li>
+                <li>&#xf182;</li>
+                <li>&#xf0fb;</li>
+                <li>&#xf1c6;</li>
+                <li>&#xf1c7;</li>
+                <li>&#xf1c9;</li>
+                <li>&#xf1c3;</li>
+                <li>&#xf1c5;</li>
+                <li>&#xf1c1;</li>
+                <li>&#xf1c4;</li>
+                <li>&#xf1c8;</li>
+                <li>&#xf1c2;</li>
+                <li>&#xf008;</li>
+                <li>&#xf0b0;</li>
+                <li>&#xf06d;</li>
+                <li>&#xf134;</li>
+                <li>&#xf024;</li>
+                <li>&#xf11e;</li>
+                <li>&#xf11d;</li>
+                <li>&#xf0c3;</li>
+                <li>&#xf07b;</li>
+                <li>&#xf114;</li>
+                <li>&#xf07c;</li>
+                <li>&#xf115;</li>
+                <li>&#xf119;</li>
+                <li>&#xf1e3;</li>
+                <li>&#xf11b;</li>
+                <li>&#xf0e3;</li>
+                <li>&#xf06b;</li>
+                <li>&#xf000;</li>
+                <li>&#xf0ac;</li>
+                <li>&#xf19d;</li>
+                <li>&#xf258;</li>
+                <li>&#xf256;</li>
+                <li>&#xf25b;</li>
+                <li>&#xf25a;</li>
+                <li>&#xf255;</li>
+                <li>&#xf257;</li>
+                <li>&#xf259;</li>
+                <li>&#xf2b5;</li>
+                <li>&#xf292;</li>
+                <li>&#xf0a0;</li>
+                <li>&#xf025;</li>
+                <li>&#xf004;</li>
+                <li>&#xf08a;</li>
+                <li>&#xf21e;</li>
+                <li>&#xf1da;</li>
+                <li>&#xf015;</li>
+                <li>&#xf254;</li>
+                <li>&#xf253;</li>
+                <li>&#xf252;</li>
+                <li>&#xf250;</li>
+                <li>&#xf251;</li>
+                <li>&#xf246;</li>
+                <li>&#xf2c1;</li>
+                <li>&#xf2c2;</li>
+                <li>&#xf2c3;</li>
+                <li>&#xf01c;</li>
+                <li>&#xf275;</li>
+                <li>&#xf129;</li>
+                <li>&#xf05a;</li>
+                <li>&#xf084;</li>
+                <li>&#xf11c;</li>
+                <li>&#xf1ab;</li>
+                <li>&#xf109;</li>
+                <li>&#xf06c;</li>
+                <li>&#xf094;</li>
+                <li>&#xf149;</li>
+                <li>&#xf148;</li>
+                <li>&#xf1cd;</li>
+                <li>&#xf0eb;</li>
+                <li>&#xf201;</li>
+                <li>&#xf124;</li>
+                <li>&#xf023;</li>
+                <li>&#xf2a8;</li>
+                <li>&#xf0d0;</li>
+                <li>&#xf076;</li>
+                <li>&#xf183;</li>
+                <li>&#xf279;</li>
+                <li>&#xf041;</li>
+                <li>&#xf278;</li>
+                <li>&#xf276;</li>
+                <li>&#xf277;</li>
+                <li>&#xf11a;</li>
+                <li>&#xf2db;</li>
+                <li>&#xf130;</li>
+                <li>&#xf131;</li>
+                <li>&#xf068;</li>
+                <li>&#xf056;</li>
+                <li>&#xf146;</li>
+                <li>&#xf147;</li>
+                <li>&#xf10b;</li>
+                <li>&#xf0d6;</li>
+                <li>&#xf186;</li>
+                <li>&#xf21c;</li>
+                <li>&#xf245;</li>
+                <li>&#xf001;</li>
+                <li>&#xf1ea;</li>
+                <li>&#xf247;</li>
+                <li>&#xf248;</li>
+                <li>&#xf1fc;</li>
+                <li>&#xf1d8;</li>
+                <li>&#xf1d9;</li>
+                <li>&#xf1b0;</li>
+                <li>&#xf040;</li>
+                <li>&#xf14b;</li>
+                <li>&#xf044;</li>
+                <li>&#xf295;</li>
+                <li>&#xf095;</li>
+                <li>&#xf098;</li>
+                <li>&#xf03e;</li>
+                <li>&#xf200;</li>
+                <li>&#xf072;</li>
+                <li>&#xf1e6;</li>
+                <li>&#xf067;</li>
+                <li>&#xf055;</li>
+                <li>&#xf0fe;</li>
+                <li>&#xf196;</li>
+                <li>&#xf2ce;</li>
+                <li>&#xf011;</li>
+                <li>&#xf02f;</li>
+                <li>&#xf12e;</li>
+                <li>&#xf029;</li>
+                <li>&#xf128;</li>
+                <li>&#xf059;</li>
+                <li>&#xf29c;</li>
+                <li>&#xf10d;</li>
+                <li>&#xf10e;</li>
+                <li>&#xf074;</li>
+                <li>&#xf1b8;</li>
+                <li>&#xf021;</li>
+                <li>&#xf25d;</li>
+                <li>&#xf112;</li>
+                <li>&#xf122;</li>
+                <li>&#xf079;</li>
+                <li>&#xf018;</li>
+                <li>&#xf135;</li>
+                <li>&#xf09e;</li>
+                <li>&#xf143;</li>
+                <li>&#xf002;</li>
+                <li>&#xf010;</li>
+                <li>&#xf00e;</li>
+                <li>&#xf233;</li>
+                <li>&#xf064;</li>
+                <li>&#xf1e0;</li>
+                <li>&#xf1e1;</li>
+                <li>&#xf14d;</li>
+                <li>&#xf045;</li>
+                <li>&#xf132;</li>
+                <li>&#xf21a;</li>
+                <li>&#xf290;</li>
+                <li>&#xf291;</li>
+                <li>&#xf07a;</li>
+                <li>&#xf2cc;</li>
+                <li>&#xf090;</li>
+                <li>&#xf2a7;</li>
+                <li>&#xf08b;</li>
+                <li>&#xf012;</li>
+                <li>&#xf0e8;</li>
+                <li>&#xf1de;</li>
+                <li>&#xf118;</li>
+                <li>&#xf2dc;</li>
+                <li>&#xf0dc;</li>
+                <li>&#xf15d;</li>
+                <li>&#xf15e;</li>
+                <li>&#xf160;</li>
+                <li>&#xf161;</li>
+                <li>&#xf0de;</li>
+                <li>&#xf0dd;</li>
+                <li>&#xf162;</li>
+                <li>&#xf163;</li>
+                <li>&#xf197;</li>
+                <li>&#xf110;</li>
+                <li>&#xf1b1;</li>
+                <li>&#xf0c8;</li>
+                <li>&#xf096;</li>
+                <li>&#xf005;</li>
+                <li>&#xf089;</li>
+                <li>&#xf123;</li>
+                <li>&#xf006;</li>
+                <li>&#xf249;</li>
+                <li>&#xf24a;</li>
+                <li>&#xf21d;</li>
+                <li>&#xf0f2;</li>
+                <li>&#xf185;</li>
+                <li>&#xf10a;</li>
+                <li>&#xf0e4;</li>
+                <li>&#xf02b;</li>
+                <li>&#xf02c;</li>
+                <li>&#xf0ae;</li>
+                <li>&#xf1ba;</li>
+                <li>&#xf26c;</li>
+                <li>&#xf120;</li>
+                <li>&#xf2cb;</li>
+                <li>&#xf2c7;</li>
+                <li>&#xf2c9;</li>
+                <li>&#xf2ca;</li>
+                <li>&#xf2c8;</li>
+                <li>&#xf08d;</li>
+                <li>&#xf165;</li>
+                <li>&#xf088;</li>
+                <li>&#xf087;</li>
+                <li>&#xf164;</li>
+                <li>&#xf145;</li>
+                <li>&#xf00d;</li>
+                <li>&#xf057;</li>
+                <li>&#xf05c;</li>
+                <li>&#xf043;</li>
+                <li>&#xf204;</li>
+                <li>&#xf205;</li>
+                <li>&#xf25c;</li>
+                <li>&#xf1f8;</li>
+                <li>&#xf014;</li>
+                <li>&#xf1bb;</li>
+                <li>&#xf091;</li>
+                <li>&#xf0d1;</li>
+                <li>&#xf1e4;</li>
+                <li>&#xf0e9;</li>
+                <li>&#xf29a;</li>
+                <li>&#xf19c;</li>
+                <li>&#xf09c;</li>
+                <li>&#xf13e;</li>
+                <li>&#xf093;</li>
+                <li>&#xf007;</li>
+                <li>&#xf2bd;</li>
+                <li>&#xf2be;</li>
+                <li>&#xf2c0;</li>
+                <li>&#xf234;</li>
+                <li>&#xf21b;</li>
+                <li>&#xf235;</li>
+                <li>&#xf0c0;</li>
+                <li>&#xf03d;</li>
+                <li>&#xf2a0;</li>
+                <li>&#xf027;</li>
+                <li>&#xf026;</li>
+                <li>&#xf028;</li>
+                <li>&#xf193;</li>
+                <li>&#xf29b;</li>
+                <li>&#xf1eb;</li>
+                <li>&#xf2d3;</li>
+                <li>&#xf2d4;</li>
+                <li>&#xf2d0;</li>
+                <li>&#xf2d1;</li>
+                <li>&#xf2d2;</li>
+                <li>&#xf0ad;</li>
+            </ul>
+        </div>
+        <div class='icon-category'>
+            <div class='icon-header'>Accessibility Icons</div>
+            <ul class='icon-list'>
+                <li>&#xf2a3;</li>
+                <li>&#xf2a2;</li>
+                <li>&#xf29e;</li>
+                <li>&#xf29d;</li>
+                <li>&#xf2a1;</li>
+                <li>&#xf20a;</li>
+                <li>&#xf2a4;</li>
+                <li>&#xf2a8;</li>
+                <li>&#xf29c;</li>
+                <li>&#xf2a7;</li>
+                <li>&#xf1e4;</li>
+                <li>&#xf29a;</li>
+                <li>&#xf2a0;</li>
+                <li>&#xf193;</li>
+                <li>&#xf29b;</li>
+            </ul>
+        </div>
+        <div class='icon-category'>
+            <div class='icon-header'>Hand Icons</div>
+            <ul class='icon-list'>
+                <li>&#xf258;</li>
+                <li>&#xf0a7;</li>
+                <li>&#xf0a5;</li>
+                <li>&#xf0a4;</li>
+                <li>&#xf0a6;</li>
+                <li>&#xf256;</li>
+                <li>&#xf25b;</li>
+                <li>&#xf25a;</li>
+                <li>&#xf255;</li>
+                <li>&#xf257;</li>
+                <li>&#xf259;</li>
+                <li>&#xf165;</li>
+                <li>&#xf088;</li>
+                <li>&#xf087;</li>
+                <li>&#xf164;</li>
+            </ul>
+        </div>
+        <div class='icon-category'>
+            <div class='icon-header'>Transportation Icons</div>
+            <ul class='icon-list'>
+                <li>&#xf0f9;</li>
+                <li>&#xf206;</li>
+                <li>&#xf207;</li>
+                <li>&#xf1b9;</li>
+                <li>&#xf0fb;</li>
+                <li>&#xf21c;</li>
+                <li>&#xf072;</li>
+                <li>&#xf135;</li>
+                <li>&#xf21a;</li>
+                <li>&#xf197;</li>
+                <li>&#xf239;</li>
+                <li>&#xf1ba;</li>
+                <li>&#xf238;</li>
+                <li>&#xf0d1;</li>
+                <li>&#xf193;</li>
+                <li>&#xf29b;</li>
+            </ul>
+        </div>
+        <div class='icon-category'>
+            <div class='icon-header'>Gender Icons</div>
+            <ul class='icon-list'>
+                <li>&#xf22d;</li>
+                <li>&#xf222;</li>
+                <li>&#xf227;</li>
+                <li>&#xf229;</li>
+                <li>&#xf22b;</li>
+                <li>&#xf22a;</li>
+                <li>&#xf223;</li>
+                <li>&#xf22c;</li>
+                <li>&#xf224;</li>
+                <li>&#xf225;</li>
+                <li>&#xf221;</li>
+                <li>&#xf226;</li>
+                <li>&#xf228;</li>
+            </ul>
+        </div>
+        <div class='icon-category'>
+            <div class='icon-header'>File Type Icons</div>
+            <ul class='icon-list'>
+                <li>&#xf15b;</li>
+                <li>&#xf1c6;</li>
+                <li>&#xf1c7;</li>
+                <li>&#xf1c9;</li>
+                <li>&#xf1c3;</li>
+                <li>&#xf1c5;</li>
+                <li>&#xf016;</li>
+                <li>&#xf1c1;</li>
+                <li>&#xf1c4;</li>
+                <li>&#xf15c;</li>
+                <li>&#xf0f6;</li>
+                <li>&#xf1c8;</li>
+                <li>&#xf1c2;</li>
+            </ul>
+        </div>
+        <div class='icon-category'>
+            <div class='icon-header'>Spinner Icons</div>
+            <ul class='icon-list'>
+                <li>&#xf1ce;</li>
+                <li>&#xf013;</li>
+                <li>&#xf021;</li>
+                <li>&#xf110;</li>
+            </ul>
+        </div>
+        <div class='icon-category'>
+            <div class='icon-header'>Form Control Icons</div>
+            <ul class='icon-list'>
+                <li>&#xf14a;</li>
+                <li>&#xf046;</li>
+                <li>&#xf111;</li>
+                <li>&#xf10c;</li>
+                <li>&#xf192;</li>
+                <li>&#xf146;</li>
+                <li>&#xf147;</li>
+                <li>&#xf0fe;</li>
+                <li>&#xf196;</li>
+                <li>&#xf0c8;</li>
+                <li>&#xf096;</li>
+            </ul>
+        </div>
+        <div class='icon-category _br'>
+            <div class='icon-header'>Payment Icons</div>
+            <ul class='icon-list'>
+                <li>&#xf1f3;</li>
+                <li>&#xf24c;</li>
+                <li>&#xf1f2;</li>
+                <li>&#xf24b;</li>
+                <li>&#xf1f1;</li>
+                <li>&#xf1f4;</li>
+                <li>&#xf1f5;</li>
+                <li>&#xf1f0;</li>
+                <li>&#xf09d;</li>
+                <li>&#xf283;</li>
+                <li>&#xf1ee;</li>
+                <li>&#xf1ed;</li>
+            </ul>
+        </div>
+        <div class='icon-category'>
+            <div class='icon-header'>Chart Icons</div>
+            <ul class='icon-list'>
+                <li>&#xf1fe;</li>
+                <li>&#xf080;</li>
+                <li>&#xf201;</li>
+                <li>&#xf200;</li>
+            </ul>
+        </div>
+        <div class='icon-category _br'>
+            <div class='icon-header'>Currency Icons</div>
+            <ul class='icon-list'>
+                <li>&#xf15a;</li>
+                <li>&#xf153;</li>
+                <li>&#xf154;</li>
+                <li>&#xf260;</li>
+                <li>&#xf261;</li>
+                <li>&#xf20b;</li>
+                <li>&#xf156;</li>
+                <li>&#xf157;</li>
+                <li>&#xf159;</li>
+                <li>&#xf0d6;</li>
+                <li>&#xf158;</li>
+                <li>&#xf195;</li>
+                <li>&#xf155;</li>
+            </ul>
+        </div>
+        <div class='icon-category'>
+            <div class='icon-header'>Text Editor Icons</div>
+            <ul class='icon-list'>
+                <li>&#xf037;</li>
+                <li>&#xf039;</li>
+                <li>&#xf036;</li>
+                <li>&#xf038;</li>
+                <li>&#xf032;</li>
+                <li>&#xf127;</li>
+                <li>&#xf0ea;</li>
+                <li>&#xf0db;</li>
+                <li>&#xf12d;</li>
+                <li>&#xf15b;</li>
+                <li>&#xf016;</li>
+                <li>&#xf15c;</li>
+                <li>&#xf0f6;</li>
+                <li>&#xf0c5;</li>
+                <li>&#xf0c7;</li>
+                <li>&#xf031;</li>
+                <li>&#xf1dc;</li>
+                <li>&#xf03c;</li>
+                <li>&#xf033;</li>
+                <li>&#xf0c1;</li>
+                <li>&#xf03a;</li>
+                <li>&#xf022;</li>
+                <li>&#xf0cb;</li>
+                <li>&#xf0ca;</li>
+                <li>&#xf03b;</li>
+                <li>&#xf0c6;</li>
+                <li>&#xf1dd;</li>
+                <li>&#xf01e;</li>
+                <li>&#xf0c4;</li>
+                <li>&#xf0cc;</li>
+                <li>&#xf12c;</li>
+                <li>&#xf12b;</li>
+                <li>&#xf0ce;</li>
+                <li>&#xf034;</li>
+                <li>&#xf035;</li>
+                <li>&#xf00a;</li>
+                <li>&#xf009;</li>
+                <li>&#xf00b;</li>
+                <li>&#xf0cd;</li>
+                <li>&#xf0e2;</li>
+            </ul>
+        </div>
+        <div class='icon-category'>
+            <div class='icon-header'>Directional Icons</div>
+            <ul class='icon-list'>
+                <li>&#xf103;</li>
+                <li>&#xf100;</li>
+                <li>&#xf101;</li>
+                <li>&#xf102;</li>
+                <li>&#xf107;</li>
+                <li>&#xf104;</li>
+                <li>&#xf105;</li>
+                <li>&#xf106;</li>
+                <li>&#xf0ab;</li>
+                <li>&#xf0a8;</li>
+                <li>&#xf01a;</li>
+                <li>&#xf190;</li>
+                <li>&#xf18e;</li>
+                <li>&#xf01b;</li>
+                <li>&#xf0a9;</li>
+                <li>&#xf0aa;</li>
+                <li>&#xf063;</li>
+                <li>&#xf060;</li>
+                <li>&#xf061;</li>
+                <li>&#xf062;</li>
+                <li>&#xf047;</li>
+                <li>&#xf0b2;</li>
+                <li>&#xf07e;</li>
+                <li>&#xf07d;</li>
+                <li>&#xf0d7;</li>
+                <li>&#xf0d9;</li>
+                <li>&#xf0da;</li>
+                <li>&#xf150;</li>
+                <li>&#xf191;</li>
+                <li>&#xf152;</li>
+                <li>&#xf151;</li>
+                <li>&#xf0d8;</li>
+                <li>&#xf13a;</li>
+                <li>&#xf137;</li>
+                <li>&#xf138;</li>
+                <li>&#xf139;</li>
+                <li>&#xf078;</li>
+                <li>&#xf053;</li>
+                <li>&#xf054;</li>
+                <li>&#xf077;</li>
+                <li>&#xf0ec;</li>
+                <li>&#xf0a7;</li>
+                <li>&#xf0a5;</li>
+                <li>&#xf0a4;</li>
+                <li>&#xf0a6;</li>
+                <li>&#xf175;</li>
+                <li>&#xf177;</li>
+                <li>&#xf178;</li>
+                <li>&#xf176;</li>
+            </ul>
+        </div>
+        <div class='icon-category'>
+            <div class='icon-header'>Video Player Icons</div>
+            <ul class='icon-list'>
+                <li>&#xf0b2;</li>
+                <li>&#xf04a;</li>
+                <li>&#xf066;</li>
+                <li>&#xf052;</li>
+                <li>&#xf065;</li>
+                <li>&#xf049;</li>
+                <li>&#xf050;</li>
+                <li>&#xf04e;</li>
+                <li>&#xf04c;</li>
+                <li>&#xf28b;</li>
+                <li>&#xf28c;</li>
+                <li>&#xf04b;</li>
+                <li>&#xf144;</li>
+                <li>&#xf01d;</li>
+                <li>&#xf074;</li>
+                <li>&#xf048;</li>
+                <li>&#xf051;</li>
+                <li>&#xf04d;</li>
+                <li>&#xf28d;</li>
+                <li>&#xf28e;</li>
+                <li>&#xf16a;</li>
+            </ul>
+        </div>
+        <div class='icon-category _br'>
+            <div class='icon-header'>Brand Icons</div>
+            <ul class='icon-list'>
+                <li>&#xf26e;</li>
+                <li>&#xf170;</li>
+                <li>&#xf270;</li>
+                <li>&#xf17b;</li>
+                <li>&#xf209;</li>
+                <li>&#xf179;</li>
+                <li>&#xf2d5;</li>
+                <li>&#xf1b4;</li>
+                <li>&#xf1b5;</li>
+                <li>&#xf171;</li>
+                <li>&#xf172;</li>
+                <li>&#xf27e;</li>
+                <li>&#xf293;</li>
+                <li>&#xf294;</li>
+                <li>&#xf15a;</li>
+                <li>&#xf20d;</li>
+                <li>&#xf1f3;</li>
+                <li>&#xf24c;</li>
+                <li>&#xf1f2;</li>
+                <li>&#xf24b;</li>
+                <li>&#xf1f1;</li>
+                <li>&#xf1f4;</li>
+                <li>&#xf1f5;</li>
+                <li>&#xf1f0;</li>
+                <li>&#xf268;</li>
+                <li>&#xf1cb;</li>
+                <li>&#xf284;</li>
+                <li>&#xf20e;</li>
+                <li>&#xf26d;</li>
+                <li>&#xf13c;</li>
+                <li>&#xf210;</li>
+                <li>&#xf1a5;</li>
+                <li>&#xf1bd;</li>
+                <li>&#xf1a6;</li>
+                <li>&#xf17d;</li>
+                <li>&#xf16b;</li>
+                <li>&#xf1a9;</li>
+                <li>&#xf282;</li>
+                <li>&#xf2da;</li>
+                <li>&#xf1d1;</li>
+                <li>&#xf299;</li>
+                <li>&#xf2d7;</li>
+                <li>&#xf23e;</li>
+                <li>&#xf09a;</li>
+                <li>&#xf230;</li>
+                <li>&#xf082;</li>
+                <li>&#xf269;</li>
+                <li>&#xf2b0;</li>
+                <li>&#xf16e;</li>
+                <li>&#xf2b4;</li>
+                <li>&#xf280;</li>
+                <li>&#xf286;</li>
+                <li>&#xf211;</li>
+                <li>&#xf180;</li>
+                <li>&#xf2c5;</li>
+                <li>&#xf265;</li>
+                <li>&#xf260;</li>
+                <li>&#xf261;</li>
+                <li>&#xf1d3;</li>
+                <li>&#xf1d2;</li>
+                <li>&#xf09b;</li>
+                <li>&#xf113;</li>
+                <li>&#xf092;</li>
+                <li>&#xf296;</li>
+                <li>&#xf2a5;</li>
+                <li>&#xf2a6;</li>
+                <li>&#xf1a0;</li>
+                <li>&#xf0d5;</li>
+                <li>&#xf2b3;</li>
+                <li>&#xf0d4;</li>
+                <li>&#xf1ee;</li>
+                <li>&#xf184;</li>
+                <li>&#xf2d6;</li>
+                <li>&#xf1d4;</li>
+                <li>&#xf27c;</li>
+                <li>&#xf13b;</li>
+                <li>&#xf2d8;</li>
+                <li>&#xf16d;</li>
+                <li>&#xf26b;</li>
+                <li>&#xf208;</li>
+                <li>&#xf1aa;</li>
+                <li>&#xf1cc;</li>
+                <li>&#xf202;</li>
+                <li>&#xf203;</li>
+                <li>&#xf212;</li>
+                <li>&#xf0e1;</li>
+                <li>&#xf08c;</li>
+                <li>&#xf2b8;</li>
+                <li>&#xf17c;</li>
+                <li>&#xf136;</li>
+                <li>&#xf20c;</li>
+                <li>&#xf23a;</li>
+                <li>&#xf2e0;</li>
+                <li>&#xf289;</li>
+                <li>&#xf285;</li>
+                <li>&#xf263;</li>
+                <li>&#xf264;</li>
+                <li>&#xf23d;</li>
+                <li>&#xf19b;</li>
+                <li>&#xf26a;</li>
+                <li>&#xf23c;</li>
+                <li>&#xf18c;</li>
+                <li>&#xf1ed;</li>
+                <li>&#xf2ae;</li>
+                <li>&#xf1a8;</li>
+                <li>&#xf1a7;</li>
+                <li>&#xf0d2;</li>
+                <li>&#xf231;</li>
+                <li>&#xf0d3;</li>
+                <li>&#xf288;</li>
+                <li>&#xf1d6;</li>
+                <li>&#xf2c4;</li>
+                <li>&#xf2d9;</li>
+                <li>&#xf1d0;</li>
+                <li>&#xf1a1;</li>
+                <li>&#xf281;</li>
+                <li>&#xf1a2;</li>
+                <li>&#xf18b;</li>
+                <li>&#xf267;</li>
+                <li>&#xf28a;</li>
+                <li>&#xf213;</li>
+                <li>&#xf1e0;</li>
+                <li>&#xf1e1;</li>
+                <li>&#xf214;</li>
+                <li>&#xf215;</li>
+                <li>&#xf216;</li>
+                <li>&#xf17e;</li>
+                <li>&#xf198;</li>
+                <li>&#xf1e7;</li>
+                <li>&#xf2ab;</li>
+                <li>&#xf2ac;</li>
+                <li>&#xf2ad;</li>
+                <li>&#xf1be;</li>
+                <li>&#xf1bc;</li>
+                <li>&#xf18d;</li>
+                <li>&#xf16c;</li>
+                <li>&#xf1b6;</li>
+                <li>&#xf1b7;</li>
+                <li>&#xf1a4;</li>
+                <li>&#xf1a3;</li>
+                <li>&#xf2dd;</li>
+                <li>&#xf2c6;</li>
+                <li>&#xf1d5;</li>
+                <li>&#xf2b2;</li>
+                <li>&#xf181;</li>
+                <li>&#xf262;</li>
+                <li>&#xf173;</li>
+                <li>&#xf174;</li>
+                <li>&#xf1e8;</li>
+                <li>&#xf099;</li>
+                <li>&#xf081;</li>
+                <li>&#xf287;</li>
+                <li>&#xf237;</li>
+                <li>&#xf2a9;</li>
+                <li>&#xf2aa;</li>
+                <li>&#xf27d;</li>
+                <li>&#xf194;</li>
+                <li>&#xf1ca;</li>
+                <li>&#xf189;</li>
+                <li>&#xf18a;</li>
+                <li>&#xf1d7;</li>
+                <li>&#xf232;</li>
+                <li>&#xf266;</li>
+                <li>&#xf17a;</li>
+                <li>&#xf19a;</li>
+                <li>&#xf297;</li>
+                <li>&#xf2de;</li>
+                <li>&#xf298;</li>
+                <li>&#xf168;</li>
+                <li>&#xf169;</li>
+                <li>&#xf23b;</li>
+                <li>&#xf19e;</li>
+                <li>&#xf1e9;</li>
+                <li>&#xf2b1;</li>
+                <li>&#xf167;</li>
+                <li>&#xf16a;</li>
+                <li>&#xf166;</li>
+            </ul>
+        </div>
+        <div class='icon-category'>
+            <div class='icon-header'>Medical Icons</div>
+            <ul class='icon-list'>
+                <li>&#xf0f9;</li>
+                <li>&#xf0fd;</li>
+                <li>&#xf004;</li>
+                <li>&#xf08a;</li>
+                <li>&#xf21e;</li>
+                <li>&#xf0f8;</li>
+                <li>&#xf0fa;</li>
+                <li>&#xf0fe;</li>
+                <li>&#xf0f1;</li>
+                <li>&#xf0f0;</li>
+                <li>&#xf193;</li>
+                <li>&#xf29b;</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        $("#divIcons").children(".icon-category").eq(0).children(".icon-list").eq(0).prepend('<li class="na" style="font-size: 14px;line-height: 45px;font-family: sans-serif;">N/A</li>');
+        $("#divIcons").on("click", "li", function (e) { selectIcon(e.target); })
+        function selectIcon(ico) {
+            var i = ($(ico).hasClass("na") ? "" : $(ico).text());
+            //if ($(ico).hasClass("_br") || $(ico).closest("._br").length > 0)
+                //i = "<f2>" + i + "</f2>";
+            if ($.QS("fn"))
+                parent[$.QS("fn")](i);
+            else
+                parent.selectIcon(i);
+        }
+    </script>
+      <script>
+          $("#txtFA").on("keyup", function () {
+              $("#btnApplyFA").html($("#txtFA").val().length > 1 ? ("&#x" + $("#txtFA").val().replace(/^\\/, '') + ";") : $("#txtFA").val());
+              $("#btnApplyFA1").html($("#btnApplyFA").html())
+          });
+          
+          $("#txtMat").on("keyup", function () {
+              $("#btnApplyMat").html($("#txtMat").val().indexOf("\\") == 0 && $("#txtMat").val().length > 2 ? ("&#x" + $("#txtMat").val().replace(/^\\/, '') + ";") : $("#txtMat").val().replace(/^\\/, ''));
+              $("#btnApplyMat1").html($("#btnApplyMat").html())
+          });
+          $("#txtFA,#txtMat").trigger("keyup")
+          $("#btnApplyFA,#btnApplyFA1").on("click", function () {
+              var i = $(this).text();
+              if (i.length > 0 && $(this).attr("id") == "btnApplyFA1") i = "<f1>" + i + "</f1>";
+              if ($.QS("fn"))
+                  parent[$.QS("fn")](i);
+              else
+                  parent.selectIcon(i);
+          })
+          $("#btnApplyMat,#btnApplyMat1").on("click", function () {
+              var i = $(this).text().length > 0 ? ("<m1>" + $(this).text() + "</m1>") : "";
+              if ($(this).text().length > 0 && $(this).attr("id") == "btnApplyMat1") i = "<m2>" + $(this).text() + "</m2>";
+              if ($.QS("fn"))
+                  parent[$.QS("fn")](i);
+              else
+                  parent.selectIcon(i);
+          })
+        </script>
+</body>
+</html>
+
+
+<!--
+    in cheatsheet window
+var arr=[]
+
+$(".text-muted").each(function(){ var a=$(this);if(a.html().indexOf('[')!=0)return true; arr.push({cls:this.previousSibling.wholeText.trim(), uni:a.html().replace("[","").replace("]","").replace("&amp;","&") })})
+
+var arrStr=JSON.stringify(arr)
+
+
+in icons window
+var arrStr= copy paste
+
+var arr=JSON.parse(arrStr)
+function getObj(c){
+var r=$(arr).filter(function(){return this.cls==c.trim()});
+return (r && r.length > 0 ? r[0] : null);
+}
+
+
+
+var arrHtml=[]
+
+$(".fontawesome-icon-list").each(function(){ var a=$(this);arrHtml.push("<div class='icon-category'><div class='icon-header'>"+a.parent().children(".page-header").html()+"</div><ul class='icon-list'>") ;  a.find("i").each(function(){var i=$(this);var obj=getObj(i.attr("class").trim().split(' ')[1]);if(obj)arrHtml.push("<li>"+obj.uni+"</li>")  });+arrHtml.push("</ul></div>");})
+    
+    
+    -->

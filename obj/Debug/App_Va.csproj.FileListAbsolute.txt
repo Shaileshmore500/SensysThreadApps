@@ -1,0 +1,13 @@
+E:\Shailesh\Thread Apps\Apps\App_Va\bin\App_Va.dll.config
+E:\Shailesh\Thread Apps\Apps\App_Va\bin\App_Va.dll
+E:\Shailesh\Thread Apps\Apps\App_Va\bin\App_Va.pdb
+E:\Shailesh\Thread Apps\Apps\App_Va\bin\DevExpress.Pdf.v20.1.Drawing.dll
+E:\Shailesh\Thread Apps\Apps\App_Va\bin\Newtonsoft.Json.dll
+E:\Shailesh\Thread Apps\Apps\App_Va\bin\System.Web.Http.dll
+E:\Shailesh\Thread Apps\Apps\App_Va\bin\System.Net.Http.Formatting.dll
+E:\Shailesh\Thread Apps\Apps\App_Va\bin\Newtonsoft.Json.xml
+E:\Shailesh\Thread Apps\obj\Debug\App_Va.csproj.CoreCompileInputs.cache
+E:\Shailesh\Thread Apps\obj\Debug\App_Va.csproj.CopyComplete
+E:\Shailesh\Thread Apps\obj\Debug\App_Va.dll
+E:\Shailesh\Thread Apps\obj\Debug\App_Va.pdb
+E:\Shailesh\Thread Apps\obj\Debug\App_Va.csprojAssemblyReference.cache

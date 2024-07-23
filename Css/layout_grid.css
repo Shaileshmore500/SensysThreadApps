@@ -1,0 +1,531 @@
+﻿.ui-tooltip
+{
+	font-size: 12px;
+	padding: 5px;
+	background-image: none;
+	background-color: #FAFAFA;
+	border: 1px solid #C8C8C8;
+	color: #F00;
+	font-family: nunitobold;
+}
+
+
+.titleBar
+{
+	height: 30px;
+	width: 100%;
+	background: #0083FC;
+}
+
+	.titleBar .title
+	{
+		font-family: nunitolight;
+		font-size: 20px;
+		color: #FFF;
+		margin-left: 4px;
+		display: inline-block;
+		margin-top: 1px;
+		padding-right: 19px;
+		text-shadow: 2px 2px 2px #2038E5;
+		line-height: 24px;
+		background-color: rgba(0, 0, 0, 0);
+		border: solid 2px rgba(0, 0, 0, 0);
+		text-decoration1: underline;
+		height: 24px;
+		text-indent: 7px;
+		min-width: 350px;
+		border-radius: 5px;
+		text-transform: capitalize;
+		cursor: text;
+	}
+
+		.titleBar .title:hover,
+		.titleBar .title:focus
+		{
+			border: solid 2px #8AAAD7;
+			box-shadow: inset 2px 2px 20px #3C47FF;
+			background-color: #1F64B7;
+		}
+
+.toolbar
+{
+	height: 32px;
+	left: 0;
+	width: 100%;
+	white-space: nowrap;
+	border: solid 2px #DDD;
+	border-left: none;
+	border-right: none;
+	z-index: -1;
+	background: rgb(255,255,255); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(47%,rgba(246,246,246,1)), color-stop(100%,rgba(237,237,237,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%); /* IE10+ */
+	background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
+}
+
+	.toolbar .toolBtn
+	{
+		min-width: 75px;
+		border-right: solid 2px #E6E4FA;
+		margin: 0;
+		padding: 4px 10px 5px 8px;
+		cursor: pointer;
+		display: inline-block;
+		vertical-align: top;
+		font-size: 13px;
+		color: #2D64B6;
+		font-family: nunitobold;
+	}
+
+		.toolbar .toolBtn:hover
+		{
+			background-color: #4559E9; /* Old browsers */
+			-webkit-transition: all 0.15s linear;
+			-moz-transition: all 0.15s linear;
+			transition: all 0.15s linear;
+			color: #FFF;
+		}
+
+
+		.toolbar .toolBtn SPAN:before
+		{
+			font-family: fontawesome;
+			font-weight: normal;
+			font-size: 22px;
+			margin-right: 8px;
+			border-right: solid 1px #E4E4E4;
+			padding-right: 7px;
+			text-shadow: 2px 2px 3px #FDFDFD;
+			line-height: 22px;
+		}
+
+		.toolbar .toolBtn:hover SPAN:before
+		{
+			border-right: solid 1px #6F6BC5;
+			text-shadow: 2px 2px 3px #1C22AF;
+			color: #FFF;
+		}
+
+	.toolbar .save SPAN:before
+	{
+		content: "\f0c7";
+	}
+
+	.toolbar .saveas SPAN:before
+	{
+		content: "\f0c5";
+	}
+
+	.toolbar .property SPAN:before
+	{
+		content: "\f013";
+	}
+
+	.toolbar .filter SPAN:before
+	{
+		content: "\f0b0";
+	}
+
+	.toolbar .CloseWin SPAN:before
+	{
+		content: "\f00d";
+	}
+
+	.toolbar .sections SPAN:before
+	{
+		content: "\f0c9";
+	}
+
+
+.textBtn
+{
+	margin: 0;
+	padding: 3px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: top;
+	color:#74777B;/*#2D64B6*/
+	height: 16px;
+	width: 20px;
+	border: solid 1px #9D9D9D;/*#E4E4E4*/
+	text-align: center;
+	/*border: #2285D8 1px solid;*/
+}
+
+.toolbar .textBtn:hover
+{
+	background-color: #616162; /* Old browsers */
+	-webkit-transition: all 0.15s linear;
+	-moz-transition: all 0.15s linear;
+	transition: all 0.15s linear;
+	color: #FFF;
+}
+
+.toolbar .textBtn SPAN:before
+{
+	font-family: fontawesome;
+	font-weight: normal;
+	font-size: 17px;
+	padding: 1px;
+	line-height: 17px;
+}
+
+
+
+
+.toolbar .snap SPAN:before
+{
+	content: "\f00a";
+}
+
+.toolbar .aLeft SPAN:before
+{
+	content: "\f036";
+}
+
+.toolbar .aRight SPAN:before
+{
+	content: "\f038";
+}
+
+.toolbar .aMiddle SPAN:before
+{
+	content: "\f037";
+}
+
+
+
+.toolbar .saveas SPAN:before
+{
+	content: "\f0c5";
+}
+
+.toolbar .sameSize SPAN:before
+{
+	content: "\f0b2";
+}
+
+.toolbar .bold SPAN:before
+{
+	content: "\f032";
+}
+
+.toolbar .italic SPAN:before
+{
+	content: "\f033";
+}
+.toolbar .dni SPAN:before
+{
+	content: "\f142";
+}
+.toolbar .underline SPAN:before
+{
+	content: "\f0cd";
+}
+.toolbar .sameWidth SPAN:before
+{
+	content: "\f07e";
+}
+
+.toolbar .sameHeight SPAN:before
+{
+	content: "\f07d";
+}
+
+.toolbar .aBottom SPAN:before
+{
+	content: "\f0a7";
+}
+
+.toolbar .aTop SPAN:before
+{
+	content: "\f0a6";
+}
+.toolbar .pleft SPAN:before
+{
+	content: "\f0a5";
+}
+
+.toolbar .pright SPAN:before
+{
+	content: "\f0a4";
+}
+
+
+
+#common, #divDataKeys, #divPrValue, #divParameter
+{
+	position: absolute;
+	display: none;
+	width: 245px;
+	min-height: 200px;
+	max-height: 500px;
+	background-color: #F9F9F9;
+	border: 1px solid #E2E2E2;
+	border-radius: 2px;
+	z-index: 10;
+	box-shadow: 1px 1px 5px #555;
+	overflow-y: auto;
+	overflow-x:hidden;
+}
+.RadTreeView.RadTreeView_Office2007
+{
+	overflow-x:hidden !important;
+}
+.RadTreeView label
+{
+	display:inline-block;
+	width:100%;
+}
+.RadTreeView .rtIn
+{
+	display:inline-block;
+	width:100%;
+}
+.rtLI
+{
+	border-bottom: solid 1px #E8E8E8;
+}
+.DarkTheme .rtLI
+{
+	border-bottom: solid 1px #696868;
+}
+
+
+#divUrlTree .rtLI
+{
+	border-bottom: none !important;
+}
+.RadTreeView_Office2007 .rtHover .rtIn
+{
+	background-color: transparent !important;
+	background-image: none !important;
+	border-color: transparent !important;
+}
+
+.RadTreeView_Office2007 .rtSelected .rtIn
+{
+	background-color: transparent !important;
+	background-image: none !important;
+	border-color: transparent !important;
+}
+
+.RadTreeView_Office2007 .rtLI .rtTop:hover,
+.RadTreeView_Office2007 .rtLI .rtMid:hover,
+.RadTreeView_Office2007 .rtLI .rtBot:hover
+{
+	background-color: #FFF6C3 !important;
+	
+}
+.DarkTheme .RadTreeView_Office2007 .rtLI .rtTop:hover,
+.DarkTheme .RadTreeView_Office2007 .rtLI .rtMid:hover,
+.DarkTheme .RadTreeView_Office2007 .rtLI .rtBot:hover
+{
+	color: #000 !important;
+}
+
+
+.RadTreeView_Office2007 .rtLI .rtSelected
+{
+	background-color: #FFF6C3 !important;
+}
+
+.value1
+{
+	background-color: rgba(0, 0, 0, 0);
+	border: none;
+	vertical-align: middle;
+	margin-right: 10px;
+	padding: 0;
+	font-family: fontawesome;
+	color: #909090;
+}
+
+	.value1:hover
+	{
+		color: #0083FF;
+	}
+
+.btnAddClass
+{
+	vertical-align: middle;
+	border: none;
+	/* margin-left: 5px; */
+	font-family: fontawesome;
+	color: #008000;
+	background-color: rgba(0, 0, 0, 0);
+	font-size: 16px;
+}
+
+
+
+
+.tree
+{
+	overflow-x: auto !important;
+}
+
+
+.divrow
+{
+	min-width: 295px;
+	display: block;
+	padding: 5px 0;
+	border-bottom: solid 1px #E7E7E7;
+}
+
+
+
+.subquery
+{
+	background-color: transparent;
+	position: absolute;
+	z-index: 3500;
+	
+	padding-top: 0px;
+	top: 0 !important;
+	left: 0;
+	right: 0;
+	bottom: 3px;
+	display: block;
+	display: none;
+}
+
+.labeltext
+{
+}
+
+.txt
+{
+	border-color: #80D9EB;
+	border-radius: 9px;
+	padding-left: 8px;
+}
+
+.filtertext
+{
+	vertical-align: top;
+	color: #808080;
+	font-style: italic;
+	font-weight: bold;
+}
+
+
+
+.fields, .filters, .value, .srno, .DisplayName1, .DisplayName, .entity-time, .ParamKey, .UserDisplayName, .DisplayName2, .sort, .Width, .BtnText
+{
+	border: solid 1px #EBE7E7;
+	font-weight: normal;
+	background-color: #FFF;
+	resize: none;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 218px;
+	font-family: nunitoregular;
+	outline: 0;
+	font-size: 13px;
+	padding: 2px 5px;
+}
+
+.sort, .Width
+{
+	width: 60px;
+}
+select.sort
+{
+	padding: 1px 5px;
+}
+
+.value
+{
+	font-family: nunitobold;
+}
+
+.filters
+{
+	font-style: italic;
+}
+
+
+#divGroupSettings .DisplayName
+{
+	display:block;
+	width:100%;
+}
+.reorder:before
+{
+	font-family: FontAwesome;
+	content: "\f0c9";
+	cursor: move;
+	color:#adadad;
+	margin-left: 10px;
+}
+
+.UserDisplayName
+{
+	width: 218px;
+}
+
+
+#divActionButtons TD > LabeL,
+.btn-name
+{
+	font-size: 14px;
+	color: #8B4E00;
+	margin-right: 10px;
+}
+
+
+
+
+
+
+
+
+
+.hasDatepicker
+{
+	width: 96px;
+}
+
+.entity-time
+{
+	width: 78px;
+}
+
+.close
+{
+	font-family: monospace;
+	cursor: pointer;
+	display: inline-block;
+	height: 14px;
+	width: 14px;
+	border-radius: 8px;
+	color: #9B9B9B;
+	font-size: 11px;
+	border: solid 1px #E4E1E1;
+	text-decoration: none;
+	text-align: center;
+	vertical-align: middle;
+	margin-left: 8px;
+	line-height: 15px;
+	text-indent: 0;
+	outline:0 !important;
+	text-indent: -1px;
+}
+
+
+	.close:hover
+	{
+		-webkit-transition: background-color 0.10s ease-in;
+		-moz-transition: background-color 0.10s ease-in;
+		transition: background-color 0.10s ease-in;
+		color: #fff;
+		background-color: #CE0000;
+		border: solid 1px #E4E1E1;
+	}

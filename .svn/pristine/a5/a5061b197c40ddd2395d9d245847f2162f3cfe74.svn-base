@@ -1,0 +1,18 @@
+function deletetask()
+{
+
+  if(confirm('Do you wish to delete this record ?.. ')){
+    Erp.ShowBusyMessage("Deleting Records",false);
+  Erp.ServerCommand('deletecommand',{
+  }
+                    ,function(cmd){
+                      Erp.HideBusyMessage();
+                      Erp.Grid.Refresh('dgData');
+                    }
+                   );
+  }
+  return false;
+  
+}
+	
+

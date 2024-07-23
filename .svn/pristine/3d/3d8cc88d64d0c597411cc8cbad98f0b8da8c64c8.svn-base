@@ -1,0 +1,363 @@
+function InitUI() {$('#PageTitle').children('._i').html('&#xF040;').next().html("Return Dashboard");PkIds=[];
+var ddl=$('#rcbTaxReg');ddl.parent().addClass('ui-list');ddl.data('FieldID','b4c5c629-667d-4533-a9a4-7435f12f552d');ddl.data('LookupCode','');ddl.data('Eids','tbl_ERP_taxreg');ddl.data('FieldType','SINGLESELECT_TABLE');ddl.data('Multi',false);enableKeyboardForList(ddl);ddl.parent().on('click',function(){showSearchList($(this));});
+$('#rcbTaxReg').on('selectchange',function(){onFieldChange(LoadFilingDetails,$(this), {RecordID:$(this).data('RecordID'),EntityID:$(this).data('EntityID'),Text:$(this).val(),Keys:$(this).data('Keys'),CurrentRow:$(this).data('CurrentRow')}, Erp.GetField($(this).attr('id'))   );});
+Erp.FieldInfo.push({Name:"tbl_erp_temptable_taxreg",ID:"rcbTaxReg",Disabled:false,Type:"Ddl",DataType:"SINGLESELECT_TABLE",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:true,Data:null});
+var ddl=$('#rcbTaxYear');ddl.parent().addClass('ui-list');ddl.data('FieldID','5f0ae233-2109-4d37-b204-f13f3d394ee3');ddl.data('LookupCode','');ddl.data('Eids','tbl_ERP_taxyear');ddl.data('FieldType','SINGLESELECT_TABLE');ddl.data('Multi',false);enableKeyboardForList(ddl);ddl.parent().on('click',function(){showSearchList($(this));});
+$('#rcbTaxYear').on('selectchange',function(){onFieldChange(loadPeriod,$(this), {RecordID:$(this).data('RecordID'),EntityID:$(this).data('EntityID'),Text:$(this).val(),Keys:$(this).data('Keys'),CurrentRow:$(this).data('CurrentRow')}, Erp.GetField($(this).attr('id'))   );});
+Erp.FieldInfo.push({Name:"tbl_erp_temptable_taxyear",ID:"rcbTaxYear",Disabled:false,Type:"Ddl",DataType:"SINGLESELECT_TABLE",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:true,Data:null});
+var ddl=$('#rcbTaxPeriod');ddl.parent().addClass('ui-list');ddl.data('FieldID','5ec7d5c9-9c32-418b-b186-39bf4a4036c3');ddl.data('LookupCode','Lu_YearWisePeriod');ddl.data('Eids','tbl_ERP_taxformperiod');ddl.data('FieldType','SINGLESELECT_TABLE');ddl.data('Multi',false);enableKeyboardForList(ddl);ddl.parent().on('click',function(){showSearchList($(this));});
+$('#rcbTaxPeriod').on('selectchange',function(){onFieldChange(LoadFilingDetails,$(this), {RecordID:$(this).data('RecordID'),EntityID:$(this).data('EntityID'),Text:$(this).val(),Keys:$(this).data('Keys'),CurrentRow:$(this).data('CurrentRow')}, Erp.GetField($(this).attr('id'))   );});
+Erp.FieldInfo.push({Name:"tbl_erp_temptable_taxformperiod",ID:"rcbTaxPeriod",Disabled:false,Type:"Ddl",DataType:"SINGLESELECT_TABLE",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:true,Data:null});
+var ddl=$('#rcbTaxFormFilingType');ddl.parent().addClass('ui-list');ddl.data('FieldID','cd35958b-9687-4498-8531-c6137d468ed7');ddl.data('LookupCode','');ddl.data('Eids','tbl_ERP_taxformfilingtype');ddl.data('FieldType','SINGLESELECT_TABLE');ddl.data('Multi',false);enableKeyboardForList(ddl);ddl.parent().on('click',function(){showSearchList($(this));});
+ddl.data('RecordID','Regular');ddl.data('EntityID','tbl_ERP_taxformfilingtype');Erp.FieldInfo.push({Name:"tbl_erp_temptable_taxformfilingtype",ID:"rcbTaxFormFilingType",Disabled:true,Type:"Ddl",DataType:"SINGLESELECT_TABLE",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:true,Data:null});
+GridList.push({ID:"dgFilingStatus",BindOnload:false,Title:"Grid",AdvFilter:[],GroupInfo:[],OnBind:null});
+initGridSettings("dgFilingStatus");
+
+
+DbReferences.push({Id:"GSTR3BID",Type:"Value",OnDemand:0,EntityId:"",Columns:"",Xml:"<Subquery Table=\"tbl_ERP_gstreturn3b\" Target=\"b5a27ef8-1200-456b-a7d3-6ca5c9ef5b1d\" TargetType=\"Single\" EntityPath=\"\" Summary=\"None\" Logic=\"1 and 2 and 3 and 4 and 5\"\><Condition Name=\"8a711fa9-a998-4ee8-bb9a-fe2424e33d2d\" EntityPath=\"taxreg:tbl_ERP_taxreg\" Operator=\"EqualTo\" Value=\"taxreg\" ValueSrc=\"Parameter\" ValueEntityPath=\"\" WFEID=\"\" WFName=\"\" SessionID=\"\" Srno=\"1\"\></Condition\><Condition Name=\"439e9e18-62d4-4c3e-ac0a-18c1c2d9036b\" EntityPath=\"taxform:tbl_ERP_taxform\" Operator=\"EqualTo\" Value=\"taxform\" ValueSrc=\"Parameter\" ValueEntityPath=\"\" WFEID=\"\" WFName=\"\" SessionID=\"\" Srno=\"2\"\></Condition\><Condition Name=\"dd0b50fd-d0cc-42ba-b47e-db1836052916\" EntityPath=\"taxyear:tbl_ERP_taxyear\" Operator=\"EqualTo\" Value=\"taxyear\" ValueSrc=\"Parameter\" ValueEntityPath=\"\" WFEID=\"\" WFName=\"\" SessionID=\"\" Srno=\"3\"\></Condition\><Condition Name=\"b2fc43fb-b6ab-40d3-bd8e-552f21210356\" EntityPath=\"taxformperiod:tbl_ERP_taxformperiod\" Operator=\"EqualTo\" Value=\"taxformperiod\" ValueSrc=\"Parameter\" ValueEntityPath=\"\" WFEID=\"\" WFName=\"\" SessionID=\"\" Srno=\"4\"\></Condition\><Condition Name=\"b5f03d91-7b98-4872-b07e-9ebc18f24105\" EntityPath=\"taxformfilingtype:tbl_ERP_taxformfilingtype\" Operator=\"EqualTo\" Value=\"taxformfilingtype\" ValueSrc=\"Parameter\" ValueEntityPath=\"\" WFEID=\"\" WFName=\"\" SessionID=\"\" Srno=\"5\"\></Condition\><Sort\><ColInfo\></ColInfo\></Sort\><Parameters\><Param Key=\"taxreg\" /\><Param Key=\"taxform\" /\><Param Key=\"taxyear\" /\><Param Key=\"taxformperiod\" /\><Param Key=\"taxformfilingtype\" /\></Parameters\></Subquery\>",AlwaysLoad:false });window.GSTR3BID='';
+DbReferences.push({Id:"gstrfiledinfo",Type:"Value",OnDemand:1,EntityId:"",Columns:"",Xml:"<Subquery Table=\"tbl_ERP_taxformfilingstatus\" Target=\"3ce15c0a-0d5a-475f-b2be-349a0bbfa5ae\" TargetType=\"Single\" EntityPath=\"\" Summary=\"None\" Logic=\"1 and 2 and 3 and 4 and 5\"\><Condition Name=\"a701e74c-9f7d-4f2f-8e04-6e4d87e81e43\" EntityPath=\"\" Operator=\"EqualTo\" Value=\"{taxreg}\" ValueSrc=\"Input\" WFName=\"\" SessionID=\"\" Srno=\"1\"\></Condition\><Condition Name=\"91e5a461-c584-4381-9389-0fd73be1ae7a\" EntityPath=\"\" Operator=\"EqualTo\" Value=\"{taxyear}\" ValueSrc=\"Input\" WFName=\"\" SessionID=\"\" Srno=\"2\"\></Condition\><Condition Name=\"15fc9e27-cd84-484b-99ce-d9e8d8ea454a\" EntityPath=\"\" Operator=\"EqualTo\" Value=\"{taxform}\" ValueSrc=\"Input\" WFName=\"\" SessionID=\"\" Srno=\"3\"\></Condition\><Condition Name=\"e509e3d9-e544-46d5-b101-d618b78e9937\" EntityPath=\"\" Operator=\"EqualTo\" Value=\"{taxformperiod}\" ValueSrc=\"Input\" WFName=\"\" SessionID=\"\" Srno=\"4\"\></Condition\><Condition Name=\"b4fcfa84-504b-4057-bfaf-8ced198f8c1c\" EntityPath=\"\" Operator=\"EqualTo\" Value=\"{taxformfilingtype}\" ValueSrc=\"Input\" WFName=\"\" SessionID=\"\" Srno=\"5\"\></Condition\><Sort\><ColInfo\></ColInfo\></Sort\><Parameters\></Parameters\></Subquery\>",AlwaysLoad:false });window.gstrfiledinfo='';
+ mxEntityList={};
+
+Erp.SetFieldValue("@taxreg","937d8b94-6c40-4499-88b6-c0d1d5313b3d");
+Erp.SetFieldValue("@taxyear","c476b1bd-d7e7-4f4e-b9fe-3163e09ce31b");
+Erp.SetFieldValue("@taxformperiod","11f50c0d-2ce7-4a32-ab33-8c798a588420");
+Erp.SetFieldValue("@taxformfilingtype","Regular");
+
+
+};
+  var taxreg= "";
+  var taxyear = "";
+  var taxformperiod = "";
+  var taxformfilingtype = "";
+
+
+Erp.OnLoad.Register(LoadFunction);
+function LoadFunction(){
+  
+  taxyear = Erp.GetFieldValue('rcbTaxYear');
+  Erp.SetParam('rcbTaxPeriod','taxyear',taxyear);
+  
+   LoadFilingDetails();
+  
+   taxreg= Erp.GetFieldValue('rcbTaxReg');
+   taxyear = Erp.GetFieldValue('rcbTaxYear');
+   taxformperiod = Erp.GetFieldValue('rcbTaxPeriod');
+   taxformfilingtype = Erp.GetFieldValue('rcbTaxFormFilingType');
+   Erp.SetFieldValue('taxformfilingtype','Regular');
+  
+  
+}
+
+
+Erp.OnLoadComplete.Register(LoadCompleteFunction);
+function LoadCompleteFunction(){
+Erp.SetFieldValue('taxformfilingtype','Regular');
+  taxyear = Erp.GetFieldValue('rcbTaxYear');
+  Erp.SetParam('rcbTaxPeriod','taxyear',taxyear);
+  
+}
+
+
+
+
+function loadPeriod()
+{
+  
+  Erp.SetFieldValue('rcbTaxPeriod','');
+  var taxyear = Erp.GetFieldValue('rcbTaxYear');
+  Erp.SetParam('rcbTaxPeriod','taxyear',taxyear);
+  LoadFilingDetails();
+}
+
+
+function LoadFilingDetails()
+{
+   taxreg= Erp.GetFieldValue('rcbTaxReg');
+   taxyear = Erp.GetFieldValue('rcbTaxYear');
+   taxformperiod = Erp.GetFieldValue('rcbTaxPeriod');
+   taxformfilingtype = Erp.GetFieldValue('rcbTaxFormFilingType');
+  
+  Erp.ServerCommand('LoadfilingStatus',{"@taxreg":Erp.GetFieldValue('@tbl_erp_temptable_taxreg'),
+                                 "@taxyear":Erp.GetFieldValue('@tbl_erp_temptable_taxyear'),
+                                 "@taxformperiod":Erp.GetFieldValue('@tbl_erp_temptable_taxformperiod'),
+                                 "@filingtype":Erp.GetFieldValue('@tbl_erp_temptable_taxformfilingtype')
+                                 },
+                   showfilingStatus);
+  
+}
+
+function showfilingStatus()
+{
+  	
+   Erp.Grid.DataBind('dgFilingStatus',window.jsonSectionDetails);
+  
+}
+
+/*function showUploadGSTN()
+{
+  var taxform = Erp.Grid.GetRecordValue('dgFilingStatus','taxform')
+  if(taxform=="GSTR1")
+  {
+    Erp.OpenWindow({"Action":"EDITFORM","Entity":"tbl_ERP_temptable","Form":"GSTR1_Save","RecordID":"","Refresh":false,"Global":false,"Title":"Upload to GSTN","Params":"","Location":"Self"})
+    
+  }
+}*/
+
+
+function Upload(taxform)
+{
+  
+  
+
+
+  
+  
+  if(taxform=="GSTR3B")
+  {
+    if(!debugMode){
+    Erp.ShowMessage('GSTN has not enabled the upload API. As soon as it is enabled, we will enable this feature.','alert');
+    return;
+    }
+    
+    Erp.OpenWindow({"Action":"EDITFORM","Entity":"tbl_ERP_temptable","Form":"GSTR3B Upload","RecordID":"","Refresh":false,"Global":false,"Title":"Upload","Params":"taxform="+taxform+"&taxreg="+taxreg+"&taxyear="+taxyear+"&taxformperiod="+taxformperiod+"&taxformfilingtype="+taxformfilingtype,"Location":"Self"})
+  }
+  else  if(taxform=="GSTR1")
+  {
+    Erp.OpenWindow({"Action":"EDITFORM","Entity":"tbl_ERP_temptable","Form":"GSTR1_Save","RecordID":"","Refresh":false,"Global":false,"Title":"GSTR1 Upload","Params":"taxform="+taxform+"&taxreg="+taxreg+"&taxyear="+taxyear+"&taxformperiod="+taxformperiod+"&taxformfilingtype="+taxformfilingtype,"Location":"Self"})
+  }
+  else if(taxform=="GSTR2")
+  {
+   /*if(!debugMode){
+    Erp.ShowMessage('Coming Soon.','alert');
+    return;
+   }*/
+    
+    Erp.OpenWindow({"Action":"EDITFORM","Entity":"tbl_ERP_temptable","Form":"GSTR2_Save1","RecordID":"","Refresh":false,"Global":false,"Title":"GSTR2 Upload","Params":"taxform="+taxform+"&taxreg="+taxreg+"&taxyear="+taxyear+"&taxformperiod="+taxformperiod+"&taxformfilingtype="+taxformfilingtype,"Location":"Self"})
+  }
+      
+}
+
+function Validate(taxform)
+{
+  
+  if(taxform=="GSTR1")
+  {
+    //Erp.ShowMessage('GSTN has not enabled the upload API. As soon as it is enabled, we will enable this feature.','alert');
+    //return;
+    
+    Erp.OpenWindow({"Action":"EDITFORM","Entity":"tbl_ERP_temptable","Form":"FetchStatus","RecordID":"","Refresh":false,"Global":false,"Title":"GSTR1 Validation","Params":"taxform="+taxform+"&taxreg="+taxreg+"&taxyear="+taxyear+"&taxformperiod="+taxformperiod+"&taxformfilingtype="+taxformfilingtype,"Location":"Self"})
+  }
+  else if(taxform=="GSTR2")
+  {
+    /*if(!debugMode){
+    Erp.ShowMessage('Coming Soon.','alert');
+    return;
+    }*/
+    Erp.OpenWindow({"Action":"EDITFORM","Entity":"tbl_ERP_temptable","Form":"FetchStatus","RecordID":"","Refresh":false,"Global":false,"Title":"GSTR2 Validation","Params":"taxform="+taxform+"&taxreg="+taxreg+"&taxyear="+taxyear+"&taxformperiod="+taxformperiod+"&taxformfilingtype="+taxformfilingtype,"Location":"Self"})
+  }
+  
+}
+var debugMode=false;
+
+function Freeze(taxform)
+{
+ 
+  if(taxform=="GSTR3B")
+  {
+    if(!debugMode){
+    Erp.ShowMessage('GSTN has not enabled the upload API. As soon as it is enabled, we will enable this feature.','alert');
+    return;
+    }
+    Erp.OpenWindow({"Action":"EDITFORM","Entity":"tbl_ERP_temptable","Form":"GSTR3B Freeze","RecordID":"","Refresh":false,"Global":false,"Title":"Submit(Freeze) GSTR3B","Params":"taxform="+taxform+"&taxreg="+taxreg+"&taxyear="+taxyear+"&taxformperiod="+taxformperiod+"&taxformfilingtype="+taxformfilingtype,"Location":"Self"})
+  }
+  else  if(taxform=="GSTR1")
+  {
+    /*
+    Erp.ShowMessage('GSTN has not enabled the upload API. As soon as it is enabled, we will enable this feature.','alert');
+    return;*/
+    
+    Erp.OpenWindow({"Action":"EDITFORM","Entity":"tbl_ERP_temptable","Form":"Layout_FileGSTR1","RecordID":"","Refresh":false,"Global":false,"Title":"Submit(Freeze) GSTR1","Params":"taxform="+taxform+"&taxreg="+taxreg+"&taxyear="+taxyear+"&taxformperiod="+taxformperiod+"&taxformfilingtype="+taxformfilingtype+"&type=submit","Location":"Self"})
+  }
+  else if(taxform=="GSTR2")
+  {
+    if(!debugMode){
+    Erp.ShowMessage('Coming Soon.','alert');
+    return;
+    }
+    Erp.OpenWindow({"Action":"EDITFORM","Entity":"tbl_ERP_temptable","Form":"Layout_FileGSTR1","RecordID":"","Refresh":false,"Global":false,"Title":"Submit(Freeze) GSTR2","Params":"taxform="+taxform+"&taxreg="+taxreg+"&taxyear="+taxyear+"&taxformperiod="+taxformperiod+"&taxformfilingtype="+taxformfilingtype+"&type=submit","Location":"Self"})
+  }
+}
+
+function Filereturn(taxform)
+{
+  if(taxform=="GSTR3B")
+  {
+    if(!debugMode){
+    Erp.ShowMessage('GSTN has not enabled the upload API. As soon as it is enabled, we will enable this feature.','alert');
+    return;
+    }
+    
+    Erp.OpenWindow({"Action":"EDITFORM","Entity":"tbl_ERP_temptable","Form":"GSTR3B FileReturn","RecordID":"","Refresh":false,"Global":false,"Title":"File GSTR3B","Params":"taxform="+taxform+"&taxreg="+taxreg+"&taxyear="+taxyear+"&taxformperiod="+taxformperiod+"&taxformfilingtype="+taxformfilingtype,"Location":"Self"})
+  }
+  else  if(taxform=="GSTR1")
+  {
+   /* Erp.ShowMessage('GSTN has not enabled the upload API. As soon as it is enabled, we will enable this feature.','alert');
+    return;*/
+    
+    Erp.OpenWindow({"Action":"EDITFORM","Entity":"tbl_ERP_temptable","Form":"Layout_FileGSTR1","RecordID":"","Refresh":false,"Global":false,"Title":"File GSTR1","Params":"taxform="+taxform+"&taxreg="+taxreg+"&taxyear="+taxyear+"&taxformperiod="+taxformperiod+"&taxformfilingtype="+taxformfilingtype+"&type=file","Location":"Self"})
+  }
+  else if(taxform=="GSTR2")
+  {
+     if(!debugMode){
+    Erp.ShowMessage('Coming Soon.','alert');
+    return;
+     }
+    Erp.OpenWindow({"Action":"EDITFORM","Entity":"tbl_ERP_temptable","Form":"Layout_FileGSTR1","RecordID":"","Refresh":false,"Global":false,"Title":"File GSTR2","Params":"taxform="+taxform+"&taxreg="+taxreg+"&taxyear="+taxyear+"&taxformperiod="+taxformperiod+"&taxformfilingtype="+taxformfilingtype+"&type=file","Location":"Self"})
+  }
+}
+
+
+function Showsummary(taxform)
+{
+ 
+  if(taxform=="GSTR3B")
+  {
+    if(!debugMode){
+    Erp.ShowMessage('GSTN has not enabled the upload API. As soon as it is enabled, we will enable this feature.','alert');
+    return;
+    }
+    
+    Erp.OpenWindow({"Action":"EDITFORM","Entity":"tbl_ERP_temptable","Form":"GSTR3B Showsummary","RecordID":"","Refresh":false,"Global":false,"Title":"Show GSTR3B Summary","Params":"taxform="+taxform+"&taxreg="+taxreg+"&taxyear="+taxyear+"&taxformperiod="+taxformperiod+"&taxformfilingtype="+taxformfilingtype,"Location":"Self"})
+  }
+  else  if(taxform=="GSTR1")
+  {
+    //Erp.ShowMessage('GSTN has not enabled the upload API. As soon as it is enabled, we will enable this feature.','alert');
+    //return;
+    
+    Erp.OpenWindow({"Action":"EDITFORM","Entity":"tbl_ERP_temptable","Form":"Show GSTR1SummaryCopy","RecordID":"","Refresh":false,"Global":false,"Title":"Show GSTR1 Summary","Params":"taxform="+taxform+"&taxreg="+taxreg+"&taxyear="+taxyear+"&taxformperiod="+taxformperiod+"&taxformfilingtype="+taxformfilingtype,"Location":"Self"})
+  }
+  else if(taxform=="GSTR2")
+  {
+   /* if(!debugMode){
+    Erp.ShowMessage('Coming Soon.','alert');
+    return;
+    }*/
+    Erp.OpenWindow({"Action":"EDITFORM","Entity":"tbl_ERP_temptable","Form":"ShowGSTR2SummaryNew","RecordID":"","Refresh":false,"Global":false,"Title":"Show GSTR2 Summary","Params":"taxform="+taxform+"&taxreg="+taxreg+"&taxyear="+taxyear+"&taxformperiod="+taxformperiod+"&taxformfilingtype="+taxformfilingtype,"Location":"Self"})
+  }
+}
+
+
+
+var varGSTR3BID="";
+var vartaxform="";
+function Preparedata(taxform)
+{
+ 
+  
+   /*taxreg= Erp.GetFieldValue('rcbTaxReg');
+   taxyear = Erp.GetFieldValue('rcbTaxYear');
+   taxformperiod = Erp.GetFieldValue('rcbTaxPeriod');
+   taxformfilingtype = Erp.GetFieldValue('rcbTaxFormFilingType');*/
+  
+  
+  Erp.SetParam(window,'taxreg',taxreg);
+  Erp.SetParam(window,'taxform',taxform);
+  Erp.SetParam(window,'taxyear',taxyear);
+  Erp.SetParam(window,'taxformperiod',taxformperiod);
+  Erp.SetParam(window,'taxformfilingtype',taxformfilingtype);
+  
+   
+  
+ vartaxform= taxform;
+ Erp.LoadVariable('GSTR3BID',PreparedataCallBack);
+  
+}
+
+function PreparedataCallBack()
+{
+  
+  
+  if(Fn.IsEmpty(GSTR3BID))
+  {
+    Erp.OpenWindow({"Action":"ADDFORM","Entity":"tbl_ERP_gstreturn3b","Form":"Layout_GST_Return","RecordID":"","Refresh":false,"Global":false,"Title":"GSTR3B Return","Params":"taxform="+vartaxform+"&taxreg="+taxreg+"&taxyear="+taxyear+"&taxformperiod="+taxformperiod+"&taxformfilingtype="+taxformfilingtype,"Location":"Self"})
+  }
+  else
+  {
+  Erp.OpenWindow({"Action":"EDITFORM","Entity":"tbl_ERP_gstreturn3b","Form":"Layout_GST_Return","RecordID":"","Refresh":false,"Global":false,"Title":"GSTR3B Return","Params":"taxform="+vartaxform+"&taxreg="+taxreg+"&taxyear="+taxyear+"&taxformperiod="+taxformperiod+"&taxformfilingtype="+taxformfilingtype+"&ID="+GSTR3BID,"Location":"Self"})
+  }
+}
+
+
+function OffSetLiabilities(taxform)
+{
+  if(!debugMode){
+  Erp.ShowMessage('GSTN has not enabled the upload API. As soon as it is enabled, we will enable this feature.','alert');
+    return;
+  }
+  
+  Erp.OpenWindow({"Action":"EDITFORM","Entity":"tbl_ERP_temptable","Form":"GSTR3B OffSetLiabilities","RecordID":"","Refresh":false,"Global":false,"Title":"OffSet Liabilities","Params":"taxform="+taxform+"&taxreg="+taxreg+"&taxyear="+taxyear+"&taxformperiod="+taxformperiod+"&taxformfilingtype="+taxformfilingtype,"Location":"Self"})
+}
+
+
+function Autopopulate(taxform)
+{
+  /*if(!debugMode){
+  Erp.ShowMessage('Coming Soon.','alert');
+    return;
+  }*/
+  
+  Erp.OpenWindow({"Action":"EDITFORM","Entity":"tbl_ERP_temptable","Form":"Layout_GSTR2Fetch","RecordID":"","Refresh":false,"Global":false,"Title":"GSTR2A Auto Populate","Params":"taxform="+taxform+"&taxreg="+taxreg+"&taxyear="+taxyear+"&taxformperiod="+taxformperiod+"&taxformfilingtype="+taxformfilingtype,"Location":"Self"})
+}
+
+function Reconcile(taxform)
+{
+  /*if(!debugMode){
+  Erp.ShowMessage('Coming Soon.','alert');
+    return;
+  }*/
+  
+  Erp.OpenWindow({"Action":"EDITFORM","Entity":"tbl_ERP_temptable","Form":"Layout_GSTR2_MatchRecord","RecordID":"","Refresh":false,"Global":false,"Title":"GSTR2 Match & Reconcile","Params":"taxform="+taxform+"&taxreg="+taxreg+"&taxyear="+taxyear+"&taxformperiod="+taxformperiod+"&taxformfilingtype="+taxformfilingtype,"Location":"Self"})
+}
+var taxformfiled="";
+function MarkasUploded(taxform)
+{
+  //alert(taxform);
+  
+  Erp.SetParam(window,'taxreg',taxreg);
+  Erp.SetParam(window,'taxform',taxform);
+  Erp.SetParam(window,'taxyear',taxyear);
+  Erp.SetParam(window,'taxformperiod',taxformperiod);
+  Erp.SetParam(window,'taxformfilingtype',taxformfilingtype);
+  
+   if(taxform=="GSTR2")
+  {
+    if(!debugMode){
+     Erp.ShowMessage('Coming Soon.','alert');
+     return;
+    }
+  }
+  
+   
+ taxformfiled=taxform;
+  
+ Erp.LoadVariable('gstrfiledinfo',MarkasUplodedcallback);
+  
+  
+  
+}
+function MarkasUplodedcallback(taxform)
+{
+  //alert(gstrfiledinfo);
+  //alert(taxformfiled);
+  
+    if(!Fn.IsEmpty(gstrfiledinfo))
+    Erp.OpenWindow({"Action":"EDITFORM","Entity":"tbl_ERP_taxformfilingstatus","Form":"Manual_taxformfilingstatus","RecordID":gstrfiledinfo,"Refresh":false,"Global":false,"Title":"GSTR Filing Info","Params":"taxform="+taxformfiled+"&taxreg="+taxreg+"&taxyear="+taxyear+"&taxformperiod="+taxformperiod+"&taxformfilingtype="+taxformfilingtype,"Location":"Self"})
+    else
+      Erp.OpenWindow({"Action":"ADDFORM","Entity":"tbl_ERP_taxformfilingstatus","Form":"Manual_taxformfilingstatus","RecordID":"","Refresh":false,"Global":false,"Title":"GSTR Filing Info","Params":"taxform="+taxformfiled+"&taxreg="+taxreg+"&taxyear="+taxyear+"&taxformperiod="+taxformperiod+"&taxformfilingtype="+taxformfilingtype,"Location":"Self"})
+  
+ 
+}
+
+
+
+

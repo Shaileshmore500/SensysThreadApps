@@ -1,0 +1,13 @@
+var Telephony={};
+Telephony.ConnectClientToAgent=function(entityId,recordId){
+  if(!recordId)
+    return;
+  Erp.ShowBusyMessage("Please Wait...")
+  Erp.ExecuteTaskScript('ac89fcd2-4aad-47e9-9941-4374138a65cc',{'@Entity':entityId,'@ID':recordId,'CallType':"CALL"},taskScriptCallback);
+}
+
+function taskScriptCallback(result){
+  Erp.HideBusyMessage();
+  console.log(result)
+}
+

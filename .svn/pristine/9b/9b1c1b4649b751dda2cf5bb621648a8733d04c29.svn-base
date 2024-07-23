@@ -1,0 +1,2 @@
+alert("Erp.GetFieldValue('@tbl_core_accounts_createddate')")
+

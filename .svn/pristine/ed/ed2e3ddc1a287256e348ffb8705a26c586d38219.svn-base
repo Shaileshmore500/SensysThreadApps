@@ -1,0 +1,547 @@
+function InitUI() {$('#PageTitle').children('._i').html('&#xF040;').next().html("Lalit");PkIds=[];
+$('#Field-1').mask("9999999999");
+Erp.FieldInfo.push({Name:"tbl_sc_lead_mobile1",ID:"Field-1",Disabled:false,Type:"Text",DataType:"TEXT",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+$('#winaction').iframeAutoHeight({minHeight:50,heightOffset:10,triggerFunctions:[function(resizeFunction, iframe){$('#winaction').on('resize',function () { resizeFunction(iframe);});}]});
+DbReferences.push({Type:"Simple",Id:"db_fld_0",Columns:"user.users_pid"});window.db_fld_0='';
+DbReferences.push({Type:"Simple",Id:"db_fld_1",Columns:"company.company_pid"});window.db_fld_1='';
+
+FunctionList.push({Name:'createleadactivity',Refs:['db_fld_0','db_fld_1','db_fld_0','db_fld_1','db_fld_0','db_fld_1','db_fld_0','db_fld_1']});
+FunctionList.push({Name:'createleadDetails',Refs:['db_fld_0','db_fld_1','db_fld_0','db_fld_1','db_fld_0','db_fld_1','db_fld_0','db_fld_1']});
+FunctionList.push({Name:'ActivityDropdown',Refs:['db_fld_0','db_fld_1','db_fld_0','db_fld_1','db_fld_0','db_fld_1','db_fld_0','db_fld_1']});
+FunctionList.push({Name:'HideShowActivity',Refs:['db_fld_0','db_fld_1','db_fld_0','db_fld_1','db_fld_0','db_fld_1','db_fld_0','db_fld_1']});
+FunctionList.push({Name:'TakeAction',Refs:['db_fld_0','db_fld_1']});
+
+DbReferences.push({Id:"LeadDetails",Type:"Table",OnDemand:0,EntityId:"tbl_SC_lead",Columns:"",Xml:"<Layout\><Grid Id=\"tbl_SC_lead\"\><ColInfo\><Cols Type=\"\" Name=\"afdb78cd-f8b8-4aca-9c1e-abb71970a656\" EntityPath=\"\" Title=\"salutation\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"5f1cc532-38da-4463-a04d-7c787d69fb4c\" EntityPath=\"\" Title=\"contactpersonname\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"6112834d-22a7-439b-b19a-a5eedde02484\" EntityPath=\"\" Title=\"interestedproducttype\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"a7bd13d6-99aa-4895-aead-c810fb98dcb9\" EntityPath=\"\" Title=\"interestedproducts\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"bd7a5036-67e9-4833-a434-60bd2f9ed157\" EntityPath=\"\" Title=\"budgetmin\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"209bb89a-d506-4388-904a-7bb9ce1d84f8\" EntityPath=\"\" Title=\"budgetmax\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"26216bd5-cfa7-4191-bc6f-6320a525e945\" EntityPath=\"location:tbl_SC_location\" Title=\"locationname\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"tbl_SC_lead_createdDate\" EntityPath=\"\" Title=\"createddate\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\></ColInfo\></Grid\></Layout\><Filter Limit=\"\" Id=\"tbl_SC_lead\" Logic=\"1\"\><Condition Name=\"5e294de6-3ef4-4829-b531-233ab1af4cc0\" EntityPath=\"\" Operator=\"EqualTo\" Value=\"LeadId\" ValueSrc=\"Parameter\" ValueEntityPath=\"\" WFEID=\"\" WFName=\"\" SessionID=\"\" Srno=\"1\"\></Condition\><Sort\><ColInfo\></ColInfo\></Sort\><Parameters\><Param Key=\"LeadId\" /\></Parameters\></Filter\>",AlwaysLoad:false });window.LeadDetails='';
+DbReferences.push({Id:"leadactivity",Type:"Table",OnDemand:1,EntityId:"tbl_SC_leadactivity",Columns:"",Xml:"<Layout\><Grid Id=\"tbl_SC_leadactivity\"\><ColInfo\><Cols Type=\"\" Name=\"5e294de6-3ef4-4829-b531-233ab1af4cc0\" EntityPath=\"lead:tbl_SC_lead\" Title=\"lead_pid\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"f14cfc6a-67e3-48d9-975d-944ced65b454\" EntityPath=\"\" Title=\"activitydate\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"207f2106-b2dd-476d-a0df-64c1ce18096a\" EntityPath=\"leadactivitycategory:tbl_SC_leadactivitycategory\" Title=\"leadactivitycategorycode\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"d6bb82b1-a1ca-48cd-82d2-2adfda699677\" EntityPath=\"leadactivitytype:tbl_SC_leadactivitytype\" Title=\"leadactivitytypecode\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"f7ea3942-64f2-4f81-abcc-9efb60449b34\" EntityPath=\"\" Title=\"schedulestart\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"c50cf244-4da0-4e40-abf1-0fc03da646a8\" EntityPath=\"\" Title=\"scheduleend\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"24000088-b279-441e-a48e-bf2819d4140d\" EntityPath=\"\" Title=\"activityuser\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"f381692b-5fa7-4063-8951-e27fba608366\" EntityPath=\"\" Title=\"ispickuprequired\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"57e1f886-0543-4677-b5bc-4278be835994\" EntityPath=\"\" Title=\"pickupdate\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"dcdfd3e0-85c5-4b5e-b29e-5d656e92384a\" EntityPath=\"\" Title=\"agenda\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"eecd4636-7e5e-4595-ab08-a50002fc2eb3\" EntityPath=\"\" Title=\"subject\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"48d38186-c05c-4cd3-80f2-19c59cad7c8c\" EntityPath=\"\" Title=\"note\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"8ef7921d-b073-4ceb-93f2-e2a618e2dbd2\" EntityPath=\"\" Title=\"feeddescription\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"ed0767e3-94e3-4746-a3b6-85b46513d844\" EntityPath=\"\" Title=\"isscheduleperformed\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"140bd97d-bfae-4878-9f88-6a6729b946cb\" EntityPath=\"leadfeedback:tbl_SC_leadfeedback\" Title=\"leadfeedbackcode\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"6806cb05-4d48-4692-8306-407b359e236e\" EntityPath=\"product:tbl_SC_product\" Title=\"productname\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"0951a174-0d4f-4ab9-ab12-aaa299e4cefb\" EntityPath=\"\" Title=\"smsmessage\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"56384888-91cb-4b64-9bd4-a57c6afcb722\" EntityPath=\"createdBy_User_Fid:tbl_SYS_Users\" Title=\"createduser\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"a2d898f1-5b2b-4c91-a617-aedb251cbb7c\" EntityPath=\"pickuplocation:tbl_SC_pickuplocation\" Title=\"displaylocation\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"16fe29a7-1cde-4093-a58b-85e66aeb3e61\" EntityPath=\"\" Title=\"leadactivity_pid\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"441a3041-01f9-4ce5-bb99-ae3b11fc3e89\" EntityPath=\"lead:tbl_SC_lead\" Title=\"mobile2\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"673ffdcf-3ecf-4a0b-abd2-4cefc7bdeabb\" EntityPath=\"lead:tbl_SC_lead\" Title=\"mobile1\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"88b49913-d873-486f-a98d-7ca8e01c96f3\" EntityPath=\"product:tbl_SC_product\" Title=\"product_pid\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"f43cdf61-bfc9-496e-83dd-d4d4b579980a\" EntityPath=\"smstemplate:tbl_SC_smstemplate\" Title=\"smstemplatecode\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"ca95a817-97ab-4598-840b-e6274783abfb\" EntityPath=\"\" Title=\"followupdate\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"edff62c1-b988-4523-86a3-deee1ce0a17d\" EntityPath=\"\" Title=\"activitystatus\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"63198e30-4a40-4aa6-b9c4-cd65e7435cd5\" EntityPath=\"\" Title=\"leadfeedbackstatusremark\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"0291718b-0517-4bf4-8215-e1eb3d6e917e\" EntityPath=\"\" Title=\"mainoriginleadactivityfid\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"4f7dae1d-873d-4cd5-97bc-0ea43fd6c1ec\" EntityPath=\"\" Title=\"previousoriginleadactivityfid\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"8b1c5950-ced6-4267-85b7-475a0be06727\" EntityPath=\"leadactivitytype:tbl_SC_leadactivitytype\" Title=\"leadactivitytypename\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\></ColInfo\></Grid\></Layout\><Filter Limit=\"\" Id=\"tbl_SC_leadactivity\" Logic=\"1\"\><Condition Name=\"5e294de6-3ef4-4829-b531-233ab1af4cc0\" EntityPath=\"lead:tbl_SC_lead\" Operator=\"EqualTo\" Value=\"LeadId\" ValueSrc=\"Parameter\" ValueEntityPath=\"\" WFEID=\"\" WFName=\"\" SessionID=\"\" Srno=\"1\"\></Condition\><Sort\><ColInfo\><Cols Name=\"f14cfc6a-67e3-48d9-975d-944ced65b454\" EntityPath=\"\" Sort=\"Desc\" fieldtype=\"-999\" /\></ColInfo\></Sort\><Parameters\><Param Key=\"LeadId\" /\></Parameters\></Filter\>",AlwaysLoad:false });window.leadactivity='';
+DbReferences.push({Id:"LeadActivityCategory",Type:"Table",OnDemand:0,EntityId:"tbl_SC_leadactivitycategory",Columns:"",Xml:"<Layout\><Grid Id=\"tbl_SC_leadactivitycategory\"\><ColInfo\><Cols Type=\"\" Name=\"8f61d72f-29f6-4973-946c-993476171574\" EntityPath=\"\" Title=\"leadactivitycategory_pid\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"dda032f3-fe67-4e26-a1c8-975fa8944dc3\" EntityPath=\"\" Title=\"leadactivitycategoryname\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"207f2106-b2dd-476d-a0df-64c1ce18096a\" EntityPath=\"\" Title=\"leadactivitycategorycode\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\></ColInfo\></Grid\></Layout\>",AlwaysLoad:false });window.LeadActivityCategory='';
+DbReferences.push({Id:"resendSMS",Type:"Table",OnDemand:1,EntityId:"tbl_SC_leadactivity",Columns:"",Xml:"<Layout\><Grid Id=\"tbl_SC_leadactivity\"\><ColInfo\><Cols Type=\"\" Name=\"16fe29a7-1cde-4093-a58b-85e66aeb3e61\" EntityPath=\"\" Title=\"leadactivity_pid\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"88b49913-d873-486f-a98d-7ca8e01c96f3\" EntityPath=\"product:tbl_SC_product\" Title=\"product_pid\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"673ffdcf-3ecf-4a0b-abd2-4cefc7bdeabb\" EntityPath=\"lead:tbl_SC_lead\" Title=\"mobile1\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"441a3041-01f9-4ce5-bb99-ae3b11fc3e89\" EntityPath=\"lead:tbl_SC_lead\" Title=\"mobile2\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"f43cdf61-bfc9-496e-83dd-d4d4b579980a\" EntityPath=\"smstemplate:tbl_SC_smstemplate\" Title=\"smstemplatecode\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"cb71ce8b-b85c-4f37-8da5-749af329d2e0\" EntityPath=\"smstemplate:tbl_SC_smstemplate\" Title=\"smstemplatetemplate\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"e672a624-9f09-4a67-9ef5-2034fcefa78e\" EntityPath=\"\" Title=\"leadactivitycategory\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"0951a174-0d4f-4ab9-ab12-aaa299e4cefb\" EntityPath=\"\" Title=\"smsmessage\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"6806cb05-4d48-4692-8306-407b359e236e\" EntityPath=\"product:tbl_SC_product\" Title=\"productname\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"5e294de6-3ef4-4829-b531-233ab1af4cc0\" EntityPath=\"lead:tbl_SC_lead\" Title=\"lead_pid\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"subquery\" Title=\"leadactivitytypecode\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" Status=\"1\"\><Subquery Table=\"tbl_SC_leadactivitytype\" Target=\"5c3d6232-db81-4066-a756-734784e909ec\" TargetType=\"Single\" EntityPath=\"\" Summary=\"None\" Logic=\"1 and 2\"\><Condition Name=\"207f2106-b2dd-476d-a0df-64c1ce18096a\" EntityPath=\"leadactivitycategory:tbl_SC_leadactivitycategory\" Operator=\"EqualTo\" Value=\"SMS\" ValueSrc=\"Input\" WFName=\"\" SessionID=\"\" Srno=\"1\"\></Condition\><Condition Name=\"d6bb82b1-a1ca-48cd-82d2-2adfda699677\" EntityPath=\"\" Operator=\"EqualTo\" Value=\"Outgoing\" ValueSrc=\"Input\" WFName=\"\" SessionID=\"\" Srno=\"2\"\></Condition\><Sort\><ColInfo\></ColInfo\></Sort\><Parameters\></Parameters\></Subquery\></Cols\></ColInfo\></Grid\></Layout\><Filter Limit=\"\" Id=\"tbl_SC_leadactivity\" Logic=\"1\"\><Condition Name=\"16fe29a7-1cde-4093-a58b-85e66aeb3e61\" EntityPath=\"\" Operator=\"EqualTo\" Value=\"leadActivityID\" ValueSrc=\"Parameter\" ValueEntityPath=\"\" WFEID=\"\" WFName=\"\" SessionID=\"\" Srno=\"1\"\></Condition\><Sort\><ColInfo\></ColInfo\></Sort\><Parameters\><Param Key=\"leadActivityID\" /\></Parameters\></Filter\>",AlwaysLoad:false });window.resendSMS='';
+DbReferences.push({Id:"leadactivitylastvisit",Type:"Value",OnDemand:1,EntityId:"",Columns:"",Xml:"<Subquery Table=\"tbl_SC_leadactivity\" Target=\"f14cfc6a-67e3-48d9-975d-944ced65b454\" TargetType=\"Single\" EntityPath=\"\" Summary=\"First\" Logic=\"1 and 2 and 3\"\><Condition Name=\"76621c82-807c-4311-86fc-b4600a104e45\" EntityPath=\"\" Operator=\"EqualTo\" Value=\"LeadId\" ValueSrc=\"Parameter\" ValueEntityPath=\"\" WFEID=\"\" WFName=\"\" SessionID=\"\" Srno=\"1\"\></Condition\><Condition Name=\"edff62c1-b988-4523-86a3-deee1ce0a17d\" EntityPath=\"\" Operator=\"EqualTo\" Value=\"SiteVisitCompleted\" ValueSrc=\"Input\" WFName=\"\" SessionID=\"\" Srno=\"2\"\></Condition\><Condition Name=\"207f2106-b2dd-476d-a0df-64c1ce18096a\" EntityPath=\"leadactivitycategory:tbl_SC_leadactivitycategory\" Operator=\"EqualTo\" Value=\"Site Visit\" ValueSrc=\"Input\" WFName=\"\" SessionID=\"\" Srno=\"3\"\></Condition\><Sort\><ColInfo\><Cols Name=\"f14cfc6a-67e3-48d9-975d-944ced65b454\" EntityPath=\"\" Sort=\"Desc\" fieldtype=\"-999\" /\></ColInfo\></Sort\><Parameters\><Param Key=\"LeadId\" /\></Parameters\></Subquery\>",AlwaysLoad:false });window.leadactivitylastvisit='';
+ mxEntityList={};
+
+
+
+};
+var lead_ID;
+var outgoinglogid;
+Erp.OnLoad.Register(LoadFunction);
+function LoadFunction()
+{
+  Erp.SetDisplay('winaction',false);
+  lead_ID = Fn.GetProp('ID');
+  Erp.SetParam(window,'LeadId',lead_ID);
+  Erp.LoadVariable('leadactivity',createleadactivity);
+  Erp.LoadVariable('LeadDetails',createleadDetails);
+  Erp.LoadVariable('leadactivitylastvisit',createleadDetails);
+
+}
+function createleadactivity()
+{
+  var htmlContent="";
+  if(leadactivity!=null)
+  {
+    htmlContent = htmlContent + " <div id='Div1' style='padding:10px;'>";
+    htmlContent = htmlContent + " <div class='mainDiv'>";
+    var subDivclass = "";
+    var spanclass = "";
+    var maincontent = "";
+    for(var a=0;a<leadactivity.length;a++)
+    {
+      var leadactivitycategorycode =  leadactivity[a]["leadactivitycategorycode"];
+    
+      if (leadactivitycategorycode == "SMS")
+      {
+        subDivclass = "SMS";
+        if (leadactivity[a]["leadactivitytypename"] =="Outgoing"){
+        spanclass = "<span class='icon-stack'><a class='message'></a><a class='arrowSend'></a></span>";
+        }
+        if (leadactivity[a]["leadactivitytypename"] =="Incoming"){
+        spanclass = "<span class='icon-stack'><a class='message'></a><a class='arrowReciv'></a></span>";
+        }
+        maincontent = leadactivity[a]["smsmessage"];
+      }
+      if (leadactivitycategorycode == "Email")
+      {
+        subDivclass = "Email";
+      
+        if (leadactivity[a]["leadactivitytypename"] =="Outgoing"){
+        spanclass = "<span class='icon-stack'><a class='email'></a><a class='arrowSend'></a></span>";
+        }
+        if (leadactivity[a]["leadactivitytypename"] =="Incoming"){
+        spanclass = "<span class='icon-stack'><a class='email'></a><a class='arrowReciv'></a></span>";
+        }
+        maincontent = leadactivity[a]["subject"];
+      }
+      if (leadactivitycategorycode == "Notes")
+      {
+        subDivclass = "Note";
+        spanclass = "<span class='NoteFont'></span>";
+        maincontent = "Note : "+ leadactivity[a]["note"];
+      }
+      if (leadactivitycategorycode == "Followup")
+      {
+        subDivclass = "FollowUp";
+          spanclass = "<span class='FollowUpFont'></span>";
+        if (leadactivity[a]["feeddescription"] == ""){ 
+         maincontent =  "Follow Up Added for "+Fn.Format(leadactivity[a]["followupdate"],'{0:dd-MM-yyyy HH:mm:ss}'); 
+        }
+        else{
+          maincontent =  "Follow Up Added for "+Fn.Format(leadactivity[a]["followupdate"],'{0:dd-MM-yyyy HH:mm:ss}') +" </br>   Discription : "+leadactivity[a]["feeddescription"] +""; 
+        }
+        
+      }
+      if (leadactivitycategorycode == "Site Visit") 
+      {
+        subDivclass = "SiteVisit";
+        spanclass = "<span class='SiteVisitFont'></span>";
+        maincontent = "Site Visit Scheduled On "+Fn.Format(leadactivity[a]["followupdate"],'{0:dd-MM-yyyy}')+" between "+Fn.Format(leadactivity[a]["schedulestart"],'{0:HH:mm:ss}')+" To "+Fn.Format(leadactivity[a]["scheduleend"],'{0:HH:mm:ss}')+ " at "+leadactivity[a]["displaylocation"]+" at "+Fn.Format(leadactivity[a]["pickupdate"],'{0:HH:mm:ss}');
+      }
+      if (leadactivitycategorycode == "Calls") 
+      {
+        subDivclass = "Call";
+           if (leadactivity[a]["leadactivitytypename"] =="Outgoing"){
+        spanclass = "<span class='icon-stack'><a class='icall'></a><a class='arrowSend'></a></span>";
+        }
+        if (leadactivity[a]["leadactivitytypename"] =="Incoming"){
+        spanclass = "<span class='icon-stack'><a class='icall'></a><a class='arrowReciv'></a></span>";
+        }
+        maincontent = leadactivity[a]["subject"];
+      }
+      if (leadactivitycategorycode == "Feed")
+      {
+        subDivclass = "Feed";
+        spanclass = "<span class='FeedFont'></span>";
+        maincontent = leadactivity[a]["subject"];
+      }
+      
+      htmlContent = htmlContent + "       <div class='subMainDiv "+subDivclass+"'>";
+      htmlContent = htmlContent + "           <table class='width100'>";
+      htmlContent = htmlContent + "               <tr>";
+      htmlContent = htmlContent + "                   <td>";
+      htmlContent = htmlContent + "                       <div class='width100 font15'>";
+      htmlContent = htmlContent + "                           <div class='fontLeftBold' >";
+      htmlContent = htmlContent + "                           "+spanclass+"";
+
+      htmlContent = htmlContent + "                           </div>";
+      htmlContent = htmlContent + "                           <div class='fontRight'>";
+      htmlContent = htmlContent + "                               <span>"+leadactivity[a]["createduser"]+"</span>";
+      htmlContent = htmlContent + "                           </div>";
+      htmlContent = htmlContent + "                       </div>";
+      htmlContent = htmlContent + "                   </td>";
+      htmlContent = htmlContent + "               </tr>";
+      htmlContent = htmlContent + "               <tr>";
+      htmlContent = htmlContent + "                   <td>";
+      htmlContent = htmlContent + "                       <div class='width100 subject'>";
+      htmlContent = htmlContent + "                           <span>"+ maincontent +"</span>";
+      htmlContent = htmlContent + "                       </div>";
+      htmlContent = htmlContent + "                   </td>";
+      htmlContent = htmlContent + "               </tr>";
+      htmlContent = htmlContent + "               <tr>";
+      htmlContent = htmlContent + "                   <td>";
+      htmlContent = htmlContent + "                       <div class='width100 buttonrow'>";
+      if(leadactivitycategorycode == "Calls")
+      {
+        htmlContent = htmlContent + "                           (00:33)<span class='playFont'></span>";
+        htmlContent = htmlContent + "                           <span class='DownloadFont'></span>";
+        htmlContent = htmlContent + "                           <span class='mailSend'></span>";
+      }
+      var act_pid = "\""+leadactivity[a]['leadactivity_pid']+"\"";
+      var layoutframe = "\""+subDivclass+"\"";
+      htmlContent = htmlContent + " <a href='#' class='viewDataClick' onclick='ViewActivity("+act_pid+","+layoutframe+")'>View Details</a>";
+      htmlContent = htmlContent + " </div>";
+      htmlContent = htmlContent + " </td>";
+      htmlContent = htmlContent + " </tr>";
+      htmlContent = htmlContent + " <tr>";
+      htmlContent = htmlContent + " <td class='ViewData'>";
+      htmlContent = htmlContent + " <div class='width100 discription'>";
+      if (leadactivity[a]['isscheduleperformed'] != true )
+      {
+     
+        if (leadactivity[a]['activitystatus'] == null  ) 
+            {   
+                    var seid = "Action"+a;
+                    var selectid = "\""+seid+"\"";
+                    var mainoriginleadactivityfid1 =   leadactivity[a]['mainoriginleadactivityfid'];
+        
+                            if (mainoriginleadactivityfid1 == null)
+                            {
+                              mainoriginleadactivityfid1 = "";
+                            }
+                    var mainoriginleadactivityfid =  "\""+  mainoriginleadactivityfid1+"\"";
+            
+            
+     
+
+        if (subDivclass == "SMS")
+        {
+        htmlContent = htmlContent + " <span>Action <select id='Action"+a+"' ";
+        htmlContent = htmlContent + ">";
+        htmlContent = htmlContent + " <option value='PleaseSelect'>-Please Select-</option>";
+        htmlContent = htmlContent + "  <option value='SendSMS'>Send SMS</option>";
+       // htmlContent = htmlContent + "  <option value='ReSendSMS'>ReSend</option>";
+        htmlContent = htmlContent + "  </select></span>";
+        htmlContent = htmlContent + "<button type='button' onclick='TakeAction("+act_pid+","+layoutframe+","+selectid+","+act_pid+","+mainoriginleadactivityfid+")' >Take Action</button>";
+        }
+        if (subDivclass == "Email")
+        {
+            htmlContent = htmlContent + " <span>Action <select id='Action"+a+"' ";
+            htmlContent = htmlContent + ">";
+            htmlContent = htmlContent + " <option value='PleaseSelect'>-Please Select-</option>";
+          if ( leadactivity[a]["leadactivitytypename"] =="Incoming"){
+               htmlContent = htmlContent + "  <option value='ReplyEmail'>Reply</option>";
+          }
+           // htmlContent = htmlContent + "  <option value='ReSendEmail'>ReSend</option>";
+          else
+          {
+            htmlContent = htmlContent + "  <option value='SendEmail'>Send Email</option>";
+          }
+            htmlContent = htmlContent + "  </select></span>";
+            htmlContent = htmlContent + "<button type='button' onclick='TakeAction("+act_pid+","+layoutframe+","+selectid+","+act_pid+","+mainoriginleadactivityfid+")' >Take Action</button>";
+        }
+      /*  if (subDivclass == "Note")
+        {
+          htmlContent = htmlContent + "  <option value='AddNote'>Add Note</option>";
+        }*/
+        if (subDivclass == "FollowUp")
+        {
+            htmlContent = htmlContent + " <span>Action <select id='Action"+a+"' ";
+            htmlContent = htmlContent + ">";
+            htmlContent = htmlContent + " <option value='PleaseSelect'>-Please Select-</option>";
+            htmlContent = htmlContent + "  <option value='FollowupReshedule'>Reshedule</option>";
+            htmlContent = htmlContent + "  <option value='FollowupCompleted'>Completed</option>";
+            htmlContent = htmlContent + "  <option value='FollowupCall'>Call</option>";
+            htmlContent = htmlContent + "  </select></span>";
+            htmlContent = htmlContent + "<button type='button' onclick='TakeAction("+act_pid+","+layoutframe+","+selectid+","+act_pid+","+mainoriginleadactivityfid+")' >Take Action</button>";
+        }
+        if (subDivclass == "SiteVisit")
+        {
+              htmlContent = htmlContent + " <span>Action <select id='Action"+a+"' ";
+              htmlContent = htmlContent + ">";
+              htmlContent = htmlContent + " <option value='PleaseSelect'>-Please Select-</option>";
+              htmlContent =htmlContent + "  <option value='SiteVisitReshedule'>Reshedule</option>";
+              htmlContent =htmlContent + "  <option value='SiteVisitCompleted'>Completed</option>";
+              htmlContent =htmlContent + "  <option value='SiteVisitCall'>Call</option>";
+              htmlContent = htmlContent + "  </select></span>";
+              htmlContent = htmlContent + "<button type='button' onclick='TakeAction("+act_pid+","+layoutframe+","+selectid+","+act_pid+","+mainoriginleadactivityfid+")' >Take Action</button>";
+        }
+
+        }
+        else
+        {
+          	  
+          if (leadactivity[a]['activitystatus'] == "FollowupReshedule")
+          {
+            htmlContent =  htmlContent + "Reshedule Reason : "+leadactivity[a]['leadfeedbackstatusremark']+""; 
+          }
+          else if (leadactivity[a]['activitystatus'] == "ReplyEmail")
+          {
+            htmlContent =  htmlContent + "Replied"; 
+          }
+          else if (leadactivity[a]['activitystatus'] == "SendEmail")
+          {
+            htmlContent =  htmlContent + "Send"; 
+          }
+          else {
+           
+             htmlContent =  htmlContent + ""+leadactivity[a]['leadfeedbackstatusremark']+""; 
+          }
+        }
+      }
+      else {
+        htmlContent = htmlContent + "Activity Completed ("+leadactivity[a]['leadfeedbackstatusremark']+")";
+      }
+      htmlContent = htmlContent + "      </div>";
+      htmlContent = htmlContent + "         </td>";
+      htmlContent = htmlContent + "            </tr>";
+      htmlContent = htmlContent + "               <tr>";
+      htmlContent = htmlContent + "                   <td>";
+      htmlContent = htmlContent + "                       <div class='width100'>";
+      htmlContent = htmlContent + "                           <div class='showdate' >";
+      htmlContent = htmlContent + "                               <span>"+Fn.Format(leadactivity[a]["activitydate"],'{0:dd/MM/yyyy HH:MM:ss}')+"</span>";
+      htmlContent = htmlContent + "                           </div>";
+      htmlContent = htmlContent + "                       </div>";
+      htmlContent = htmlContent + "                   </td>";
+      htmlContent = htmlContent + "               </tr>";
+      htmlContent = htmlContent + "           </table>";
+      htmlContent = htmlContent + "       </div>";
+      spanclass = "";
+    }
+      htmlContent = htmlContent + "    </div>";
+      htmlContent = htmlContent + "    </div>";
+    $("#LeadActivity_Regarding").html(htmlContent);
+  }
+}
+function createleadDetails()
+{
+  var htmlContent1="";
+
+  if(LeadDetails!=null)
+  {
+    htmlContent1 =htmlContent1 + "<div id='PopupDiv' style='padding:10px;'>";
+    htmlContent1 =htmlContent1 + "<div class='mainDivTagsLead'>";
+    var subDivclass = "";
+    for(var a=0;a<LeadDetails.length;a++)
+    {
+      htmlContent1 = htmlContent1 + "<div class='subMainDivLead'>";
+      htmlContent1 = htmlContent1 + " <table class='width100'>";
+      htmlContent1 = htmlContent1 + "  <tr>";
+      htmlContent1 = htmlContent1 + "   <td class='textleft MainTitle'>Interested in <b>" + LeadDetails[a]["interestedproducts"]+ "</b> Apartment with budget between <b>"+ LeadDetails[a]["budgetmin"]+" to "+ LeadDetails[a]["budgetmax"]+"</b> - <span class='Edit' onclick='OpenEditWindow()'></span></td>";
+      htmlContent1 = htmlContent1 + "    <td class='MainTitle1'>";
+      htmlContent1 = htmlContent1 + "       <select class='select1' disabled>";
+      htmlContent1 = htmlContent1 + "         <option value='0'>Marked Follow Up</option>";
+      htmlContent1 = htmlContent1 + "       </select>";
+      htmlContent1 = htmlContent1 + "    </td>";
+      htmlContent1 = htmlContent1 + "      </tr>";
+      htmlContent1 = htmlContent1 + "      <tr>";
+      htmlContent1 = htmlContent1 + "          <td>";
+      htmlContent1 = htmlContent1 + "             <span class='bold Subtitle NoteLeadColor'><span class='NoteLead'></span>Note :</span>";
+      htmlContent1 = htmlContent1 + "              <br/><span class='Subtitle paraLeft30 bold'>will get back till this week</span>";
+      htmlContent1 = htmlContent1 + "          </td>";
+      htmlContent1 = htmlContent1 + "          <td></td>";
+      htmlContent1 = htmlContent1 + "      </tr>";
+      htmlContent1 = htmlContent1 + "      <tr valign='top'>";
+      htmlContent1 = htmlContent1 + "          <td valign='top'>";
+      htmlContent1 = htmlContent1 + "              <div class='textleft player'>";
+      htmlContent1 = htmlContent1 + "                  <audio controls controlsList='nodownload'>";
+      htmlContent1 = htmlContent1 + "                      <source src='MP3/Kalimba.mp3' type='audio/mp3'>";
+      htmlContent1 = htmlContent1 + "                      Your browser does not support the audio element.";
+      htmlContent1 = htmlContent1 + "                  </audio>";
+      htmlContent1 = htmlContent1 + "              </div>";
+      htmlContent1 = htmlContent1 + "          </td>";
+      htmlContent1 = htmlContent1 + "          <td valign='top' class='textright Subtitle clickCallLead'>Click to Play last Call <span class='CallLead'></span></td>";
+      htmlContent1 = htmlContent1 + "      </tr>";
+      htmlContent1 = htmlContent1 + "      <tr>";
+      htmlContent1 = htmlContent1 + "          <td colspan='2' class='MainTitle bold TagsColor'><span class='Tags'></span> Tags</td>";
+      htmlContent1 = htmlContent1 + "      </tr>";
+      htmlContent1 = htmlContent1 + "      <tr>";
+      if (LeadDetails[a]["leadtagname"] != null)
+      {
+          htmlContent1 = htmlContent1 + "          <td colspan='2' class='borderbox'>"+LeadDetails[a]["leadtagname"]+"</td>";
+      }
+      htmlContent1 = htmlContent1 + "      </tr>";
+      htmlContent1 = htmlContent1 + "      <tr>";
+      htmlContent1 = htmlContent1 + "          <td>";
+      htmlContent1 = htmlContent1 + "              <span class='textleft Subtitle alignleft'>";
+    
+     // if (Fn.IsEmpty(leadactivitylastvisit == false)){
+        
+           if (leadactivitylastvisit != null  )
+             {
+                 htmlContent1 = htmlContent1 + "<span class='Hash'></span> <b>Last site visit : </b>"+Fn.Format(leadactivitylastvisit,'{0:dd-MM-yyyy HH:mm:ss}')+"<span></span>";
+             }
+     // }
+      htmlContent1 = htmlContent1 + "              </span>";
+      htmlContent1 = htmlContent1 + "          </td>";
+      htmlContent1 = htmlContent1 + "          <td>";
+      htmlContent1 = htmlContent1 + "              <span class='textright Subtitle alignright'>";
+      
+      htmlContent1 = htmlContent1 + "                  <span class='Hash'></span> <b>Lead received :</b> "+LeadDetails[a]["createddate"]+"";
+      //htmlContent1 = htmlContent1 + (LeadDetails[0]["schedulestart"]>0?"<span class='Hash'></span>  <b>Last site visit : </b>"+Fn.Format(LeadDetails[0]["schedulestart"],"{0:dd-MM-yyyy HH:mm:ss}")+"":"<span></span>");
+      htmlContent1 = htmlContent1 + "              </span>";
+      htmlContent1 = htmlContent1 + "          </td>";
+      htmlContent1 = htmlContent1 + "      </tr>";
+      htmlContent1 = htmlContent1 + "  </table>";
+      htmlContent1 = htmlContent1 + "</div>";
+    } 
+      htmlContent1 = htmlContent1 + "    </div>";
+      htmlContent1 = htmlContent1 + "    </div>";
+    $("#leadRegarding").html(htmlContent1);
+  }
+  ActivityDropdown();
+}
+function OpenEmailWindow(){
+  $(window).scrollTop();
+  /*Erp.SetDisplay('winaction',true);*/
+  Erp.OpenWindow({"Action":"ADDFORM","Entity":"tbl_SC_leadactivity","Form":"LeadActivityEmail","Refresh":false,"Global":false,"Title":"EMAIL","Params":"lead_ID="+lead_ID+"","Location":"Popup","PopHt":"400","PopWd":"700"});
+  
+}
+function openSMSWindow(){
+  $(window).scrollTop();
+  /*Erp.SetDisplay('winaction',true);*/
+  Erp.OpenWindow({"Action":"ADDFORM","Entity":"tbl_SC_leadactivity","Form":"LeadActivitySMS","Refresh":false,"Global":false,"Title":"SMS","Params":"lead_ID="+lead_ID+"","Location":"Popup","PopHt":"400","PopWd":"700"});
+}
+function openWindowNote(){
+  $(window).scrollTop();
+ /* Erp.SetDisplay('winaction',true);*/
+  Erp.OpenWindow({"Action":"ADDFORM","Entity":"tbl_SC_leadactivity","Form":"LeadActivityNote","Refresh":false,"Global":false,"Title":"NOTE","Params":"lead_ID="+lead_ID+"","Location":"Popup","PopHt":"400","PopWd":"700"});
+}
+function OpenFollowupWindow(){
+  $(window).scrollTop();
+ /* Erp.SetDisplay('winaction',true);*/
+  Erp.OpenWindow({ "Action":"ADDFORM","Entity":"tbl_SC_leadactivity","Form":"Add_Follow_Up","Refresh":false,"Global":false,"Title":"FOLLOWUP","Params":"pid="+lead_ID+"","Location":"Popup","PopHt":"400","PopWd":"700"});
+}
+function OpenVisitSiteWindow(){
+  $(window).scrollTop();
+/*  Erp.SetDisplay('winaction',true);*/
+  Erp.OpenWindow({"Action":"ADDFORM","Entity":"tbl_SC_leadactivity","Form":"Add_Visit_Site","Refresh":false,"Global":false,"Title":"VISIT SITE","Params":"pid="+lead_ID+"","Location":"Popup","PopHt":"400","PopWd":"700"});
+}
+function OpenEditWindow(){
+  $(window).scrollTop();
+  /*Erp.SetDisplay('winaction',true);*/
+  Erp.OpenWindow({"Action":"EDITFORM","Entity":"tbl_SC_lead","Form":"Layout Lead Real Estate V2","RecordID":lead_ID,"Refresh":false,"Global":false,"Title":"EDIT LEAD","Params":"lead_ID="+lead_ID+"","Location":"Self"});
+}
+
+function CallToCustomer(a)
+{
+  Telephony.ConnectClientToAgent({entityId:'tbl_SC_lead',recordId:Erp.RecordID,callback:callstatus,btn:a});
+  return false;
+}
+
+  
+ 
+
+
+function callstatus(result)
+{
+  if(result.Success)
+  {
+     Erp.ShowMessage('Placed');
+  }
+}
+
+function ViewActivity(pid,frame)
+{
+  var formcode="";
+  if (frame =="Email")
+  {
+    formcode="LeadActivityEmail";
+  }
+  if (frame =="SMS")
+  {
+    formcode="LeadActivitySMS";
+  }
+  if (frame =="Note")
+  {
+    formcode="LeadActivityNote";
+  }
+  if (frame =="FollowUp")
+  {
+    formcode="Add_Follow_Up";
+  }
+  if (frame =="SiteVisit")
+  {
+    formcode="Add_Visit_Site";
+  }
+  Erp.OpenWindow({"Action":"EDITFORM","Entity":"tbl_SC_leadactivity","Form":formcode,"RecordID":pid,"Refresh":false,"Global":false,"Title":"","Params":"lead_ID="+lead_ID+"","Location":"Popup","PopHt":"400","PopWd":"700"});
+}
+function ActivityDropdown (){
+  var htmlContent = "<div style='margin-left: 200px;'> Filter Activity By ";
+  htmlContent =  htmlContent + "<select id='LeadActivityCategory' onchange='HideShowActivity()'>";
+  htmlContent =  htmlContent + "<option value='PleaseSelect'>-Please Select-</option>";
+  htmlContent =  htmlContent + "<option value='All'>All</option>";
+  for (var a=0;a<LeadActivityCategory.length;a++){
+    htmlContent =  htmlContent + "<option value='"+LeadActivityCategory[a]["leadactivitycategorycode"]+"'>"+LeadActivityCategory[a]["leadactivitycategoryname"]+"</option>";
+  }
+    htmlContent = htmlContent + "</select></div>";
+    $("#HTML-3").html(htmlContent);
+}
+function HideShowActivity (){
+  var Categoryname = document.getElementById('LeadActivityCategory').value;
+  if(Categoryname == "PleaseSelect" || Categoryname == "All"){
+    createleadactivity();
+    return false;
+  }
+  if (Categoryname == 'Site Visit')   
+  {
+      Categoryname ='SiteVisit';
+  }
+  if (Categoryname == 'Notes')
+  {
+      Categoryname ='Note';
+  }
+  if (Categoryname == 'Followup')
+  {
+      Categoryname = 'FollowUp';
+  }
+  $('.subMainDiv').each(function (){
+    var className = $(this).attr('class').split(' ');
+    if (className[1] == Categoryname)
+    {
+      $(this).show();
+    }
+    else {
+      $(this).hide();
+    }
+  });
+}
+function TakeAction (pid,frame,id,act_pid,mainoriginleadactivityfid)
+{
+  var getSelectedvalue = document.getElementById(id).value;
+ // alert(pid);
+  if (getSelectedvalue == "SendSMS"){
+    $('html').animate({ "scrollTop":0},'500');
+   // Erp.SetDisplay('winaction',true);
+    Erp.OpenWindow({"Action":"ADDFORM","Entity":"tbl_SC_leadactivity","Form":"LeadActivitySMS","Refresh":false,"Global":false,"Title":"","Params":"lead_ID="+lead_ID+"&ActivityStatus="+getSelectedvalue+"&act_pid="+act_pid+"&mainoriginleadactivityfid="+mainoriginleadactivityfid+"","Location":"Popup","PopHt":"400","PopWd":"700"});
+  }
+  if(getSelectedvalue == "ReSendSMS")		
+  {
+    Erp.SetParam(window,"leadActivityID",pid);
+    Erp.LoadVariable("resendSMS",readSMSDetails);
+  } 
+  
+  if (getSelectedvalue == "SendEmail"){
+    $('html').animate({ "scrollTop":0},'500');
+    //Erp.SetDisplay('winaction',true);
+    Erp.OpenWindow({"Action":"ADDFORM","Entity":"tbl_SC_leadactivity","Form":"LeadActivityEmail","Refresh":false,"Global":false,"Title":"","Params":"lead_ID="+lead_ID+"&ActivityStatus="+getSelectedvalue+"&act_pid="+act_pid+"&mainoriginleadactivityfid="+mainoriginleadactivityfid+"","Location":"Popup","PopHt":"400","PopWd":"700"});
+  }
+  if (getSelectedvalue == "ReplyEmail"){
+        Erp.OpenWindow({"Action":"ADDFORM","Entity":"tbl_SC_leadactivity","Form":"LeadActivityEmail","Refresh":false,"Global":false,"Title":"","Params":"lead_ID="+lead_ID+"&ActivityStatus="+getSelectedvalue+"&act_pid="+act_pid+"&mainoriginleadactivityfid="+mainoriginleadactivityfid+"","Location":"Popup","PopHt":"400","PopWd":"700"});
+  }
+  
+  if (getSelectedvalue == "AddNote"){
+    $('html').animate({"scrollTop":0},'500');
+    //Erp.SetDisplay('winaction',true);
+    Erp.OpenWindow({"Action":"ADDFORM","Entity":"tbl_SC_leadactivity","Form":"LeadActivityNote","Refresh":false,"Global":false,"Title":"","Params":"lead_ID="+lead_ID+"&ActivityStatus="+getSelectedvalue+"&act_pid="+act_pid+"&mainoriginleadactivityfid="+mainoriginleadactivityfid+"","Location":"Popup","PopHt":"400","PopWd":"700"});
+  }
+  if (getSelectedvalue == "FollowupReshedule"){
+    $('html').animate({"scrollTop":0},'500');
+    //Erp.SetDisplay('winaction',true);
+    Erp.OpenWindow({"Action":"ADDFORM","Entity":"tbl_SC_leadactivity","Form":"Add_Follow_Up","Refresh":false,"Global":false,"Title":"","Params":"pid="+lead_ID+"&ActivityStatus="+getSelectedvalue+"&act_pid="+act_pid+"&mainoriginleadactivityfid="+mainoriginleadactivityfid+"","Location":"Popup","PopHt":"400","PopWd":"700"});
+  }
+  if (getSelectedvalue == "FollowupCompleted"){
+   // var ent = new Erp.Entity('tbl_SC_leadactivity',pid);
+   // ent.ModifiedBy = db_fld_0;
+   // ent.CompanyID = db_fld_1;
+   // //ent.MetaData=_app.MetaData;
+   // ent.Data('isscheduleperformed',true);
+   // Erp.SaveEntity([ent],UpdateMassage);
+   // LoadFunction();
+    
+    Erp.OpenWindow({"Action":"EDITFORM","Entity":"tbl_SC_leadactivity","Form":"CompleteRemark","RecordID":act_pid,"Refresh":false,"Global":false,"Title":"","Params":"lead_ID="+lead_ID+"&ActivityStatus="+getSelectedvalue+"","Location":"Popup","PopHt":"400","PopWd":"700"});
+  }
+  if (getSelectedvalue == "FollowupCall"){
+    alert(getSelectedvalue);
+  }
+  if (getSelectedvalue == "SiteVisitReshedule"){
+    $('html').animate({"scrollTop":0},'500');
+    //Erp.SetDisplay('winaction',true);
+    Erp.OpenWindow({"Action":"ADDFORM","Entity":"tbl_SC_leadactivity","Form":"Add_Visit_Site","Refresh":false,"Global":false,"Title":"","Params":"pid="+lead_ID+"&ActivityStatus="+getSelectedvalue+"&act_pid="+act_pid+"&mainoriginleadactivityfid="+mainoriginleadactivityfid+"","Location":"Popup","PopHt":"400","PopWd":"700"});
+  }
+  if (getSelectedvalue == "SiteVisitCompleted"){
+      Erp.OpenWindow({"Action":"EDITFORM","Entity":"tbl_SC_leadactivity","Form":"CompleteRemark","RecordID":act_pid,"Refresh":false,"Global":false,"Title":"","Params":"lead_ID="+lead_ID+"&ActivityStatus="+getSelectedvalue+"","Location":"Popup","PopHt":"400","PopWd":"700"});
+  }
+  if (getSelectedvalue == "SiteVisitCall"){
+     alert(getSelectedvalue);
+  }
+}
+function UpdateMassage(){
+  Erp.ShowMessage("Updated Successfully");
+  LoadFunction();
+}
+function readSMSDetails()
+{
+  var lead_id= resendSMS[0]["leadactivity_pid"];
+  var product =resendSMS[0]["product_pid"];
+  var smstempcode = resendSMS[0]["smstemplatecode"]; 									
+  var smstext = resendSMS[0]["smsmessage"];		
+  var mobile1 = resendSMS[0]["mobile1"];
+  var mobile2 = resendSMS[0]["mobile2"];
+  var activitycategory =resendSMS[0]["leadactivitycategory"];
+  var leadactivitytypecode = resendSMS[0]["leadactivitytypecode"];
+  //alert(leadactivitytypecode);
+  Erp.ServerCommand('sendSMS',{lead_id:lead_id,activitycategory:activitycategory,product:product,smstemplate:smstempcode,smstext:smstext,mobileno1:mobile1,mobile2:mobile2},function(){});
+}
+function readIncomingSMS()
+{
+  //Erp.ServerCommand('readIncomingSMS',{},function(cmd){alert(cmd);});
+}
+

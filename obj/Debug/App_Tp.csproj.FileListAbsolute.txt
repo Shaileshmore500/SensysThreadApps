@@ -1,0 +1,16 @@
+E:\Shailesh\Thread Apps\Apps\App_Tp\bin\App_Tp.dll.config
+E:\Shailesh\Thread Apps\Apps\App_Tp\bin\App_Tp.dll
+E:\Shailesh\Thread Apps\Apps\App_Tp\bin\App_Tp.pdb
+E:\Shailesh\Thread Apps\Apps\App_Tp\bin\DevExpress.Docs.v20.1.dll
+E:\Shailesh\Thread Apps\Apps\App_Tp\bin\DevExpress.Office.v20.1.Core.dll
+E:\Shailesh\Thread Apps\Apps\App_Tp\bin\DevExpress.RichEdit.v20.1.Core.dll
+E:\Shailesh\Thread Apps\Apps\App_Tp\bin\DevExpress.Spreadsheet.v20.1.Core.dll
+E:\Shailesh\Thread Apps\Apps\App_Tp\bin\DevExpress.Utils.v20.1.dll
+E:\Shailesh\Thread Apps\Apps\App_Tp\bin\DevExpress.Data.Desktop.v20.1.dll
+E:\Shailesh\Thread Apps\Apps\App_Tp\bin\DevExpress.Utils.v20.1.xml
+E:\Shailesh\Thread Apps\Apps\App_Tp\bin\DevExpress.Data.Desktop.v20.1.xml
+E:\Shailesh\Thread Apps\obj\Debug\App_Tp.csproj.CoreCompileInputs.cache
+E:\Shailesh\Thread Apps\obj\Debug\App_Tp.csproj.CopyComplete
+E:\Shailesh\Thread Apps\obj\Debug\App_Tp.dll
+E:\Shailesh\Thread Apps\obj\Debug\App_Tp.pdb
+E:\Shailesh\Thread Apps\obj\Debug\App_Tp.csprojAssemblyReference.cache

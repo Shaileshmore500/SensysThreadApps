@@ -1,0 +1,10 @@
+E:\Shailesh\Thread Apps\Apps\App_Qm\bin\App_Qm.dll.config
+E:\Shailesh\Thread Apps\Apps\App_Qm\bin\App_Qm.dll
+E:\Shailesh\Thread Apps\Apps\App_Qm\bin\App_Qm.pdb
+E:\Shailesh\Thread Apps\Apps\App_Qm\bin\System.Web.Http.dll
+E:\Shailesh\Thread Apps\Apps\App_Qm\bin\System.Net.Http.Formatting.dll
+E:\Shailesh\Thread Apps\obj\Debug\App_Qm.csprojAssemblyReference.cache
+E:\Shailesh\Thread Apps\obj\Debug\App_Qm.csproj.CoreCompileInputs.cache
+E:\Shailesh\Thread Apps\obj\Debug\App_Qm.csproj.CopyComplete
+E:\Shailesh\Thread Apps\obj\Debug\App_Qm.dll
+E:\Shailesh\Thread Apps\obj\Debug\App_Qm.pdb

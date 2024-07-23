@@ -1,0 +1,780 @@
+<Interface>
+  <Entries>
+    <Entry Id="Entry_1" Type="Scale" Variable="Variable1" >
+      <Title>Untitled question</Title>
+      <Description></Description>
+      <Settings>
+        <MinValue>1</MinValue>
+        <MaxValue>5</MaxValue>
+        <Css></Css>
+        <TitleCss></TitleCss>
+        <DescriptionCss></DescriptionCss>
+      </Settings>
+    </Entry>
+    <Entry Id="Entry_2" Type="Multiple" Variable="Variable2" >
+      <Title>Untitled question</Title>
+      <Description></Description>
+      <Settings>
+        <Items>
+          <Item>
+            <Text>Option 1</Text>
+            <Value>123</Value>
+          </Item>
+          <Item>
+            <Text>Option 2</Text>
+            <Value>435</Value>
+          </Item>
+          <Item>
+            <Text>Option 3</Text>
+            <Value>67</Value>
+          </Item>
+        </Items>
+        <Css>asd</Css>
+        <TitleCss>qwe</TitleCss>
+        <DescriptionCss>zxc</DescriptionCss>
+      </Settings>
+    </Entry>
+    <Entry Id="Entry_3" Type="Date" Variable="Variable3" >
+      <Title>Untitled question</Title>
+      <Description></Description>
+      <Settings>
+        <Css></Css>
+        <TitleCss></TitleCss>
+        <DescriptionCss></DescriptionCss>
+      </Settings>
+    </Entry>
+    <Entry Id="Entry_4" Type="Descriptive" Variable="Variable4" >
+      <Title>Untitled question</Title>
+      <Description></Description>
+      <Settings>
+        <Css></Css>
+        <TitleCss></TitleCss>
+        <DescriptionCss></DescriptionCss>
+      </Settings>
+    </Entry>
+    <Entry Id="Entry_5" Type="Text" Variable="Variable5" >
+      <Title>Untitled question</Title>
+      <Description></Description>
+      <Settings>
+        <Css></Css>
+        <TitleCss></TitleCss>
+        <DescriptionCss></DescriptionCss>
+      </Settings>
+    </Entry>
+    <Entry Id="Entry_6" Type="Header" Variable="" >
+      <Title>Untitled Header</Title>
+      <Description></Description>
+      <Settings>
+        <Css></Css>
+        <TitleCss></TitleCss>
+        <DescriptionCss></DescriptionCss>
+      </Settings>
+    </Entry>
+    <Entry Id="Entry_7" Type="Number" Variable="Variable6" >
+      <Title>Untitled question</Title>
+      <Description></Description>
+      <Settings>
+        <Css></Css>
+        <TitleCss></TitleCss>
+        <DescriptionCss></DescriptionCss>
+      </Settings>
+    </Entry>
+    <Entry Id="Entry_8" Type="Single" Variable="Variable7" >
+      <Title>Untitled question</Title>
+      <Description></Description>
+      <Settings>
+        <Items>
+          <Item>
+            <Text>Option 1</Text>
+          </Item>
+          <Item>
+            <Text>Option 2</Text>
+          </Item>
+          <Item>
+            <Text>Option 3</Text>
+          </Item>
+        </Items>
+        <Css></Css>
+        <TitleCss></TitleCss>
+        <DescriptionCss></DescriptionCss>
+      </Settings>
+    </Entry>
+    <Entry Id="Entry_9" Type="List" Variable="Variable8" >
+      <Title>Untitled question</Title>
+      <Description></Description>
+      <Settings>
+        <Items>
+          <Item>
+            <Text>Option 1</Text>
+          </Item>
+          <Item>
+            <Text>Option 2</Text>
+          </Item>
+          <Item>
+            <Text>Option 3</Text>
+          </Item>
+        </Items>
+        <Css></Css>
+        <TitleCss></TitleCss>
+        <DescriptionCss></DescriptionCss>
+      </Settings>
+    </Entry>
+    <Entry Id="Entry_10" Type="Text" Variable="Variable9" >
+      <Title>Untitled question</Title>
+      <Description></Description>
+      <Settings>
+        <Css></Css>
+        <TitleCss></TitleCss>
+        <DescriptionCss></DescriptionCss>
+      </Settings>
+    </Entry>
+  </Entries>
+  <Html>
+    &lt;div class="___entry" id="Entry_6"&gt;&lt;/div&gt;
+    &lt;div class="___entry" id="Entry_1"&gt;&lt;/div&gt;
+    &lt;div class="___entry" id="Entry_2"&gt;&lt;/div&gt;
+    &lt;div class="___entry" id="Entry_3"&gt;&lt;/div&gt;
+    &lt;div class="___entry" id="Entry_4"&gt;&lt;/div&gt;
+    &lt;div class="___entry" id="Entry_5"&gt;&lt;/div&gt;
+    &lt;div class="___entry" id="Entry_7"&gt;&lt;/div&gt;
+    &lt;div class="___entry" id="Entry_10"&gt;&lt;/div&gt;
+    &lt;div class="___entry" id="Entry_8"&gt;&lt;/div&gt;
+    &lt;div class="___entry" id="Entry_9"&gt;&lt;/div&gt;
+    &lt;div id="RecurrencePanel"&gt;
+    &lt;div id="recsec1"&gt;
+    &lt;div id="rectype"&gt;
+    &lt;input type="radio" id="rbtnHourly" name="RecType" value="Hourly" checked="checked" onclick="return ShowPanel('Hourly')"&gt;
+    Hourly
+    &lt;br&gt;
+    &lt;input type="radio" id="rbtnDaily" name="RecType" value="Daily" onclick="return ShowPanel('Daily')"&gt;
+    Daily
+    &lt;br&gt;
+    &lt;input type="radio" id="rbtnWeekly" name="RecType" value="Weekly" onclick="return ShowPanel('Weekly')"&gt;
+    Weekly
+    &lt;br&gt;
+    &lt;input type="radio" id="rbtnMonthly" name="RecType" value="Monthly" onclick="return ShowPanel('Monthly')"&gt;
+    Monthly
+    &lt;br&gt;
+    &lt;input type="radio" id="rbtnYearly" name="RecType" value="Yearly" onclick="return ShowPanel('Yearly')"&gt;
+    Yearly
+    &lt;/div&gt;
+    &lt;div id="typepanel"&gt;
+    &lt;div id="Hourly"&gt;
+    &lt;span&gt;
+    Every
+    &lt;/span&gt;
+    &lt;span&gt;
+    &lt;input type="text" id="txtEveryHour" style="width: 40px"&gt;
+    &lt;/span&gt;
+    &lt;span&gt;
+    hour(s)
+    &lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div id="Daily" style="display: none"&gt;
+    &lt;input type="radio" id="rbtnday" checked="checked" name="Daily"&gt;
+    &lt;span&gt;
+    Every
+    &lt;/span&gt;
+    &lt;span&gt;
+    &lt;input type="text" id="txtEveryday" style="width: 40px"&gt;
+    &lt;/span&gt;
+    &lt;span&gt;
+    days(s)
+    &lt;/span&gt;
+    &lt;br&gt;
+    &lt;input type="radio" id="rbtnWeekday" name="Daily"&gt;
+    Every weekday
+    &lt;/div&gt;
+    &lt;div id="Weekly" style="display: none"&gt;
+    &lt;span&gt;
+    Recur every
+    &lt;/span&gt;
+    &lt;span&gt;
+    &lt;input type="text" id="txtEveryWeek" style="width: 40px"&gt;
+    &lt;/span&gt;
+    &lt;span&gt;
+    week(s) on
+    &lt;/span&gt;
+    &lt;br&gt;
+    &lt;br&gt;
+    &lt;input id="chkSun" type="checkbox" name="chkSun"&gt;
+    &lt;label for="chkSun"&gt;
+    Sunday
+    &lt;/label&gt;
+    &lt;input id="chkMon" type="checkbox" name="chkMon"&gt;
+    &lt;label for="chkMon"&gt;
+    Monday
+    &lt;/label&gt;
+    &lt;input id="chkTue" type="checkbox" name="chkTue"&gt;
+    &lt;label for="chkTue"&gt;
+    Tuesday
+    &lt;/label&gt;
+    &lt;input id="chkWed" type="checkbox" name="chkWed"&gt;
+    &lt;label for="chkWed"&gt;
+    Wednesday
+    &lt;/label&gt;
+    &lt;br&gt;
+    &lt;br&gt;
+    &lt;input id="chkThur" type="checkbox" name="chkThur"&gt;
+    &lt;label for="chkThur"&gt;
+    Thursday
+    &lt;/label&gt;
+    &lt;input id="chkFri" type="checkbox" name="chkFri"&gt;
+    &lt;label for="chkFri"&gt;
+    Friday
+    &lt;/label&gt;
+    &lt;input id="chkSat" type="checkbox" name="chkSat"&gt;
+    &lt;label for="chkSat"&gt;
+    Saturday
+    &lt;/label&gt;
+    &lt;/div&gt;
+    &lt;div id="Monthly" style="display: none"&gt;
+    &lt;input type="radio" id="radMonthtype1" checked="checked" name="Monthly"&gt;
+    &lt;span&gt;
+    Day
+    &lt;/span&gt;
+    &lt;span&gt;
+    &lt;input type="text" id="txtdaycount" style="width: 40px"&gt;
+    &lt;/span&gt;
+    &lt;span&gt;
+    of every
+    &lt;/span&gt;
+    &lt;span&gt;
+    &lt;input type="text" id="txtmonthcount" style="width: 40px"&gt;
+    &lt;/span&gt;
+    &lt;span&gt;
+    months(s)
+    &lt;/span&gt;
+    &lt;br&gt;
+    &lt;br&gt;
+    &lt;input type="radio" id="radMonthType2" name="Monthly"&gt;
+    The
+    &lt;span&gt;
+    &lt;select name="radDayCount" id="radDayCount" style="width: 50px;"&gt;
+    &lt;option selected="selected" value="1"&gt;
+    first
+    &lt;/option&gt;
+    &lt;option value="2"&gt;
+    second
+    &lt;/option&gt;
+    &lt;option value="3"&gt;
+    third
+    &lt;/option&gt;
+    &lt;option value="4"&gt;
+    fourth
+    &lt;/option&gt;
+    &lt;option value="-1"&gt;
+    fifth
+    &lt;/option&gt;
+    &lt;/select&gt;
+    &lt;/span&gt;
+    &lt;span&gt;
+    &lt;select name="radDayType" id="radDayType" style="width: 100px;"&gt;
+    &lt;option selected="selected" value="SU,MO,TU,WE,TH,FR,SA"&gt;
+    day
+    &lt;/option&gt;
+    &lt;option value="MO,TU,WE,TH,FR"&gt;
+    weekday
+    &lt;/option&gt;
+    &lt;option value="SU,SA"&gt;
+    weekend
+    &lt;/option&gt;
+    &lt;option value="SU"&gt;
+    Sunday
+    &lt;/option&gt;
+    &lt;option value="MO"&gt;
+    Monday
+    &lt;/option&gt;
+    &lt;option value="TU"&gt;
+    Tuesday
+    &lt;/option&gt;
+    &lt;option value="WE"&gt;
+    Wednesday
+    &lt;/option&gt;
+    &lt;option value="TH"&gt;
+    Thurday
+    &lt;/option&gt;
+    &lt;option value="FR"&gt;
+    Friday
+    &lt;/option&gt;
+    &lt;option value="SA"&gt;
+    Saturday
+    &lt;/option&gt;
+    &lt;/select&gt;
+    &lt;/span&gt;
+    &lt;span&gt;
+    of every
+    &lt;/span&gt;
+    &lt;span&gt;
+    &lt;input type="text" id="txtmonthcount2" style="width: 40px"&gt;
+    &lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div id="Yearly" style="display: none"&gt;
+    &lt;span&gt;
+    &lt;input type="radio" id="radYearType1" checked="checked" name="Yearly"&gt;
+    &lt;/span&gt;
+    &lt;span&gt;
+    Every
+    &lt;/span&gt;
+    &lt;span&gt;
+    &lt;select name="radmonth" id="radmonth" style="width: 100px;"&gt;
+    &lt;option value="1"&gt;
+    January
+    &lt;/option&gt;
+    &lt;option value="2"&gt;
+    February
+    &lt;/option&gt;
+    &lt;option value="3"&gt;
+    March
+    &lt;/option&gt;
+    &lt;option value="4"&gt;
+    April
+    &lt;/option&gt;
+    &lt;option value="5"&gt;
+    May
+    &lt;/option&gt;
+    &lt;option value="6"&gt;
+    June
+    &lt;/option&gt;
+    &lt;option value="7"&gt;
+    July
+    &lt;/option&gt;
+    &lt;option value="8"&gt;
+    August
+    &lt;/option&gt;
+    &lt;option value="9"&gt;
+    September
+    &lt;/option&gt;
+    &lt;option value="10"&gt;
+    October
+    &lt;/option&gt;
+    &lt;option value="11"&gt;
+    November
+    &lt;/option&gt;
+    &lt;option value="12"&gt;
+    December
+    &lt;/option&gt;
+    &lt;/select&gt;
+    &lt;/span&gt;
+    &lt;span&gt;
+    &lt;input type="text" id="txtYearDayCount" style="width: 40px"&gt;
+    &lt;/span&gt;
+    &lt;br&gt;
+    &lt;br&gt;
+    &lt;span&gt;
+    &lt;input type="radio" id="radYearType2" name="Yearly"&gt;
+    &lt;/span&gt;
+    &lt;span&gt;
+    &lt;select name="radYearDayCount" id="radYearDayCount" style="width: 50px;"&gt;
+    &lt;option selected="selected" value="1"&gt;
+    first
+    &lt;/option&gt;
+    &lt;option value="2"&gt;
+    second
+    &lt;/option&gt;
+    &lt;option value="3"&gt;
+    third
+    &lt;/option&gt;
+    &lt;option value="4"&gt;
+    fourth
+    &lt;/option&gt;
+    &lt;option value="-1"&gt;
+    fifth
+    &lt;/option&gt;
+    &lt;/select&gt;
+    &lt;/span&gt;
+    &lt;span&gt;
+    &lt;select name="radYearDayType" id="radYearDayType" style="width: 100px;"&gt;
+    &lt;option selected="selected" value="SU,MO,TU,WE,TH,FR,SA"&gt;
+    day
+    &lt;/option&gt;
+    &lt;option value="MO,TU,WE,TH,FR"&gt;
+    weekday
+    &lt;/option&gt;
+    &lt;option value="SU,SA"&gt;
+    weekend
+    &lt;/option&gt;
+    &lt;option value="SU"&gt;
+    Sunday
+    &lt;/option&gt;
+    &lt;option value="MO"&gt;
+    Monday
+    &lt;/option&gt;
+    &lt;option value="TU"&gt;
+    Tuesday
+    &lt;/option&gt;
+    &lt;option value="WE"&gt;
+    Wednesday
+    &lt;/option&gt;
+    &lt;option value="TH"&gt;
+    Thurday
+    &lt;/option&gt;
+    &lt;option value="FR"&gt;
+    Friday
+    &lt;/option&gt;
+    &lt;option value="SA"&gt;
+    Saturday
+    &lt;/option&gt;
+    &lt;/select&gt;
+    &lt;/span&gt;
+    &lt;span&gt;
+    of
+    &lt;/span&gt;
+    &lt;span&gt;
+    &lt;select name="radYearmonth" id="radYearmonth" style="width: 100px;"&gt;
+    &lt;option value="1"&gt;
+    January
+    &lt;/option&gt;
+    &lt;option value="2"&gt;
+    February
+    &lt;/option&gt;
+    &lt;option value="3"&gt;
+    March
+    &lt;/option&gt;
+    &lt;option value="4"&gt;
+    April
+    &lt;/option&gt;
+    &lt;option value="5"&gt;
+    May
+    &lt;/option&gt;
+    &lt;option value="6"&gt;
+    June
+    &lt;/option&gt;
+    &lt;option value="7"&gt;
+    July
+    &lt;/option&gt;
+    &lt;option value="8"&gt;
+    August
+    &lt;/option&gt;
+    &lt;option value="9"&gt;
+    September
+    &lt;/option&gt;
+    &lt;option value="10"&gt;
+    October
+    &lt;/option&gt;
+    &lt;option value="11"&gt;
+    November
+    &lt;/option&gt;
+    &lt;option value="12"&gt;
+    December
+    &lt;/option&gt;
+    &lt;/select&gt;
+    &lt;/span&gt;
+    &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div id="recsec2"&gt;
+    &lt;span&gt;
+    &lt;input type="radio" id="radNoEndDate" checked="checked" name="Endtype"&gt;
+    No end date
+    &lt;/span&gt;
+    &lt;span&gt;
+    &lt;input type="radio" id="radEndAfter" name="Endtype"&gt;
+    End After
+    &lt;input type="text" id="txtOccurrence" style="width: 40px"&gt;
+    &lt;/span&gt;
+    &lt;span&gt;
+    &lt;input type="radio" id="radEndBy" name="Endtype"&gt;
+    End by
+    &lt;input type="text" id="datepickerEndBy"&gt;
+    &lt;/span&gt;
+    &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;input type="hidden" id="hdnRecur" variable="recurrenceoutput"&gt;
+  </Html>
+  <Css>
+
+    .docHTML{
+    }
+    .docBody{
+    }
+    #RecurrencePanel
+    {
+    width: 560px;
+    display: block;
+    font-size: 13px;
+    margin-left:15px;
+    }
+    #rectype
+    {
+    width: 120px;
+    height: 120px;
+    font-size: 13px;
+    float: left;
+    border-right: 1px solid gray;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    }
+    #Hourly, #Daily, #Weekly, #Monthly, #Yearly
+    {
+    width: 415px;
+    height: 120px;
+    float: left;
+    margin-top: 10px;
+    margin-left: 10px;
+    }
+    #recsec1
+    {
+    width: 550px;
+    height: 135px;
+    border: 1px solid gray;
+    }
+    #recsec2
+    {
+    width: 550px;
+    height: 30px;
+    border: 1px solid gray;
+    padding-top: 5px;
+    }
+
+
+  </Css>
+  <Script>
+    //OnInit.Register(InitFunction);
+    //OnLoad.Register(LoadFunction);
+    //OnSave.Register(SaveFunction);
+    OnSave.Register(GetRule)
+    OnLoad.Register(LoadData)
+    OnInit.Register(InitData)
+    function GetRule() {
+    var RecRule = "";
+    RecRule += "DTSTART:@STARTDATE\r\n";
+    RecRule += "DTEND:@ENDDATE\r\n";
+    RecRule += GetRuleType();
+    $("#hdnRecur").val(RecRule);
+
+    }
+    function GetRuleType() {
+    var RRule = "";
+    if ($("#rbtnHourly").checked()) {
+    RRule = "RRULE:FREQ=HOURLY";
+    RRule = getEndby(RRule);
+    RRule += ";INTERVAL=" + $("#txtEveryHour").val() + "\r\n";
+    }
+    else if ($("#rbtnDaily").checked()) {
+    RRule = "RRULE:FREQ=DAILY";
+    RRule = getEndby(RRule);
+    if ($("#rbtnday").checked()) {
+    RRule += ";INTERVAL=" + $("#txtEveryday").val() + ";BYDAY=SU,MO,TU,WE,TH,FR,SA" + "\r\n";
+    }
+    else {
+    RRule += ";BYDAY=MO,TU,WE,TH,FR" + "\r\n";
+    }
+    }
+    else if ($("#rbtnWeekly").checked()) {
+    RRule = "RRULE:FREQ=WEEKLY";
+    RRule = getEndby(RRule);
+    RRule += ";INTERVAL=" + $("#txtEveryWeek").val();
+    RRule += ";BYDAY=";
+    var Checkday = "";
+    if ($("#chkSun").checked())
+    Checkday += "SU,";
+    if ($("#chkMon").checked())
+    Checkday += "MO,";
+    if ($("#chkTue").checked())
+    Checkday += "TU,";
+    if ($("#chkWed").checked())
+    Checkday += "WE,";
+    if ($("#chkThur").checked())
+    Checkday += "TH,";
+    if ($("#chkFri").checked())
+    Checkday += "FR,";
+    if ($("#chkSat").checked())
+    Checkday += "SA,";
+    Checkday = Checkday.substring(0, Checkday.length - 1);
+    RRule += Checkday;
+    RRule += ";WKST=" + "\r\n";
+    }
+    else if ($("#rbtnMonthly").checked()) {
+    RRule = "RRULE:FREQ=MONTHLY";
+    RRule = getEndby(RRule);
+    if ($("#radMonthtype1").checked()) {
+    RRule += ";INTERVAL=" + $("#txtmonthcount").val() + ";BYMONTHDAY=" + $("#txtdaycount").val();
+    }
+    else {
+    RRule += ";INTERVAL=" + $("#txtmonthcount2").val() + ";BYSETPOS=" + $("#radDayCount&gt;option:selected").val() + ";BYDAY=" + $("#radDayType&gt;option:selected").val();
+    }
+    }
+    else if ($("#rbtnYearly").checked()) {
+    RRule = "RRULE:FREQ=YEARLY";
+    RRule = getEndby(RRule);
+    if ($("#radYearType1").checked()) {
+    RRule += ";BYMONTHDAY=" + $("#txtYearDayCount").val() + ";BYMONTH=" + $("#radmonth&gt;option:selected").val();
+    }
+    else {
+    RRule += ";BYSETPOS=" + $("#radYearDayCount&gt;option:selected").val() + ";BYDAY=" + $("#radYearDayType&gt;option:selected").val() + ";BYMONTH=" + $("#radYearmonth&gt;option:selected").val();
+    }
+    }
+    return RRule;
+    }
+    function getEndby(RRule) {
+    if ($("#radEndAfter").checked()) {
+    RRule += ";COUNT=" + $("#txtOccurrence").val();
+    }
+    else if ($("#radEndBy").checked()) {
+    //var date = $("#datepickerEndBy").val().replace(/\-/g, "");
+    var date = $("#datepickerEndBy").val().split('/');
+    RRule += ";UNTIL=" + date[2] + date[1] + date[0] + "T000000Z";
+    }
+    return RRule;
+    }
+    function ShowPanel(type) {
+    $("#Hourly").css("display", "none");
+    $("#Daily").css("display", "none");
+    $("#Weekly").css("display", "none");
+    $("#Monthly").css("display", "none");
+    $("#Yearly").css("display", "none");
+    $("#" + type).css("display", "block");
+    }
+    function LoadData() {
+    $("#Hourly").css("display", "none");
+    $("#Daily").css("display", "none");
+    $("#Weekly").css("display", "none");
+    $("#Monthly").css("display", "none");
+    $("#Yearly").css("display", "none");
+    var a = $("#hdnRecur").val();
+    var rule = a.split("\n")[2];
+    //var rule = "RRULE:FREQ=YEARLY;UNTIL=20140410T000000Z;BYSETPOS=4;BYDAY=MO,TU,WE,TH,FR;BYMONTH=5";
+    if (rule.indexOf("HOURLY") &gt; -1) {
+    $("#rbtnHourly").attr("checked", "checked");
+    $("#Hourly").css("display", "block");
+    SetHourlyData(rule);
+    SetEndBy(rule);
+    }
+    else if(rule.indexOf("DAILY") &gt; -1)
+    {
+    $("#rbtnDaily").attr("checked", "checked");
+    $("#Daily").css("display", "block");
+    SetDailyyData(rule);
+    SetEndBy(rule);
+    }
+    else if(rule.indexOf("WEEKLY") &gt; -1)
+    {
+    $("#rbtnWeekly").attr("checked", "checked");
+    $("#Weekly").css("display", "block");
+    SetWeeklyData(rule);
+    SetEndBy(rule);
+    }
+    else if(rule.indexOf("MONTHLY") &gt; -1)
+    {
+    $("#rbtnMonthly").attr("checked", "checked");
+    $("#Monthly").css("display", "block");
+    SetMonthlyData(rule);
+    SetEndBy(rule);
+    }
+    else if (rule.indexOf("YEARLY") &gt; -1)
+    {
+    $("#rbtnYearly").attr("checked", "checked");
+    $("#Yearly").css("display", "block");
+    SetYearlyData(rule);
+    SetEndBy(rule);
+    }
+    }
+    function SetEndBy(rule) {
+    var Hash = GetHashRuleValue(rule);
+    if (rule.indexOf("COUNT") &gt; -1) {
+    $("#radEndAfter").attr("checked", "checked");
+    $("#txtOccurrence").val(Hash.COUNT)
+    }
+    else if (rule.indexOf("UNTIL") &gt; -1) {
+    $("#radEndBy").attr("checked", "checked");
+    var dtEnddate = Hash.UNTIL.substring(0, 8);
+    var newdate = dtEnddate.substring(6) + "/" + dtEnddate.substring(4, 6) + "/" + dtEnddate.substring(0, 4)
+    $("#datepickerEndBy").val(newdate);
+    }
+    else {
+    $("#radNoEndDate").attr("checked", "checked");
+    }
+    }
+    function SetHourlyData(rule) {
+    var Hash = GetHashRuleValue(rule);
+    $("#txtEveryHour").val(Hash.INTERVAL);
+    }
+    function SetDailyyData(rule) {
+    var Hash = GetHashRuleValue(rule);
+    if (rule.indexOf("INTERVAL") &gt; -1) {
+    $("#rbtnday").attr("checked", "checked");
+    $("#txtEveryday").val(Hash.INTERVAL)
+    }
+    else {
+    $("#rbtnWeekday").attr("checked", "checked");
+    }
+    }
+    function SetWeeklyData(rule) {
+    var Hash = GetHashRuleValue(rule);
+    $("#txtEveryWeek").val(Hash.INTERVAL)
+    var days = Hash.BYDAY;
+    if (days.indexOf("SU") &gt; -1)
+    $("#chkSun").attr("checked", "checked");
+    if (days.indexOf("MO") &gt; -1)
+    $("#chkMon").attr("checked", "checked");
+    if (days.indexOf("TU") &gt; -1)
+    $("#chkTue").attr("checked", "checked");
+    if (days.indexOf("WE") &gt; -1)
+    $("#chkWed").attr("checked", "checked");
+    if (days.indexOf("TH") &gt; -1)
+    $("#cchkThur").attr("checked", "checked");
+    if (days.indexOf("FR") &gt; -1)
+    $("#chkFri").attr("checked", "checked");
+    if (days.indexOf("SA") &gt; -1)
+    $("#chkSat").attr("checked", "checked");
+    }
+    function SetMonthlyData(rule) {
+    var Hash = GetHashRuleValue(rule);
+    if (rule.indexOf("BYMONTHDAY") &gt; -1) {
+    $("#radMonthtype1").attr("checked", "checked");
+    $("#txtdaycount").val(Hash.BYMONTHDAY)
+    $("#txtmonthcount").val(Hash.INTERVAL)
+    }
+    else {
+    $("#radMonthType2").attr("checked", "checked");
+    $("select#radDayCount").val(Hash.BYSETPOS);
+    $("select#radDayType").val(Hash.BYDAY);
+    //$("select#radDayCount").find("option#" + Hash.BYSETPOS).attr("selected", "selected");
+    //$("select#radDayType").find("option#" + Hash.BYDAY).attr("selected", "selected");
+    $("#txtmonthcount2").val(Hash.INTERVAL);
+    }
+    }
+    function SetYearlyData(rule) {
+    var Hash = GetHashRuleValue(rule);
+    if (rule.indexOf("BYMONTHDAY") &gt; -1) {
+    $("#radYearType1").attr("checked", "checked");
+    //$("select#radmonth").find("option#" + Hash.BYMONTH).attr("selected", "selected");
+    $("select#radmonth").val(Hash.BYMONTH);
+    $("#txtYearDayCount").val(Hash.BYMONTHDAY)
+    }
+    else {
+    $("#radYearType2").attr("checked", "checked");
+    //$("select#radYearDayCount").find("option#" + Hash.BYSETPOS).attr("selected", "selected");
+    //$("select#radYearDayType").find("option#" + Hash.BYDAY).attr("selected", "selected");
+    //$("select#radYearmonth").find("option#" + Hash.BYMONTH).attr("selected", "selected");
+    $("select#radYearDayCount").val(Hash.BYSETPOS);
+    $("select#radYearDayType").val(Hash.BYDAY);
+    $("select#radYearmonth").val(Hash.BYMONTH);
+    }
+    }
+    function GetHashRuleValue(rule) {
+    var type = rule.replace("RRULE:", "").split(';');
+    var Hash = {
+    };
+    for (i = 0; i &lt; type.length; i++) {
+    var aa = type[i].split('=');
+    Hash[aa[0]] = aa[1];
+    }
+    return Hash;
+    }
+    function InitData()
+    {
+    $("#datepickerEndBy").datepicker({
+    showOn: "button", buttonImage: "../images/date.png", buttonImageOnly: true, dateFormat: 'dd/mm/yy', scrollbar: true, dropdown: false }
+    );
+    $("#txtEveryHour").autoNumeric();
+    $("#txtEveryday").autoNumeric();
+    $("#txtEveryWeek").autoNumeric();
+    $("#txtmonthcount").autoNumeric();
+    $("#txtmonthcount2").autoNumeric();
+    $("#txtYearDayCount").autoNumeric();
+    }
+
+  </Script>
+</Interface>

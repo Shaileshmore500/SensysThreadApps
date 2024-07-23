@@ -1,0 +1,6 @@
+<sessionState mode="Custom" customProvider="RedisSessionState" cookieName="ERP_SessionId" timeout="4320">
+      <providers>
+        <add name="RedisSessionState" type="Microsoft.Web.Redis.RedisSessionStateProvider" host="localhost" ssl="false" port="6379" databaseId="0"
+          redisSerializerType="HelperLib.Store.Cache.JsonSessionSerializer,HelperLib"/>
+      </providers>
+</sessionState>

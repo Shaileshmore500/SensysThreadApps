@@ -1,0 +1,9 @@
+<Project Version='1.0' Name='Ticketing System B1' Type='Modules'>
+<Application Name='ERP' Code='ERP' ID='App_ERP'>
+<Modules><Module ID='Ticket_B1' Name='Ticketing System B1' Code='Ticket_B1' Version='1.0.0' Description='Ticketing System B1'
+                                         Details='Ticketing System B1' Tags='Ticketing System B1' > <ChangeLogs><Version ver='1.0.0'></Version></ChangeLogs>
+</Module>
+</Modules>
+</Application>
+<Connection Server='ERPPROJECTS\SQL2012' Database='dbthread_ERP' Uid='sensysthreadsa' Pwd='threadserver07@))$sql' Trusted= 'No'  />
+</Project>

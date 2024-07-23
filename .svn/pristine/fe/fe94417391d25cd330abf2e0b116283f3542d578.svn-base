@@ -1,0 +1,77 @@
+function CalcSpace()
+{
+  Erp.SetFieldValue('@space',Erp.GetFieldValue('@tbl_aa0001_estimationdetails_height')*Erp.GetFieldValue('@tbl_aa0001_estimationdetails_width'));
+  CalcAmounts();
+ CalcmediaAmounts();
+}
+
+
+function CalcAmounts()
+{
+	if(db_3a733a218b744428bb6a77970e8f835e=="EM")
+{
+Erp.SetFieldValue('@amount',Erp.GetFieldValue('@tbl_aa0001_estimationdetails_fct')*Erp.GetFieldValue('@tbl_aa0001_estimationdetails_rate'));
+}
+else
+{
+	Erp.SetFieldValue('@amount',Erp.GetFieldValue('@tbl_aa0001_estimationdetails_space')*Erp.GetFieldValue('@tbl_aa0001_estimationdetails_rate'));
+  	Erp.SetFieldValue('@positionpremiumamount',Erp.GetFieldValue('@tbl_aa0001_estimationdetails_amount')*Erp.GetFieldValue('@tbl_aa0001_estimationdetails_positionpremiumrate')/100);
+}
+
+  Erp.SetFieldValue('@finalamount',Erp.GetFieldValue('@tbl_aa0001_estimationdetails_amount')+Erp.GetFieldValue('@tbl_aa0001_estimationdetails_positionpremiumamount'));
+  Erp.SetFieldValue('@tax',Erp.GetFieldValue('@tbl_aa0001_estimationdetails_finalamount')*Erp.GetFieldValue('@tbl_aa0001_estimationdetails_taxrate')/100);
+  Erp.SetFieldValue('@tax1',Erp.GetFieldValue('@tbl_aa0001_estimationdetails_finalamount')*Erp.GetFieldValue('@tbl_aa0001_estimationdetails_taxrate1')/100);
+  Erp.SetFieldValue('@tax2',Erp.GetFieldValue('@tbl_aa0001_estimationdetails_finalamount')*Erp.GetFieldValue('@tbl_aa0001_estimationdetails_taxrate2')/100);
+ if (Erp.EntityID!='tbl_AA0001_releaseorderdetails')
+  Erp.SetFieldValue('@payable',Erp.GetFieldValue('@tbl_aa0001_estimationdetails_finalamount')+Erp.GetFieldValue('@tbl_aa0001_estimationdetails_tax')+Erp.GetFieldValue('@tbl_aa0001_estimationdetails_tax1')+Erp.GetFieldValue('@tbl_aa0001_estimationdetails_tax2'));
+else
+  Erp.SetFieldValue('@netamount',Erp.GetFieldValue('@tbl_aa0001_estimationdetails_finalamount')+Erp.GetFieldValue('@tbl_aa0001_estimationdetails_tax')+Erp.GetFieldValue('@tbl_aa0001_estimationdetails_tax1')+Erp.GetFieldValue('@tbl_aa0001_estimationdetails_tax2'));
+//calcposrate();
+  
+}
+function CalcmediaAmounts()
+{
+	Erp.SetFieldValue('@mediaamount',Erp.GetFieldValue('@tbl_aa0001_estimationdetails_space')*Erp.GetFieldValue('@tbl_aa0001_estimationdetails_mediarate'));
+  	Erp.SetFieldValue('@mediapositionpremiumamount',Erp.GetFieldValue('@tbl_aa0001_estimationdetails_mediaamount')*Erp.GetFieldValue('@tbl_aa0001_estimationdetails_mediapositionpremiumrate')/100);
+
+  Erp.SetFieldValue('@mediafinalamount',Erp.GetFieldValue('@tbl_aa0001_estimationdetails_mediaamount')+Erp.GetFieldValue('@tbl_aa0001_estimationdetails_mediapositionpremiumamount'));
+  Erp.SetFieldValue('@mediatax',Erp.GetFieldValue('@tbl_aa0001_estimationdetails_mediafinalamount')*Erp.GetFieldValue('@tbl_aa0001_estimationdetails_mediataxrate')/100);
+  Erp.SetFieldValue('@mediatax1',Erp.GetFieldValue('@tbl_aa0001_estimationdetails_mediafinalamount')*Erp.GetFieldValue('@tbl_aa0001_estimationdetails_mediataxrate1')/100);
+   Erp.SetFieldValue('@mediatax2',Erp.GetFieldValue('@tbl_aa0001_estimationdetails_mediafinalamount')*Erp.GetFieldValue('@tbl_aa0001_estimationdetails_mediataxrate2')/100);
+  Erp.SetFieldValue('@mediapayable',Erp.GetFieldValue('@tbl_aa0001_estimationdetails_mediafinalamount')+Erp.GetFieldValue('@tbl_aa0001_estimationdetails_mediatax')+Erp.GetFieldValue('@tbl_aa0001_estimationdetails_mediatax1')+Erp.GetFieldValue('@tbl_aa0001_estimationdetails_mediatax2'));
+
+  
+}
+function CalcclientAmounts()
+{
+	Erp.SetFieldValue('@clientamount',Erp.GetFieldValue('@tbl_aa0001_estimationdetails_space')*db_5e4bdfe1ab284009991645e288627ed5);
+  	Erp.SetFieldValue('@clientpositionpremiumamount',db_e8662c1303cb46a7917f8aa697eba980*db_6f6d817fbbb14a3db18ada413f2f13a3/100);
+
+  Erp.SetFieldValue('@clientfinalamount',db_e8662c1303cb46a7917f8aa697eba980+db_87c75464b07c4dad86e60f0348217eb6);
+  Erp.SetFieldValue('@clienttax',db_bd68cbe3999740aa81990172a8522237*db_2cd9071ae5d54046944f36d16d5cc59f/100);
+  Erp.SetFieldValue('@clienttax1',db_bd68cbe3999740aa81990172a8522237*db_9df2eec5eaed40e4a85cbab5280dfa1b/100);
+   Erp.SetFieldValue('@clienttax2',db_bd68cbe3999740aa81990172a8522237*db_702502b103b04eedafaddb4094193452/100);
+  Erp.SetFieldValue('@clientpayble',db_bd68cbe3999740aa81990172a8522237+db_66a0f8fce3ba41a0a45aa1129b0ea18d+db_4fb5890b3fe74c97940a5e572b4d48bb+db_5626b5904e984bec8d41754fe4b3b2fc);
+
+  
+}
+FunctionList.push({Name:'CalcSpace',Refs:['db_3a733a218b744428bb6a77970e8f835e']});
+FunctionList.push({Name:'CalcAmounts',Refs:['db_3a733a218b744428bb6a77970e8f835e']});
+FunctionList.push({Name:'CalcclientAmounts',Refs:['db_5e4bdfe1ab284009991645e288627ed5','db_e8662c1303cb46a7917f8aa697eba980','db_6f6d817fbbb14a3db18ada413f2f13a3','db_e8662c1303cb46a7917f8aa697eba980','db_87c75464b07c4dad86e60f0348217eb6','db_bd68cbe3999740aa81990172a8522237','db_2cd9071ae5d54046944f36d16d5cc59f','db_bd68cbe3999740aa81990172a8522237','db_9df2eec5eaed40e4a85cbab5280dfa1b','db_bd68cbe3999740aa81990172a8522237','db_702502b103b04eedafaddb4094193452','db_bd68cbe3999740aa81990172a8522237','db_66a0f8fce3ba41a0a45aa1129b0ea18d','db_4fb5890b3fe74c97940a5e572b4d48bb','db_5626b5904e984bec8d41754fe4b3b2fc']});
+
+DbReferences.push({Type:"Simple",Id:"db_3a733a218b744428bb6a77970e8f835e",Columns:"field.media.mediatype.mediatypecode"});window.db_3a733a218b744428bb6a77970e8f835e='';
+DbReferences.push({Type:"Simple",Id:"db_5e4bdfe1ab284009991645e288627ed5",Columns:"field.clientrate"});window.db_5e4bdfe1ab284009991645e288627ed5='';
+DbReferences.push({Type:"Simple",Id:"db_e8662c1303cb46a7917f8aa697eba980",Columns:"field.clientamount"});window.db_e8662c1303cb46a7917f8aa697eba980='';
+DbReferences.push({Type:"Simple",Id:"db_6f6d817fbbb14a3db18ada413f2f13a3",Columns:"field.clientpositionpremiumrate"});window.db_6f6d817fbbb14a3db18ada413f2f13a3='';
+DbReferences.push({Type:"Simple",Id:"db_9d56f81e0f2246a8bed77e03231f13e3",Columns:"field.clientamount"});window.db_9d56f81e0f2246a8bed77e03231f13e3='';
+DbReferences.push({Type:"Simple",Id:"db_87c75464b07c4dad86e60f0348217eb6",Columns:"field.clientpositionpremiumamount"});window.db_87c75464b07c4dad86e60f0348217eb6='';
+DbReferences.push({Type:"Simple",Id:"db_bd68cbe3999740aa81990172a8522237",Columns:"field.clientfinalamount"});window.db_bd68cbe3999740aa81990172a8522237='';
+DbReferences.push({Type:"Simple",Id:"db_2cd9071ae5d54046944f36d16d5cc59f",Columns:"field.clienttaxrate"});window.db_2cd9071ae5d54046944f36d16d5cc59f='';
+DbReferences.push({Type:"Simple",Id:"db_7969806a2cad47638e1538467676768a",Columns:"field.clientfinalamount"});window.db_7969806a2cad47638e1538467676768a='';
+DbReferences.push({Type:"Simple",Id:"db_9df2eec5eaed40e4a85cbab5280dfa1b",Columns:"field.clienttaxrate1"});window.db_9df2eec5eaed40e4a85cbab5280dfa1b='';
+DbReferences.push({Type:"Simple",Id:"db_79346eec3cd34bba9fd7a868900bca22",Columns:"field.clientfinalamount"});window.db_79346eec3cd34bba9fd7a868900bca22='';
+DbReferences.push({Type:"Simple",Id:"db_702502b103b04eedafaddb4094193452",Columns:"field.clienttaxrate2"});window.db_702502b103b04eedafaddb4094193452='';
+DbReferences.push({Type:"Simple",Id:"db_8e869f6b62d14e4a90c65c4d4e45cdf8",Columns:"field.clientfinalamount"});window.db_8e869f6b62d14e4a90c65c4d4e45cdf8='';
+DbReferences.push({Type:"Simple",Id:"db_66a0f8fce3ba41a0a45aa1129b0ea18d",Columns:"field.clienttax"});window.db_66a0f8fce3ba41a0a45aa1129b0ea18d='';
+DbReferences.push({Type:"Simple",Id:"db_4fb5890b3fe74c97940a5e572b4d48bb",Columns:"field.clienttax1"});window.db_4fb5890b3fe74c97940a5e572b4d48bb='';
+DbReferences.push({Type:"Simple",Id:"db_5626b5904e984bec8d41754fe4b3b2fc",Columns:"field.clienttax2"});window.db_5626b5904e984bec8d41754fe4b3b2fc='';

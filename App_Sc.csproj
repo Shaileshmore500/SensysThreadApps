@@ -1,0 +1,335 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4B6A4193-30E1-410F-947C-92BEB6326ABA}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>App_Sc</RootNamespace>
+    <AssemblyName>App_Sc</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Apps\App_Sc\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DevExpress.Data.v18.2.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.DataAccess.v18.2">
+      <HintPath>bin\DevExpress.DataAccess.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Docs.v18.2">
+      <HintPath>bin\DevExpress.Docs.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Office.v18.2.Core">
+      <HintPath>bin\DevExpress.Office.v18.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DevExpress.Printing.v18.2.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Spreadsheet.v18.2.Core">
+      <HintPath>bin\DevExpress.Spreadsheet.v18.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DevExpress.XtraReports.v18.2.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Erp.Base, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Erp.Base.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Erp.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Erp.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ErpModel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>bin\ErpModel.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HelperLib">
+      <HintPath>bin\HelperLib.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="KooKoo">
+      <HintPath>..\Pre Sales Doc\KooKoo-DotNet Sample\KooKoo-DotNet Sample\KooKoo.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>bin\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http">
+      <HintPath>bin\System.Web.Http.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>bin\System.Web.Http.WebHost.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>bin\System.Net.Http.Formatting.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>bin\System.Net.Http.Primitives.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>bin\System.Net.Http.Extensions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Activities" />
+    <Reference Include="System.Activities.Core.Presentation" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Apps\App_Sc\Default1.aspx" />
+    <Content Include="Apps\App_Sc\RestAPIDemo.txt" />
+    <Content Include="Login.html" />
+    <Content Include="Projects.html" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Apps\App_Sc\App_Notification.cs" />
+    <Compile Include="Apps\App_Sc\BitLinks.cs" />
+    <Compile Include="Apps\App_Sc\BuildingUnitImporting.cs" />
+    <Compile Include="Apps\App_Sc\BulkChangeRec_CP.cs" />
+    <Compile Include="Apps\App_Sc\BulkEmail.cs" />
+    <Compile Include="Apps\App_Sc\BulkSMS.cs" />
+    <Compile Include="Apps\App_Sc\Bulk_ChangeOwner.cs" />
+    <Compile Include="Apps\App_Sc\Bulk_ChangeStage.cs" />
+    <Compile Include="Apps\App_Sc\CampaignEmailReader.cs" />
+    <Compile Include="Apps\App_Sc\Chkexisitinglead.cs" />
+    <Compile Include="Apps\App_Sc\Common\Logging\DefaultLogger.cs" />
+    <Compile Include="Apps\App_Sc\Common\Logging\DiagnosticsLogger.cs" />
+    <Compile Include="Apps\App_Sc\Common\Logging\FileLogger.cs" />
+    <Compile Include="Apps\App_Sc\Common\Logging\ILog.cs" />
+    <Compile Include="Apps\App_Sc\Common\StreamUtility.cs" />
+    <Compile Include="Apps\App_Sc\CPPortal.cs" />
+    <Compile Include="Apps\App_Sc\CreateProduct.cs" />
+    <Compile Include="Apps\App_Sc\CreateVirtualNumberFile.cs" />
+    <Compile Include="Apps\App_Sc\Default1.aspx.cs">
+      <DependentUpon>Default1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Apps\App_Sc\Default1.aspx.designer.cs">
+      <DependentUpon>Default1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\App_Sc\GenerateReminder.cs" />
+    <Compile Include="Apps\App_Sc\GetLeadFromTelephony.cs" />
+    <Compile Include="Apps\App_Sc\GetRoundRobinUser.cs" />
+    <Compile Include="Apps\App_Sc\IntegratFBLead2.cs" />
+    <Compile Include="Apps\App_Sc\LeadActivityScript\Add_Follow_Up.cs" />
+    <Compile Include="Apps\App_Sc\LeadActivityScript\Add_Visit_Site.cs" />
+    <Compile Include="Apps\App_Sc\LeadActivityScript\CancelCompleteActivityRemark.cs" />
+    <Compile Include="Apps\App_Sc\LeadActivityScript\ChangeOwner.cs" />
+    <Compile Include="Apps\App_Sc\LeadActivityScript\Layout_CallActivity.cs" />
+    <Compile Include="Apps\App_Sc\LeadActivityScript\Layout_CreateDispositionpopup.cs" />
+    <Compile Include="Apps\App_Sc\LeadActivityScript\LeadActivityEmail.cs" />
+    <Compile Include="Apps\App_Sc\LeadActivityScript\LeadActivitySMS.cs" />
+    <Compile Include="Apps\App_Sc\LeadDashboard.cs" />
+    <Compile Include="Apps\App_Sc\LeadActivityScript\MergeLead.cs" />
+    <Compile Include="Apps\App_Sc\LeadActivityScript\SMSUsingExotel.cs" />
+    <Compile Include="Apps\App_Sc\LeadFromAPI .cs" />
+    <Compile Include="Apps\App_Sc\LeadFromFB.cs" />
+    <Compile Include="Apps\App_Sc\LeadFromMagicbricks.cs" />
+    <Compile Include="Apps\App_Sc\LeadFromMissedCallAPI.cs" />
+    <Compile Include="Apps\App_Sc\LeadFromSMS.cs" />
+    <Compile Include="Apps\App_Sc\LeadFromTelephony.cs" />
+    <Compile Include="Apps\App_Sc\LeadImporting.cs" />
+    <Compile Include="Apps\App_Sc\LeadScript\AddEditLead.cs" />
+    <Compile Include="Apps\App_Sc\LeadScript\AddEditOpportunity.cs" />
+    <Compile Include="Apps\App_Sc\LeadScript\CVMS_AddEditLead.cs" />
+    <Compile Include="Apps\App_Sc\LeadScript\CVMS_lead.cs" />
+    <Compile Include="Apps\App_Sc\LeadScript\QuickEnquiryLead.cs" />
+    <Compile Include="Apps\App_Sc\LeadScript\QuickReferalLead.cs" />
+    <Compile Include="Apps\App_Sc\LeadScript\Task_Dashboard_ReplacmentUser.cs" />
+    <Compile Include="Apps\App_Sc\LeadScript\LayoutConvertToOpportunity.cs" />
+    <Compile Include="Apps\App_Sc\LeadScript\Layout_Createpopup.cs" />
+    <Compile Include="Apps\App_Sc\LeadScript\LeadLogger.cs" />
+    <Compile Include="Apps\App_Sc\LeadScript\MissingLeadUserwise.cs" />
+    <Compile Include="Apps\App_Sc\LeadScript\opportunityLogger.cs" />
+    <Compile Include="Apps\App_Sc\LeadScript\ReviewLead.cs" />
+    <Compile Include="Apps\App_Sc\LeadScript\ReviewLeadOpportunity.cs" />
+    <Compile Include="Apps\App_Sc\LeadScript\SearchLead.cs" />
+    <Compile Include="Apps\App_Sc\LeadScript\Untouched_Lead_UserWise.cs" />
+    <Compile Include="Apps\App_Sc\LeadStageHistoryScript\LeadStageHistory.cs" />
+    <Compile Include="Apps\App_Sc\Mime\Decode\Base64.cs" />
+    <Compile Include="Apps\App_Sc\Mime\Decode\EncodedWord.cs" />
+    <Compile Include="Apps\App_Sc\Mime\Decode\EncodingFinder.cs" />
+    <Compile Include="Apps\App_Sc\Mime\Decode\QuotedPrintable.cs" />
+    <Compile Include="Apps\App_Sc\Mime\Decode\Rfc2231Decoder.cs" />
+    <Compile Include="Apps\App_Sc\Mime\Decode\Rfc2822DateTime.cs" />
+    <Compile Include="Apps\App_Sc\Mime\Decode\SizeParser.cs" />
+    <Compile Include="Apps\App_Sc\Mime\Decode\Utility.cs" />
+    <Compile Include="Apps\App_Sc\Mime\Header\ContentTransferEncoding.cs" />
+    <Compile Include="Apps\App_Sc\Mime\Header\HeaderExtractor.cs" />
+    <Compile Include="Apps\App_Sc\Mime\Header\HeaderFieldParser.cs" />
+    <Compile Include="Apps\App_Sc\Mime\Header\MessageHeader.cs" />
+    <Compile Include="Apps\App_Sc\Mime\Header\Received.cs" />
+    <Compile Include="Apps\App_Sc\Mime\Header\RfcMailAddress.cs" />
+    <Compile Include="Apps\App_Sc\Mime\Message.cs" />
+    <Compile Include="Apps\App_Sc\Mime\MessagePart.cs" />
+    <Compile Include="Apps\App_Sc\Mime\Traverse\AnswerMessageTraverser.cs" />
+    <Compile Include="Apps\App_Sc\Mime\Traverse\AttachmentFinder.cs" />
+    <Compile Include="Apps\App_Sc\Mime\Traverse\FindAllMessagePartsWithMediaType.cs" />
+    <Compile Include="Apps\App_Sc\Mime\Traverse\FindFirstMessagePartWithMediaType.cs" />
+    <Compile Include="Apps\App_Sc\Mime\Traverse\IAnswerMessageTraverser.cs" />
+    <Compile Include="Apps\App_Sc\Mime\Traverse\IQuestionAnswerMessageTraverser.cs" />
+    <Compile Include="Apps\App_Sc\Mime\Traverse\MultipleMessagePartFinder.cs" />
+    <Compile Include="Apps\App_Sc\Mime\Traverse\TextVersionFinder.cs" />
+    <Compile Include="Apps\App_Sc\Pop3\Apop.cs" />
+    <Compile Include="Apps\App_Sc\Pop3\AuthenticationMethod.cs" />
+    <Compile Include="Apps\App_Sc\Pop3\ConnectionState.cs" />
+    <Compile Include="Apps\App_Sc\Pop3\CramMd5.cs" />
+    <Compile Include="Apps\App_Sc\Pop3\Disposable.cs" />
+    <Compile Include="Apps\App_Sc\Pop3\Exceptions\InvalidLoginException.cs" />
+    <Compile Include="Apps\App_Sc\Pop3\Exceptions\InvalidUseException.cs" />
+    <Compile Include="Apps\App_Sc\Pop3\Exceptions\LoginDelayException.cs" />
+    <Compile Include="Apps\App_Sc\Pop3\Exceptions\PopClientException.cs" />
+    <Compile Include="Apps\App_Sc\Pop3\Exceptions\PopServerException.cs" />
+    <Compile Include="Apps\App_Sc\Pop3\Exceptions\PopServerLockedException.cs" />
+    <Compile Include="Apps\App_Sc\Pop3\Exceptions\PopServerNotAvailableException.cs" />
+    <Compile Include="Apps\App_Sc\Pop3\Exceptions\PopServerNotFoundException.cs" />
+    <Compile Include="Apps\App_Sc\Pop3\Pop3Client.cs" />
+    <Compile Include="Apps\App_Sc\PostSalesAPI.cs" />
+    <Compile Include="Apps\App_Sc\PushLeadFrom99Acers.cs" />
+    <Compile Include="Apps\App_Sc\PushLeadFromURLAPI.cs" />
+    <Compile Include="Apps\App_Sc\Report\CallAttemptReport.cs" />
+    <Compile Include="Apps\App_Sc\Report\ExecutivePerformanceReport.cs" />
+    <Compile Include="Apps\App_Sc\Report\LeadFilter.cs" />
+    <Compile Include="Apps\App_Sc\Report\Presales Project Wise Summary.cs" />
+    <Compile Include="Apps\App_Sc\Report\Presales_Campaignwisesourcewise_Wise_Summary.cs" />
+    <Compile Include="Apps\App_Sc\Report\Presales_CampaignwiseSubsourcewise_Wise_Summary.cs" />
+    <Compile Include="Apps\App_Sc\Report\Presales_Consolidatedsourcewise_Wise_Summary.cs" />
+    <Compile Include="Apps\App_Sc\Report\Presales_ConsolidatedSubsourcewise_Wise_Summary.cs" />
+    <Compile Include="Apps\App_Sc\Report\PR_Booking_Summary.cs" />
+    <Compile Include="Apps\App_Sc\Report\PR_Call_Summary_Hourly.cs" />
+    <Compile Include="Apps\App_Sc\Report\PR_MonthlyCampaignwiseLeadVsWalkin.cs" />
+    <Compile Include="Apps\App_Sc\Report\PR_MonthlyLeadVsWalkin.cs" />
+    <Compile Include="Apps\App_Sc\Report\PR_MonthlyStaffPerformance.cs" />
+    <Compile Include="Apps\App_Sc\Report\PR_Monthwise_Trend.cs" />
+    <Compile Include="Apps\App_Sc\Report\PR_SalesCampaignWise .cs" />
+    <Compile Include="Apps\App_Sc\Report\PR_Sales_Campaign_VS_Project_Booking.cs" />
+    <Compile Include="Apps\App_Sc\Report\PR_SendDailyReport.cs" />
+    <Compile Include="Apps\App_Sc\Report\PR_Team_And_Projectwise.cs" />
+    <Compile Include="Apps\App_Sc\Report\PR_Visit_Performance_Projectwise.cs" />
+    <Compile Include="Apps\App_Sc\Report\PR_Visit_Performance_Sourcewise.cs" />
+    <Compile Include="Apps\App_Sc\Report\PR_Walkin_Summary.cs" />
+    <Compile Include="Apps\App_Sc\Report\PR_WeeklyLeadVsWalkin.cs" />
+    <Compile Include="Apps\App_Sc\Report\ReportLostLead.cs" />
+    <Compile Include="Apps\App_Sc\Report\Report_EthincityLeadSummary.cs" />
+    <Compile Include="Apps\App_Sc\Report\Report_occupationLeadSummary.cs" />
+    <Compile Include="Apps\App_Sc\Report\Report_UserwiseLeadSummary.cs" />
+    <Compile Include="Apps\App_Sc\Report\Report_UserwiseSummary_STF.cs" />
+    <Compile Include="Apps\App_Sc\SalesCRMUtility.cs" />
+    <Compile Include="Apps\App_Sc\SapApiScript\BuildingWiseUnitAPI.cs" />
+    <Compile Include="Apps\App_Sc\SapApiScript\DemandDocResponse.cs" />
+    <Compile Include="Apps\App_Sc\SapApiScript\DemandNoteDeleteResponse .cs" />
+    <Compile Include="Apps\App_Sc\SapApiScript\DemandNoteResponse.cs" />
+    <Compile Include="Apps\App_Sc\SapApiScript\ErrorCodes.cs" />
+    <Compile Include="Apps\App_Sc\SapApiScript\InterestCalcResponse.cs" />
+    <Compile Include="Apps\App_Sc\SapApiScript\SalesMasterCancelationAPI.cs" />
+    <Compile Include="Apps\App_Sc\SapApiScript\SalesMasterCreateAPI.cs" />
+    <Compile Include="Apps\App_Sc\SapApiScript\TransactionResponse.cs" />
+    <Compile Include="Apps\App_Sc\SearchLead.cs" />
+    <Compile Include="Apps\App_Sc\SetSessionStartupScript.cs" />
+    <Compile Include="Apps\App_Sc\Task_IntegratFBLead2.cs" />
+    <Compile Include="Apps\App_Sc\test.cs" />
+    <Compile Include="Apps\App_Sc\TriggerSMSOnLeadCreation.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Apps\App_Sc\Web.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>3206</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:3600/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

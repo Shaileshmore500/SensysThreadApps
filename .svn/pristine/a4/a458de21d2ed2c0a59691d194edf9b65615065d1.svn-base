@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<WebResources>
+  <add ResourceName="CustomControls.js" ResourceVersion="2312280417" />
+  <add ResourceName="Erp.js" ResourceVersion="2309040359" />
+  <add ResourceName="Fn.js" ResourceVersion="2306160820" />
+  <add ResourceName="Interface.js" ResourceVersion="1907230341" />
+  <add ResourceName="InterfaceDesigner.js" ResourceVersion="1510150101" />
+  <add ResourceName="jqHelper.js" ResourceVersion="2304120327" />
+  <add ResourceName="jquery.js" ResourceVersion="2311070413" />
+  <add ResourceName="jquery-ui-1.10.3.custom.min.js" ResourceVersion="1704060426" />
+  <add ResourceName="jsPlumb.min.js" ResourceVersion="1604060150" />
+  <add ResourceName="knockout-2.2.1.js" ResourceVersion="1312161033" />
+  <add ResourceName="chosen.jquery.min.js" ResourceVersion="1312161033" />
+  <add ResourceName="layout.js" ResourceVersion="1807041254" />
+  <add ResourceName="modernizr.js" ResourceVersion="1806150338" />
+  <add ResourceName="moment.min.js" ResourceVersion="2311070420" />
+  <add ResourceName="PageLoader.js" ResourceVersion="1403140240" />
+  <add ResourceName="PropertyEditors.js" ResourceVersion="2201050125" />
+  <add ResourceName="report.js" ResourceVersion="1402061157" />
+  <add ResourceName="System.js" ResourceVersion="2202150451" />
+  <add ResourceName="ui.js" ResourceVersion="2308080354" />
+  <add ResourceName="UiHelper.js" ResourceVersion="2309060101" />
+  <add ResourceName="WfDesigner.js" ResourceVersion="1902210317" />
+  <add ResourceName="dashboard.js" ResourceVersion="2309050339" />
+  <add ResourceName="show-hint.js" Path="Codemirror\Script" ResourceVersion="1601140352" />
+  <add ResourceName="search.js" Path="Codemirror\Script" ResourceVersion="1702070422" />
+  <add ResourceName="formatting.js" Path="Codemirror\Script" ResourceVersion="1703100458" />
+  <add ResourceName="jquery.gridster.js" ResourceVersion="2206160112" />
+  <add ResourceName="materialize.min.js" ResourceVersion="2305230245" />
+  <add ResourceName="uidesigner.js" ResourceVersion="2306091002" />
+  <add ResourceName="base.css" ResourceVersion="2307240456" />
+  <add ResourceName="form.css" ResourceVersion="2210190225" />
+  <add ResourceName="main.css" ResourceVersion="2306280857" />
+  <add ResourceName="home.css" ResourceVersion="2306290617" />
+  <add ResourceName="dashboard.css" ResourceVersion="2304210329" />
+  <add ResourceName="WidgetMap.css" ResourceVersion="2206151141" />
+  <add ResourceName="Interface.css" ResourceVersion="1907220957" />
+  <add ResourceName="InterfaceDesigner.css" ResourceVersion="1412250716" />
+  <add ResourceName="jquery-ui.css" ResourceVersion="1312161033" />
+  <add ResourceName="layout.css" ResourceVersion="1606160324" />
+  <add ResourceName="layout_grid.css" ResourceVersion="1611031243" />
+  <add ResourceName="layout2.css" ResourceVersion="1703080116" />
+  <add ResourceName="login.css" ResourceVersion="1710090813" />
+  <add ResourceName="normalize.css" ResourceVersion="1312161033" />
+  <add ResourceName="report.css" ResourceVersion="1503030255" />
+  <add ResourceName="WfDesigner.css" ResourceVersion="1703170459" />
+  <add ResourceName="CustomControl.css" Path="CustomControl" ResourceVersion="2210111120" />
+  <add ResourceName="font.css" ResourceVersion="5" />
+  <add ResourceName="font1.css" ResourceVersion="5" />
+  <add ResourceName="font2.css" ResourceVersion="5" />
+  <add ResourceName="codemirror.css" Path="Codemirror\Css" ResourceVersion="1" />
+  <add ResourceName="materialize.min.css" ResourceVersion="2306280908" />
+  <add ResourceName="uidesigner.css" ResourceVersion="2305050636" />
+  <add ResourceName="newhome.css" ResourceVersion="2307270331" />
+</WebResources>

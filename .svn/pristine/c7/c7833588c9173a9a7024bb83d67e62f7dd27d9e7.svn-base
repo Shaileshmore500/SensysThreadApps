@@ -1,0 +1,1437 @@
+function InitUI() {$('#PageTitle').children('._i').html('&#xF040;').next().html("GSTR2 Match &amp; Reconcile");PkIds=[];
+var ddl=$('#Field-10');ddl.parent().addClass('ui-list');ddl.data('FieldID','51070c10-84ac-43c2-908b-ad1d099225b5');ddl.data('LookupCode','');ddl.data('Eids','tbl_ERP_taxform');ddl.data('FieldType','SINGLESELECT_TABLE');ddl.data('Multi',false);enableKeyboardForList(ddl);ddl.parent().on('click',function(){showSearchList($(this));});
+Erp.FieldInfo.push({Name:"tbl_erp_temptable_taxform",ID:"Field-10",Disabled:true,Type:"Ddl",DataType:"SINGLESELECT_TABLE",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+var ddl=$('#Field-11');ddl.parent().addClass('ui-list');ddl.data('FieldID','b4c5c629-667d-4533-a9a4-7435f12f552d');ddl.data('LookupCode','');ddl.data('Eids','tbl_ERP_taxreg');ddl.data('FieldType','SINGLESELECT_TABLE');ddl.data('Multi',false);enableKeyboardForList(ddl);ddl.parent().on('click',function(){showSearchList($(this));});
+Erp.FieldInfo.push({Name:"tbl_erp_temptable_taxreg",ID:"Field-11",Disabled:true,Type:"Ddl",DataType:"SINGLESELECT_TABLE",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+var ddl=$('#Field-12');ddl.parent().addClass('ui-list');ddl.data('FieldID','5f0ae233-2109-4d37-b204-f13f3d394ee3');ddl.data('LookupCode','');ddl.data('Eids','tbl_ERP_taxyear');ddl.data('FieldType','SINGLESELECT_TABLE');ddl.data('Multi',false);enableKeyboardForList(ddl);ddl.parent().on('click',function(){showSearchList($(this));});
+Erp.FieldInfo.push({Name:"tbl_erp_temptable_taxyear",ID:"Field-12",Disabled:true,Type:"Ddl",DataType:"SINGLESELECT_TABLE",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+var ddl=$('#Field-13');ddl.parent().addClass('ui-list');ddl.data('FieldID','5ec7d5c9-9c32-418b-b186-39bf4a4036c3');ddl.data('LookupCode','');ddl.data('Eids','tbl_ERP_taxformperiod');ddl.data('FieldType','SINGLESELECT_TABLE');ddl.data('Multi',false);enableKeyboardForList(ddl);ddl.parent().on('click',function(){showSearchList($(this));});
+Erp.FieldInfo.push({Name:"tbl_erp_temptable_taxformperiod",ID:"Field-13",Disabled:true,Type:"Ddl",DataType:"SINGLESELECT_TABLE",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+var ddl=$('#Field-14');ddl.parent().addClass('ui-list');ddl.data('FieldID','cd35958b-9687-4498-8531-c6137d468ed7');ddl.data('LookupCode','');ddl.data('Eids','tbl_ERP_taxformfilingtype');ddl.data('FieldType','SINGLESELECT_TABLE');ddl.data('Multi',false);enableKeyboardForList(ddl);ddl.parent().on('click',function(){showSearchList($(this));});
+Erp.FieldInfo.push({Name:"tbl_erp_temptable_taxformfilingtype",ID:"Field-14",Disabled:false,Type:"Ddl",DataType:"SINGLESELECT_TABLE",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+$('#btnMatchRecord').on('click',function(){onFieldChange(MatchRecord,$(this));});
+Erp.FieldInfo.push({Name:"tbl_erp_temptable_checkboxcol",ID:"chkCompleteRematching",Disabled:false,Type:"Bool",DataType:"CHECKBOX",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+var ddl=$('#ddlFilterb2b');ddl.chosen({width:"100%",disable_search_threshold: 10,allow_single_deselect: true,placeholder_text_single:" "});ddl.next().data('elemId','ddlFilterb2b');_adjustDynWidth(ddl)
+$('#ddlFilterb2b').on('change',function(){onFieldChange(LoadDatab2b,$(this),$(this).val(),Erp.GetField($(this).attr('id')));});
+Erp.FieldInfo.push({Name:"tbl_erp_temptable_recordfilter",ID:"ddlFilterb2b",Disabled:false,Type:"Text",DataType:"SINGLESELECT",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+_initMenu($('#b2bmenu'));
+Erp.RegisterEvent('b2bmenu','click',loadActionWiseDatab2b)
+GridList.push({ID:"dgb2b",BindOnload:false,Title:"Grid",AdvFilter:[{Type:'DATETIME',Title:"Vendor Invoice Date",Field:"tbl_erp_gstr2_b2b_invoice.idt"},{Type:'DATE',Title:"Purchase Voucher Date",Field:"tbl_transid.voucherdate"},{Type:'LIST',Title:"transid",Field:'',FieldID:'advFld13',Eid:"tbl_ERP_t",Qry:"84K2fFAkxYXiGD3hdjXxY0Lfz8D606tg7SWEzTbU2mrb7rpzuFya3oHqhQnbsTlMBeRIVl2lPlxR75MCS4kuLQ=="}],GroupInfo:[],OnBind:null});
+initGridSettings("dgb2b");
+$('#btnB2BAccept').on('click',function(){onFieldChange(B2BAction,$(this));});
+$('#btnB2BReject').on('click',function(){onFieldChange(B2BAction,$(this));});
+$('#btnB2BModify').on('click',function(){onFieldChange(B2BAction,$(this));});
+$('#btnResetb2b1').on('click',function(){onFieldChange(B2BAction,$(this));});
+GridList.push({ID:"dgb2b2",BindOnload:false,Title:"Grid",AdvFilter:[{Type:'LIST',Title:"Vendor Name",Field:'',FieldID:'advFld3',Eid:"tbl_ERP_am",Qry:"84K2fFAkxYXiGD3hdjXxY4f6S54BxYgMW1B4ANHTOVV6zEir+l1asRDAVHWCgY5W3sIrr9hU2AnJA4X0jLBrBA=="},{Type:'DATE',Title:"Vendor Invoice Date",Field:"tbl_transid.purchaseinvoicedate"},{Type:'DATE',Title:"Purchase Voucher Date",Field:"tbl_transid.voucherdate"},{Type:'LIST',Title:"transid",Field:'',FieldID:'advFld11',Eid:"tbl_ERP_t",Qry:"84K2fFAkxYXiGD3hdjXxY0Lfz8D606tg7SWEzTbU2mrb7rpzuFya3oHqhQnbsTlMBeRIVl2lPlxR75MCS4kuLQ=="}],GroupInfo:[],OnBind:null});
+initGridSettings("dgb2b2");
+$('#btnB2BAddGstn').on('click',function(){onFieldChange(B2BAction2,$(this));});
+$('#btnResetb2b2').on('click',function(){onFieldChange(B2BAction2,$(this));});
+var ddl=$('#ddlfiltercdn');ddl.chosen({width:"100%",disable_search_threshold: 10,allow_single_deselect: true,placeholder_text_single:" "});ddl.next().data('elemId','ddlfiltercdn');_adjustDynWidth(ddl)
+$('#ddlfiltercdn').on('change',function(){onFieldChange(loadDataCDN,$(this),$(this).val(),Erp.GetField($(this).attr('id')));});
+Erp.FieldInfo.push({Name:"tbl_erp_temptable_recordfilter",ID:"ddlfiltercdn",Disabled:false,Type:"Text",DataType:"SINGLESELECT",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+_initMenu($('#cdnmenu'));
+Erp.RegisterEvent('cdnmenu','click',loadActionWiseDatacdn)
+GridList.push({ID:"dgCDN",BindOnload:false,Title:"Grid",AdvFilter:[{Type:'DATETIME',Title:"Vendor CDN Date",Field:"tbl_erp_gstr2_cdn_invoice.nt_dt"},{Type:'DATETIME',Title:"Vendor Invoice Date",Field:"tbl_erp_gstr2_cdn_invoice.idt"},{Type:'LIST',Title:"transid",Field:'',FieldID:'advFld15',Eid:"tbl_ERP_t",Qry:"84K2fFAkxYXiGD3hdjXxY6QVxsf+L5556q3xxUqQP9f0a3Khomsk/GwmSvYO63tj5rRisxDcIPleJD3QNba7ZQ=="}],GroupInfo:[],OnBind:null});
+initGridSettings("dgCDN");
+$('#btnCDNAccept').on('click',function(){onFieldChange(CDNAction,$(this));});
+$('#btnCDNReject').on('click',function(){onFieldChange(CDNAction,$(this));});
+$('#btnCDNModify').on('click',function(){onFieldChange(CDNAction,$(this));});
+$('#btnResetcdn1').on('click',function(){onFieldChange(CDNAction,$(this));});
+GridList.push({ID:"dgCDN2",BindOnload:false,Title:"Grid",AdvFilter:[{Type:'LIST',Title:"Vendor Name",Field:'',FieldID:'advFld3',Eid:"tbl_ERP_am",Qry:"84K2fFAkxYXiGD3hdjXxY4f6S54BxYgMW1B4ANHTOVV6zEir+l1asRDAVHWCgY5W3sIrr9hU2AnJA4X0jLBrBA=="},{Type:'DATE',Title:"Vendor CDN Date",Field:"tbl_transid.purchasecddate"},{Type:'DATE',Title:"Purchase CDN Date",Field:"tbl_transid.voucherdate"},{Type:'DATE',Title:"Purchase Voucher Date",Field:"tbl_transid_previoustr.voucherdate"},{Type:'LIST',Title:"transid",Field:'',FieldID:'advFld15',Eid:"tbl_ERP_t",Qry:"84K2fFAkxYXiGD3hdjXxY6QVxsf+L5556q3xxUqQP9f0a3Khomsk/GwmSvYO63tj5rRisxDcIPleJD3QNba7ZQ=="}],GroupInfo:[],OnBind:null});
+initGridSettings("dgCDN2");
+$('#btnCDNAddGstn').on('click',function(){onFieldChange(CDNAction2,$(this));});
+$('#btnResetcdn2').on('click',function(){onFieldChange(CDNAction2,$(this));});
+$('#TabParent-3').tabs({activate: function( event, ui ) { Erp.RedrawLayout();}});
+var ddl=$('#ddlFilterb2ba');ddl.chosen({width:"100%",disable_search_threshold: 10,allow_single_deselect: true,placeholder_text_single:" "});ddl.next().data('elemId','ddlFilterb2ba');_adjustDynWidth(ddl)
+$('#ddlFilterb2ba').on('change',function(){onFieldChange(LoadDatab2ba,$(this),$(this).val(),Erp.GetField($(this).attr('id')));});
+Erp.FieldInfo.push({Name:"tbl_erp_temptable_recordfilter",ID:"ddlFilterb2ba",Disabled:false,Type:"Text",DataType:"SINGLESELECT",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+$('#btnB2baAccept').on('click',function(){onFieldChange(B2BAAction,$(this));});
+$('#btnB2baReject').on('click',function(){onFieldChange(B2BAAction,$(this));});
+$('#btnB2baModify').on('click',function(){onFieldChange(B2BAAction,$(this));});
+GridList.push({ID:"dgb2ba",BindOnload:false,Title:"Grid",AdvFilter:[],GroupInfo:[],OnBind:null});
+initGridSettings("dgb2ba");
+var ddl=$('#ddlfiltercdna');ddl.chosen({width:"100%",disable_search_threshold: 10,allow_single_deselect: true,placeholder_text_single:" "});ddl.next().data('elemId','ddlfiltercdna');_adjustDynWidth(ddl)
+$('#ddlfiltercdna').on('change',function(){onFieldChange(loadDataCDNA,$(this),$(this).val(),Erp.GetField($(this).attr('id')));});
+Erp.FieldInfo.push({Name:"tbl_erp_temptable_recordfilter",ID:"ddlfiltercdna",Disabled:false,Type:"Text",DataType:"SINGLESELECT",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+$('#btnCDNAAccept').on('click',function(){onFieldChange(CDNAAction,$(this));});
+$('#btnCDNAReject').on('click',function(){onFieldChange(CDNAAction,$(this));});
+$('#btnCDNAModify').on('click',function(){onFieldChange(CDNAAction,$(this));});
+GridList.push({ID:"dgCDNA",BindOnload:false,Title:"Grid",AdvFilter:[],GroupInfo:[],OnBind:null});
+initGridSettings("dgCDNA");
+$('#btnAddtoGSTN').on('click',function(){onFieldChange(AddtoGSTN,$(this));});
+GridList.push({ID:"dgDatanotfoundGSTN",BindOnload:true,Title:"Grid",AdvFilter:[],GroupInfo:[],OnBind:null});
+initGridSettings("dgDatanotfoundGSTN");
+$('#TabParent-4').tabs({activate: function( event, ui ) { Erp.RedrawLayout();}});
+
+
+DbReferences.push({Id:"blnsubmitted",Type:"Value",OnDemand:0,EntityId:"",Columns:"",Xml:"<Subquery Table=\"tbl_ERP_taxformfilingstatus\" Target=\"908ab768-c990-497c-889e-4c37c69f37bc\" TargetType=\"Single\" EntityPath=\"\" Summary=\"None\" Logic=\"1 and 2 and 3 and 4 and 5\"\><Condition Name=\"8a711fa9-a998-4ee8-bb9a-fe2424e33d2d\" EntityPath=\"taxreg:tbl_ERP_taxreg\" Operator=\"EqualTo\" Value=\"{taxreg}\" ValueSrc=\"Input\" WFName=\"\" SessionID=\"\" Srno=\"1\"\></Condition\><Condition Name=\"dd0b50fd-d0cc-42ba-b47e-db1836052916\" EntityPath=\"taxyear:tbl_ERP_taxyear\" Operator=\"EqualTo\" Value=\"{taxyear}\" ValueSrc=\"Input\" WFName=\"\" SessionID=\"\" Srno=\"2\"\></Condition\><Condition Name=\"439e9e18-62d4-4c3e-ac0a-18c1c2d9036b\" EntityPath=\"taxform:tbl_ERP_taxform\" Operator=\"EqualTo\" Value=\"{taxform}\" ValueSrc=\"Input\" WFName=\"\" SessionID=\"\" Srno=\"3\"\></Condition\><Condition Name=\"b2fc43fb-b6ab-40d3-bd8e-552f21210356\" EntityPath=\"taxformperiod:tbl_ERP_taxformperiod\" Operator=\"EqualTo\" Value=\"{taxformperiod}\" ValueSrc=\"Input\" WFName=\"\" SessionID=\"\" Srno=\"4\"\></Condition\><Condition Name=\"b5f03d91-7b98-4872-b07e-9ebc18f24105\" EntityPath=\"taxformfilingtype:tbl_ERP_taxformfilingtype\" Operator=\"EqualTo\" Value=\"{taxformfilingtype}\" ValueSrc=\"Input\" WFName=\"\" SessionID=\"\" Srno=\"5\"\></Condition\><Sort\><ColInfo\></ColInfo\></Sort\><Parameters\></Parameters\></Subquery\>",AlwaysLoad:false });window.blnsubmitted='';
+DbReferences.push({Id:"blnfiled",Type:"Value",OnDemand:0,EntityId:"",Columns:"",Xml:"<Subquery Table=\"tbl_ERP_taxformfilingstatus\" Target=\"8e66cd9d-2264-462f-aa28-f23fd25ef279\" TargetType=\"Single\" EntityPath=\"\" Summary=\"None\" Logic=\"1 and 2 and 3 and 4 and 5\"\><Condition Name=\"8a711fa9-a998-4ee8-bb9a-fe2424e33d2d\" EntityPath=\"taxreg:tbl_ERP_taxreg\" Operator=\"EqualTo\" Value=\"{taxreg}\" ValueSrc=\"Input\" WFName=\"\" SessionID=\"\" Srno=\"1\"\></Condition\><Condition Name=\"dd0b50fd-d0cc-42ba-b47e-db1836052916\" EntityPath=\"taxyear:tbl_ERP_taxyear\" Operator=\"EqualTo\" Value=\"{taxyear}\" ValueSrc=\"Input\" WFName=\"\" SessionID=\"\" Srno=\"2\"\></Condition\><Condition Name=\"439e9e18-62d4-4c3e-ac0a-18c1c2d9036b\" EntityPath=\"taxform:tbl_ERP_taxform\" Operator=\"EqualTo\" Value=\"{taxform}\" ValueSrc=\"Input\" WFName=\"\" SessionID=\"\" Srno=\"3\"\></Condition\><Condition Name=\"b2fc43fb-b6ab-40d3-bd8e-552f21210356\" EntityPath=\"taxformperiod:tbl_ERP_taxformperiod\" Operator=\"EqualTo\" Value=\"{taxformperiod}\" ValueSrc=\"Input\" WFName=\"\" SessionID=\"\" Srno=\"4\"\></Condition\><Condition Name=\"b5f03d91-7b98-4872-b07e-9ebc18f24105\" EntityPath=\"taxformfilingtype:tbl_ERP_taxformfilingtype\" Operator=\"EqualTo\" Value=\"{taxformfilingtype}\" ValueSrc=\"Input\" WFName=\"\" SessionID=\"\" Srno=\"5\"\></Condition\><Sort\><ColInfo\></ColInfo\></Sort\><Parameters\></Parameters\></Subquery\>",AlwaysLoad:false });window.blnfiled='';
+ mxEntityList={};
+
+Erp.SetFieldValue("@taxform","GSTR2");
+Erp.SetFieldValue("@taxreg","95f10d2f-8f40-4151-8b91-34545cf6ca50");
+Erp.SetFieldValue("@taxyear","c476b1bd-d7e7-4f4e-b9fe-3163e09ce31b");
+Erp.SetFieldValue("@taxformperiod","e4480389-63cf-40be-accc-5b71629e0872");
+Erp.SetFieldValue("@taxformfilingtype","Regular");
+Erp.SetDisplay("btnMatchRecord",true);
+
+
+};
+var filterval="";
+var recordcount={};
+
+
+
+var b2bcntmatchrecord=0;
+var b2bcntmatchrecordexceptinvoicedate=0;
+var b2bcntmatchrecordwithctinandinvoice=0;
+var b2bcntmatchrecordwithdiffround=0;
+var b2bcntrecordnotfound=0;
+var b2bcntrecordnotfoundingstn=0;
+var b2bpending=0;
+var b2bcompleted=0;
+var b2bMRPending = 0;
+var b2bMRCompleted = 0;
+var b2bMRRDPending = 0;
+var b2bMRRDCompleted = 0;
+var b2bMRPPending = 0;
+var b2bMRPCompleted = 0;
+var b2bRFNSPending = 0;
+var b2bRFNSCompleted = 0;
+var b2bRNFGSTNPending = 0;
+var b2bRNFGSTNCompleted = 0;
+
+
+var cdncntmatchrecord=0;
+var cdncntmatchrecordexceptinvoicedate=0;
+var cdncntmatchrecordwithctinandinvoice=0;
+var cdncntmatchrecordwithdiffround=0;
+var cdncntrecordnotfound=0;
+var cdncntrecordnotfoundingstn=0;
+var cdnpending=0;
+var cdncompleted=0;
+var cdnMRPending = 0;
+var cdnMRCompleted = 0;
+var cdnMRRDPending = 0;
+var cdnMRRDCompleted = 0;
+var cdnMRPPending = 0;
+var cdnMRPCompleted = 0;
+var cdnRFNSPending = 0;
+var cdnRFNSCompleted = 0;
+var cdnRNFGSTNPending = 0;
+var cdnRNFGSTNCompleted = 0;
+
+var Unprocessrecords = 0;
+
+
+
+var b2bfilter="";
+var b2baction="";
+
+var cdnfilter="";
+var cdnaction="";
+
+
+
+Erp.OnLoad.Register(LoadFunction);
+function LoadFunction(){
+
+ 
+}
+
+
+Erp.OnLoadComplete.Register(LoadCompleteFunction);
+function LoadCompleteFunction(){
+
+  b2baction="Pending";
+  cdnaction="Pending";
+  
+  
+  
+  $('#b2bPending').addClass('menu-item menu-selected');
+  $('#b2bCompleted').removeClass('menu-selected');
+
+  
+  $('#cdnPending').addClass('menu-item menu-selected');
+  $('#cdnCompleted').removeClass('menu-selected');
+  
+  
+  //$('#MatchRecord1').removeClass('RecordTiles');
+  $('#MatchRecord1').addClass('RecordTilesSelected');
+  
+  //$('#MatchRecord2').removeClass('RecordTiles');
+  $('#MatchRecord2').addClass('RecordTilesSelected');
+  
+ 
+  
+  
+LoadDatab2b();
+loadDataCDN();
+LoadDatab2ba();
+loadDataCDNA();
+ShowRecordCount();
+  
+  
+  Erp.SetDisplay('btnResetb2b1',false);
+  Erp.SetDisplay('btnResetb2b2',false);
+  Erp.SetDisplay('btnResetcdn1',false);
+  Erp.SetDisplay('btnResetcdn2',false);
+  
+  
+  if(Unprocessrecords>0)
+  {
+    Erp.SetDisplay('lbluprecord',true);
+    Erp.SetLabel('lbluprecord',Unprocessrecords +" records are unprocessed. click on Match record to process them")
+  }
+  else
+  {
+   Erp.SetDisplay('lbluprecord',false);
+    
+  }
+  
+  
+  //alert(blnsubmitted);
+  //alert(blnfiled);
+  //Erp.LoadVariable(dtFilingStatus,filingstatuscallback);
+  
+  $('#dgb2b_buttonCtr').append($('#btnB2BAccept'))
+  $('#dgb2b_buttonCtr').append($('#btnB2BReject'))
+  $('#dgb2b_buttonCtr').append($('#btnB2BModify'))
+  $('#dgb2b_buttonCtr').append($('#btnResetb2b1'))
+  $('#dgb2b2_buttonCtr').append($('#btnB2BAddGstn'))
+  $('#dgb2b2_buttonCtr').append($('#btnResetb2b2'))
+  
+  $('#dgCDN_buttonCtr').append($('#btnCDNAccept'))
+  $('#dgCDN_buttonCtr').append($('#btnCDNReject'))
+  $('#dgCDN_buttonCtr').append($('#btnCDNModify'))
+  $('#dgCDN_buttonCtr').append($('#btnResetcdn1'))
+  $('#dgCDN2_buttonCtr').append($('#btnCDNAddGstn'))
+  $('#dgCDN2_buttonCtr').append($('#btnResetcdn2'))
+    
+  
+  
+  
+     
+
+}
+
+
+function filingstatuscallback()
+{
+  alert(dtFilingStatus);
+}
+
+function ShowRecordCount()
+{
+  
+ b2bcntmatchrecord=recordcount["B2BMR"];
+ b2bcntmatchrecordwithdiffround=recordcount["B2BMRRD"];
+ b2bcntmatchrecordwithctinandinvoice=recordcount["B2BMRP"];
+ b2bcntrecordnotfound=recordcount["B2BRNFS"];
+ b2bcntrecordnotfoundingstn=recordcount["B2BRNFGSTN"];
+ b2bpending=recordcount["B2BPending"];
+ b2bcompleted=recordcount["B2BCompleted"];
+ b2bMRPending = recordcount["B2BMRPending"];
+ b2bMRCompleted = recordcount["B2BMRCompleted"];
+ b2bMRRDPending = recordcount["B2BMRRDPending"];
+ b2bMRRDCompleted = recordcount["B2BMRRDCompleted"];
+ b2bMRPPending = recordcount["B2BMRPPending"];
+ b2bMRPCompleted = recordcount["B2BMRPCompleted"];
+ b2bRFNSPending = recordcount["B2BRNFSPending"];
+ b2bRFNSCompleted = recordcount["B2BRNFSCompleted"];
+ b2bRNFGSTNPending = recordcount["B2BRNFGSTNPending"];
+ b2bRNFGSTNCompleted = recordcount["B2BRNFGSTNCompleted"];
+
+
+ cdncntmatchrecord=recordcount["CDNMR"];
+ cdncntmatchrecordwithdiffround=recordcount["CDNMRRD"];
+ cdncntmatchrecordwithctinandinvoice=recordcount["CDNMRP"];
+ cdncntrecordnotfound=recordcount["CDNRNFS"];
+ cdncntrecordnotfoundingstn=recordcount["CDNRNFGSTN"];
+ cdnpending=recordcount["CDNPending"];
+ cdncompleted=recordcount["CDNCompleted"];
+ cdnMRPending = recordcount["CDNMRPending"];
+ cdnMRCompleted = recordcount["CDNMRCompleted"]; 
+ cdnMRRDPending = recordcount["CDNMRRDPending"];
+ cdnMRRDCompleted = recordcount["CDNMRRDCompleted"];
+ cdnMRPPending = recordcount["CDNMRPPending"];
+ cdnMRPCompleted = recordcount["CDNMRPCompleted"];
+ cdnRFNSPending = recordcount["CDNRNFSPending"];
+ cdnRFNSCompleted = recordcount["CDNRNFSCompleted"];
+ cdnRNFGSTNPending = recordcount["CDNRNFGSTNPending"];
+ cdnRNFGSTNCompleted = recordcount["CDNRNFGSTNCompleted"];
+  
+  Unprocessrecords = recordcount["Unprocessrecords"];
+  
+  
+  
+
+  $('#b2bcntmatchrecord').html(b2bcntmatchrecord) ;
+  $('#b2bcntmatchrecordexceptinvoicedate').html(b2bcntmatchrecordexceptinvoicedate) ;
+  $('#b2bcntmatchrecordwithctinandinvoice').html(b2bcntmatchrecordwithctinandinvoice) ;
+  $('#b2bcntmatchrecordrounddiff').html(b2bcntmatchrecordwithdiffround) ;
+  $('#b2bcntrecordnotfound').html(b2bcntrecordnotfound) ;
+  $('#b2bcntrecordnotfoundingstn').html(b2bcntrecordnotfoundingstn) ;
+  
+  
+  $('#cdncntmatchrecord').html(cdncntmatchrecord) ;
+  $('#cdncntmatchrecordexceptinvoicedate').html(cdncntmatchrecordexceptinvoicedate) ;
+  $('#cdncntmatchrecordwithctinandinvoice').html(cdncntmatchrecordwithctinandinvoice) ;
+  $('#cdncntmatchrecordrounddiff').html(cdncntmatchrecordwithdiffround) ;
+  $('#cdncntrecordnotfound').html(cdncntrecordnotfound) ;
+  $('#cdncntrecordnotfoundingstn').html(cdncntrecordnotfoundingstn) ;
+  
+  
+  var totalb2b = b2bcntmatchrecord + b2bcntmatchrecordwithctinandinvoice + b2bcntrecordnotfound + b2bcntrecordnotfoundingstn+b2bcntmatchrecordwithdiffround;
+  var totalcdn = cdncntmatchrecord + cdncntmatchrecordwithctinandinvoice + cdncntrecordnotfound + cdncntrecordnotfoundingstn+cdncntmatchrecordwithdiffround;
+  
+  $('#ui-id-1').html("B2b Records("+totalb2b+")");
+  $('#ui-id-2').html("CDN Records("+totalcdn+")");
+  
+  
+  if(b2bfilter=="MR")
+  {
+  $("#b2bmenu").find(".menu-title").eq(0).html("Pending For Action("+b2bMRPending+")");
+  $("#b2bmenu").find(".menu-title").eq(1).html("Completed Action("+b2bMRCompleted+")");
+  }
+  else if(b2bfilter=="MRRD")
+  {
+    $("#b2bmenu").find(".menu-title").eq(0).html("Pending For Action("+b2bMRRDPending+")");
+    $("#b2bmenu").find(".menu-title").eq(1).html("Completed Action("+b2bMRRDCompleted+")");
+  }
+  else if(b2bfilter=="MRP")
+  {
+    $("#b2bmenu").find(".menu-title").eq(0).html("Pending For Action("+b2bMRPPending+")");
+    $("#b2bmenu").find(".menu-title").eq(1).html("Completed Action("+b2bMRPCompleted+")");
+  }
+  else if(b2bfilter=="RNFS")
+  {
+    $("#b2bmenu").find(".menu-title").eq(0).html("Pending For Action("+b2bRFNSPending+")");
+   $("#b2bmenu").find(".menu-title").eq(1).html("Completed Action("+b2bRFNSCompleted +")");
+  }
+  else if(b2bfilter=="RNFGSTN")
+  {
+    $("#b2bmenu").find(".menu-title").eq(0).html("Pending For Action("+b2bRNFGSTNPending +")");
+   $("#b2bmenu").find(".menu-title").eq(1).html("Completed Action("+b2bRNFGSTNCompleted+")");
+  }
+  
+  
+  if(cdnfilter=="MR")
+  {
+  $("#cdnmenu").find(".menu-title").eq(0).html("Pending For Action("+cdnMRPending+")");
+  $("#cdnmenu").find(".menu-title").eq(1).html("Completed Action("+cdnMRCompleted+")");
+  }
+  else if(cdnfilter=="MRP")
+  {
+  $("#cdnmenu").find(".menu-title").eq(0).html("Pending For Action("+cdnMRRDPending+")");
+  $("#cdnmenu").find(".menu-title").eq(1).html("Completed Action("+cdnMRRDCompleted+")");
+  }
+  else if(cdnfilter=="MRP")
+  {
+  $("#cdnmenu").find(".menu-title").eq(0).html("Pending For Action("+cdnMRPPending+")");
+  $("#cdnmenu").find(".menu-title").eq(1).html("Completed Action("+cdnMRPCompleted+")");
+  }
+  else if(cdnfilter=="RNFS")
+  {
+  $("#cdnmenu").find(".menu-title").eq(0).html("Pending For Action("+cdnRFNSPending+")");
+  $("#cdnmenu").find(".menu-title").eq(1).html("Completed Action("+cdnRFNSCompleted+")");
+  }
+  else if(cdnfilter=="RNFGSTN")
+  {
+  $("#cdnmenu").find(".menu-title").eq(0).html("Pending For Action("+cdnRNFGSTNPending+")");
+  $("#cdnmenu").find(".menu-title").eq(1).html("Completed Action("+cdnRNFGSTNCompleted+")");
+  }
+}
+
+function MatchRecord()
+{
+  Erp.ServerCommand('btnMatchRecord',{},MatchRecordResult);
+  Erp.SetDisplay('lbluprecord',false);
+}
+
+function MatchRecordResult()
+{
+  //Erp.Grid.DataBind("dgDatanotfoundGSTN",window.jsonSectionDetails);
+  ShowRecordCount();
+  ShowRecord(b2bfilter);
+  ShowRecordCDN(cdnfilter);
+  
+}
+
+
+function AddtoGSTN()
+{
+  var arrData=[];
+  var rowcount = Erp.Grid.GetRowCount('dgDatanotfoundGSTN');
+  for(i=0;i<rowcount;i++)
+  {
+    if(Erp.Grid.IsRowSelected('dgDatanotfoundGSTN',i))
+    {
+      var transpid = Erp.Grid.GetRecordValue('dgDatanotfoundGSTN','transpid',i);
+      var formtype = Erp.Grid.GetRecordValue('dgDatanotfoundGSTN','formtype',i);
+      var ctin = Erp.Grid.GetRecordValue('dgDatanotfoundGSTN','ctin',i);
+      var inum = Erp.Grid.GetRecordValue('dgDatanotfoundGSTN','purchaseinvoiceno',i);
+      var ntnum = Erp.Grid.GetRecordValue('dgDatanotfoundGSTN','cdninvoiceno',i);
+      var idt = Erp.Grid.GetRecordValue('dgDatanotfoundGSTN','purchaseinvoicedate',i);
+      var ntdt = Erp.Grid.GetRecordValue('dgDatanotfoundGSTN','cdninvoicedate',i);
+      
+      arrData.push({'transpid':transpid,'formtype':formtype,'ctin':ctin,'inum':inum,'ntnum':ntnum,'idt':idt,'ntdt':ntdt}); 
+      
+     /* var ctin = Erp.Grid.GetRecordValue('dgDatanotfoundGSTN','ctin',i);
+      var purchaseinvoiceno = Erp.Grid.GetRecordValue('dgDatanotfoundGSTN','purchaseinvoiceno',i);
+      var cdninvoiceno = Erp.Grid.GetRecordValue('dgDatanotfoundGSTN','cdninvoiceno',i);
+      var purchaseinvoicedate = Erp.Grid.GetRecordValue('dgDatanotfoundGSTN','purchaseinvoicedate',i);
+      var cdninvoicedate = Erp.Grid.GetRecordValue('dgDatanotfoundGSTN','cdninvoicedate',i);*/
+      
+      /*arrData.push({'formtype':formtype,'ctin':ctin,'purchaseinvoiceno':purchaseinvoiceno,'cdninvoiceno':cdninvoiceno,'purchaseinvoicedate':purchaseinvoicedate,'cdninvoicedate':cdninvoicedate}); */
+    }
+  }
+  Erp.ServerCommand('btnAddtoGSTN',{'arrdata':arrData},AddtoGSTNResult);
+  
+}
+
+
+
+function AddtoGSTNb2b()
+{
+  Erp.ServerCommand('btnAddtoGSTNB2B',null,AddtoGSTNb2bCallback);
+}
+
+function AddtoGSTNb2bCallback()
+{
+  Erp.Grid.Refresh('dgb2b2');
+}
+
+
+function AddtoGSTNcdn()
+{
+  Erp.ServerCommand('btnAddtoGSTNCDN',null,AddtoGSTNcdnCallback);
+}
+
+function AddtoGSTNcdnCallback()
+{
+  Erp.Grid.Refresh('dgcdn2');
+}
+
+
+
+function AddtoGSTNResult()
+{
+  
+}
+
+
+
+
+function LoadDatab2b()
+{
+  Erp.SetDisplay('gpb2b1',true);
+  Erp.SetDisplay('gpb2b2',false);
+  
+  //filterval =Erp.GetFieldValue('ddlfilterb2b');
+  b2bfilter="MR";
+  filterval ="MR";
+  
+  if(filterval=="MR")
+  {
+    if(!blnsubmitted &&  !blnfiled)
+    {
+  Erp.SetDisplay('btnB2BAccept',true);
+  Erp.SetDisplay('btnB2BReject',false);
+  Erp.SetDisplay('btnB2BModify',false);
+  Erp.SetLabel('lblb2btitle','List of Matched Records'); 
+    }
+  }
+  
+   
+  Erp.SetParam('dgb2b','filterval',filterval);
+  //Erp.SetParam('dgb2b','action','pending');
+  //alert(Erp.GetParam('dgb2b','action'));
+  Erp.Grid.Filter('dgb2b','Pendingaction');
+  
+  
+}
+
+function loadDataCDN()
+{
+  
+  Erp.SetDisplay('gpcdn1',true);
+  Erp.SetDisplay('gpcdn2',false);
+  
+  //filterval =Erp.GetFieldValue('ddlfiltercdn');
+  filterval ="MR";
+  cdnfilter="MR";
+  if(filterval=="MR")
+  {
+    if(!blnsubmitted &&  !blnfiled)
+    {
+  	Erp.SetDisplay('btnCDNAccept',true);
+  	Erp.SetDisplay('btnCDNReject',false);
+  	Erp.SetDisplay('btnCDNModify',false);
+    Erp.SetLabel('lblcdntitle','List of Matched Records');  
+    }
+  }
+  
+  Erp.SetParam('dgCDN','filterval',filterval);
+  //Erp.SetParam('dgCDN','action','pending');
+  //Erp.Grid.Refresh('dgCDN');
+  Erp.Grid.Filter('dgCDN','Pendingaction');
+  
+}
+
+
+function LoadDatab2ba()
+{
+  filterval =Erp.GetFieldValue('ddlfilterb2ba');
+  Erp.SetParam('dgb2ba','filterval',filterval);
+  Erp.Grid.Refresh('dgb2ba');
+  
+}
+
+function loadDataCDNA()
+{
+  filterval =Erp.GetFieldValue('ddlfiltercdna');
+  Erp.SetParam('dgCDNA','filterval',filterval);
+  Erp.Grid.Refresh('dgCDNA');
+  
+}
+
+
+function B2BAction(sender,args)
+{
+   var context = sender.context.id;
+   var action="";
+   
+   
+  var b2bid= Erp.Grid.GetRecordID_Multiple('dgb2b');
+  if(Fn.IsEmpty(b2bid)) 
+  {
+    Erp.ShowMessage('No record selected','alert');
+    return false;
+  }
+  
+  //var cnt = Erp.Grid.GetRowCount('dgb2b');
+  var cnt = Erp.Grid.GetSelectedRows('dgb2b').length;
+  if(context!= "btnResetb2b1")
+  {
+    var cfs= Erp.Grid.GetRecordValue('dgb2b','cfs');
+    if(cfs=="N")
+    {
+       Erp.ShowMessage('Action cannot be taken on selected record because records have not been submitted / filed by vendor','alert');
+       return false;
+    }
+    else
+    {
+
+      Erp.ShowMessage('Selected Action marked for  '+ cnt +' no of records. These records have been moved to Completed Action Tab','success');
+    }
+  }
+  else
+    {
+      Erp.ShowMessage('Selected Action marked for  '+ cnt +' no. of records. These records have been moved to Pending For Action Tab','success');
+    }
+  
+  
+  
+  if(context== "btnB2BAccept")
+  {
+    action='A';
+  }
+  else if(context== "btnB2BReject")
+  {
+   action='R';
+  }
+  else if(context== "btnB2BModify")
+  {
+    action='M';
+  }
+  else if(context== "btnResetb2b1")
+  {
+    action='Reset';
+  }
+  
+  
+  if(!Fn.IsEmpty(action)) 
+  {
+  Erp.ServerCommand('B2bAction',{'action':action},B2BActionCallBack);
+  }
+  
+}
+
+
+function B2BAAction(sender,args)
+{
+   var context = sender.context.id;
+   var action="";
+   var b2bid= Erp.Grid.GetRecordID_Multiple('dgb2ba');
+   
+  
+  if(Fn.IsEmpty(b2bid)) 
+  {
+    Erp.ShowMessage('No record selected','alert');
+    return false;
+  }
+  
+  if(context== "btnB2BaAccept")
+  {
+    action='A';
+  }
+  else if(context== "btnB2BaReject")
+  {
+   action='R';
+  }
+  else if(context== "btnB2BaModify")
+  {
+    action='M';
+  }
+  
+  if(!Fn.IsEmpty(action)) 
+  {
+  Erp.ServerCommand('B2bAction',{'action':action,'b2bid':b2bid},B2BActionCallBack);
+  }
+  
+}
+  
+  
+function CDNAction(sender,args)
+{
+   var context = sender.context.id;
+   var action="";
+   
+  var cdnid= Erp.Grid.GetRecordID_Multiple('dgCDN');
+  if(Fn.IsEmpty(cdnid)) 
+  {
+    Erp.ShowMessage('No record selected','alert');
+    return false;
+  }
+  
+ 
+  
+  
+  //var cnt = Erp.Grid.GetRowCount('dgCDN');
+  var cnt = Erp.Grid.GetSelectedRows('dgCDN').length;
+  if(context!= "btnResetcdn1")
+  {
+    var cfs= Erp.Grid.GetRecordValue('dgCDN','cfs');
+    
+    if(cfs=="N")
+    {
+       Erp.ShowMessage('Action cannot be taken on selected record because records have not been submitted / filed by vendor','alert');
+       return false;
+    }
+    else
+    {
+      
+      Erp.ShowMessage('Selected Action marked for  '+ cnt +' no. of records. These records have been moved to Completed Action Tab','success');
+      //Erp.ShowMessage('Action will be taken on records which are submitted by the vendor','alert');
+    }
+  }
+  else
+    {
+      Erp.ShowMessage('Selected Action marked for  '+ cnt +' no. of records. These records have been moved to Pending For Action Tab','success');
+    }
+  
+  
+  
+  if(context== "btnCDNAccept")
+  {
+    action='A';
+  }
+  else if(context== "btnCDNReject")
+  {
+   action='R';
+  }
+  else if(context== "btnCDNModify")
+  {
+    action='M';
+  }
+  else if(context== "btnResetcdn1")
+  {
+    action='Reset';
+  }
+  
+  if(!Fn.IsEmpty(action)) 
+  {
+  Erp.ServerCommand('CdnAction',{'action':action},CDNActionCallBack);
+  }
+}
+  
+  function CDNAAction(sender,args)
+{
+   var context = sender.context.id;
+   var action="";
+   var cdnid= Erp.Grid.GetRecordID_Multiple('dgCDNA');
+  
+  if(Fn.IsEmpty(cdnid)) 
+  {
+    Erp.ShowMessage('No record selected','alert');
+    return false;
+  }
+  
+  if(context== "btnCDNAAccept")
+  {
+    action='A';
+  }
+  else if(context== "btnCDNAReject")
+  {
+   action='R';
+  }
+  else if(context== "btnCDNAModify")
+  {
+    action='M';
+  }
+  
+  if(!Fn.IsEmpty(action)) 
+  {
+  Erp.ServerCommand('CdnAction',{'action':action,'cdnid':cdnid},CDNActionCallBack);
+  }
+  
+ 
+}
+
+
+
+
+
+function B2BActionCallBack()
+{
+  ShowRecordCount();
+  Erp.Grid.Refresh('dgb2b');
+  
+}
+
+
+function CDNActionCallBack()
+{
+  ShowRecordCount();
+  Erp.Grid.Refresh('dgCDN');
+  
+}
+
+function ShowRecord(filterval)
+{
+  
+  
+  $('#MatchRecord1').removeClass('RecordTilesSelected');
+  $('#MatchRecordRoundDiff1').removeClass('RecordTilesSelected');
+  $('#RecordFoundWithCtinAndInvoice1').removeClass('RecordTilesSelected');
+  $('#RecordNotFoundInOurSystem1').removeClass('RecordTilesSelected');
+  $('#RecordNotFoundInGSTN1').removeClass('RecordTilesSelected');
+  
+  
+  b2bfilter =  filterval;
+  if(filterval=="RNFGSTN")
+  {
+    $('#RecordNotFoundInGSTN1').addClass('RecordTilesSelected'); 
+    $("#b2bmenu").find(".menu-title").eq(0).html("Pending For Action("+b2bRNFGSTNPending+")");
+    $("#b2bmenu").find(".menu-title").eq(1).html("Completed Action("+b2bRNFGSTNCompleted+")");
+    
+   
+  	Erp.SetDisplay('gpb2b1',false);
+  	Erp.SetDisplay('gpb2b2',true);
+    
+    
+    Erp.SetParam('dgb2b2','filterval',filterval);
+    //Erp.Grid.Refresh('dgb2b2');
+    
+    if(b2baction=="Pending")
+    {
+      Erp.Grid.RemoveFilter('dgb2b2','Completedaction');
+      Erp.Grid.Filter('dgb2b2','Pendingaction');
+      
+      if(!blnsubmitted &&  !blnfiled)
+      {
+         Erp.SetDisplay('btnB2BAddGstn',true);
+         Erp.SetDisplay('btnResetb2b2',false);
+      }
+    }
+    else
+    {
+      Erp.Grid.RemoveFilter('dgb2b2','Pendingaction');
+      Erp.Grid.Filter('dgb2b2','Completedaction');
+      
+      if(!blnsubmitted &&  !blnfiled)
+      {
+         Erp.SetDisplay('btnB2BAddGstn',false);
+         Erp.SetDisplay('btnResetb2b2',true);
+      }
+    }
+      
+      
+    
+    
+    Erp.SetLabel('lblb2btitle','List of records missed by vendors');
+  }
+  else
+  {
+    
+    if(filterval=="MR")
+  {
+    $('#MatchRecord1').addClass('RecordTilesSelected'); 
+    $("#b2bmenu").find(".menu-title").eq(0).html("Pending For Action("+b2bMRPending+")");
+    $("#b2bmenu").find(".menu-title").eq(1).html("Completed Action("+b2bMRCompleted+")");
+    
+  //Erp.SetDisplay('btnB2BAccept',true);
+  Erp.SetDisplay('btnB2BReject',false);
+  Erp.SetDisplay('btnB2BModify',false);
+  Erp.SetLabel('lblb2btitle','List of Matched records');
+    
+    
+    if(b2baction=="Pending")
+    {
+      if(!blnsubmitted &&  !blnfiled)
+      {
+        Erp.SetDisplay('btnB2BAccept',true);
+        Erp.SetDisplay('btnResetb2b1',false);
+      }
+    }
+    else
+    {
+      if(!blnsubmitted &&  !blnfiled)
+      {
+        Erp.SetDisplay('btnB2BAccept',false);
+        Erp.SetDisplay('btnResetb2b1',true);
+      }
+    }
+  }
+   else if(filterval=="MRRD")
+  {
+    $('#MatchRecordRoundDiff1').addClass('RecordTilesSelected'); 
+    $("#b2bmenu").find(".menu-title").eq(0).html("Pending For Action("+b2bMRRDPending+")");
+    $("#b2bmenu").find(".menu-title").eq(1).html("Completed Action("+b2bMRRDCompleted+")");
+    
+    if(!blnsubmitted &&  !blnfiled)
+    {
+    Erp.SetDisplay('btnB2BAccept',true);
+    Erp.SetDisplay('btnB2BReject',true);
+    Erp.SetDisplay('btnB2BModify',true);
+    }
+    
+    
+     if(b2baction=="Pending")
+    {
+      
+      Erp.SetDisplay('btnResetb2b1',false);
+    }
+    else
+    {
+      if(!blnsubmitted &&  !blnfiled)
+      Erp.SetDisplay('btnResetb2b1',true);
+    
+    }
+    
+    Erp.SetLabel('lblb2btitle','List of  matched records with rounding difference');
+  }
+  else if(filterval=="MRP")
+  {
+    $('#RecordFoundWithCtinAndInvoice1').addClass('RecordTilesSelected');
+    $("#b2bmenu").find(".menu-title").eq(0).html("Pending For Action("+b2bMRPPending+")");
+    $("#b2bmenu").find(".menu-title").eq(1).html("Completed Action("+b2bMRPCompleted+")");
+    
+    if(!blnsubmitted &&  !blnfiled)
+    {
+      Erp.SetDisplay('btnB2BAccept',true);
+      Erp.SetDisplay('btnB2BReject',true);
+      Erp.SetDisplay('btnB2BModify',true);
+    }
+    
+    if(b2baction=="Pending")
+    {
+      Erp.SetDisplay('btnResetb2b1',false);
+    }
+    else
+    {
+      if(!blnsubmitted &&  !blnfiled)
+      Erp.SetDisplay('btnResetb2b1',true);
+    }
+    
+    Erp.SetLabel('lblb2btitle','List of  mismatched records');
+  }
+    else if(filterval=="RNFS")
+  {
+    $('#RecordNotFoundInOurSystem1').addClass('RecordTilesSelected');
+    
+    $("#b2bmenu").find(".menu-title").eq(0).html("Pending For Action("+b2bRFNSPending+")");
+    $("#b2bmenu").find(".menu-title").eq(1).html("Completed Action("+b2bRFNSCompleted+")");
+    
+    Erp.SetDisplay('btnB2BAccept',false);
+    Erp.SetDisplay('btnB2BModify',false);
+    
+    
+    if(b2baction=="Pending")
+    {
+      	if(!blnsubmitted &&  !blnfiled)
+        {
+           Erp.SetDisplay('btnB2BReject',true);
+          Erp.SetDisplay('btnResetb2b1',false);
+        }
+    }
+    else
+    {
+      
+        if(!blnsubmitted &&  !blnfiled)
+        {
+          Erp.SetDisplay('btnB2BReject',false);
+          Erp.SetDisplay('btnResetb2b1',true);
+        }
+    }
+    
+    Erp.SetLabel('lblb2btitle','List of records missing in our purchase records');
+  }
+    
+  
+    Erp.SetDisplay('gpb2b1',true);
+    Erp.SetDisplay('gpb2b2',false);
+    
+    
+    Erp.SetParam('dgb2b','filterval',filterval);
+    //Erp.Grid.Refresh('dgb2b');
+    if(b2baction=="Pending")
+    {
+      Erp.Grid.RemoveFilter('dgb2b','Completedaction');
+      Erp.Grid.Filter('dgb2b','Pendingaction');
+    }
+    else
+    {
+      Erp.Grid.RemoveFilter('dgb2b','Pendingaction');
+      Erp.Grid.Filter('dgb2b','Completedaction');
+    }
+  }
+  
+  
+}
+
+function ShowRecordCDN(filterval)
+{
+  
+  $('#MatchRecord2').removeClass('RecordTilesSelected');
+  $('#MatchRecordRoundDiff2').removeClass('RecordTilesSelected');
+  $('#RecordFoundWithCtinAndInvoice2').removeClass('RecordTilesSelected');
+  $('#RecordNotFoundInOurSystem2').removeClass('RecordTilesSelected');
+  $('#RecordNotFoundInGSTN2').removeClass('RecordTilesSelected');
+  
+  cdnfilter =  filterval;
+  if(filterval=="RNFGSTN")
+  {
+       $('#RecordNotFoundInGSTN2').addClass('RecordTilesSelected'); 
+      $("#cdnmenu").find(".menu-title").eq(0).html("Pending For Action("+cdnRNFGSTNPending+")");
+      $("#cdnmenu").find(".menu-title").eq(1).html("Completed Action("+cdnRNFGSTNCompleted+")");
+    
+   
+    
+  	Erp.SetDisplay('gpcdn1',false);
+  	Erp.SetDisplay('gpcdn2',true);
+    
+    
+    Erp.SetParam('dgCDN2','filterval',filterval);
+    //Erp.Grid.Refresh('dgCDN2');
+    
+    if(cdnaction=="Pending")
+    {
+      Erp.Grid.RemoveFilter('dgCDN2','Completedaction');
+      Erp.Grid.Filter('dgCDN2','Pendingaction');
+      
+      	if(!blnsubmitted &&  !blnfiled)
+        {
+           Erp.SetDisplay('btnCDNAddGstn',true);
+           Erp.SetDisplay('btnResetcdn2',false);
+        }
+    }
+    else
+    {
+      Erp.Grid.RemoveFilter('dgCDN2','Pendingaction');
+      Erp.Grid.Filter('dgCDN2','Completedaction');
+      
+      if(!blnsubmitted &&  !blnfiled)
+      {
+        Erp.SetDisplay('btnCDNAddGstn',false);
+        Erp.SetDisplay('btnResetcdn2',true);
+      }
+      
+      
+    }
+    
+    Erp.SetLabel('lblcdntitle','List of records missed by vendors');
+  }
+  else
+  {
+    if(filterval=="MR")
+  {
+     $('#MatchRecord2').addClass('RecordTilesSelected');
+      $("#cdnmenu").find(".menu-title").eq(0).html("Pending For Action("+cdnMRPending+")");
+      $("#cdnmenu").find(".menu-title").eq(1).html("Completed Action("+cdnMRCompleted+")");
+    
+  	//Erp.SetDisplay('btnCDNAccept',true);
+    Erp.SetDisplay('btnCDNReject',false);
+    Erp.SetDisplay('btnCDNModify',false);
+    Erp.SetLabel('lblcdntitle','List of Matched records');
+    
+    
+     if(cdnaction=="Pending")
+    {
+      if(!blnsubmitted &&  !blnfiled)
+      {
+        Erp.SetDisplay('btnCDNAccept',true);
+        Erp.SetDisplay('btnResetcdn1',false);
+      }
+    }
+    else
+    {
+      if(!blnsubmitted &&  !blnfiled)
+      {
+        Erp.SetDisplay('btnCDNAccept',false);
+        Erp.SetDisplay('btnResetcdn1',true);
+      }
+    }
+    
+  }
+    else if(filterval=="MRRD")
+  {
+    $('#MatchRecordRoundDiff2').addClass('RecordTilesSelected'); 
+    $("#cdnmenu").find(".menu-title").eq(0).html("Pending For Action("+cdnMRRDPending+")");
+    $("#cdnmenu").find(".menu-title").eq(1).html("Completed Action("+cdnMRRDCompleted+")");
+    
+    if(!blnsubmitted &&  !blnfiled)
+    {
+    Erp.SetDisplay('btnCDNAccept',true);
+  	Erp.SetDisplay('btnCDNReject',true);
+    Erp.SetDisplay('btnCDNModify',true);
+    }
+    Erp.SetLabel('lblcdntitle','List of  matched records with rounding difference');
+    
+    
+    if(cdnaction=="Pending")
+    {
+      
+      Erp.SetDisplay('btnResetcdn1',false);
+    }
+    else
+    {
+      if(!blnsubmitted &&  !blnfiled)
+      Erp.SetDisplay('btnResetcdn1',true);
+    }
+  }
+  else if(filterval=="MRP")
+  {
+      $('#RecordFoundWithCtinAndInvoice2').addClass('RecordTilesSelected');
+      $("#cdnmenu").find(".menu-title").eq(0).html("Pending For Action("+cdnMRPPending+")");
+      $("#cdnmenu").find(".menu-title").eq(1).html("Completed Action("+cdnMRPCompleted+")");
+   
+    if(!blnsubmitted &&  !blnfiled)
+    {
+      Erp.SetDisplay('btnCDNAccept',true);
+      Erp.SetDisplay('btnCDNReject',true);
+      Erp.SetDisplay('btnCDNModify',true);
+    }
+    
+     Erp.SetLabel('lblcdntitle','List of  mismatched records');
+    
+    
+    if(cdnaction=="Pending")
+    {
+      
+      Erp.SetDisplay('btnResetcdn1',false);
+    }
+    else
+    {
+      
+      if(!blnsubmitted &&  !blnfiled)
+      Erp.SetDisplay('btnResetcdn1',true);
+    }
+    
+  }
+    else if(filterval=="RNFS")
+  {
+      $('#RecordNotFoundInOurSystem2').addClass('RecordTilesSelected');
+      $("#cdnmenu").find(".menu-title").eq(0).html("Pending For Action("+cdnRFNSPending+")");
+      $("#cdnmenu").find(".menu-title").eq(1).html("Completed Action("+cdnRFNSCompleted+")");
+    
+  		Erp.SetDisplay('btnCDNAccept',false);
+  		Erp.SetDisplay('btnCDNModify',false);
+    
+    if(cdnaction=="Pending")
+    {
+      if(!blnsubmitted &&  !blnfiled)
+        {
+          Erp.SetDisplay('btnCDNReject',true);
+          Erp.SetDisplay('btnResetcdn1',false);
+        }
+    }
+    else
+    {
+        if(!blnsubmitted &&  !blnfiled)
+        {
+          Erp.SetDisplay('btnCDNReject',false);
+          Erp.SetDisplay('btnResetcdn1',true);
+        }
+    }
+    
+    Erp.SetLabel('lblcdntitle','List of records missing in our purchase records');
+  }
+    
+    Erp.SetDisplay('gpcdn1',true);
+    Erp.SetDisplay('gpcdn2',false);
+    
+    Erp.SetParam('dgCDN','filterval',filterval);
+    //Erp.Grid.Refresh('dgCDN');
+   if(cdnaction=="Pending")
+   {
+     Erp.Grid.RemoveFilter('dgCDN','Completedaction');
+      Erp.Grid.Filter('dgCDN','Pendingaction');
+   }
+    else
+    {
+      Erp.Grid.RemoveFilter('dgCDN','Pendingaction');
+      Erp.Grid.Filter('dgCDN','Completedaction');
+    }
+  }
+  
+  
+}
+
+function B2B2Ourecords()
+{
+  var tid= Erp.Grid.GetRecordValue('dgb2b2','transid');
+  //var gstntid= Erp.Grid.GetRecordID('dgb2b2');
+  var gstntid="";
+  var rectype="B2B";
+  
+  Erp.OpenWindow({"Action":"READFORM","Entity":"tbl_ERP_temptable","Form":"Matching_Record_summary","RecordID":"","Refresh":false,"Global":false,"Title":"B2B Matching Records","Params":"tid="+tid+"&gstntid="+gstntid+"&rectype="+rectype,"Location":"Popup","PopHt":"516","PopWd":"1000"});
+  
+}
+
+
+function CDN2OurRecords()
+{
+ 
+  var rectype="CDN";
+  var tid= Erp.Grid.GetRecordValue('dgCDN2','transid');
+  //var gstntid = Erp.Grid.GetRecordID('dgCDN2');
+  var gstntid="";
+  Erp.OpenWindow({"Action":"READFORM","Entity":"tbl_ERP_temptable","Form":"Matching_Record_summary","RecordID":"","Refresh":false,"Global":false,"Title":"CDN Matching Records","Params":"tid="+tid+"&gstntid="+gstntid+"&rectype="+rectype,"Location":"Popup","PopHt":"516","PopWd":"1000"});
+}
+
+
+
+
+function B2BOurRecords()
+{
+  var tid= Erp.Grid.GetRecordValue('dgb2b','transid');
+  var gstntid= Erp.Grid.GetRecordID('dgb2b');
+  var rectype="B2B";
+  
+  Erp.OpenWindow({"Action":"READFORM","Entity":"tbl_ERP_temptable","Form":"Matching_Record_summary","RecordID":"","Refresh":false,"Global":false,"Title":"B2B Matching Records","Params":"tid="+tid+"&gstntid="+gstntid+"&rectype="+rectype,"Location":"Popup","PopHt":"516","PopWd":"1000"});
+}
+
+/*function B2BGSTNRecords()
+{
+  var id = Erp.Grid.GetRecordID('dgb2b');
+  Erp.OpenWindow({"Action":"READFORM","Entity":"tbl_ERP_gstr2_b2b_invoice","Form":"For_Matching_b2b","RecordID":id,"Refresh":false,"Global":false,"Title":"","Params":"","Location":"Popup","PopHt":"400","PopWd":"700"});
+}*/
+
+function CDNOurRecords()
+{
+   var rectype="CDN";
+  var tid= Erp.Grid.GetRecordValue('dgCDN','transid');
+  var gstntid = Erp.Grid.GetRecordID('dgCDN');
+  Erp.OpenWindow({"Action":"READFORM","Entity":"tbl_ERP_temptable","Form":"Matching_Record_summary","RecordID":"","Refresh":false,"Global":false,"Title":"CDN Matching Records","Params":"tid="+tid+"&gstntid="+gstntid+"&rectype="+rectype,"Location":"Popup","PopHt":"516","PopWd":"1000"});
+}
+
+/*function CDNGSTNRecords()
+{
+  var id = Erp.Grid.GetRecordID('dgCDN');
+  Erp.OpenWindow({"Action":"READFORM","Entity":"tbl_ERP_gstr2_cdn_invoice","Form":"For_Matching_CDN","RecordID":id,"Refresh":false,"Global":false,"Title":"","Params":"","Location":"Popup","PopHt":"400","PopWd":"700"});
+}
+*/
+
+function B2BAction2(sender,args)
+{
+   var context = sender.context.id;
+   var action="";
+   var b2bid= Erp.Grid.GetRecordID_Multiple('dgb2b2');
+   
+  
+  if(Fn.IsEmpty(b2bid)) 
+  {
+    Erp.ShowMessage('No record selected','alert');
+    return false;
+  }
+  
+  
+  var cnt = Erp.Grid.GetRowCount('dgb2b2');
+  if(context!= "btnResetb2b2")
+  {
+    /*var cfs= Erp.Grid.GetRecordValue('dgb2b2','cfs');
+    if(cfs=="N")
+    {
+       Erp.ShowMessage('Action cannot be taken on selected record because records have not been submitted by vendor','alert');
+       return false;
+    }
+    else
+    {
+      
+      
+      Erp.ShowMessage('Action will be taken on records which are submitted by the vendor','alert');
+    }*/
+    
+     
+   Erp.ShowMessage('Selected Action marked for  '+ cnt +' no. of records. These records have been moved to Completed Action Tab','success');
+  }
+  else
+  {
+    Erp.ShowMessage('Selected Action marked for  '+ cnt +' no. of records. These records have been moved to Pending for Action Tab','success');
+  }
+  
+  if(context== "btnB2BAddGstn")
+  {
+    action='new';
+  }
+  else if(context== "btnResetb2b2")
+  {
+   action='Reset';
+  }
+  
+  
+  
+  if(!Fn.IsEmpty(action)) 
+  {
+  Erp.ServerCommand('B2b2Action',{'action':action},B2BAction2CallBack);
+  }
+  
+}
+
+function B2BAction2CallBack()
+{
+  ShowRecordCount();
+  Erp.Grid.Refresh('dgb2b2');
+}
+
+
+function CDNAction2(sender,args)
+{
+   var context = sender.context.id;
+   var action="";
+   var cdnid= Erp.Grid.GetRecordID_Multiple('dgCDN2');
+  
+  if(Fn.IsEmpty(cdnid)) 
+  {
+    Erp.ShowMessage('No record selected','alert');
+    return false;
+  }
+  
+  
+  var cnt = Erp.Grid.GetRowCount('dgCDN2');
+   if(context!= "btnResetcdn2")
+  {
+    /*var cfs= Erp.Grid.GetRecordValue('dgCDN2','cfs');
+    if(cfs=="N")
+    {
+       Erp.ShowMessage('Action cannot be taken on selected record because records have not been submitted by vendor','alert');
+       return false;
+    }
+    else
+    {
+      Erp.ShowMessage('Action will be taken on records which are submitted by the vendor','alert');
+    }*/
+    
+    
+      Erp.ShowMessage('Selected Action marked for  '+ cnt +' no. of records. These records have been moved to Completed Action Tab','success');
+  }
+  else
+  {
+    Erp.ShowMessage('Selected Action marked for  '+ cnt +' no. of records. These records have been moved to Pending for Action Tab','success');
+  }
+  
+  
+  if(context== "btnCDNAddGstn")
+  {
+    action='new';
+  }
+  else if(context== "btnResetcdn2")
+  {
+   action='Reset';
+  }
+  
+  if(!Fn.IsEmpty(action)) 
+  {
+  Erp.ServerCommand('Cdn2Action',{'action':action},CDNAction2CallBack);
+  }
+}
+  function CDNAction2CallBack()
+{
+  ShowRecordCount();
+  Erp.Grid.Refresh('dgCDN2');
+}
+
+function loadActionWiseDatab2b(el,data)
+{
+  b2baction=data.value;
+  if(b2baction=="Completed")
+  {
+    if(!blnsubmitted &&  !blnfiled)
+    {
+     Erp.SetDisplay('btnResetb2b1',true);
+     Erp.SetDisplay('btnResetb2b2',true);
+    }
+    
+    if(b2bfilter!="RNFGSTN")
+    {
+      Erp.SetParam('dgb2b','filterval',b2bfilter);
+      Erp.Grid.RemoveFilter('dgb2b','Pendingaction');
+      Erp.Grid.Filter('dgb2b','Completedaction');
+      
+      
+        if(b2bfilter=="MR")
+        {
+          Erp.SetDisplay('btnB2BAccept',false);
+        }
+         if(b2bfilter=="RNFS")
+        {
+          Erp.SetDisplay('btnB2BReject',false);
+        }
+      
+    }
+    else
+    {
+     
+      Erp.SetParam('dgb2b2','filterval',b2bfilter);
+      Erp.Grid.RemoveFilter('dgb2b2','Pendingaction');
+      Erp.Grid.Filter('dgb2b2','Completedaction');
+      
+       Erp.SetDisplay('btnB2BAddGstn',false);
+      
+      
+    }
+  }
+  else if(b2baction=="Pending")
+  {
+    
+    Erp.SetDisplay('btnResetb2b1',false);
+    Erp.SetDisplay('btnResetb2b2',false);
+
+    
+    if(b2bfilter!="RNFGSTN")
+    {
+      Erp.SetParam('dgb2b','filterval',b2bfilter);
+      Erp.Grid.RemoveFilter('dgb2b','Completedaction');
+      Erp.Grid.Filter('dgb2b','Pendingaction');
+      
+        if(b2bfilter=="MR")
+        {
+          if(!blnsubmitted &&  !blnfiled)
+          Erp.SetDisplay('btnB2BAccept',true);
+        }
+         if(b2bfilter=="RNFS")
+        {
+          if(!blnsubmitted &&  !blnfiled)
+          Erp.SetDisplay('btnB2BReject',true);
+        }
+    }
+    else
+    {
+      
+      Erp.SetParam('dgb2b2','filterval',b2bfilter);
+      Erp.Grid.RemoveFilter('dgb2b2','Completedaction');
+      Erp.Grid.Filter('dgb2b2','Pendingaction');
+      
+      if(!blnsubmitted &&  !blnfiled)
+      Erp.SetDisplay('btnB2BAddGstn',true);
+    }
+    
+   
+  }
+}
+
+
+function loadActionWiseDatacdn(el,data)
+{
+  cdnaction=data.value;
+  if(data.value=="Completed")
+  {
+    if(!blnsubmitted &&  !blnfiled)
+    {
+     Erp.SetDisplay('btnResetcdn1',true);
+     Erp.SetDisplay('btnResetcdn2',true);
+    }
+    
+    if(cdnfilter!="RNFGSTN")
+    {
+      Erp.SetParam('dgCDN','filterval',cdnfilter);
+      Erp.Grid.RemoveFilter('dgCDN','Pendingaction');
+      Erp.Grid.Filter('dgCDN','Completedaction');
+      
+      if(cdnfilter=="MR")
+        {
+          Erp.SetDisplay('btnCDNAccept',false);
+        }
+        else if(cdnfilter=="RNFS")
+        {
+          Erp.SetDisplay('btnCDNReject',false);
+        }
+    }
+    else
+    {
+      Erp.SetParam('dgCDN2','filterval',cdnfilter);
+      Erp.Grid.RemoveFilter('dgCDN2','Pendingaction');
+      Erp.Grid.Filter('dgCDN2','Completedaction');
+      
+      Erp.SetDisplay('btnCDNAddGstn',false);
+    }
+    
+   
+  }
+  else if(data.value=="Pending")
+  {
+    
+     Erp.SetDisplay('btnResetcdn1',false);
+     Erp.SetDisplay('btnResetcdn2',false);
+    
+    if(cdnfilter!="RNFGSTN")
+    {
+      Erp.SetParam('dgCDN','filterval',cdnfilter);
+      Erp.Grid.RemoveFilter('dgCDN','Completedaction');
+     Erp.Grid.Filter('dgCDN','Pendingaction');
+      
+      if(cdnfilter=="MR")
+        {
+          if(!blnsubmitted &&  !blnfiled)
+          Erp.SetDisplay('btnCDNAccept',true);
+        }
+        else if(cdnfilter=="RNFS")
+        {
+          if(!blnsubmitted &&  !blnfiled)
+          Erp.SetDisplay('btnCDNReject',true);
+        }
+    }
+    else
+    {
+      Erp.SetParam('dgCDN2','filterval',cdnfilter);
+      Erp.Grid.RemoveFilter('dgCDN2','Completedaction');
+      Erp.Grid.Filter('dgCDN2','Pendingaction');
+      
+      if(!blnsubmitted &&  !blnfiled)
+      Erp.SetDisplay('btnCDNAddGstn',true);
+    }
+  }
+}
+
+function ShowPurchaseRecords()
+{
+  var ctin= Erp.Grid.GetRecordValue('dgb2b','ctin');
+  Erp.OpenWindow({"Action":"VIEWFORM","Entity":"tbl_ERP_t","Form":"view_PurchaseforVendor","Refresh":false,"Global":false,"Title":"Purchase records against Vendor","Params":"vtype=P&Title=Purchase&_t1=Purchase&ctin="+ctin,"Location":"Popup","PopHt":"500","PopWd":"950"})
+  
+}
+
+function ShowAllCDNRecords()
+{
+  var ctin= Erp.Grid.GetRecordValue('dgCDN','ctin');
+  var notetype= Erp.Grid.GetRecordValue('dgCDN','notetype');
+  if(notetype=="C")
+   Erp.OpenWindow({"Action":"VIEWFORM","Entity":"tbl_ERP_t","Form":"view_DNForVendor","Refresh":false,"Global":false,"Title":"Debit Notes records against Vendor","Params":"vtype=DN&_nm=P&tm=AgainstPurchase&_t1=Debit Note&ctin="+ctin,"Location":"Popup","PopHt":"500","PopWd":"950"})
+  else
+    Erp.OpenWindow({"Action":"VIEWFORM","Entity":"tbl_ERP_t","Form":"view_CNForVendor","Refresh":false,"Global":false,"Title":"Credit Notes records against Vendor","Params":"vtype=CN&_nm=P&tm=AgainstPurchase&_t1=Credit Note&ctin="+ctin,"Location":"Popup","PopHt":"500","PopWd":"950"})
+    
+  
+}
+
+

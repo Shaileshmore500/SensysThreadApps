@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="http://reg.sensysindia.com/sensysservices/datastreamer.asmx?wsdl" docRef="http://reg.sensysindia.com/sensysservices/datastreamer.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://reg.sensysindia.com/sensysservices/datastreamer.asmx" xmlns:q1="SensysIndia" binding="q1:DataStreamerSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://reg.sensysindia.com/sensysservices/datastreamer.asmx" xmlns:q2="SensysIndia" binding="q2:DataStreamerSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

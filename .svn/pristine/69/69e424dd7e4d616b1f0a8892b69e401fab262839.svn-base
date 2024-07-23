@@ -1,0 +1,366 @@
+﻿<%--
+default skin template. the following skins are provided as examples only.
+
+1. named control skin. the skinid should be uniquely defined because
+   duplicate skinid's per control type are not allowed in the same theme.
+
+<asp:gridview runat="server" skinid="gridviewskin" backcolor="white" >
+   <alternatingrowstyle backcolor="blue" />
+</asp:gridview>
+
+2. default skin. the skinid is not defined. only one default 
+   control skin per control type is allowed in the same theme.
+<NumberFormat DecimalDigits="4" GroupSeparator="" KeepNotRoundedValue="True" />
+<asp:Image runat="server" ImageUrl="~/images/image1.jpg" />
+--%>
+
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+<%--RadGrid--%>
+
+<telerik:RadGrid  runat="server" Skin="Default" ShowStatusBar="true" SkinID="ClientPaging" CssClass="ClientPaging"
+    VirtualItemCount="0" ExportSettings-FileName="EasyPay"
+    ExportSettings-IgnorePaging="true" ExportSettings-ExportOnlyData="true"
+    ExportSettings-OpenInNewWindow="true"
+    ClientSettings-ClientEvents-OnGridCreated="RadGridLoad"
+    ClientSettings-Selecting-EnableDragToSelectRows="false"
+    ClientSettings-AllowColumnsReorder="false" ClientSettings-ReorderColumnsOnClient="true" ClientSettings-ColumnsReorderMethod ="Reorder"
+    
+    AllowPaging="true" AllowSorting="True" AllowFilteringByColumn="true" GridLines="None">
+    <GroupingSettings CaseSensitive="false" />
+    <ExportSettings>
+        <Excel Format="Biff" />
+    </ExportSettings>
+    <ClientSettings>
+        <ClientEvents OnCommand="RadGrid_Command" OnColumnResized="RadGrid_ColumnResized" />
+        <Selecting AllowRowSelect="True" />
+        <Scrolling AllowScroll="True"  UseStaticHeaders="True" />
+        <Resizing AllowColumnResize="True" />
+
+    </ClientSettings>
+<MasterTableView CommandItemDisplay="Top" ></MasterTableView>
+    <PagerStyle PageButtonCount="3" Mode="NextPrevAndNumeric" PagerTextFormat="{4}<span  style='float:right;margin-top:0px;font-weight:normal;margin-right:4px' ><b>{2}</b> to <b>{3}</b> of <b>{5}</b></span>"></PagerStyle>
+</telerik:RadGrid>
+
+<telerik:RadGrid  runat="server" Skin="Default" ShowStatusBar="true" SkinID="ChildGridClientPaging" CssClass="ClientPaging ChildGrid"
+    VirtualItemCount="0" ExportSettings-FileName="EasyPay"
+    ExportSettings-IgnorePaging="true" ExportSettings-ExportOnlyData="true"
+    ExportSettings-OpenInNewWindow="true"
+    ClientSettings-ClientEvents-OnGridCreated="RadGridLoad"
+    ClientSettings-Selecting-EnableDragToSelectRows="false"
+    ClientSettings-AllowColumnsReorder="false" ClientSettings-ReorderColumnsOnClient="true" ClientSettings-ColumnsReorderMethod ="Reorder"
+    ClientSettings-AllowDragToGroup="false"
+    AllowPaging="true" AllowSorting="True" AllowFilteringByColumn="true" GridLines="None">
+    <GroupingSettings CaseSensitive="false" />
+    <ExportSettings>
+        <Excel Format="Biff" />
+    </ExportSettings>
+    <ClientSettings>
+        <ClientEvents OnCommand="RadGrid_Command" OnColumnResized="RadGrid_ColumnResized" />
+        <Selecting AllowRowSelect="True" />
+        <Scrolling AllowScroll="True" UseStaticHeaders="True" />
+        <Resizing AllowColumnResize="True" />
+
+    </ClientSettings>
+<MasterTableView CommandItemDisplay="Top" ></MasterTableView>
+    <PagerStyle PageButtonCount="3" Mode="NextPrevAndNumeric" PagerTextFormat="{4}<span  style='float:right;margin-top:0px;font-weight:normal;margin-right:4px' > Items <b>{2}</b> to <b>{3}</b> of <b>{5}</b></span>"></PagerStyle>
+</telerik:RadGrid>
+
+<telerik:RadGrid  runat="server" Skin="Default" ExportSettings-FileName="EasyPay"
+    ExportSettings-IgnorePaging="true" ExportSettings-ExportOnlyData="true"
+    ExportSettings-OpenInNewWindow="true"
+    ClientSettings-Selecting-EnableDragToSelectRows="false"
+    ClientSettings-AllowColumnsReorder="false"
+    ClientSettings-AllowDragToGroup="false"
+ 
+    AllowSorting="True" AllowFilteringByColumn="true" GridLines="None">
+    <ClientSettings>
+        <Selecting AllowRowSelect="True" />
+        <Scrolling AllowScroll="True" ScrollHeight="180px" UseStaticHeaders="True" />
+        <Resizing AllowColumnResize="True" />
+    </ClientSettings>
+    <GroupingSettings CaseSensitive="false" />
+    <ExportSettings>
+        <Excel Format="Biff" />
+    </ExportSettings>
+<MasterTableView CommandItemDisplay="Top"></MasterTableView>
+    <PagerStyle PageButtonCount="3" Mode="NextPrevAndNumeric" PagerTextFormat="{4}<span  style='float:right;margin-top:0px;font-weight:normal;margin-right:4px' > Items <b>{2}</b> to <b>{3}</b> of <b>{5}</b></span>"></PagerStyle>
+</telerik:RadGrid>
+
+<telerik:RadGrid  runat="server" Skin="Default" SkinID="NoScroll" ExportSettings-FileName="EasyPay"
+    ExportSettings-IgnorePaging="true" ExportSettings-ExportOnlyData="true"
+    ExportSettings-OpenInNewWindow="true"
+    ClientSettings-Selecting-EnableDragToSelectRows="false"
+    ClientSettings-AllowColumnsReorder="false"
+    ClientSettings-AllowDragToGroup="false"
+    AllowSorting="True" AllowFilteringByColumn="true" GridLines="None">
+    <ClientSettings>
+        <Selecting AllowRowSelect="True" />
+     
+        <Resizing AllowColumnResize="True" />
+    </ClientSettings>
+    <GroupingSettings CaseSensitive="false" />
+    <ExportSettings>
+        <Excel Format="Biff" />
+    </ExportSettings>
+<MasterTableView CommandItemDisplay="Top"></MasterTableView>
+    <PagerStyle PageButtonCount="10" Mode="Slider" PagerTextFormat="{4}<span  style='float:right;margin-top:0px;font-weight:normal;margin-right:4px' > Items <b>{2}</b> to <b>{3}</b> of <b>{5}</b></span>"></PagerStyle>
+</telerik:RadGrid>
+<telerik:RadGrid  runat="server" Skin="Default" SkinID="MultiSelect" ExportSettings-FileName="EasyPay" ExportSettings-IgnorePaging="true" ExportSettings-ExportOnlyData="true" ExportSettings-OpenInNewWindow="true" ClientSettings-ClientEvents-OnGridCreated="RadGridLoad" ClientSettings-Selecting-EnableDragToSelectRows="false" ClientSettings-AllowColumnsReorder="false" ClientSettings-AllowDragToGroup="false">
+    <GroupingSettings CaseSensitive="false" />
+    <ExportSettings>
+        <Excel Format="Biff" />
+    </ExportSettings>
+    <PagerStyle PageButtonCount="10" Mode="Slider" PagerTextFormat="{4}<span  style='float:right;margin-top:0px;font-weight:normal;margin-right:4px' > Items <b>{2}</b> to <b>{3}</b> of <b><span id='spnGridTotalCount'>{5}</span></b></span>"></PagerStyle>
+</telerik:RadGrid>
+<telerik:RadGrid  runat="server" Skin="Office2007" SkinID="NoTools" ExportSettings-FileName="EasyPay" ExportSettings-IgnorePaging="true" ExportSettings-ExportOnlyData="true" ExportSettings-OpenInNewWindow="true" ClientSettings-Selecting-EnableDragToSelectRows="false" ClientSettings-AllowColumnsReorder="false" ClientSettings-AllowDragToGroup="false">
+    <GroupingSettings CaseSensitive="false" />
+    <PagerStyle PageButtonCount="10" Mode="Slider" PagerTextFormat="{4}<span  style='float:right;margin-top:0px;font-weight:normal;margin-right:4px' > Items <b>{2}</b> to <b>{3}</b> of <b>{5}</b></span>"></PagerStyle>
+</telerik:RadGrid>
+<telerik:RadGrid  runat="server" Skin="Office2007" ExportSettings-FileName="EasyPay" SkinID="ImportGrid" ExportSettings-IgnorePaging="true" ExportSettings-ExportOnlyData="true" ExportSettings-OpenInNewWindow="true" ClientSettings-ClientEvents-OnGridCreated="RadGridLoad" ClientSettings-Selecting-EnableDragToSelectRows="false" ClientSettings-AllowColumnsReorder="false" ClientSettings-AllowDragToGroup="false">
+    <GroupingSettings CaseSensitive="false" />
+    <PagerStyle PageButtonCount="10" Mode="Slider" PagerTextFormat="{4}<span  style='float:right;margin-top:0px;font-weight:normal;margin-right:4px' > Items <b>{2}</b> to <b>{3}</b> of <b>{5}</b></span>"></PagerStyle>
+</telerik:RadGrid>
+
+
+
+<telerik:RadTreeList   runat="server" SkinID="NoPosBackTreeList" Skin="Default" AllowLoadOnDemand="false" ClientSettings-ClientEvents-OnTreeListCreated="TreeListCreated_NP">
+</telerik:RadTreeList>
+
+<%--<telerik:RadMultiPage Style="border: solid 1px #898C95 !important;padding : 10px !important;margin-left:-1px !important;">
+</telerik:RadMultiPage>--%>
+<%--RadToolBar--%>
+<telerik:RadToolBar runat="server" Skin="Default" SkinID="GridToolbar" Width="100.40%" />
+<telerik:RadToolBar runat="server" Skin="Default" />
+<telerik:RadToolBar runat="server" SkinID="NoSkin" />
+<%--RadTextBox--%>
+<telerik:RadTextBox runat="server" Skin="Office2007" />
+
+
+<%--RadNumericTextBox--%>
+
+
+<telerik:RadNumericTextBox  CssClass="txtRight" Width="80px" EnableSingleInputRendering="false" runat="server" Skin="Office2007" IncrementSettings-InterceptMouseWheel="false" IncrementSettings-InterceptArrowKeys="false" EnabledStyle-PaddingRight="2px" EnabledStyle-HorizontalAlign="right" DisabledStyle-HorizontalAlign="right" DisabledStyle-PaddingRight="2px">
+    <NumberFormat DecimalDigits="2"
+        GroupSeparator=""
+        KeepNotRoundedValue="True"
+        AllowRounding="False" />
+</telerik:RadNumericTextBox>
+
+
+<%--RadComboBox--%>
+<telerik:RadComboBox  runat="server" Skin="Office2007">
+    <ExpandAnimation Type="None" />
+    <CollapseAnimation Duration="200" Type="None" />
+</telerik:RadComboBox>
+<telerik:RadComboBox   runat="server" SkinID="CboNoSkin">
+</telerik:RadComboBox>
+
+<telerik:RadComboBox   OnClientLoad="AddNewCombo_Load" runat="server" SkinID="AddNewCombo" Skin="Office2007">
+    <ExpandAnimation Type="None" />
+    <CollapseAnimation Duration="200" Type="None" />
+</telerik:RadComboBox>
+<telerik:RadComboBox OnClientLoad="ComboMaster_Load" DropDownAutoWidth="Enabled" DropDownCssClass="ComboMaster" runat="server" SkinID="ComboMaster" Skin="Office2007">
+    <ExpandAnimation Type="None" />
+    <CollapseAnimation Duration="200" Type="None" />
+</telerik:RadComboBox>
+
+<telerik:RadComboBox  runat="server" Skin="Office2007" SkinID="RadCheckBox"
+    OnClientDropDownOpening="RadChk_DropDownOpening"
+    OnClientBlur="RadChk_ClientBlur"
+    OnClientDropDownClosing="RadChk_DropDownClosing">
+    <ExpandAnimation Type="None" />
+    <CollapseAnimation Duration="200" Type="None" />
+</telerik:RadComboBox>
+
+
+<%--RadCalendar--%>
+<telerik:RadCalendar   runat="server" Skin="Office2007" />
+<telerik:RadCalendar  runat="server" SkinID="CalNoSkin" />
+
+
+<%--RadDatePicker--%>
+<telerik:RadDatePicker   runat="server" Skin="Office2007" CssClass="defaultRadDatePicker" Width="100px" Calendar-Height="90px" Calendar-Width="160px" MaxDate="01-01-2200" MinDate="01-01-1800" Calendar-ShowRowHeaders="false">
+    <DateInput EnableSingleInputRendering="false" DateFormat="dd-MM-yyyy"></DateInput>
+    <ClientEvents OnPopupOpening="RadCalendar_Show" />
+</telerik:RadDatePicker>
+<telerik:RadDatePicker  runat="server" Skin="Office2007" CssClass="defaultRadDatePicker" Width="100px" Calendar-Height="90px" Calendar-Width="160px" SkinID="NoRange" Calendar-ShowRowHeaders="false">
+    <DateInput EnableSingleInputRendering="false" DateFormat="dd-MM-yyyy"></DateInput>
+    <ClientEvents OnPopupOpening="RadCalendar_Show" />
+</telerik:RadDatePicker>
+<telerik:RadDatePicker  runat="server" Skin="Office2007" CssClass="defaultRadDatePicker" Width="100px" Calendar-Height="90px" Calendar-Width="160px" SkinID="CalNoDrag" MaxDate="01-01-2200" MinDate="01-01-1800" Calendar-ShowRowHeaders="false">
+    <DateInput EnableSingleInputRendering="false" DateFormat="dd-MM-yyyy"></DateInput>
+
+</telerik:RadDatePicker>
+<%--RadTimePicker--%>
+<telerik:RadTimePicker   runat="server" Skin="Office2007">
+    <ClientEvents OnPopupOpening="RadCalendar_Show" />
+    <DateInput EnableSingleInputRendering="false"></DateInput>
+</telerik:RadTimePicker>
+<%--RadDateTimePicker--%>
+<telerik:RadDateTimePicker   runat="server" Skin="Office2007">
+    <DateInput EnableSingleInputRendering="false"></DateInput>
+</telerik:RadDateTimePicker>
+<%--RadTabStrip--%>
+<telerik:RadTabStrip  runat="server" Skin="Office2007" />
+<telerik:RadTabStrip   runat="server" SkinID="Default" />
+<%--RadPanelBar--%>
+<telerik:RadPanelBar  runat="server" Skin="Office2007" />
+<telerik:RadPanelBar  runat="server" SKinID="PbrNoSkin"  />
+<telerik:RadToolBar  runat="server" CssClass="MainToolbar" SkinID="MainToolbar" Skin="Windows7" />
+<telerik:RadToolBar  runat="server" SkinID="RelatedToolbar" Skin="Web20" />
+<telerik:RadMenu  OnClientItemOpening="MenuOpening" runat="server" Width="150%" SkinID="MainMenu" EnableRoundedCorners="true" EnableShadows="true" Skin="Office2010Silver">
+    <CollapseAnimation Type="None"></CollapseAnimation>
+</telerik:RadMenu>
+
+<telerik:RadTreeView   runat="server" Skin="Metro" />
+                      
+<telerik:RadTreeView   runat="server" SkinID="RTVNoSkin" />
+
+
+
+<hlp:IconButton  runat="server" SkinID="Submit" CssClass="IB_Submit"></hlp:IconButton>
+<hlp:IconButton  runat="server" SkinID="Cancel" CssClass="IB_Cancel"></hlp:IconButton>
+<hlp:IconButton  runat="server" SkinID="Search" CssClass="IB_Search"></hlp:IconButton>
+<hlp:IconButton  runat="server" SkinID="Filter" CssClass="IB_Filter"></hlp:IconButton>
+<hlp:IconButton  runat="server" SkinID="Process" CssClass="IB_Process"></hlp:IconButton>
+<hlp:IconButton  runat="server" SkinID="Accept" CssClass="IB_Accept"></hlp:IconButton>
+<hlp:IconButton  runat="server" SkinID="Reject" CssClass="IB_Reject"></hlp:IconButton>
+<%--labels--%>
+
+<asp:label runat="server" skinid='LblNoSkin'></asp:label>
+<asp:label runat="server" skinid="boldLabel" cssclass="boldLabel"></asp:label>
+
+<%--panels--%>
+
+<asp:panel runat="server" skinid="PnlNoSkin"></asp:panel>
+<asp:panel runat="server" skinid="panelMainContainer" cssclass="panelMainContainer"></asp:panel>
+<asp:panel runat="server" skinid="panelButtonL" cssclass="panelButtonL"></asp:panel>
+<asp:panel runat="server" skinid="panelButtonR" cssclass="panelButtonR"></asp:panel>
+
+<%--dropdownlist--%>
+<asp:dropdownlist runat="server" skinid="DdlNoSkin"></asp:dropdownlist>
+<%--TextBox--%>
+<asp:textbox runat="server" cssclass="txtDate" onclick="return showCalender(this)" onfocus="return showCalender(this)" onblur="return parseDate(this)" skinid="txtDate"></asp:textbox>
+<asp:textbox runat="server" cssclass="txtRight" skinid="txtRight"></asp:textbox>
+<asp:textbox runat="server" cssclass="txtLeft" skinid="txtLeft"></asp:textbox>
+<asp:textbox runat="server" skinid='TxtNoSkin'></asp:textbox>
+
+<%--LinkButton--%>
+<asp:linkbutton runat="server" skinid="LbnNoSkin"></asp:linkbutton>
+
+
+
+<telerik:RadEditor  runat="server">
+    <Tools>
+        <telerik:EditorToolGroup>
+            <telerik:EditorTool Name="Undo" />
+            <telerik:EditorTool Name="Redo" />
+            <telerik:EditorTool Name="Cut" />
+            <telerik:EditorTool Name="Copy" />
+            <telerik:EditorTool Name="Paste" ShortCut="CTRL+!" />
+        </telerik:EditorToolGroup>
+        <telerik:EditorToolGroup>
+            <telerik:EditorTool Name="Bold" />
+            <telerik:EditorTool Name="Italic" />
+            <telerik:EditorTool Name="Underline" />
+            <telerik:EditorTool Name="ForeColor" />
+            <telerik:EditorTool Name="BackColor" />
+            <telerik:EditorTool Name="FontName" />
+            <telerik:EditorTool Name="RealFontSize" />
+  
+        </telerik:EditorToolGroup>
+
+    </Tools>
+    <Modules>
+        <telerik:EditorModule Name="RadEditorStatistics" ScriptFile="" />
+    </Modules>
+</telerik:RadEditor>
+
+   <telerik:RadEditor OnClientLoad="Editor_ClientLoad" SkinID="All" runat="server">
+  <Tools>
+
+    <telerik:EditorToolGroup>
+      <telerik:EditorTool name="Print" />
+      <telerik:EditorTool name="AjaxSpellCheck" Visible="false" />
+      <telerik:EditorTool name="FindAndReplace" />
+      <telerik:EditorTool name="Cut" />
+      <telerik:EditorTool name="Copy" />
+      <telerik:EditorTool name="PasteStrip" />
+      <telerik:EditorTool Name="Paste" ShortCut="CTRL+!" />
+      <telerik:EditorTool name="Undo" />
+      <telerik:EditorTool name="Redo" />
+    </telerik:EditorToolGroup>
+    <telerik:EditorToolGroup>     
+      <telerik:EditorTool name="LinkManager" />
+      <telerik:EditorTool name="TemplateManager" Visible="false" />
+      <telerik:EditorTool name="InsertExternalVideo" />
+      <telerik:EditorTool name="Unlink" />
+      <telerik:EditorTool name="InsertImage" />
+      <telerik:EditorTool name="ImageMapDialog" />
+      <telerik:EditorTool name="InsertCustomLink" Visible="false" />
+      <telerik:EditorTool name="InsertSymbol" />
+    </telerik:EditorToolGroup>
+
+    <telerik:EditorToolGroup>
+      <telerik:EditorTool name="Superscript" />
+      <telerik:EditorTool name="Subscript" />
+      <telerik:EditorTool name="InsertParagraph" />
+    </telerik:EditorToolGroup>
+    <telerik:EditorToolGroup>      
+      <telerik:EditorTool name="InsertGroupBox" />
+      <telerik:EditorTool name="InsertHorizontalRule" />
+      <telerik:EditorTool name="InsertDate" />
+      <telerik:EditorTool name="InsertTime" />
+    </telerik:EditorToolGroup>
+    <telerik:EditorToolGroup>
+      <telerik:EditorTool name="InsertTable" />
+      <telerik:EditorTool name="ToggleTableBorder" />
+      <telerik:EditorTool name="InsertFormElement" />
+      <telerik:EditorTool name="InsertUnorderedList" />
+      <telerik:EditorTool name="InsertOrderedList" />
+      <telerik:EditorTool name="InsertSnippet" Visible="false"/>
+    </telerik:EditorToolGroup>
+
+    <telerik:EditorToolGroup>
+      <telerik:EditorTool name="Indent" />
+      <telerik:EditorTool name="Outdent" />
+      <telerik:EditorTool name="JustifyLeft" />
+      <telerik:EditorTool name="JustifyCenter" />
+      <telerik:EditorTool name="JustifyRight" />
+      <telerik:EditorTool name="JustifyFull" />
+      <telerik:EditorTool name="JustifyNone" />
+      <telerik:EditorTool name="FormatStripper" />
+      <telerik:EditorTool name="FormatCodeBlock" />
+    </telerik:EditorToolGroup>
+    
+
+    <telerik:EditorToolGroup>
+      <telerik:EditorTool Name="Bold" />
+      <telerik:EditorTool Name="Italic" />
+      <telerik:EditorTool Name="Underline" />
+      <telerik:EditorTool Name="ForeColor" />
+      <telerik:EditorTool Name="BackColor" />
+      <telerik:EditorTool Name="FontName" />
+      <telerik:EditorTool Name="RealFontSize" />
+      <telerik:EditorTool name="StrikeThrough" />
+      <telerik:EditorTool name="ConvertToUpper" />
+      <telerik:EditorTool name="ConvertToLower" />
+      <telerik:EditorTool name="FormatBlock" />
+      <telerik:EditorTool name="Zoom" />
+      <telerik:EditorTool name="ToggleScreenMode" />
+    </telerik:EditorToolGroup>
+  </Tools>
+  <Modules>
+    <telerik:EditorModule Name="RadEditorStatistics" Visible="true" Enabled="true"/>
+    <telerik:EditorModule name="RadEditorDomInspector" Visible="false"/>
+  </Modules>
+</telerik:RadEditor>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,212 @@
+﻿
+
+.entry
+{
+	font-family: nunitoregular;
+	padding: 5px 0 5px 20px;
+	border-bottom: solid 1px #CCC;
+	border-left: solid 4px transparent;
+	border-right: solid 4px transparent;
+	width: 500px;
+	margin-left: 15px;
+	position: relative;
+}
+
+.responsive .entry {
+    font-family: roboto,sans-serif;
+    font-size: 14px;
+    padding: 5px;
+    border-bottom: solid 1px var(--border-color);
+    border-left: solid 4px transparent;
+    border-right: solid 4px transparent;
+    margin: 5px 15px;
+    position: relative;
+    width: initial;
+    padding-bottom: 12px;
+}
+	.entry:hover1
+	{
+		background-color: #FFFEF9;
+		border-left: solid 4px #00FF29;
+		border-right: solid 4px #00FF29;
+		-webkit-transition: background-color 0.75s ease-in,border-color 0.75s ease-in;
+		-moz-transition: background-color 0.75s ease-in,border-color 0.75s ease-in;
+		transition: background-color 0.75s ease-in,border-color 0.75s ease-in;
+	}
+
+	.entry .spnTitle
+	{
+		display: block;
+		font-size: 14px;
+		font-family: nunitobold;
+		text-decoration: underline;
+        margin-bottom: 5px;
+	}
+    .responsive .entry .spnTitle
+	{
+		font-family: roboto,sans-serif;
+        font-size: 15px;
+	}
+	.entry .spnDesc
+	{
+		display: block;
+		font-size: 12px;
+		margin-left: 25px;
+	}
+
+	.entry .spnVar
+	{
+		display: block;
+		font-size: 12px;
+		color: #808080;
+		position: absolute;
+		top: 5px;
+		right: 5px;
+	}
+
+	.entry .ctr
+	{
+		margin-left: 25px;
+	}
+
+.entry-Text .ctl,
+.entry-Descriptive .ctl,
+.entry-Number .ctl,
+.entry-Date .ctl,
+.entry-Date .entity-date,
+.entry-Date .entity-time
+{
+	border: solid 1px #c4c4c4;
+	font-weight: bold;
+	background-color: rgba(0, 0, 0, 0);
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 400px;
+	display: inline-block;
+}
+
+.responsive .entry-Text .ctl,
+.responsive .entry-Descriptive .ctl,
+.responsive .entry-Number .ctl,
+.responsive .entry-Date .ctl,
+.responsive .entry-Date .entity-date,
+.responsive .entry-Date .entity-time {
+    border:solid 1px var(--border-color);
+    color:var(--value-color);
+}
+
+.entry-Number .ctl
+{
+	width: 80px;
+}
+
+.responsive .entry-Descriptive .ctl,.responsive .entry-Text .ctl {
+    width:100%;
+}
+
+.entry-Date .entity-date
+{
+	width: 96px;
+	height: 22px;
+	padding-right: 20px;
+}
+
+.entry-Date .entity-time
+{
+	width: 85px;
+	height: 22px;
+	padding-right: 20px;
+}
+.entry-List select
+{
+	padding:6px;
+}
+
+.responsive .entry-Single  .lbl-item,.responsive  .entry-Multiple .lbl-item {
+    margin-top: 3px;
+    display: inline-block;
+}
+.responsive .entry-Single label > *,.responsive  .entry-Multiple label > *{
+    vertical-align:middle;
+    white-space: normal;
+}
+.entry-Scale .ctr span div
+{
+	text-align: center;
+}
+.responsive .entry-Scale .ctr span div {
+    text-align: left;
+    text-indent: 8px;
+}
+.entry-Descriptive .ctl
+{
+	height: 75px;
+}
+
+
+.entry-Header .spnTitle
+{
+	font-size: 32px;
+}
+
+.entry-Header .spnDesc
+{
+	font-size: 14px;
+}
+
+.entry-Header .spnVar
+{
+	display: none;
+}
+
+#divCmd
+{
+	padding: 6px 10px;
+	font-family: nunitobold;
+	font-size: 13px;
+}
+
+.responsive #divCmd {
+    padding: 6px 10px;
+    font-family: roboto,sans-serif;
+    font-size: 15px;
+}
+
+	#divCmd A
+	{
+		display: inline-block;
+padding: 4px 12px;
+margin-right: 5px;
+border: solid 1px #4260FF;
+border-radius: 4px;
+text-decoration: none;
+background-color: #007AFF;
+color: #FFF;
+box-shadow: inset 0px 9px 8px #5EA4FF,1px 1px 2px #152649;
+	}
+
+		#divCmd A:hover
+		{
+			box-shadow: inset 3px 3px 10px #2847C0;
+			
+		}
+
+	#divCmd .REJECT,#divCmd .CANCEL,#divCmd .reject,#divCmd .cancel,#divCmd .Reject,#divCmd .Cancel
+	{
+		background-color: #F00;
+		border: solid 1px #FF4242;
+		box-shadow: inset 0px 9px 8px #FF7C7C,1px 1px 2px #152649;
+	}
+	#divCmd .REJECT:hover,#divCmd .CANCEL:hover
+	{
+		box-shadow: inset 3px 3px 10px #B80606;
+	}
+
+.responsive #divCmd A {
+    padding: 6px 15px;
+    margin-right: 10px;
+   
+    border-radius: 0px;
+}

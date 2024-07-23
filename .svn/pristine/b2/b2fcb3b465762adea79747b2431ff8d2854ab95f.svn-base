@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)http://www.decorplanit.com/plugin/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name"keywords"="" content="autoNumeric,number,numbers,currency,Dollar,Euro,format">
+<title>autoNumeric</title>
+<script type="text/javascript" src="./autoNumeric_files/jquery.js"></script>
+<script type="text/javascript" src="./autoNumeric_files/autoNumeric-1.9.17.js"></script>
+<script type="text/javascript" src="./autoNumeric_files/autoNumeric-1.8.0-sample.js"></script>
+<script type="text/javascript" src="./autoNumeric_files/json2.js"></script>
+<script type="text/javascript" src="./autoNumeric_files/smoothScroll.js"></script>
+<link href="./autoNumeric_files/prettify.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="./autoNumeric_files/prettify.js"></script>
+<style>
+body {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 14px;
+	margin: 0;
+	margin-bottom:0px;
+	padding: 0;
+	background-image:url(image/carbon.png);
+}
+p {
+	line-height:1.5;
+}
+div.bodyContainer {
+	width:925px;
+	border-style:solid;
+	border-width:3px;
+	border-color:#000;
+	padding: 0px 0px 0px 0px;
+	margin: 0 auto;
+	background-color: #F8F8FF;
+}
+div.mainContainer {
+	background:#F8F8FF;
+	padding: 20px 30px 20px 20px;
+}
+div.subContainer {
+	border-style:solid;
+	border-width: 1px;
+	border-color:#808080;
+	padding: 10px 5px 30px 15px;
+	background-color:#F8F8FF;
+	-moz-box-shadow:    3px 3px 5px 6px #ccc;
+	-webkit-box-shadow: 3px 3px 5px 6px #ccc;
+	box-shadow:         3px 3px 5px 6px #ccc;
+	margin-top: 35px;
+	margin-bottom: 35px;
+}
+
+.mainTable {
+	border-width: 0px;
+	border-spacing: 0px;
+	border-style: none;
+	border-color: #EBEBEB;
+	border-collapse: collapse;
+	background-color: #F8F8FF;
+}
+.mainTable th {
+	border-width: 1px;
+	padding: 1px;
+	border-style: inset;
+	border-color: gray;
+	background-color: white;
+}
+.mainTable td {
+	border-width: 1px;
+	padding: 3px 10px 3px 5px;
+	border-style: inset;
+	border-color: #999;
+}
+.mainTable tr {
+	height:35px;
+}
+
+.mRoundDemo {
+	border-width: 0px;
+	border-spacing: 0px;
+	border-style: none;
+	border-color: #EBEBEB;
+	border-collapse: collapse;
+	background-color: #F8F8FF;
+}
+
+.mainTable .mRoundDemoR2 {
+	padding-right:20px	
+}
+
+.mainTable .mRoundDemoR3 {
+	padding-left:20px	
+}
+		
+li {
+	line-height:25px;
+}
+
+ul li.caution {
+	background-image:url(image/caution.png);
+}
+
+input[type="text"] {
+	text-align:right;
+}
+
+hr {
+	margin-top: 35px;
+	margin-bottom: 35px;
+}
+
+.contentHeader {
+	background-color:#161616;
+	/*background-image:url(../images/anb170.png);*/
+	height:150px;
+}
+.banner_Main {
+	float:left;
+	position:absolute;
+	top:0px;
+	padding: 0px;
+}
+.banner_Main h1 {
+	font-family:'Comic Sans MS', cursive;
+	font-size:36px;
+	color:#39424b;
+	padding:25px 0px 0px 29px;
+}
+.codeTable th tr td {
+	border-width: 0px;
+	border-spacing: 0px;
+	border-style: none;
+	border-color: #FFFFFF;
+	border-collapse: collapse;
+}
+.demoTable td {
+	padding-left:15px;
+	border:none;
+	vertical-align:bottom;
+}
+.tableWrap {
+	-moz-box-shadow:    3px 3px 5px 6px #ccc;
+	-webkit-box-shadow: 3px 3px 5px 6px #ccc;
+	box-shadow:         3px 3px 5px 6px #ccc;
+}
+</style>
+</head>
+<body onload="prettyPrint()">
+<div class="bodyContainer"> <img src="./autoNumeric_files/autoNumeric.png" width="925" height="150">
+  <div class="mainContainer">
+    <p style="margin-top:0px"><strong>autoNumeric 1.9.17</strong> is a jQuery plugin that automatically formats currency and numbers as you type on form inputs. It supports most International numeric formats and currency signs including those used in Europe, North and South America, Asia and India (lakhs**). </p>
+    <p>Any number of currency formats can reside on the same page and are configured by options that can be placed as HTML5 data attribute or passed as an argument. These settings can easily be changed at any time using the new ‘update’ method or via the callback feature. autoNumeric now supports   'b', 'caption', 'cite', 'code', 'dd', 'del', 'div', 'dfn', 'dt', 'em', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ins', 'kdb', 'label', 'li', 'output', 'p', 'q', 's', 'sample', 'span', 'strong', 'td', 'th', 'u', 'var' elements,  allowing you to place formatted numbers and currency on just about any part your page.    </p>
+    <p>Seven  built in methods gives you   the flexibility needed to use autoNumeric to its maximum potential. You can now easily start and stop autoNumeric, update the settings and remove the formatting from multiple inputs, preparing the values for manipulation or form submission.</p>
+    <p>There are fifteen options which controls the behavior and format of the form  input field. These options are easy to implement with the data/argument code generator located below.</p>
+    <p>If you are developing sites that span across International lines that use different currency symbols and formats you will find autoNumeric the ideal tool to shorten your development time. </p>
+    <div style="float:right; margin-top:5px">
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" style="display:inline">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="NCW5699RY8NN2">
+        <input type="image" src="./autoNumeric_files/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+        <img src="./autoNumeric_files/pixel.gif" alt="PayPal" width="1" height="1" border="0" style="display:inline">
+      </form>
+      <p style="margin:0px; line-height: 2;">Donations allow me to keep<br>
+        hosting &amp; updating autoNumeric() </p>
+    </div>
+    <p>Authors &amp; contact:</p>
+    <ul>
+      <li>Robert Knothe  - bob{@}decorplanit.com (remove brackets) </li>
+      <li>Sokolov Yura</li>
+    </ul>
+    Download:<br>
+    <ul>
+      <li>Download github - <a href="https://github.com/BobKnothe/autoNumeric" target="_new">https://github.com/BobKnothe/autoNumeric</a></li>
+      <li>Last update: 2013-09-28 GMT 8:00 AM</li>
+    </ul>
+    <br>
+    <p><strong>Demonstration of autoNumeric()'s flexibility</strong></p>
+    <div class="tableWrap">
+      <form name="demoForm" method="post" action="">
+        <table width="100%" class="demoTable">
+          <tbody><tr style="height:60px">
+            <td colspan="3">The following three inputs show various formatts and currency signs.</td>
+          </tr>
+          <tr style="height:60px">
+            <td width="30%">Euro- Germany<br>
+              <input type="text" name="demoEuro" id="demoEuro" class="demo" data-a-sign="€ " data-a-dec="," data-a-sep="."></td>
+            <td width="30%" style="border:none">Franc - Swiss<br>
+              <input type="text" name="demoFranc" id="demoFranc" class="demo" data-a-sign=" CHF" data-p-sign="s" data-a-sep="&#39;"></td>
+            <td width="40%">India's Lakh number format<br>
+              <input type="text" name="demoLakh" id="demoLakh" class="demo" data-a-sign="Rs. " data-d-group="2"></td>
+          </tr>
+          <tr style="height:60px;">
+            <td colspan="3">These three show  min/max levels, per-cent sign brackets on negitive value.</td>
+          </tr>
+          <tr style="height:60px;">
+            <td width="30%">Min/Max values (-9999999 to 0)<br>
+              <input type="text" name="demoMinMax" id="demoMinMax" class="demo" data-v-min="-99999999999" data-v-max="0" data-a-sep=" " data-m-dec="2" data-w-empty="zero" value=""></td>
+            <td width="30%">Percentage sign<br>
+              <input type="text" name="demoPercentage" id="demoPercentage" class="demo" data-a-sign=" %" data-p-sign="s"></td>
+            <td width="40%">Brackets when negative &amp; no focus<br>
+              <input type="text" name="demoBracket" id="demoBracket" class="demo" data-v-min="-9999999999.99" data-n-bracket="(,)" value="-9999.99"></td>
+          </tr>
+          <tr style="height:75px;">
+            <td colspan="3">The example below demonstrates  the 'get' and 'set' methods. Type in the first input field and the other two fields will be updated on the "blur", "focusout", "keypress" and "keyup" events.</td>
+          </tr>
+          <tr style="height:60px;">
+            <td width="30%">Enter here:<br>
+              <input type="text" name="demoDefaults" id="demoDefaults" class="demo"></td>
+            <td width="30%">$(selector).autoNumeric('get');<br>
+              <input type="text" name="demoGet" id="demoGet" readonly=""></td>
+            <td width="40%">$(selector).autoNumeric('set', value);<br>
+              <input type="text" name="demoSet" id="demoSet" readonly="" class="demo"></td>
+          </tr>
+          <tr style="height:75px">
+            <td colspan="3">autoNumeric now supports many non-input elements allowing you to place formatted strings  where  jQuery's ".text()" method is supported. This can be done on page ready or placed at anytime via the "set" method.</td>
+          </tr>
+          <tr style="height:85px">
+            <td width="30%"><span>&lt;p&gt; &amp; &lt;span&gt; tags</span><br>
+              <br>
+              <span class="demo" data-a-sign="¥ " data-d-group="2">¥ 12,34,567.89</span></td>
+            <td width="30%">&lt;label&gt; tags<br>
+              <br>
+              <label for="demoTest" class="demo">12,345.78</label>
+              &nbsp;
+              <input type="checkbox" name="demoCheckBox" id="demoCheckBox"></td>
+            <td width="40%" style="border:none"><table class="tableSample" width="210">
+                <tbody><tr>
+                  <td>&lt;th&gt; &amp; &lt;td&gt; table tags</td>
+                </tr>
+                <tr>
+                  <td class="demo" data-a-sign="€ " data-a-dec="," data-a-sep=".">€ 123.456,00</td>
+                </tr>
+              </tbody></table></td>
+          </tr>
+          <tr>
+            <td width="30%">&nbsp;</td>
+            <td width="30%">&nbsp;</td>
+            <td width="40%">&nbsp;</td>
+          </tr>
+        </tbody></table>
+      </form>
+    </div>
+    <p style="margin-top:30px;" id="testTag"><strong>Key features of autoNumeric()</strong></p>
+    <ul>
+      <li> Compatible with jQuery-1.7.2 and higher. </li>
+      <li> Supports multiple international numeric formats including those used   in most of Europe, North and South America, Asia and India  (lakhs on values below 1 billion). </li>
+      <li> Most currency symbols are supported and can be placed as a prefix or suffix in the input field. </li>
+      <li>Precision control of minimum &amp; maximum values  to the n<sup>th</sup> decimal places! </li>
+      <li> The number of decimal places and negative sign are now set via the min/max values. Also positive and negative values are easily toggled from any caret position within the input field.</li>
+      <li> Supports nine different rounding methods  (Round-Half-Up Symmetric   &amp; Asymmetric, Round-Half-Down Symmetrical &amp; Asymmetric,   Round-Half-Even "Bankers Rounding", Round Up, Round Down, Round to   Ceiling &amp; Round to Floor). </li>
+      <li> Callback function is supported and can be done via options or HTML5 data. </li>
+      <li> <span style="color:#F00">NEW</span> - Added 7 methods for greater control.</li>
+      <li> <span style="color:#F00">NEW</span> - Added  HTML 5 data support and eliminated the metadata plugin dependency.</li>
+      <li><span style="color:#F00">NEW</span> - autoNumeric can be attached to the following elements: 'b', 'caption', 'cite', 'code', 'dd', 'del', 'div', 'dfn', 'dt', 'em', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ins', 'kdb', 'label', 'li', 'output', 'p', 'q', 's', 'sample', 'span', 'strong', 'td', 'th', 'u', 'var'.</li>
+      <li><span style="color:#F00">NEW</span> - Added 'lZero' to the defaults which controls the leading zero behavior.</li>
+      <li><span style="color:#F00">NEW</span> - Added 'nBracket' to settings - controls negative numbers being shown with brackets. Example "-$99.00 = ($99.00)". The brackets are only visible when the input field does NOT have focus.</li>
+      <li> Pasting is supported as long as the values being pasted conform to the format set for that target field. </li>
+    </ul>
+    <p><strong>Guide on how the balance of this  page is organized:</strong></p>
+    <ul>
+      <li>Methods supported by autoNumeric</li>
+      <li>Settings defaults and options with code generator</li>
+      <li>Tutorial on implementing  autoNumeric</li>
+      <li>Callback function details</li>
+      <li>Methods examples</li>
+      <li>Options examples</li>
+      <li>Supported Browsers</li>
+      <li>Known issues</li>
+      <li>Change notes &amp; History log</li>
+    </ul>
+    <a id="methodAnchor"></a>
+    <p><strong>Deploying  autoNumeric can be accomplished in  just a few steps.</strong> The   methods listed below gives you the ability to start, stop and update options of autoNumeric as well as format or remove the formatting from input fields for use in other scripts and or  form submissions. Click on the links for details and demos on each method.</p>
+    <div class="tableWrap">
+      <table width="874" class="mainTable">
+        <tbody><tr style="background-color:#999999">
+          <td width="90"><strong>Method(s)</strong></td>
+          <td width="385"><strong>Description</strong></td>
+          <td><strong>Format</strong></td>
+        </tr>
+        <tr>
+          <td width="90"><a href="http://www.decorplanit.com/plugin/#initAnchor">'init'</a></td>
+          <td width="385">initializes autoNumeric</td>
+          <td>$(selector).autoNumeric('init', {options});</td>
+        </tr>
+        <tr>
+          <td width="90"><a href="http://www.decorplanit.com/plugin/#destroyAnchor">'destroy'</a></td>
+          <td width="385">disables autoNumeric for the selected element </td>
+          <td>$(selector).autoNumeric('destroy');</td>
+        </tr>
+        <tr>
+          <td width="90"><a href="http://www.decorplanit.com/plugin/#updateAnchor">'update'</a></td>
+          <td width="385">updates options - can be called multiple times</td>
+          <td>$(selector).autoNumeric('update', {options});</td>
+        </tr>
+        <tr>
+          <td width="90"><a href="http://www.decorplanit.com/plugin/#setAnchor">'set'</a></td>
+          <td width="385">returns a formatted string via ".val()" or ".text'</td>
+          <td>$(selector).autoNumeric('set', value);</td>
+        </tr>
+        <tr>
+          <td width="90"><a href="http://www.decorplanit.com/plugin/#getAnchor">'get'</a></td>
+          <td width="385">returns un-formatted object  via ".val()" or ".text()"</td>
+          <td>$(selector).autoNumeric('get');</td>
+        </tr>
+        <tr>
+          <td width="90"><a href="http://www.decorplanit.com/plugin/#getStringAnchor">'getString'</a></td>
+          <td width="385">returns a string 'URL encoded' from the selected form</td>
+          <td>$(selector).autoNumeric('getString');</td>
+        </tr>
+        <tr>
+          <td width="90"><a href="http://www.decorplanit.com/plugin/#getArrayAnchor">'getArray'</a></td>
+          <td width="385">returns a array of objects from the selected form</td>
+          <td>$(selector).autoNumeric('getArray');</td>
+        </tr>
+        <tr>
+          <td width="90"><a href="http://www.decorplanit.com/plugin/#getSettingsAnchor">'getSettings'</a></td>
+          <td width="385">returns  settings for the selected element</td>
+          <td>$(selector).autoNumeric('getSettings');</td>
+        </tr>
+      </tbody></table>
+    </div>
+    <br>
+    <p><strong>Configuring autoNumeric settings</strong>: The are a total of 15  settings/options that control the format and the behavior of the input field. For your convenience I have created a HTML5 data and option code generator - all you need to do is select the desired option and the code will be shown at the bottom for you to copy and paste into the appropriate document.
+    <br>
+    </p>
+    <div class="tableWrap">
+      <form id="CodeGenerator" method="post">
+        <table width="874" class="mainTable">
+          <tbody>
+            <tr style="background-color:#999999">
+              <td colspan="2" align="center" style="text-align:left"><strong>Settings - </strong>name and value</td>
+              <td><strong>Discription</strong></td>
+            </tr>
+            <tr>
+              <td colspan="3"><p><strong>aSep</strong> - controls the thousand separator (note -  the thousand &amp; decimal separators can not be the same)</p></td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input name="aSep" type="radio" id="aSepDefault" value="0" checked="checked" class="md"></td>
+              <td width="170">aSep: ',' </td>
+              <td> comma (<strong>default</strong>)</td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input name="aSep" type="radio" id="aSepApostrophe" value="1" class="md"></td>
+              <td width="170">aSep: '\''</td>
+              <td> apostrophe (note: the apostrophe is escaped)</td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input name="aSep" type="radio" id="aSepPeriod" value="2" class="md"></td>
+              <td width="170">aSep: '.'</td>
+              <td> period</td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input name="aSep" type="radio" id="aSepSpace" value="3" class="md"></td>
+              <td width="170">aSep: ' '</td>
+              <td> space</td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input name="aSep" type="radio" id="aSepNone" value="4" class="md"></td>
+              <td width="170">aSep: ''</td>
+              <td> none</td>
+            </tr>
+            <tr>
+              <td colspan="3"><p><strong>dGroup</strong> - controls the digital grouping - the placement of the thousand separator</p></td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input name="dGroup" type="radio" id="dGroupDefault" value="0" checked="checked" class="md"></td>
+              <td width="170"><span style="vertical-align:top">dGroup: '3'</span></td>
+              <td><span style="vertical-align:top">&nbsp;produces 333,333,333  (<strong>default</strong>)</span></td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input name="dGroup" type="radio" id="dGroup2" value="1" class="md"></td>
+              <td width="170">dGroup: '2'</td>
+              <td>&nbsp;produces 22,22,22,333 (India's  lakhs format on values below 1 billion)</td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input name="dGroup" type="radio" id="adGroup4" value="2" class="md"></td>
+              <td width="170">dGroup: '4'</td>
+              <td>&nbsp;produces 4,4444,4444 used in some Asian country's</td>
+            </tr>
+            <tr>
+              <td colspan="3"><p><strong>aDec</strong> - controls the decimal (note -  the thousand &amp; decimal separators can not be the same)</p></td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input name="aDec" type="radio" id="aDecDefault" value="0" checked="checked" class="md"></td>
+              <td width="170">aDec: '.' </td>
+              <td> period (<strong>default</strong>) </td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input name="aDec" type="radio" id="aDecComma" value="1" class="md"></td>
+              <td width="170">aDec: ','</td>
+              <td> comma </td>
+            </tr>
+            <tr>
+              <td colspan="3"><p><strong>altDec</strong> - This was developed to accommodate different keyboard layouts. altDec allows you to declare an alternative key to enter the decimal separator  assigned in aDec.   Word of caution - use with discretion because it has the potential of being very confusing to your users.</p>
+                <p>Please note that the full stop on the numeric pad will enter the decimal separator even when the comma is assigned as the decimal separator (aDec: ',').</p></td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input name="altDec" type="radio" id="altDecDefault" value="" checked="checked" class="md"></td>
+              <td width="170"><span style="vertical-align:top">altDec: null &nbsp;</span></td>
+              <td><span style="vertical-align:top">&nbsp;(<strong>default</strong>)</span></td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input name="altDec" type="radio" id="altDecUserDefined" class="md"></td>
+              <td width="170"><input type="text" id="altDecInput" size="8" style="text-align:left" class="get md" maxlength="1"></td>
+              <td>&nbsp;limited to one non-numeric character. Do not add quote marks.</td>
+            </tr>
+            <tr>
+              <td colspan="3"><p><strong>aSign </strong>- desired currency symbol (examples:  € or  EUR). Note: other symbols can be used, such as %, °C, °F, km/h &amp; MPH the possibilities are endless.</p>
+                <ul>
+                  <li>Note: the currency symbol <strong>cannot</strong> contain an <span style="text-decoration: underline;">apostrophe</span>, <span style="text-decoration: underline;">comma</span> or <span style="text-decoration: underline;">numeric character</span>. </li>
+                  <li>Note: Some  currency symbols that are not supported by common fonts (Arial &amp; Tahoma) - I have put together a table you may find useful (<a href="http://www.decorplanit.com/plugin/symbols.htm">Click here to view</a>) of the symbols that are supported by the aforementioned fonts.</li>
+                  <li>Note:  Spacing between the currency symbol and numeric characters are set using the aSign option. Example no spacing '$' and with spacing '$ ' or ' $' depending on the location (prefix or suffix) of the symbol.</li>
+                </ul></td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input name="aSign" type="radio" id="aSignDefault" checked="checked" class="md"></td>
+              <td width="170"><span style="vertical-align:top">aSign: ''</span></td>
+              <td><span style="vertical-align:top"> none (<strong>default</strong>)</span></td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input name="aSign" type="radio" id="aSignUserDefined" class="md"></td>
+              <td width="170"><input type="text" id="aSignInput" size="8" style="text-align:left" class="get md"></td>
+              <td> enter the desired symbol. Do not add quote marks, they are automatically added.</td>
+            </tr>
+            <tr>
+              <td colspan="3"><p><strong>pSign</strong> - controls the placement of the currency symbol.</p></td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input name="pSign" type="radio" id="pSignDefault" value="0" checked="checked" class="md"></td>
+              <td width="170"><span style="vertical-align:top">pSign: 'p'</span></td>
+              <td><span style="vertical-align:top"> prefix to the left (<strong>default</strong>)</span></td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input name="pSign" type="radio" id="pSignSuffix" value="1" class="md"></td>
+              <td width="170"><span style="vertical-align:top">pSign: 's'</span></td>
+              <td> suffix to the right</td>
+            </tr>
+            <tr>
+              <td colspan="3"><p><strong>Notes on the minimum (vMin) / maximum (vMax) values:</strong></p>
+                <ul>
+                  <li>The maximum value should always be greater than the minimum value - sorry I had to list this rule!</li>
+                  <li>If the minimum / maximum values are both positive or negative you MUST have a default value assigned to the field that is greater than or equal to  the minimum value and less than or equal to  the maximum value.</li>
+                  <li><strong>IMPORTANT</strong> - please understand that  vMin &amp; vMax settings are limits. Meaning the user cannot enter a value greater than the vMax value and cannot enter or delete a value below the vMin setting. When setting the vMin &amp; vMax values to both positive or negative you could create a paradoxical situation which limits the user ability to enter values. Consider the following:
+                    <ul>
+                      <li>vMin:'5' &amp; vMax:'10' - you can never enter the number 10. </li>
+                      <li>vMin:'10' &amp; vMax:'100' and no default value - you can never enter any value.</li>
+                      <li>vMin:'0.01' &amp; vMax:'9.99' and no default value - you can not start to enter number less than 1.</li>
+                      <li>vMin:'0.00' &amp; vMax:'-9.99' and no default value - you can not enter any value.</li>
+                      <li>To avoid many of these scenarios I recommend that you  set vMin or vMax to "0" and validate later.</li>
+                    </ul>
+                  </li>
+                  <li>The number of decimal places is determined from the minimum / maximum values - whichever has value has the greater number of decimal places.</li>
+                  <li>The values can contain only numeric characters and one decimal (full stop) character. This metadata code generator automatically places quote marks on the value. If you manually write the metadata code these quote marks are required.</li>
+                  <li>The limits of the code generator are 10 significant digits and 5 decimal places - if your requirements exceed these limits you will need to manually adjust the  values.</li>
+                </ul></td>
+            </tr>
+            <tr>
+              <td colspan="3"><p><strong>vMin </strong>- Enter the minimum value allowed. Values can be whole numbers, floating point, positive, zero or negative.</p></td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input name="vMin" type="radio" id="vMinDefault" checked="checked" class="md"></td>
+              <td width="170"><span style="vertical-align:top">vMin: '0.00'</span></td>
+              <td><span style="vertical-align:top"> (<strong>default</strong>)</span></td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input name="vMin" type="radio" id="vMinUserDefined" value="x" class="md"></td>
+              <td width="170" style="padding:0px"><input type="text" id="vMinInput" size="20" style="text-align:left" class="auto md" data-a-sep="" data-v-min="-99999999999.99999" data-v-max="9999999999.99999" data-a-pad="false"></td>
+              <td>select the option then enter the desired value to the left.</td>
+            </tr>
+            <tr>
+              <td colspan="3"><p><strong>vMax </strong>- Enter the maximum value allowed. Values can be whole numbers, floating point, positive, zero or negative.</p></td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input name="vMax" type="radio" id="vMaxDefault" checked="checked" class="md"></td>
+              <td width="170" style="padding-right:0px"><span style="vertical-align:top">vMax: '999999999.99'</span></td>
+              <td><span style="vertical-align:top">(<strong>default</strong>)</span></td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input name="vMax" type="radio" id="vMaxUserDefined" value="x" class="md"></td>
+              <td width="170" style="padding:0px"><input type="text" id="vMaxInput" size="20" style="text-align:left" class="auto md" data-a-sep="" data-v-min="-99999999999.99999" data-v-max="9999999999.99999" data-a-pad="false"></td>
+              <td>select the option then enter the desired value to the left.</td>
+            </tr>
+            <tr>
+              <td colspan="3"><p><strong>mDec </strong>- Only needed if you want to override the number of decimal places that are set by the vMin &amp; vMax values.</p></td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input name="mDec" type="radio" id="mDecDefault" checked="checked" class="md" value="0"></td>
+              <td width="170"><span style="vertical-align:top">mDec: null</span></td>
+              <td><span style="vertical-align:top">decimal places set via vMin &amp; vMax values (<strong>default method</strong>)</span></td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input name="mDec" type="radio" id="mDecUserDefined" class="md" value="1"></td>
+              <td width="170"><input type="text" id="mDecInput" size="10" style="text-align:left" class="auto md" data-v-min="0" data-v-max="99"></td>
+              <td>enter the  number of decimal places - this will over ides values set by vMin &amp; vMax</td>
+            </tr>
+            <tr>
+              <td colspan="3"><p><strong><a href="http://www.decorplanit.com/plugin/#mRoundExample" id="mRoundCode">mRound</a></strong> - controls the rounding method. To test the various rounding methods please see below. For in depth details on rounding methods visit the <a href="http://www.diycalculator.com/popup-m-round.shtml" target="_blank">DIY     Calculator</a> site.</p></td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input name="mRound" type="radio" id="mRoundDefault" value="0" checked="checked" class="md"></td>
+              <td width="170">mRound: 'S'</td>
+              <td>Round-Half-Up Symmetric  (<strong>default</strong>)</td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input name="mRound" type="radio" id="mRoundA" value="1" class="md"></td>
+              <td width="170">mRound: 'A'</td>
+              <td>Round-Half-Up Asymmetric</td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input name="mRound" type="radio" id="mRounds" value="2" class="md"></td>
+              <td width="170">mRound: 's'</td>
+              <td> Round-Half-Down Symmetric (lower case s)</td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input name="mRound" type="radio" id="mRounda" value="3" class="md"></td>
+              <td width="170">mRound: 'a'</td>
+              <td> Round-Half-Down Asymmetric (lower case a)</td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input name="mRound" type="radio" id="mRoundB" value="4" class="md"></td>
+              <td width="170">mRound: 'B'</td>
+              <td> Round-Half-Even "Bankers Rounding"</td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input name="mRound" type="radio" id="amRoundU" value="5" class="md"></td>
+              <td width="170">mRound: 'U'</td>
+              <td> Round Up "Round-Away-From-Zero"</td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input name="mRound" type="radio" id="mRoundD" value="6" class="md"></td>
+              <td width="170">mRound: 'D'</td>
+              <td> Round Down "Round-Toward-Zero" - same as truncate</td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input name="mRound" type="radio" id="mRoundC" value="7" class="md"></td>
+              <td width="170">mRound: 'C'</td>
+              <td><span style="vertical-align:top"> Round to Ceiling "Toward Positive Infinity"</span></td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input name="mRound" type="radio" id="mRoundF" value="8" class="md"></td>
+              <td width="170">mRound: 'F'</td>
+              <td> Round to Floor "Toward Negative Infinity"</td>
+            </tr>
+            <tr>
+              <td colspan="3"><p><strong>aPad</strong> - controls padding of the decimal places.</p></td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input name="aPad" type="radio" id="aPadDefault" value="0" checked="checked" class="md"></td>
+              <td width="170">aPad: true</td>
+              <td> always pads the decimal with zeros (<strong>default</strong>)</td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input name="aPad" type="radio" id="aPadFalse" value="1" class="md"></td>
+              <td width="170">aPad: false</td>
+              <td> no padding - rounding occurs when the decimal length exceeds the decimal places</td>
+            </tr>
+            <tr>
+              <td colspan="3"><p><strong><a id="nBracketCode" href="http://www.decorplanit.com/plugin/#nBracketExample">nBracket</a></strong> - Controls if negative values are display with brackets when the input does NOT have focus.</p></td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input type="radio" name="nBracket" id="nBracketDefault" value="0" checked="checked" class="md"></td>
+              <td width="170">nBracket:null</td>
+              <td><span style="vertical-align:top"> no brackets used for negative values (<strong>default</strong>)</span></td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input type="radio" name="nBracket" id="nBracketParentheses" value="1" class="md"></td>
+              <td width="170">nBracket: '(,)'</td>
+              <td>Parentheses - visable only on 'focusout'</td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input type="radio" name="nBracket" id="nBracketParentheses" value="2" class="md"></td>
+              <td width="170">nBracket: '[,]'</td>
+              <td>Brackets - visable only on 'focusout'</td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input type="radio" name="nBracket" id="nBracketParentheses" value="3" class="md"></td>
+              <td width="170">nBracket: '{,}'</td>
+              <td>Braces - visable only on 'focusout'</td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input type="radio" name="nBracket" id="nBracketParentheses" value="4" class="md"></td>
+              <td width="170">nBracket: '&lt;,&gt;'</td>
+              <td> Angle brackets - visable only on 'focusout'</td>
+            </tr>            
+            <tr>
+              <td colspan="3"><p><strong>wEmpty</strong> - controls input display behavior.</p></td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input name="wEmpty" type="radio" id="wEmptyDefault" value="0" checked="checked" class="md"></td>
+              <td width="170">wEmpty: 'empty'</td>
+              <td> allows input to be empty (no value) (<strong>default</strong>)</td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input name="wEmpty" type="radio" id="wEmptyZero" value="1" class="md"></td>
+              <td width="170">wEmpty: 'zero'</td>
+              <td> input field will have at least a zero value</td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input name="wEmpty" type="radio" id="wEmptySign" value="2" class="md"></td>
+              <td width="170">wEmpty: 'sign'</td>
+              <td> the currency symbol is always present</td>
+            </tr>
+            <tr>
+              <td colspan="3"><p><strong><a href="http://www.decorplanit.com/plugin/#lZeroExample" id="lZeroCode">lZero</a></strong> - Controls if leading zeros are allowed</p></td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input type="radio" name="lZero" id="lZeroDefault" value="0" checked="checked" class="md"></td>
+              <td width="170">lZero: 'allow'</td>
+              <td> allows leading zero to be entered. They are removed on focusout event <span style="vertical-align:top">(<strong>default</strong>)</span></td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input type="radio" name="lZero" id="lZeroDeny" value="1" class="md"></td>
+              <td width="170">lZero: 'deny'</td>
+              <td> leading zeros not allowed.</td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input type="radio" name="lZero" id="lZeroKeep" value="2" class="md"></td>
+              <td width="170">lZero: 'keep'</td>
+              <td> leading zeros allowed and will be retained on the focusout event</td>
+            </tr>
+            <tr>
+              <td colspan="3" height="50" valign="bottom"><p><strong>aForm</strong>- Controls if default values are formatted on page ready (load)</p></td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input type="radio" name="aForm" id="aFormDefault" value="0" checked="checked" class="md"></td>
+              <td width="170">aForm: true</td>
+              <td> default values are formatted on page ready <strong>(default)</strong></td>
+            </tr>
+            <tr>
+              <td width="40" align="center"><input type="radio" name="aForm" id="aFormFalse" value="1" class="md"></td>
+              <td width="170">aForm: false</td>
+              <td> default values are NOT formatted on page ready</td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+        <input type="reset" id="rd" value="Reset defaults" style="margin-left:14px">
+        <div style="height:90px; padding-left:15px">
+          <p>The options and data codes will appear in Red - copy and paste  as needed.</p>
+          <p style="color:#F00; font-size:12px"><span id="optionCode">&nbsp;</span></p>
+          <p style="color:#F00; font-size:12px"><span id="dataCode">&nbsp;</span></p>
+        </div>
+        <br>
+      </form>
+    </div>
+    <br>
+    <br>
+    <a id="tutorial" href="http://www.decorplanit.com/plugin/#nav">back</a>
+    <br>
+    <div class="subContainer">
+    <p><strong>The basics on getting autoNumeric() up and running with the initialize 'init' method and default settings</strong>:</p>
+    <p><strong>First&nbsp;</strong>- include  jQuery.js and  autoNumeric-1.8.3.js javascript files in the header.</p>
+    <pre class="prettyprint lang-html"><span class="pln">      
+  </span><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"http://code.jquery.com/jquery-latest.min.js"</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text/javascript"</span><span class="tag">&gt;</span><span class="pln"> </span><span class="tag">&lt;/script&gt;</span><span class="pln">
+  </span><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"autoNumeric-1.8.0.js"</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">text/javascript</span><span class="tag">&gt;</span><span class="pln"> </span><span class="tag">&lt;/script&gt;</span><span class="pln">
+  </span></pre>
+    <br>
+    <p><strong>Second</strong> - insert a form and input field on the HTML document.</p>
+    <ul>
+      <li>The input type attribute must equal text "&lt;input type="text"&gt;".&nbsp;<strong>Other input types are NOT supported including HTML 5 number type.</strong></li>
+    </ul>
+    <pre class="prettyprint lang-html"><span class="pln">      
+  </span><span class="com">&lt;!-- input field with no HTML 5 data options --&gt;</span><span class="pln">
+  </span><span class="tag">&lt;form&gt;</span><span class="pln">
+  </span><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text"</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"someID_defaults"</span><span class="tag">&gt;</span><span class="pln">
+  </span><span class="tag">&lt;/form&gt;</span><span class="pln">
+  </span></pre>
+    <br>
+    <p><strong>Third</strong> - in a separate script initialize autoNumeric $('selector').autoNumeric('init').</p>
+    <ul>
+      <li>Selector&nbsp;- is any valid jQuery selector</li>
+    </ul>
+    <pre class="prettyprint lang-js"><span class="pln">      
+  </span><span class="com">// this example uses the id selector &amp; no options passed    </span><span class="pln">
+  jQuery</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">$</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      $</span><span class="pun">(</span><span class="str">'#someID_defaults'</span><span class="pun">).</span><span class="pln">autoNumeric</span><span class="pun">(</span><span class="str">'init'</span><span class="pun">);</span><span class="pln">    
+  </span><span class="pun">});</span><span class="pln">
+  </span></pre>
+    <br>
+    <p><strong>Finished - an  input field with autoNumeric default settings. </strong>Now  add CSS styling if desired and  test the results. </p>
+    <form method="post" action="">
+      <input type="text" id="someID_defaults" style="text-align:right">
+    </form>
+    <p><strong>Changing  autoNumeric's default settings using HTML5 data attributes or options is just as easy!</strong> First a couple notes prior to proceeding with the examples.</p>
+    <ul>
+      <li>The loading order for autoNumeric settings is defaults, HTML5 data and then Options. Where defaults are overridden by the HTML5 data and options overrides both the defaults and HTML5 data.</li>
+      <li>Understand that different formats are used for  HTML5 data attribute and options. Let say you want to change the decimal point from "." period to a "," comma and  change  the thousand separator from a "," comma to a "." period.
+        <ul>
+          <li>Options example:  $('#someID').autoNumeric('init', {aSep: '.', aDec: ','}); - options are written in "camelCase notation" which is identically to that of the settings defaults. A colon is used to separate the name of the option and the value which should be enclosed with quotes. If multiple options are being sent they should be separated by a comma. All options need to be enclosed braces (curly brackets).</li>
+          <li>HTML5 data example: &lt;input type="text" id="someID" data-a-dec="," data-a-sep=","&gt;. By convention the data attribute is written in lowercase. Compound words (example: "aDec") need to be split and separated by a dash. The equal sign separates the name and value. The value should be enclosed with quote marks. If multiple options are being used they each need to have the own data attribute.</li>
+          <li>Do not worry - I have created a <a href="http://www.decorplanit.com/plugin/#codeGenerator">option/HTML5 code generator</a> below that you just copy and paste.</li>
+        </ul>
+      </li>
+    </ul>
+    <p><strong>First&nbsp;</strong>- include  jQuery.js and  autoNumeric-1.8.3.js javascript files in the header.</p>
+    <pre class="prettyprint lang-html"><span class="pln">      
+  </span><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"http://code.jquery.com/jquery-latest.min.js"</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text/javascript"</span><span class="tag">&gt;</span><span class="pln"> </span><span class="tag">&lt;/script&gt;</span><span class="pln">
+  </span><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"autoNumeric-1.8.0.js"</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">text/javascript</span><span class="tag">&gt;</span><span class="pln"> </span><span class="tag">&lt;/script&gt;</span><span class="pln">
+    </span></pre>
+    <br>
+    <p><strong>Second</strong> - insert a form and input field on the HTML page with the desired HTML5 data.</p>
+    <pre class="prettyprint lang-html"><span class="pln">      
+  </span><span class="com">&lt;!-- input field with  HTML 5 data for the German Euro --&gt;</span><span class="pln">
+  </span><span class="tag">&lt;form&gt;</span><span class="pln">
+  </span><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text"</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"someID_HTML5"</span><span class="pln"> </span><span class="atn">data-a-sign</span><span class="pun">=</span><span class="atv">"€ "</span><span class="pln"> </span><span class="atn">data-a-dec</span><span class="pun">=</span><span class="atv">","</span><span class="pln"> </span><span class="atn">data-a-sep</span><span class="pun">=</span><span class="atv">"."</span><span class="tag">&gt;</span><span class="pln">
+  </span><span class="tag">&lt;/form&gt;</span><span class="pln">
+    </span></pre>
+    <br>
+    <p><strong>Third</strong> - in a separate script initialize autoNumeric $('selector').autoNumeric('init');</p>
+    <pre class="prettyprint lang-js"><span class="pln">      
+  </span><span class="com">// this example uses the id selector &amp; no options passed    </span><span class="pln">
+  jQuery</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">$</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      $</span><span class="pun">(</span><span class="str">'#someID_HTML5'</span><span class="pun">).</span><span class="pln">autoNumeric</span><span class="pun">(</span><span class="str">'init'</span><span class="pun">);</span><span class="pln">    
+  </span><span class="pun">});</span><span class="pln">
+    </span></pre>
+    <br>
+    <p><strong>Completed</strong> - an input field with HTML5 data being passed to autoNumeric. </p>
+    <form method="post" action="">
+      <input type="text" id="someID_HTML5" style="text-align:right" data-a-sign="€ " data-a-dec="," data-a-sep=".">
+    </form>
+    <br>
+    <p><strong>This example uses both HTML5 data and options. </strong></p>
+    <p><strong>First - </strong>repeat step 1 in the previous examples.</p>
+    <p><strong>Second</strong> - repeat step 2 and insert a form and input field on the HTML page with the same  HTML5 data.</p>
+    <p><strong>Third - </strong>initialize autoNumeric with options being passed. Please note that setting "aSign" was passed </p>
+    <pre class="prettyprint lang-js"><span class="pln">      
+  </span><span class="com">// this shows options being passed - details on allowed options are below</span><span class="pln">
+  jQuery</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">$</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      $</span><span class="pun">(</span><span class="str">'#someID_options'</span><span class="pun">).</span><span class="pln">autoNumeric</span><span class="pun">(</span><span class="str">'init'</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">aSign</span><span class="pun">:</span><span class="str">' EUR'</span><span class="pun">,</span><span class="pln"> pSign</span><span class="pun">:</span><span class="str">'s'</span><span class="pln"> </span><span class="pun">});</span><span class="pln"> 
+  </span><span class="pun">});</span><span class="pln">
+      </span></pre>
+    <br>
+    <p><strong>Completed</strong> - this demonstrates the options overrides both defaults and HTML5 data. </p>
+    <form method="post" action="">
+      <input type="text" id="someID_options" style="text-align:right" data-a-sign="€ " data-a-dec="," data-a-sep=".">
+    </form>
+    <br>
+    <br>
+    </div>
+    <br>
+     <a id="callback" href="http://www.decorplanit.com/plugin/#nav">back</a>
+     <br>
+    <div class="subContainer">
+    <p><strong>Callback function</strong> - allows the  returned value to be taken as parameter to the default/options settings. You can pass the function via options or HTML5 data and can be used  on any of the 15 options.</p>
+<p>The following shows the the function being passed via options with the mDec setting.</p>
+    <pre class="prettyprint lang-js"><span class="pln">		
+ </span><span class="pun">&lt;</span><span class="pln">script type</span><span class="pun">=</span><span class="str">"text/javascript"</span><span class="pun">&gt;</span><span class="pln">
+ 
+ </span><span class="com">/* the callback function must be defined prior to initiating autoNumeric */</span><span class="pln"> 
+ 
+ </span><span class="kwd">var</span><span class="pln"> functionName </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(){</span><span class="pln">
+    </span><span class="com">/* your code here */</span><span class="pln">  
+    </span><span class="kwd">var</span><span class="pln"> value </span><span class="pun">=</span><span class="pln"> </span><span class="lit">4</span><span class="pun">;</span><span class="pln"> </span><span class="com">/* example only */</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pln"> value</span><span class="pun">;</span><span class="pln"> 
+ </span><span class="pun">}</span><span class="pln">
+
+ </span><span class="com">/* initiates autoNumeric and passes a function */</span><span class="pln">	
+																				
+ $</span><span class="pun">(</span><span class="str">'selector'</span><span class="pun">).</span><span class="pln">autoNumeric</span><span class="pun">(</span><span class="str">'init'</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">mDec</span><span class="pun">:</span><span class="pln"> functionName</span><span class="pun">})</span><span class="pln">  
+ 
+ </span><span class="pun">&lt;/</span><span class="pln">script</span><span class="pun">&gt;</span><span class="pln"> 
+																				
+    </span></pre>
+    <p>This shows the the function name being passed via HTML5 data with the mDec setting.</p>
+    <pre class="prettyprint"><span class="pln">		
+ </span><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text/javascript"</span><span class="tag">&gt;</span><span class="pln">
+ 
+ </span><span class="com">/* the callback function must be defined prior to initiating autoNumeric */</span><span class="pln"> 
+ </span><span class="com">/* please note that the function is namespaced and defined prior to autoNumeric being initiated */</span><span class="pln"> 
+ 
+ $</span><span class="pun">.</span><span class="pln">fn</span><span class="pun">.</span><span class="pln">autoNumeric</span><span class="pun">.</span><span class="pln">functionName </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(){</span><span class="pln">
+    </span><span class="com">/* your code here */</span><span class="pln">  
+    </span><span class="kwd">var</span><span class="pln"> value </span><span class="pun">=</span><span class="pln"> </span><span class="lit">4</span><span class="pun">;</span><span class="pln"> </span><span class="com">/* example only */</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pln"> value</span><span class="pun">;</span><span class="pln"> 
+ </span><span class="pun">}</span><span class="pln">
+
+ </span><span class="com">/* initiates autoNumeric and passes a function from the HTML5 data atribute */</span><span class="pln">	
+																				
+ $</span><span class="pun">(</span><span class="str">'selector'</span><span class="pun">).</span><span class="pln">autoNumeric</span><span class="pun">(</span><span class="str">'init'</span><span class="pun">)</span><span class="pln">  
+ 
+ </span><span class="tag">&lt;/script&gt;</span><span class="pln"> 
+
+
+ </span><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text"</span><span class="pln"> </span><span class="atn">data-m-dec</span><span class="pun">=</span><span class="atv">"functionName"</span><span class="tag">/&gt;</span><span class="pln">																				
+    </span></pre>
+    </div>
+    <br>
+    <a id="initAnchor" href="http://www.decorplanit.com/plugin/#methodAnchor">back</a>
+	<br>
+    <form id="initForm" name="initForm" method="post" action="">
+      <div class="subContainer">
+        <p><strong>'init' method </strong><strong> - </strong>initializes autoNumeric and must be run before other methods can be called. </p>
+        <p><strong>The following are valid ways to configure the 'init' method</strong>. </p>
+        <ul>
+          <li>$(selector).autoNumeric('init'); <em>"initialized with defaults only"</em></li>
+          <li>$(selector).autoNumeric(); <em>"initialized with defaults only"</em></li>
+          <li>$(selector).autoNumeric('init', {options}); <em>"initialized with options"</em></li>
+          <li>$(selector).autoNumeric({options}); <em>"initialized with options"</em></li>
+          <li>$(selector).autoNumeric('init', someOptions); <em>"options placesd as variable </em>var someOptions = {options}<em>;"</em></li>
+          <li>$(selector).autoNumeric(someOptions); </li>
+        </ul>
+        <p><strong>Note the following</strong></p>
+        <ul>
+          <li>Using <strong>'init'</strong> is optional on the initialize method all other methods require being declared.</li>
+          <li>'init' is case sensitive.</li>
+          <li>The input type attribute must equal text "&lt;input type="text"&gt;" or have not type attribute. <strong>Other input types are NOT supported including HTML 5 number type.</strong></li>
+          <li>Non-input tags supported ('DD', 'DT', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'INPUT', 'LABEL', 'P', 'SPAN', 'TD', 'TH').</li>
+          <li>The input element is the only tag that supports auto formatting as you type.</li>
+          <li>Any valid selector is supported.</li>
+        </ul>
+        <p><strong>Changing settings (Defaults) with  HTML5 data and / or options</strong></p>
+        <p>To override defaults you  can use either HTML5 data attribute and/or options sent as an argument. The below example shows the settings order of precedence - default value for aSign = '',  data-a-sign = "$ " and options = '€ ', <strong>where defaults are overridden by the HTML5 data and options overrides both the defaults and HTML5 data.</strong></p>
+        <p>To use the HTML data attribute find the default you want to override and place in the input tag using the standard data format. An example for changing the currency sign from the default (aSign:'') to the dollar sign (data-a-sign="$ "). To change multiple defaults you will need to use multiple data attributes "&lt;input type="text" data-v-min="-999999999.99"   data-n-bracket="()"&gt;".</p>
+        <p>HTML data is set as follows: &lt;input type="text" class="auto" id="ai1" data-a-sign="$ "&gt;. </p>
+        <p>Options are sent as an argument in the following ways: </p>
+        <ul>
+          <li>$(selector).autoNumeric('init', {aSep: '.', aDec: ',', aSign: '€ '});</li>
+          <li>As a variable:</li>
+          <ul>
+            <li>var someOptions =   {aSep: '.', aDec: ',', aSign: '€ '}; </li>
+            <li>Then $(selector).autoNumeric('init', someOptions);</li>
+          </ul>
+          <li>You can also create an object and then use jQuery.parseJSON as in the following example</li>
+           <ul>
+           <li>var getDecimal = 3;</li>
+           <li>var getOption = $.parseJSON('{"mDec":  "' + getDecimal + '"}');</li>
+           <li>Then $(selector).autoNumeric('init', getOptions); </li>
+           </ul>
+        </ul>
+        <p><strong>Default values</strong></p>
+        <p>The option "aForm" controls how default values are handled on page ready. When "aForm: true"  is true  the defaults values of  the the supported elements that are controlled by autoNumeric are formatted on page ready. When "aForm: false" is false the values are not formatted on page ready, but input fields will be formatted when they have focus on the first keypress event is fired.</p>
+        <p>So when aForm is set to true "aForm: true"  the defaults value should be un-formulated as follows: <br>
+          &lt;input type="text" value="99999.99"&gt; or &lt;span&gt;9999.99&lt;/span&gt;. </p>
+        <p>When aForm is set to false "aForm: False" the defaults values should be pre-formatted 
+          as follows:<br>
+          &lt;input type="text" value="€ 99.999,99"&gt;.</p>
+        <p><strong>Demo</strong></p>
+        <ol>
+          <li>This example is initialized on page ready and is loaded with  HTML5 data and options.
+            <ul>
+              <li>$('#demoInit').autoNumeric('<strong>init</strong>', {aSign: "€ "});</li>
+              <li>&lt;input type="text"  id="demoInit" data-a-sign="$ "&gt;</li>
+            </ul>
+          </li>
+          <li>Enter any value and see </li>
+        </ol>
+        <p>
+          <input type="text" id="demoInit" data-a-sign="$ " style="width:160px">
+        </p>
+        <p><strong>Note</strong> - look at the next demo to experiment with the "init" and "destroy" methods</p>
+        <ul>
+          <li>Notice that options supercede defaults &amp; HTML5 data</li>
+          <li>If the field contains only alpha characters at the time the field is initalized  the result will be an empty string</li>
+          <li>If the field contains alpha and numeric characters, autoNumeric will strip any character that is not allowed</li>
+          <li>If the field value falls outside the min/max range and error will be thrown to the javascript console</li>
+          <li>If the field contains multiple decimal points only the first is reconized</li>
+        </ul>
+        <p><strong>Warning</strong>        </p>
+        <p><img src="./autoNumeric_files/caution.png" width="15" height="15" alt="Caution" style="margin-right:10px">Calling the "init" method on a element where the decimal point "aDec" and the thousand separator "aSep" are equal  will cause an error message  to be thrown to the javascript console. </p>
+        <p><img src="./autoNumeric_files/caution.png" width="15" height="15" alt="Caution" style="margin-right:10px">Calling the 'init' methods on a element that is not supported by autoNumeric will cause an error message  to be thrown to the javascript console. </p>
+      </div>
+    </form>
+    <a id="destroyAnchor" href="http://www.decorplanit.com/plugin/#methodAnchor">back</a>
+    <form id="destroyForm" name="destroyForm" method="post" action="">
+      <div class="subContainer">
+        <p><strong>'destroy' method </strong> - removes autoNumeric from the selected element(s). </p>
+        <p><strong> Proper format for the 'destroy' method</strong>.</p>
+        <ul>
+          <li>$(selector).autoNumeric('destroy');&nbsp;</li>
+        </ul>
+        <p><strong>Note the following</strong></p>
+        <ul>
+          <li>The method name 'destroy' is required "$(selector).autoNumeric('destroy');".</li>
+          <li>'destroy' is case sensitive.</li>
+          <li>Options  and arguments are NOT accepted.</li>
+          <li>Existing values are NOT modified or deleted. If you need to remove the formatting you should do so prior to calling the destroy method via the 'get' method described later. </li>
+          <li>The selected fields or elements can be re-initialized at any time.</li>
+        </ul>
+        <p><strong>Demo</strong></p>
+        <ol>
+          <li>Enter a value including try entering alpha characters.</li>
+          <li>After a value has been entered press the 'destroy' button - notice the value is unchanged.</li>
+          <li>Next try entering alpha characters.</li>
+          <li>After you have entered alpha characters press the 'init' button. </li>
+          <li>Please try multiple combinations so you understand the behavior of the 'destroy' and 'init' methods. </li>
+        </ol>
+        <input type="text" id="demoDestroyInput" style="width:160px">
+        &lt;input type="text" id="demoDestroyInput"&gt;
+        <p>
+          <input type="button" id="demoDestroyButton" value="&#39;destroy&#39;" style="width:165px">
+          on click = $('#demoDestroyInput').autoNumeric('destroy');</p>
+        <p>
+          <input type="button" id="demoInitButton" value="&#39;init&#39;" style="width:165px">
+          on click = $('#demoDestroyInput').autoNumeric('init');</p>
+        <p><strong>Note on existing values</strong></p>
+        <ul>
+          <li>If the field contains only alpha characters at the time the field is initalized  the result will be an empty string</li>
+          <li>If the field contains alpha and numeric characters, autoNumeric will strip any character that is not allowed</li>
+          <li>If the field value falls outside the min/max range and error will be thrown to the javascript console</li>
+          <li>If the field contains multiple decimal points only the first is reconized</li>
+        </ul>
+      </div>
+    </form>
+    <a id="updateAnchor" href="http://www.decorplanit.com/plugin/#methodAnchor">back</a>
+    <form id="updateForm" name="updateForm" method="post" action="">
+      <div class="subContainer">
+        <p><strong>"update' method </strong>- easily update element(s) that have been previously initialized 'init' by autoNumeric. </p>
+        <p><strong>Proper format for the 'update' method</strong>.</p>
+        <ul>
+          <li>$(selector).autoNumeric('update', {options});&nbsp;</li>
+        </ul>
+        <p><strong>Please note the following</strong></p>
+        <ul>
+          <li>The 'update' method name is required "$(selector).autoNumeric('update', {options});".</li>
+          <li>'update' is case sensitive.</li>
+          <li>Options are required and are accepted as an argument or variable (see the 'init' method description).</li>
+          <li>The 'update' method will function on all elements supported by autoNumeric.</li>
+          <li>The 'update' method can be called repeatably with one or more options at a time.</li>
+          <li>Existing values will be stripped, preserved and reformatted to the new settings. </li>
+          <li>Values that fall outside the range of the new min/max range will be returned as "0.00"  (depending on the number of decimal places and the decimal separator character in the settings).</li>
+        </ul>
+        <p><strong>Demo</strong></p>
+        <ol>
+          <li>The demo sample below is 'init' with defaults on page ready.</li>
+          <li>Enter a value and then press either of the buttons to change the "aSign" option. </li>
+          <li>Please press either button multiple times. </li>
+        </ol>
+        <p>
+          <input type="text" id="demoUpdateInput" style="width:160px">
+          $('#demoUpdateInput').autoNumeric('init');</p>
+        <p>
+          <input type="button" id="demoUpdateButton1" value="&#39;update&#39;, {aSign: &#39;$ &#39;}" style="width:165px">
+          on click = $('#demoUpdateInput').autoNumeric('update', {aSign: '$ '});</p>
+        <p>
+          <input type="button" id="demoUpdateButton2" value="&#39;update&#39;, {aSign: &#39;€ &#39;}" style="width:165px">
+          on click = $('#demoUpdateInput').autoNumeric('update', {aSign: '€ '}); </p>
+        <p><strong>Note</strong></p>
+        <ul>
+          <li>The value is unchanged unless the min/max, rounding and or the max decimal places are modified and the value fall outside the new range.</li>
+        </ul>
+        <p><strong>Warning</strong></p>
+        <p><img src="./autoNumeric_files/caution.png" width="15" height="15" alt="Caution" style="margin-right:10px">Calling the 'update' method prior to the 'init' method will cause a error message to be thrown to the Javascript console.</p>
+        <p><img src="./autoNumeric_files/caution.png" width="15" height="15" alt="Caution" style="margin-right:10px">Calling the "update" method on a element where the decimal point "aDec" and the thousand separator "aSep" are equal  will cause an error message  to be thrown to the javascript console. </p>
+        <p><img src="./autoNumeric_files/caution.png" width="15" height="15" alt="Caution" style="margin-right:10px">Calling the 'update' method on a element that is not supported by autoNumeric will cause an error message  to be thrown to the javascript console. </p>
+      </div>
+    </form>
+    <a id="setAnchor" href="http://www.decorplanit.com/plugin/#methodAnchor">back</a>
+    <form id="setGetForm" name="setGetForm" method="post" action="">
+      <div class="subContainer">
+        <p><strong>'set' method </strong>- The 'set' method allows you to easily format number and numeric strings </p>
+        <p><strong>Proper format for the 'set' method</strong>.</p>
+        <ul>
+          <li>$(selector).autoNumeric('set', value);&nbsp;</li>
+        </ul>
+        <p><strong>Please note the following</strong></p>
+        <ul>
+          <li>The 'set' method name is required "$(selector).autoNumeric('set', value);".</li>
+          <li>'set' is case sensitive.</li>
+          <li>Options  are NOT accepted.</li>
+          <li>The 'set'  method can be used on any element that are supported by autoNumeric.</li>
+          <li>The value can be sent as a string or variable
+            <ul>
+              <li>$(selector).autoNumeric('set', '1234.56');</li>
+              <li>var someValue = 1234.56 then $(selector).autoNumeric('set', someValue);</li>
+            </ul>
+          </li>
+          <li>Returns a string</li>
+        </ul>
+        <p><strong>Demo</strong></p>
+        <table width="800">
+          <tbody><tr>
+            <td width="15" style="border:none;">1.</td>
+            <td width="155" style="border:none;"><input type="text" class="auto" id="demoSetValue" data-a-sep="" data-v-min="-999999999.99999" data-v-max="999999999.99999" data-a-pad="false"></td>
+            <td style="border:none;">Enter a value between -999999999.99999 and 999999999.99999</td>
+          </tr>
+          <tr>
+            <td width="15" style="border:none;">2.</td>
+            <td width="155" style="border:none;"><input type="button" id="demoSetButton" value="‘set’" style="width:155px; height:25px"></td>
+            <td style="border:none;">on click = $('.demoSet').autoNumeric('<strong>set</strong>', someValue)</td>
+          </tr>
+          <tr>
+            <td width="15" style="border:none;">3.</td>
+            <td width="155" style="border:none;"><input type="text" class="demoSet" id="demoSetInput" data-a-sign="$ " readonly=""></td>
+            <td style="border:none;">&lt;input type="text" class="demoSet"  data-a-sign="$ " readonly&gt;</td>
+          </tr>
+          <tr>
+            <td width="15" style="border:none;">4.</td>
+            <td width="155" style="border:none;" align="right"><span class="demoSet" id="demoSetSpan" data-a-form="false" data-a-sign="¥ ">Number placed here:</span></td>
+            <td style="border:none;"><span>&lt;span class="demoSet" id="p1"   data-a-sign="¥ " &gt;&lt;/span&gt;</span></td>
+          </tr>
+        </tbody></table>
+        <p><strong>Note: </strong></p>
+        <ul>
+          <li>Values that fall outside the  min/max range will not be 'set' and a error message will be thrown to the javascript console.</li>
+        </ul>
+        <p><strong>Warning</strong></p>
+        <p><img src="./autoNumeric_files/caution.png" width="15" height="15" alt="Caution" style="margin-right:10px">Calling the 'set' method prior to the 'init' method will cause a error message to be thrown to the Javascript console.</p>
+        <p><img src="./autoNumeric_files/caution.png" width="15" height="15" alt="Caution" style="margin-right:10px">Calling the 'set' method on a element that is not supported by autoNumeric will cause an error message  to be thrown to the javascript console. </p>
+      </div>
+    </form>
+    <p><a id="getAnchor" href="http://www.decorplanit.com/plugin/#methodAnchor">back</a></p>
+    <form id="setGetForm2" name="setGetForm" method="post" action="">
+      <div class="subContainer">
+        <p><strong>'get' method - </strong> The 'get' method allows you to easily remove the formating from a string  on a  autoNumeric controlled element and returns a string.</p>
+        <p><strong>Proper format for the 'get' method</strong>.</p>
+        <ul>
+          <li>$(selector).autoNumeric('get');&nbsp;</li>
+        </ul>
+        <p><strong>Please note the following</strong></p>
+        <ul>
+          <li>The 'get' method name is required "$(selector).autoNumeric('get');".</li>
+          <li>'get' is case sensitive.</li>
+          <li>Options and values are NOT accepted.</li>
+          <li>Works on any element supported by autoNumeric.</li>
+          <li>Returns  only the first element of the selector.</li>
+          <li>Returns a string.</li>
+        </ul>
+        <p><strong>Demo</strong></p>
+        <table width="850">
+          <tbody><tr>
+            <td width="15" style="border:none;">1.</td>
+            <td width="155" style="border:none;"><input type="text" class="auto" id="demoGetInput" data-a-sign="€ " data-a-dec="," data-a-sep="."></td>
+            <td style="border:none;">Enter a value from 0 to 999999999.99</td>
+          </tr>
+          <tr>
+            <td width="15" style="border:none;">2.</td>
+            <td width="155" style="border:none;"><input type="button" id="demoGetButton1" value="‘get’" style="width:155px; height:25px"></td>
+            <td style="border:none;">on click = $('#demoGetInput').autoNumeric('<strong>get</strong>')</td>
+          </tr>
+          <tr>
+            <td width="15" style="border:none;">3.</td>
+            <td width="155" style="border:none;"><input type="text" id="demoGetValue1" readonly=""></td>
+            <td style="border:none;">the returned number from the above input is placed here</td>
+          </tr>
+          <tr>
+            <td width="15" style="border:none;">4.</td>
+            <td width="155" style="border:none; padding-left:45px" class="auto" id="demoGetTd" data-a-sign="¥ ">¥ 1,234,567.89</td>
+            <td style="border:none;">the 'get' method works on al supported elements. This example uses the &lt;td&gt; tag</td>
+          </tr>
+          <tr>
+            <td width="15" style="border:none;">5.</td>
+            <td width="155" style="border:none;"><input type="button" id="demoGetButton2" value="‘get’" style="width:155px; height:25px"></td>
+            <td style="border:none;">on click = $('#demoGetTd').autoNumeric('<strong>get</strong>')</td>
+          </tr>
+          <tr>
+            <td width="15" style="border:none;">6.</td>
+            <td width="155" style="border:none;"><input type="text" id="demoGetValue2" readonly=""></td>
+            <td style="border:none;">the returned number from the table cell &lt;td&gt; tag is placed here</td>
+          </tr>
+        </tbody></table>
+        <p><strong>Note: </strong></p>
+        <ul>
+          <li>If the autoNumeric controlled element  does not contain a numeric character an empty sting will be returned.</li>
+        </ul>
+        <p><strong>Warning</strong></p>
+        <p><img src="./autoNumeric_files/caution.png" width="15" height="15" alt="Caution" style="margin-right:10px">Calling the 'get' method prior to the 'init' method will cause a error message to be thrown to the Javascript console. </p>
+        <p><img src="./autoNumeric_files/caution.png" width="15" height="15" alt="Caution" style="margin-right:10px">Calling the 'get' method on a element that is not supported by autoNumeric will cause an error message  to be thrown to the javascript console. </p>
+      </div>
+    </form>
+    <p><a id="getStringAnchor" href="http://www.decorplanit.com/plugin/#methodAnchor">back</a> </p>
+    <div class="subContainer">
+      <p><strong>'</strong><strong>getString' method </strong>- this basically uses jQuery's .serialize() method which creates a text string (URL-encoded notation) from a set of form elements that is ready for submission. The extra step taken here is the string is split and iterated through and  the formatted values are replaced with unformatted values. The string is then joined back together and returned. </p>
+      <p><strong>Proper format for the 'getString' method</strong>.</p>
+      <ul>
+        <li>$(selector).autoNumeric('getString');&nbsp;</li>
+      </ul>
+      <p><strong>Please note the following</strong></p>
+      <ul>
+        <li>The 'getString' method name is required "$(selector).autoNumeric('getString');".</li>
+        <li>Options  and value are NOT accepted.</li>
+        <li>The "getString" method does NOT validate the form inputs. It will return what has been entered including empty strings.</li>
+        <li>If your selector includes non-autoNumeric fields they will be returned untouched.</li>
+        <li>Only <a href="http://www.w3.org/TR/html401/interact/forms.html#h-17.13.2">"successful controls</a>" are serialized to the string. Please read more about <a href="http://api.jquery.com/serialize/">jQuery's .serialize() method</a> to see if "getString" method will work for your application.</li>
+        <li>Returns a string</li>
+      </ul>
+      <p><strong>Demo</strong></p>
+      <ol>
+        <li>To view the method results open your browser's console (you may need to reload the page). </li>
+        <li>Press the "getString" button. Two strings should be appear. </li>
+        <li>The first string was created to show jQuery's .serialize() method with no modifications.</li>
+        <li>The second string is from the "getString" method. </li>
+      </ol>
+      <form name="getStringForm" id"getstringform"="" method="post">
+        <table width="800" border="0">
+          <tbody><tr>
+            <td width="100" align="right" style="border:none;">First name:</td>
+            <td style="border:none;"><input type="text" name="FirstName" value="John" width="165"></td>
+          </tr>
+          <tr>
+            <td width="100" align="right" style="border:none;">Last name:</td>
+            <td style="border:none;"><input type="text" name="LastName" value="Smith" width="165"></td>
+          </tr>
+          <tr>
+            <td width="100" align="right" style="border:none;">2012 sales: </td>
+            <td style="border:none;"><input type="text" name="income2012" value="72874.00" data-a-sign="£ " class="demo" width="165"></td>
+          </tr>
+          <tr>
+            <td width="100" align="right" style="border:none;">2011 sales: </td>
+            <td style="border:none;"><input type="text" name="income2011" value="63667.00" data-a-sign="£ " class="demo" width="165"></td>
+          </tr>
+          <tr>
+            <td width="100" align="right" style="border:none;">2010 sales: </td>
+            <td style="border:none;"><input type="text" name="income2010" value="44567.89" data-a-sign="£ " class="demo" width="165"></td>
+          </tr>
+          <tr>
+            <td width="100" align="right" style="border:none;">&nbsp;</td>
+            <td style="border:none;"><input type="button" id="getStringButton" value="&quot;getString&quot;" style="width:158px"></td>
+          </tr>
+        </tbody></table>
+      </form>
+      <p><strong>
+        
+        Note</strong></p>
+      <ul>
+        <li>If the autoNumeric controlled element  does not contain a numeric character an empty sting will be returned.</li>
+      </ul>
+      <p><strong>Warning</strong>
+      </p><p><img src="./autoNumeric_files/caution.png" width="15" height="15" alt="Caution" style="margin-right:10px">At least one input must be controled by autoNumeric. If not the 'getSting'  method will cause a error message to be thrown the the Javascript console. </p>
+    </div>
+    <a id="getArrayAnchor" href="http://www.decorplanit.com/plugin/#methodAnchor">back</a>
+    <div class="subContainer">
+      <p><strong>'getArray' method </strong>- this basically uses jQuery's .serializeArray() method which returns a Javascript array of objects, ready to be encoded as a JSON string. The extra step taken here is the the object array is iterated through and  formatted values are replaced with un-formatted values and  returned. </p>
+      <p><strong>Proper format for the 'getArray' method</strong>.</p>
+      <ul>
+        <li>$(selector).autoNumeric('getArray');&nbsp;</li>
+      </ul>
+<p><strong>Please note the following</strong></p>
+      <ul>
+        <li>The 'getArray' method name is required "$(selector).autoNumeric('getArray');".</li>
+        <li>Options  are NOT accepted.</li>
+        <li>An object is returned. If you want this converted to a valid JSON string to submit to the server you should consider <a href="https://github.com/douglascrockford/JSON-js">JSON2.js</a> as I did in this demo.</li>
+        <li>The "getArray" method does NOT validate the form inputs. It will return what has been entered including empty strings.</li>
+        <li>If your selector includes non-autoNumeric fields they will be returned untouched.</li>
+        <li>Only <a href="http://www.w3.org/TR/html401/interact/forms.html#h-17.13.2">"successful controls</a>" are serialized to the string. Please read more about <a href="http://api.jquery.com/serializeArray/">jQuery's .serializeArray() method</a> to see if "getArray" method will work for your application.</li>
+      </ul>
+      <p><strong>Demo</strong></p>
+      <ol>
+        <li>To view the "getArray" method open your browser's console (you may need to reload the page). Fill in the inputs above and then press the "getArray" button. The following lines  should be appear so you can see the differences. </li>
+        <li>The first string was created to show jQuery's .serializeArray() method with no modifications.</li>
+        <li>The second object is from the "getArray" method</li>
+        <li>The third line takes the return object from the "getArray" method and converts to a valid JSON string via JSON.stringify. </li>
+      </ol>
+      <form name="getArrayForm" id"getarrayform"="" method="post">
+        <table width="800" border="0">
+          <tbody><tr>
+            <td width="130" align="right" style="border:none"><label for="widgets">Number widgets</label></td>
+            <td style="border:none"><input type="text" class="demo" id="widget" name="widget" value="547635" style="width:160px;" data-v-min="0" data-v-max="1000000"></td>
+          </tr>
+          <tr>
+            <td width="130" align="right" style="border:none"><span style="border:none; text-align:center">
+              <label for="cost2">Cost per widgets</label>
+              </span></td>
+            <td style="border:none"><input type="text" class="demo" id="cost" name="cost" value="0.59" style="width:160px;" data-a-sign=""></td>
+          </tr>
+          <tr>
+            <td width="130" align="right" style="border:none"><label for="total2">Total order cost</label></td>
+            <td style="border:none"><input type="text" class="demo" id="total" name="total" value="" style="width:160px;" data-a-sign="U$D "></td>
+          </tr>
+          <tr>
+            <td width="130" align="right" valign="top" style="border:none; height:50px">Order notes:</td>
+            <td style="border:none"><textarea name="comments" id="comments" cols="52" rows="2">Please call before shipping</textarea></td>
+          </tr>
+          <tr>
+            <td width="130" align="right" style="border:none">&nbsp;</td>
+            <td style="border:none"><input type="button" id="getArrayButton" value="&quot;getArray&quot;" style="width:165px"></td>
+          </tr>
+        </tbody></table>
+      </form>
+      <p>
+        
+        <strong>Note</strong></p>
+      <ul>
+        <li>If the autoNumeric controlled element  does not contain a numeric character an empty sting will be returned.</li>
+        <li>jQuery does not have a native stringify method.</li>
+      </ul>
+      <p><strong>Warning</strong>
+      </p><p><img src="./autoNumeric_files/caution.png" width="15" height="15" alt="Caution" style="margin-right:10px">At least one input must be controled by autoNumeric. If not the 'getArray'  method  will cause a error message to be thrown the the Javascript console. </p>
+    </div>
+    <a id="getSettingsAnchor" href="http://www.decorplanit.com/plugin/#methodAnchor">back</a>
+    <form id="getSettingsForm" name="getSettingsForm" method="post" action="">
+      <div class="subContainer">
+        <p> <strong>'getSettings' method </strong>- this returns an object that shows the autoNumeric settings for the field. You may find this helpful when developing a page.</p>
+        <p><strong>Proper format for the 'getArray' method</strong>.</p>
+        <ul>
+          <li>$(selector).autoNumeric('getSettings');&nbsp;</li>
+        </ul>
+<p><strong>Please note the following</strong></p>
+        <ul>
+          <li>Only the first element from the selector will be  returned.</li>
+          <li>If the selector points to a non-autoNumeric field or tag "undefined" is returned.</li>
+        </ul>
+        <p><strong>Demo instructions</strong></p>
+        <ul>
+          <li>To view this in action open your browser's console  (you may need to reload the page) and press the "getSettings" button. In this example I have pointed id="fi7" (the negative bracket example). </li>
+        </ul>
+        <p>
+          <input type="button" id="getSettingsButton" value="&quot;getSettings&quot;" style="width:130px">
+        </p>
+        <p><strong>Warning</strong> </p>
+        <p><img src="./autoNumeric_files/caution.png" width="15" height="15" alt="Caution" style="margin-right:10px">Calling the 'getSettings'  method prior to the 'init' will cause a error message to be thrown the the Javascript console. </p>
+      </div>
+    </form>
+    <p><a id="mRoundExample" href="http://www.decorplanit.com/plugin/#mRoundCode">back</a></p>
+    <br>
+    <div class="tableWrap"><form id="demoMRound"><div style="padding: 10px 5px 10px 15px;"> 
+    <p><strong>The following demonstrates the supported rounding types</strong></p>
+    <ol>
+      <li>Enter a value between -99999.99999 and 99999.99999</li>
+      <li>Select the decimal accuracy between 0 and 5</li>
+      <li>Press the "round" button and see the results to the right</li>
+      <li>Re-select the decimal and change the value</li>
+      <li>Re-set the form and try new values    </li>
+    </ol>
+    <p>For in depth details on rounding methods visit the <a href="http://www.diycalculator.com/popup-m-round.shtml" target="_blank">DIY     Calculator</a> site.</p>
+    </div>
+<table width="100%" border="0" class="mainTable">
+  <tbody>
+  <tr style="height:50px">
+  <td width="33%" class="mRoundDemoR3"><strong>Entered value to be rounded</strong></td>
+  <td width="33%" align="right" class="mRoundDemoR2"><strong>Description</strong></td>
+  <td width="33%" class="mRoundDemoR3"><strong>Rounded results</strong></td>
+  </tr>
+  <tr height="55">
+  <td width="33%" class="mRoundDemoR3"><input id="mRoundValue" type="text" class="auto" size="25" data-v-min="-99999.99999" data-v-max="99999.99999" data-a-pad="false">
+    <select id="mRoundDecimal" style="border-style:solid; border-width:thin; height:22px; width:40px; font-size:14px">
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2" selected="selected">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      </select></td>
+  <td width="33%" align="right" class="mRoundDemoR2">&nbsp;Round-Half-Up <br>"Symmetric"</td>
+  <td width="33%" class="mRoundDemoR3"><label>mRound: 'S' - default</label> <br> <input type="text" class="auto_mRound" id="mRound_S" readonly="" size="20"></td>
+  </tr>
+  <tr height="55">
+  <td width="33%" class="mRoundDemoR3"><input id="mRoundButton" type="button" value="Round" style="width:115px">  <input type="reset" value="Reset form!" style="width:115px">  <br></td>
+  <td width="33%" align="right" class="mRoundDemoR2">&nbsp;Round-Half-Up <br>"Asymmetric"</td>
+  <td width="33%" class="mRoundDemoR3"><label>mRound: 'A'</label> <br> <input type="text" class="auto_mRound" id="mRound_A" readonly="" size="20" data-m-round="A"></td>
+  </tr>
+  <tr height="55">
+  <td width="33%" rowspan="7" align="left" valign="top" class="mRoundDemoR3" style="padding-left:10px"><p>&nbsp;</p></td>
+  <td width="33%" align="right" class="mRoundDemoR2">&nbsp;Round-Half-Down <br>"Symmetric"</td>
+  <td width="33%" class="mRoundDemoR3"><label>mRound: 's'</label> <br> <input type="text" class="auto_mRound" id="mRound_s" readonly="" size="20" data-m-round="s"></td>
+  </tr>
+  <tr height="55">
+  <td width="33%" align="right" class="mRoundDemoR2">&nbsp;Round-Half-Down <br>"Asymmetric"</td>
+  <td width="33%" class="mRoundDemoR3"><label>mRound: 'a'</label> <br> <input type="text" class="auto_mRound" id="mRound_a" readonly="" size="20" data-m-round="a"></td>
+  </tr>
+  <tr height="55">
+  <td width="33%" align="right" class="mRoundDemoR2">&nbsp;Round-Half-Even <br>"Bankers"</td>
+  <td width="33%" class="mRoundDemoR3"><label>mRound: 'B'</label> <br> <input type="text" class="auto_mRound" id="mRound_B" readonly="" size="20" data-m-round="B"></td>
+  </tr>
+  <tr height="55">
+  <td width="33%" align="right" class="mRoundDemoR2">&nbsp;Round Up <br>"Away From Zero"</td>
+  <td width="33%" class="mRoundDemoR3"><label>mRound: 'U'</label> <br> <input type="text" class="auto_mRound" id="mRound_U" readonly="" size="20" data-m-round="U"></td>
+  </tr>
+  <tr height="55">
+  <td width="33%" align="right" class="mRoundDemoR2">&nbsp;Round-Down <br>"Toward Zero"</td>
+  <td width="33%" class="mRoundDemoR3"><label>mRound: 'D'</label> <br> <input type="text" class="auto_mRound" id="mRound_D" readonly="" size="20" data-m-round="D"></td>
+  </tr>
+  <tr height="55">
+  <td width="33%" align="right" class="mRoundDemoR2">Round to&nbsp;Ceiling<br> "Toward Positive Infinity"</td>
+  <td width="33%" class="mRoundDemoR3"><label>mRound: 'C'</label> <br> <input type="text" class="auto_mRound" id="mRound_C" readonly="" size="20" data-m-round="C"></td>
+  </tr>
+  <tr height="55" style="padding-bottom:15px">
+  <td width="33%" align="right" class="mRoundDemoR2">Round to Floor<br> "Toward Negative Infinity"</td>
+  <td width="33%" class="mRoundDemoR3"><label>mRound: 'F'</label> <br> <input type="text" class="auto_mRound" id="mRound_F" readonly="" size="20" data-m-round="F"></td>
+  </tr>
+  </tbody>
+</table>
+</form></div>
+    <br><br>
+    <a id="nBracketExample" href="http://www.decorplanit.com/plugin/#nBracketCode">back</a>
+    <form id="negativeBracketsForm" name="negativeBracketsForm" method="post" action="">
+      <div class="subContainer">
+        <p><strong>The following demonstrates negative values with brackets</strong> - the next field is loaded with lZero: 'allow'. Update the field options and test the behavior change. Brackets are visible only when the field does not have focus.</p>
+        <p>&lt;input type="text" id="fi7" name="fi7" value="-9999.99" data-v-min="-999999999.99"   data-n-bracket="(,)"&gt;</p>
+        <input type="text" id="fi7" name="fi7" data-v-min="-999999999.99" value="-9999.99" data-n-bracket="(,)">
+        <input type="button" id="fb8" value="nBracket: &#39;null&#39;" style="width:130px">
+        <input type="button" id="fb9" value="nBracket: &#39;(,)&#39;" style="width:130px">
+      </div>
+    </form>
+    <p><a id="lZeroExample" href="http://www.decorplanit.com/plugin/#lZeroCode">back</a></p>
+    <form id="leadingZeroForm" name="leadingZeroForm" method="post" action="">
+      <div class="subContainer">
+        <p><strong>The following demonstrates the leading zero modification</strong> - the next field is loaded with lZero: 'allow'. Update the field options and test the behavior change.</p>
+        <p>lZero: "deny" - allows only one leading zero (same behavior as versions 1.7.0 to 1.7.4.</p>
+        <p>lZero: "allow" - allows leading zeros to be entered. Removes leading zeros on the focusout event.</p>
+        <p>lZero: "keep" - allows leading zeros to be entered. Keeps leading zeros on the focusout event.</p>
+        <p>$('#i6').autoNumeric('init');</p>
+        <p>$('#i6').autoNumeric('update', {lZero: 'deny'});</p>
+        <p>$('#i6').autoNumeric('update', {lZero: 'allow'});</p>
+        <p>$('#i6').autoNumeric('update', {lZero: 'keep'});</p>
+        <p>&lt;input type="text" id="i6"&gt; <em>note: default currently set to allow</em></p>
+        <input type="text" id="i6" name="i6">
+        <input type="button" id="b5" value="&#39;deny&#39;" style="width:85px">
+        <input type="button" id="b6" value="&#39;allow&#39;" style="width:85px">
+        <input type="button" id="b7" value="&#39;keep&#39;" style="width:85px">
+        <br>
+    </div>
+    </form>
+    <p><strong>Browsers supported - </strong>limited testing conducted on the following:</p>
+    <ul>
+      <li>Chrome 23.0.1271.97</li>
+      <li>Firefox 17.0.1</li>
+      <li>IE 9.0.8112.16421</li>
+      <li>Opera 12.12</li>
+      <li>Safari 5.0.3 Mac</li>
+      <li>Safari 5.1.7 WIN</li>
+      <li>iPad2</li>
+      <li>iPhone 4</li>
+      <li>Andriod 4 (phone)</li>
+    </ul>
+    <p><strong>Known issues</strong></p>
+    <ul>
+      <li>HTML 5 input when type is set to number   &lt;input type="number" id="someID"&gt;. Type must best set to "text" to have autoNumeric function properly.</li>
+      <li>Android mobile browsers prior to Android version 4.</li>
+      <li>Context menu paste event not supported - but the first keystoke updates the field properly.</li>
+      <li>Undo / redo not supported</li>
+    </ul>
+    <p><strong>Change / history log</strong>:</p>
+    <p><strong>Version 1.9.17</strong></p>
+    <ul>
+      <li>Fixed leading zero on page load when option lZero is set to  'keep'.</li>
+    </ul>
+<p><strong>Version 1.9.16</strong></p>
+    <ul>
+      <li>Fixed the checkValue function when vary  small numbers  in scientific notation are passed  via the set method.</li>
+      <li>Modified the rounding method so zero value is not returned with a negative sign.</li>
+    </ul>
+    <p><strong>Version 1.9.15</strong></p>
+    <ul>
+      <li>Fixed bug introduced in version 1.9.14.</li>
+    </ul>
+<p><strong>Version 1.9.14</strong> </p>
+    <ul>
+      <li> Added additional supported tags ('b', 'caption', 'cite', 'code', 'dd', 'del', 'div', 'dfn', 'dt', 'em', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ins', 'kdb', 'label', 'li', 'output', 'p', 'q', 's', 'sample', 'span', 'strong', 'td', 'th', 'u', 'var')</li>
+      <li> Moved the routine that tests for supported tags</li>
+      <li>General code cleanup</li>
+    </ul>
+<p><strong>Version 1.9.13</strong></p>
+<ul>
+  <li>Fixed the "get" method when the input recieved focus multiple times</li>
+</ul>
+<p><strong>Version 1.9.10 + 1.9.12</strong></p>
+<ul>
+  <li>Fixed the negative brackets on page load when the decimal character is a comma</li>
+</ul>
+<p><strong>Version 1.9.10 + 1.9.11</strong></p>
+<ul>
+  <li>Fixed the set method to handle page reload when the back button is pressed</li>
+</ul>
+<p><strong>Version 1.9.9</strong></p>
+<ul>
+  <li>Fixed how non-input tags default value is handled. When the default is an empty string and aSign is not empty the return value is now and empty string. </li>
+  <li>Modified how default values are handled when the decimal character equals ',' comma. Your default value can now use either a a period '.' or comma ',' as the decimal separator </li>
+  <li>Modified the caret placement on focusin (tab in). If only the currency sign is visible the caret is placed in the proper location depending on the sign placement (prefix or suffix).</li>
+</ul>
+<p><strong>Version 1.9.8</strong></p>
+<ul>
+  <li>Changed (bind / unbind) to (on / off).</li>
+  <li>Added lastSetValue to settings - this saves the unrounded value from the set method - $('selector').data('autoNumeric').lastSetValue; - helpful when you need to change the rounding accuracy</li>
+</ul>
+<p><strong>Version 1.9.7</strong></p>
+<ul>
+  <li>Modified /fixed the format default values on page ready. </li>
+  <li>Fixed the caret position when jumping over the thousand separator with back arrow.</li>
+</ul>
+<p><strong>Version 1.9.6</strong></p>
+<ul>
+  <li>Fixed bug introduced in 1.9.3 with shift key.</li>
+  <li>Additional modification to the  processKeypress function that  automatically inserts a negative sign when vMax less tham or equal to 0 and vMin is less tham vMax.</li>
+</ul>
+<p><strong>Version 1.9.5</strong></p>
+<ul>
+  <li>Modified processKeypress function to automatically insert a negative sign when vMax &lt;=0 and vMin &lt; 0.</li>
+  <li>Changed the getSting and getArray functions to use decodeURIComponent() instead of unescape() which is depreciated</li>
+</ul>
+<p><strong>Version 1.9.4</strong></p>
+<ul>
+  <li>Merged issue #11 - Both getString and getArray were using escaped versions of the name from jQuery's serialization. So this change wraps the name finder with quotes and unescapes the name.Fixed a bug in autoCode that corrects the pasted values and page re-load - Thanks Cory.</li>
+  <li>Merged issue #12 - If a input is readonly during "init", autocomplete won't work if the input is enabled later. This commit should fix the Problem Thanks Sven.</li>
+</ul>
+<p><strong>Version 1.9.3</strong></p>
+<ul>
+  <li>Fixed a bug in autoCode that corrects the pasted values and page re-load</li>
+  <li>Added support for "shift" + "insert" paste key combination</li>
+</ul>
+<p><strong>Version 1.9.2</strong></p>
+<ul>
+  <li>Modified the "checkValue" function - eliminated redundant code</li>
+  <li>Modified the "update" method include calling the "getHolder" function which updates the regular expressions</li>
+  <li>Modified the "getHolder" function so the regular expressions are updated</li>
+  <li>Modified the "set" method to convert value from number to string</li>
+</ul>
+<p><strong>Version</strong> <strong>1.9.1</strong></p>
+<ul>
+  <li>Modified the checkValue function to handle the values as text with the exception of values less than "0.000001 and greater than -1"</li>
+</ul>
+<p><strong>Version 1.9.0</strong></p>
+<ul>
+  <li>Fixed  a rounding error when the  integers were 15 or more digits in length</li>
+  <li>Added "use strict";</li>
+</ul>
+<p><strong>Version 1.8.9</strong></p>
+<ul>
+  <li>Fixed  the "get" and "set" methods by moving the settings.oEvent property  so the error message would be thrown if the element had not been inialized </li>
+</ul>
+<p><strong>Version 1.8.8</strong></p>
+<ul>
+  <li>Fixed  the "init" when there is a default and value aForm=true and the aSep and aDec are not the defaults</li>
+</ul>
+<p><strong>Version 1.8.7</strong></p>
+<ul>
+  <li>Fixed the "getSting" method - it use to returned an error when no values were entered </li>
+  <li>Modified the "init" method to better handle default and pre-existing values</li>
+  <li>Modified the "set" method - removed the routine that checked for values less than .000001 and greater than -1 and placed it in a separate function named checkValue()</li>
+  <li> Modified the "get" method:
+    <ul>
+      <li> Added a call to the checkValue() function - this corrects returned values. Example - when the input value was "12." the returned value was "12." - it now returns "12" </li>
+      <li> When no numeric character is present the returned value is an empty string.</li>
+    </ul>
+  </li>
+</ul>
+<p><strong>Version 1.8.6</strong><strong></strong></p>
+<ul>
+  <li> Removed the error message when calling the 'init' methods multiple times. This was done when using the class selector for the 'init' method and then dynamically adding input(s) it allows you to use the same selector to init autoNumeric. <strong>Please note:</strong> if the input is already been initialized no changes to the option will occur you still need to use the update method to change exisiting options.</li>
+  <li>Added support for brackets '[,]', parentheses '(,)', braces '{,}' and '&lt;,&gt;' to the nBracket setting. <strong>Please note:</strong> the following format nBracket: '(,)' that the left and right symbol used to represent negative numbers must be enclosed in quote marks and separated by a comma to function properly. </li>
+</ul>
+<p><strong>Version 1.8.5</strong></p>
+<ul>
+  <li>Fixed readonly - this occured when you toggle the readonly attribute</li>
+</ul>
+<p><strong>Version 1.8.4</strong></p>
+<ul>
+  <li>  Fixed
+the getString and getArray methods under jQuery-1.9.1</li>
+</ul>
+<p><strong>version 1.8.3</strong></p>
+<ul>
+  <li>Added input[type=hidden] support - this was done mainly for backward compatibility.</li>
+  <li>The "get" method now returns a numeric string - this also was done for backward compatibility.</li>
+</ul>
+<p><strong>Version 1.8.2</strong></p>
+<ul>
+  <li>Allowed dGroup settings to be passed as a numeric value or text representing a numeric value</li>
+  <li>Allows input fields without type that defaults to type text - Thanks Mathieu DEMONT</li>
+</ul>
+<p><strong>Version 1.8.1</strong></p>
+    <ul>
+      <li>Modified the 'get' method so when a field is blank and the setting wEmpty:'empty' a  empty string('') is returned.</li>
+    </ul>
+<p><strong>Version 1.8.0</strong></p>
+    <ul>
+      <li>autoNumeric() 1.8.0 is not   compatible  with earlier versions but I believe you will find version 1.8.0's new functionality and ease of use  worth the effort to convert.</li>
+      <li>Changed autoNumeric structure to conform to jQuery's recommended plugin development. </li>
+      <li>Created a single namespace and added  multiple methods.</li>
+      <li>Added HTML 5 data support and eliminated the metadata plugin dependency. </li>
+      <li>Added support for  the following elements: 'DD', 'DT', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'input', 'LABEL', 'P', 'SPAN', 'TD', 'TH'.</li>
+      <li>Changed the settings loading order to defaults, HTML5 data then options. Now the defaults settings  are overridden by HTML5 data and options overrides both defaults &amp; HTML5 data.</li>
+      <li>Added "lZero" to the settings to control leading zero behavior.</li>
+      <li>Added "nBracket" to the settings which controls if negative values are display with brackets.</li>
+      <li>Changed the callback feature to accept functions only.</li>
+      <li>Improved the 'aForm' behavior that allows values to be automatically formatted on page ready.</li>
+      <li>Fixed the issue for numbers that are less than 1 and greater than -1 and have six or more decimal places.</li>
+      <li>Fixed 'crtl' + 'a' (select all) and 'ctrl' + 'c' (copy) combined key events.</li>
+      <li>Fixed a IE &amp; FF bug on readonly attribute.</li>
+      <li>General code clean up</li></ul>
+    <p><strong><a href="http://www.decorplanit.com/plugin/autoNumeric-1.7.5.htm">Version 1.7.5</a></strong>
+    </p><ul>
+      <li>Fixed ctrl + a (select all) and ctrl + c (copy) key events.</li>
+    </ul>
+    <p><strong>Version 1.7.4-B</strong></p>
+    <ul>
+      <li>Fixed caret routine for IE (oops mistake).</li>
+    </ul>
+    <p></p>
+    <p><strong>Version 1.7.4</strong></p>
+    <ul>
+      <li>Depreciated the use of "options" in the autoNumericGet() &amp; autoNumericSet() public functions.</li>
+      <li>Bug fix - prevent multiple instances of autoNumeric from being loaded.</li>
+      <li>Bug fix - corrected loop through a array using "for( i in left_ar )" - thanks Peter Kovari.</li>
+      <li>Eliminated the use of ++ &amp; -- to iterate and the "continue" statement.</li>
+      <li>General code maintenance.</li>
+    </ul>
+    <p><strong>Version 1.7.2 &amp; 1.7.3</strong></p>
+    <ul>
+      <li>Bug fix - limited releases.</li>
+    </ul>
+    <p><strong>Version 1.7.1 </strong><strong><span style="font-weight:bold; background-color: #FF0;"><a href="http://www.decorplanit.com/plugin/autoNumeric-1.7.1.htm">click here  to view</a></span></strong></p>
+    <ul>
+      <li>Bug fix - change event is corrected.</li>
+    </ul>
+    <p><strong>Version 1.7.0</strong></p>
+    <ul>
+      <li> Precision control of minimum &amp; maximum values  to the n<sup>th</sup> decimal places! </li>
+      <li> The number of decimal places and negative sign are now set via the min/max values. Also positive and negative values are easily toggled from any caret position within the input field. </li>
+      <li>Public functions  $('selector').autoNumericGet({options}) &amp; $('selector').autoNumericSet(value, {options}) to strip and format values that use  jQuery's selector format.</li>
+      <li>Callback function that is very powerful. </li>
+      <li>Options for input behavior including, padding, cell to be empty or always display the currency sign or zero.</li>
+    </ul>
+    <p><strong>Version 1.6.2 </strong><strong><span style="font-weight:bold; background-color: #FF0;"><a href="http://www.decorplanit.com/plugin/autoNumeric-1.6.2.htm">click here  to view</a></span></strong></p>
+    <ul>
+      <li>Bug fix - on setting the caret position.</li>
+      <li>General code clean up.</li>
+    </ul>
+    <p><strong>Version 1.6.1</strong></p>
+    <ul>
+      <li>Bug fix - that prevented a decimal character from being entered when only the currency symbol is present.</li>
+      <li>Bug fix - when entering a decimal character when the thousand separator is a space ' ' and the currency symbol has a space and in placed as a suffix. </li>
+    </ul>
+    <p><strong>Version 1.6.0</strong></p>
+    <ul>
+      <li>Eliminated the hard coded space between the currency symbol and numeric characters. </li>
+      <li>Spacing between the currency symbol and numeric characters is now determined by the developer (you).</li>
+      <li>Re-wrote the routine that handles the decimal character key events.</li>
+      <li>Re-wrote the routine that handles the numeric character(s) key events.</li>
+      <li>Re-wrote the set caret position routine.</li>
+      <li>Added focus out event</li>
+      <li>Fixed leading zero when no numeric characters were entered to the left of the decimal point</li>
+      <li>Currency symbol and padding are only displayed when a numeric and/or decimal character have been entered - special thanks to B. Cull for his contribution.</li>
+    </ul>
+    <p><strong>Version 1.5.4</strong></p>
+    <ul>
+      <li>Added padding option - see aPad above for greater details - special thanks Jonas Johansson for his contribution</li>
+      <li>Fixed  select all (ctrl + a)</li>
+      <li>Fixed caret position when a negative sign is added when a currency symbol is present</li>
+    </ul>
+    <p><strong>Version 1.5.3</strong></p>
+    <ul>
+      <li>Corrected issues with id's that used special characters - Thanks Anthony &amp; Evan C.</li>
+      <li>MAC command key is now recognized (version 1.5.2) - Thanks Bart B.</li>
+      <li>Changed the blur event to change - this corrected the onchange not being thrown in IE7/IE8 - Thanks Javier P.</li>
+    </ul>
+    <p><strong>Version 1.5.1</strong></p>
+    <ul>
+      <li>Corrected return key support (thanks Bart B.)</li>
+    </ul>
+    <p><strong>Version 1.5.0</strong></p>
+    <ul>
+      <li>Added currency symbol support</li>
+      <li>Added meta data support and eliminated alt code that was used in previous versions.</li>
+    </ul>
+    <p><strong>Version 1.4.5 (Last version using the alt code) <span style="font-weight:bold; background-color: #FF0;"><a href="http://www.decorplanit.com/plugin/autoNumeric-1.4.5.htm">click here  to view</a></span></strong></p>
+    <ul>
+      <li>Correct caret position when one digit was present (thanks Bart V.)</li>
+    </ul>
+    <p><strong>Version 1.4.3</strong></p>
+    <ul>
+      <li>Added set caret routine to the keyup event. Keeps the caret in   the proper place after the format routine</li>
+      <li>Added focus event handler - corrected issues with pages that   have multiple formats</li>
+      <li>Corrected the focus control when client tabs in to the field   on the keyup event (reverted  to earlier version) </li>
+      <li>Corrected the Caps Lock key issue on the keyup event.</li>
+      <li>Change the leading zero routine to the above</li>
+      <li>Added routine that handles values that exceed the maximum</li>
+      <li>Corrected the browser hang up issue when no thousand separator   is used in Chrome and Safari</li>
+    </ul>
+    <p><strong>Versions 1.3.3 to 1.4.2: (</strong>requested custom   versions)</p>
+    <p><strong>Version 1.3.2:</strong></p>
+    <ul>
+      <li>Changed keyup event and replaced e.keyCode</li>
+      <li>Corrected a "bad assignment" -  JSLint Gotch Yah</li>
+    </ul>
+    <p><strong>Version 1.3.1:</strong></p>
+    <ul>
+      <li> Allow input to remain blank no value stays no value</li>
+    </ul>
+    <p><strong>Version 1.3.0:</strong></p>
+    <ul>
+      <li> Added keyDown keyCode support </li>
+      <li>Corrected "tab in" focus IE  issue - you can now over write   or delete  the hi-lighted portion of the input value even when field has   reached max length. Thanks Bart</li>
+      <li>Corrected the "tab out" issue in Opera. Version 1.3.2: </li>
+      <li>Eliminated the Opera specific call that was meant to handle a   paste event</li>
+      <li>jQuery 1.4 compatible</li>
+    </ul>
+    <p><strong>Version 1.2.0 - 1.2.2: (please do not use and upgrade to   1.3.0 or greater)</strong></p>
+    <ul>
+      <li> Removed the Dom Calls and replaced with jQuery</li>
+      <li>Added Home and End (e.keyCode 35 &amp; 36) support to the   keyup event (thanks JPM USA)</li>
+      <li>Paste values are accepted in IE, FF, Chrome &amp; Safari. (Thanks to Josh at Digitalbush)</li>
+    </ul>
+    <p><strong>Version 1.1.0 - abandoned</strong></p>
+    <p><strong>Original   version 1.0.0 - 1.0.2</strong></p>
+    <hr>
+    <p><span>Please contact me if you have questions, comments and or suggestions at:<br>
+      bob{@}decorplanit.com (remove brackets)</span></p>
+    <br>
+    <p>Created &amp; maintained by Bob Knothe</p>
+    <p>Copyright "All rights reserved"</p>
+  </div>
+</div>
+
+</body></html>

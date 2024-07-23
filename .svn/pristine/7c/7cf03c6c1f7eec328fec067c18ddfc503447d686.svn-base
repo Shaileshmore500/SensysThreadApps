@@ -1,0 +1,314 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4B6A4193-30E1-410F-947C-92BEB6326ABA}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>App_Fams</RootNamespace>
+    <AssemblyName>App_Fams</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <Use64BitIISExpress>
+    </Use64BitIISExpress>
+    <UseGlobalApplicationHostFile />
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Apps\App_Fams\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.BonusSkins.v20.1">
+      <HintPath>..\..\..\..\New folder (4)\DevExpress.BonusSkins.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.Desktop.v20.1">
+      <HintPath>..\..\..\..\New folder (4)\DevExpress.Data.Desktop.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v20.1">
+      <HintPath>..\..\..\..\20.1 dll\DevExpress.Data.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.DataAccess.v20.1">
+      <HintPath>..\..\..\..\20.1 dll\DevExpress.DataAccess.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Docs.v20.1">
+      <HintPath>..\..\..\..\20.1 dll\DevExpress.Docs.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Office.v20.1.Core">
+      <HintPath>..\..\..\..\20.1 dll\DevExpress.Office.v20.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Pdf.v20.1.Core">
+      <HintPath>..\..\..\..\20.1 dll\DevExpress.Pdf.v20.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Pdf.v20.1.Drawing">
+      <HintPath>..\..\..\..\20.1 dll\DevExpress.Pdf.v20.1.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.PivotGrid.v20.1.Core">
+      <HintPath>..\..\..\..\20.1 dll\DevExpress.PivotGrid.v20.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v20.1.Core">
+      <HintPath>..\..\..\..\20.1 dll\DevExpress.Printing.v20.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v20.1.Core">
+      <HintPath>..\..\..\..\20.1 dll\DevExpress.RichEdit.v20.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Sparkline.v20.1.Core">
+      <HintPath>..\..\..\..\20.1 dll\DevExpress.Sparkline.v20.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.SpellChecker.v20.1.Core">
+      <HintPath>..\..\..\..\20.1 dll\DevExpress.SpellChecker.v20.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Spreadsheet.v20.1.Core">
+      <HintPath>..\..\..\..\20.1 dll\DevExpress.Spreadsheet.v20.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxRichEdit.v20.1">
+      <HintPath>..\..\..\..\20.1 dll\DevExpress.Web.ASPxRichEdit.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxSpellChecker.v20.1">
+      <HintPath>..\..\..\..\20.1 dll\DevExpress.Web.ASPxSpellChecker.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxSpreadsheet.v20.1">
+      <HintPath>..\..\..\..\20.1 dll\DevExpress.Web.ASPxSpreadsheet.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxThemes.v20.1">
+      <HintPath>..\..\..\..\20.1 dll\DevExpress.Web.ASPxThemes.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.Resources.v20.1">
+      <HintPath>..\..\..\..\20.1 dll\DevExpress.Web.Resources.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.v20.1">
+      <HintPath>..\..\..\..\20.1 dll\DevExpress.Web.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v20.1">
+      <HintPath>..\..\..\..\20.1 dll\DevExpress.Xpo.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v20.1">
+      <HintPath>..\..\..\..\20.1 dll\DevExpress.XtraCharts.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraGauges.v20.1.Core">
+      <HintPath>..\..\..\..\20.1 dll\DevExpress.XtraGauges.v20.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v20.1">
+      <HintPath>..\..\..\..\20.1 dll\DevExpress.XtraReports.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v20.1.Extensions">
+      <HintPath>..\..\..\..\20.1 dll\DevExpress.XtraReports.v20.1.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v20.1.Web">
+      <HintPath>..\..\..\..\20.1 dll\DevExpress.XtraReports.v20.1.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v20.1.Web.WebForms">
+      <HintPath>..\..\..\..\20.1 dll\DevExpress.XtraReports.v20.1.Web.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraRichEdit.v20.1">
+      <HintPath>..\..\..\..\20.1 dll\DevExpress.XtraRichEdit.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Erp.Base, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Erp.Base.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Erp.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Erp.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ErpModel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>bin\ErpModel.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HelperLib">
+      <HintPath>bin\HelperLib.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Http">
+      <HintPath>bin\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Activities" />
+    <Reference Include="System.Activities.Core.Presentation" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Apps\App_Fams\Default1.aspx" />
+    <Content Include="Login.html" />
+    <Content Include="Projects.html" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Apps\App_Fams\AssetRateMaster_Optimized.cs" />
+    <Compile Include="Apps\App_Fams\AssetDepreciationMaster_Optimized.cs" />
+    <Compile Include="Apps\App_Fams\AssetSplitImport.cs" />
+    <Compile Include="Apps\App_Fams\AssetSplit_Optimized.cs" />
+    <Compile Include="Apps\App_Fams\AssetVoucherMaster_Optimized.cs" />
+    <Compile Include="Apps\App_Fams\AssetBlockMaster_Optimized.cs" />
+    <Compile Include="Apps\App_Fams\AssetGroupMaster_Optimized.cs" />
+    <Compile Include="Apps\App_Fams\AssetReminder.cs" />
+    <Compile Include="Apps\App_Fams\AssetRelocationReport.cs" />
+    <Compile Include="Apps\App_Fams\AssetShiftImport.cs" />
+    <Compile Include="Apps\App_Fams\AccountMaster_Optimized.cs" />
+    <Compile Include="Apps\App_Fams\Asset_Sync.cs" />
+    <Compile Include="Apps\App_Fams\BarcodeSyncServer.cs" />
+    <Compile Include="Apps\App_Fams\CommonAssetFilter.cs" />
+    <Compile Include="Apps\App_Fams\Layout_CommonReportFilter.cs" />
+    <Compile Include="Apps\App_Fams\MeasurementMaster_Optimized.cs" />
+    <Compile Include="Apps\App_Fams\CommonReportFilter.cs" />
+    <Compile Include="Apps\App_Fams\CategoryMaster_Optimized.cs" />
+    <Compile Include="Apps\App_Fams\DepartmentMaster_Optimized.cs" />
+    <Compile Include="Apps\App_Fams\DepreciationMonthWise.cs" />
+    <Compile Include="Apps\App_Fams\AssetBook_Optimized.cs" />
+    <Compile Include="Apps\App_Fams\AssetCostBreakup_Optimized.cs" />
+    <Compile Include="Apps\App_Fams\CostCenterMaster_Optimized.cs" />
+    <Compile Include="Apps\App_Fams\LocationMaster_Optimized.cs" />
+    <Compile Include="Apps\App_Fams\ImportData_Optimized.cs" />
+    <Compile Include="Apps\App_Fams\RetrospectiveEffect_Grid.cs" />
+    <Compile Include="Apps\App_Fams\Simple.cs" />
+    <Compile Include="Apps\App_Fams\StatutoryDisposalProfitLossReport.cs" />
+    <Compile Include="Apps\App_Fams\ViewBook.cs" />
+    <Compile Include="Apps\App_Fams\ViewMaster_Common.cs" />
+    <Compile Include="Apps\App_Fams\ViewAsset.cs" />
+    <Compile Include="Apps\App_Fams\Asset.cs" />
+    <Compile Include="Apps\App_Fams\UndoSplitAsset.cs" />
+    <Compile Include="Apps\App_Fams\DisposalProfitLossReport.cs" />
+    <Compile Include="Apps\App_Fams\AssetResidualReport.cs" />
+    <Compile Include="Apps\App_Fams\AssetSplit.cs" />
+    <Compile Include="Apps\App_Fams\RetrospectiveReport.cs" />
+    <Compile Include="Apps\App_Fams\AssetDepreciationCalc_MonthwiseReport.cs" />
+    <Compile Include="Apps\App_Fams\AssetShift.cs" />
+    <Compile Include="Apps\App_Fams\AssetPeriod_SubPeriod.cs" />
+    <Compile Include="Apps\App_Fams\AssetProfitLoss_StatutoryReport.cs" />
+    <Compile Include="Apps\App_Fams\AssetDisposalReport.cs" />
+    <Compile Include="Apps\App_Fams\AssetFixedRegister.cs" />
+    <Compile Include="Apps\App_Fams\AssetDepreciationCalcReport.cs" />
+    <Compile Include="Apps\App_Fams\AssetGroupWiseDepCalc.cs" />
+    <Compile Include="Apps\App_Fams\AssetMakeCopy.cs" />
+    <Compile Include="Apps\App_Fams\AssetBookwiseDepCalc.cs" />
+    <Compile Include="Apps\App_Fams\Class1.cs" />
+    <Compile Include="Apps\App_Fams\Calculate_ClosingBalance.cs" />
+    <Compile Include="Apps\App_Fams\Closing_Balance.cs" />
+    <Compile Include="Apps\App_Fams\Default1.aspx.cs">
+      <DependentUpon>Default1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Apps\App_Fams\Default1.aspx.designer.cs">
+      <DependentUpon>Default1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\App_Fams\AssetLedgerReport.cs" />
+    <Compile Include="Apps\App_Fams\DeleteAdjustment.cs" />
+    <Compile Include="Apps\App_Fams\DepreciationValidation.cs" />
+    <Compile Include="Apps\App_Fams\DynamicGroup.cs" />
+    <Compile Include="Apps\App_Fams\Expiry_Assets.cs" />
+    <Compile Include="Apps\App_Fams\ImportBookInAsset.cs" />
+    <Compile Include="Apps\App_Fams\ImportDataBatch.cs" />
+    <Compile Include="Apps\App_Fams\ImportDataAssets.cs" />
+    <Compile Include="Apps\App_Fams\ImportData_OtherTransaction.cs" />
+    <Compile Include="Apps\App_Fams\ImportData.cs" />
+    <Compile Include="Apps\App_Fams\Depreciation.cs" />
+    <Compile Include="Apps\App_Fams\Insertretrospectivedata.cs" />
+    <Compile Include="Apps\App_Fams\Query_Depreciation.cs" />
+    <Compile Include="Apps\App_Fams\Relocation.cs" />
+    <Compile Include="Apps\App_Fams\DisplayClosingCalculation.cs" />
+    <Compile Include="Apps\App_Fams\Retrodepericiation.cs" />
+    <Compile Include="Apps\App_Fams\RetroQuery_Depreciation.cs" />
+    <Compile Include="Apps\App_Fams\RetrospectiveEffect_New.cs" />
+    <Compile Include="Apps\App_Fams\RetrospectiveEffect.cs" />
+    <Compile Include="Apps\App_Fams\test.cs" />
+    <Compile Include="Apps\App_Fams\TransferGR.cs" />
+    <Compile Include="Apps\App_Fams\undosplit.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Apps\App_Fams\Web.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>3206</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:3510/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:3510/</IISAppRootUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

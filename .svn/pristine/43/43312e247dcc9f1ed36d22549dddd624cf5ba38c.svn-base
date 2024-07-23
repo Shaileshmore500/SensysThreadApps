@@ -1,0 +1,500 @@
+function InitUI() {$('#PageTitle').children('._i').html('&#xF040;').next().html("Task");PkIds=[];
+Erp.FieldInfo.push({Name:"tbl_sc_leadactivity_leadfeedbackstatusremark",ID:"RemarkForPreviousActivity",Disabled:false,Type:"Text",DataType:"MULTILINE",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+$('#Field-4').datetimepicker({onSelect:function(){$(this).trigger('change');},change:function(){$(this).prev().trigger('change');},dateFormat: "dd/mm/yy",timeFormat: "hh:mm p",scrollbar:true});
+Erp.FieldInfo.push({Name:"tbl_sc_leadactivity_followupdate",ID:"Field-4",Disabled:false,Type:"DateTime",DataType:"DATETIME",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+var ddl=$('#Field-7');ddl.parent().addClass('ui-list');ddl.data('FieldID','0291718b-0517-4bf4-8215-e1eb3d6e917e');ddl.data('LookupCode','');ddl.data('Eids','tbl_SC_leadactivity');ddl.data('FieldType','SINGLESELECT_TABLE');ddl.data('Multi',false);enableKeyboardForList(ddl);ddl.parent().on('click',function(){showSearchList($(this));});
+Erp.FieldInfo.push({Name:"tbl_sc_leadactivity_mainoriginleadactivityfid",ID:"Field-7",Disabled:false,Type:"Ddl",DataType:"SINGLESELECT_TABLE",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+Erp.FieldInfo.push({Name:"tbl_sc_leadactivity_feeddescription",ID:"txt_note",Disabled:false,Type:"Text",DataType:"MULTILINE",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+var ddl=$('#Field-1');ddl.parent().addClass('ui-list');ddl.data('FieldID','76621c82-807c-4311-86fc-b4600a104e45');ddl.data('LookupCode','');ddl.data('Eids','tbl_SC_lead');ddl.data('FieldType','SINGLESELECT_TABLE');ddl.data('Multi',false);enableKeyboardForList(ddl);ddl.parent().on('click',function(){showSearchList($(this));});
+Erp.FieldInfo.push({Name:"tbl_sc_leadactivity_lead",ID:"Field-1",Disabled:false,Type:"Ddl",DataType:"SINGLESELECT_TABLE",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+var ddl=$('#Field-3');ddl.parent().addClass('ui-list');ddl.data('FieldID','e672a624-9f09-4a67-9ef5-2034fcefa78e');ddl.data('LookupCode','');ddl.data('Eids','tbl_SC_leadactivitycategory');ddl.data('FieldType','SINGLESELECT_TABLE');ddl.data('Multi',false);enableKeyboardForList(ddl);ddl.parent().on('click',function(){showSearchList($(this));});
+Erp.FieldInfo.push({Name:"tbl_sc_leadactivity_leadactivitycategory",ID:"Field-3",Disabled:false,Type:"Ddl",DataType:"SINGLESELECT_TABLE",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+$('#Field-9').on('change',
+function(){
+onFieldChange(ShowProductField,$(this),$(this).checked(),Erp.GetField($(this).attr('id')));
+});
+Erp.FieldInfo.push({Name:"tbl_sc_leadactivity_isproductwiseactivity",ID:"Field-9",Disabled:false,Type:"Bool",DataType:"CHECKBOX",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:true,Data:null});
+var ddl=$('#Field-2');ddl.parent().addClass('ui-list');ddl.data('FieldID','fabf2a1b-a215-4e38-b0f9-882602c8e562');ddl.data('LookupCode','');ddl.data('Eids','tbl_SC_product');ddl.data('FieldType','SINGLESELECT_TABLE');ddl.data('Multi',false);enableKeyboardForList(ddl);ddl.parent().on('click',function(){showSearchList($(this));});
+Erp.FieldInfo.push({Name:"tbl_sc_leadactivity_product",ID:"Field-2",Disabled:false,Type:"Ddl",DataType:"SINGLESELECT_TABLE",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+var ddl=$('#Field-10');ddl.parent().addClass('ui-list');ddl.data('FieldID','df92dab2-ec09-40a0-9190-ec5deb91eba4');ddl.data('LookupCode','');ddl.data('Eids','tbl_SYS_Users');ddl.data('FieldType','SINGLESELECT_TABLE');ddl.data('Multi',false);enableKeyboardForList(ddl);ddl.parent().on('click',function(){showSearchList($(this));});
+Erp.FieldInfo.push({Name:"tbl_sc_leadactivity_taskassigneduser",ID:"Field-10",Disabled:false,Type:"Ddl",DataType:"SINGLESELECT_TABLE",CustomRender:false,Mandatory:true,IsDescriptive:false,ReqForCalc:false,Data:null});
+Erp.FieldInfo.push({Name:"tbl_sc_leadactivity_tasktype",ID:"tasktype",Disabled:false,Type:"Text",DataType:"TEXT",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+var ddl=$('#Field-8');ddl.parent().addClass('ui-list');ddl.data('FieldID','4f7dae1d-873d-4cd5-97bc-0ea43fd6c1ec');ddl.data('LookupCode','');ddl.data('Eids','tbl_SC_leadactivity');ddl.data('FieldType','SINGLESELECT_TABLE');ddl.data('Multi',false);enableKeyboardForList(ddl);ddl.parent().on('click',function(){showSearchList($(this));});
+Erp.FieldInfo.push({Name:"tbl_sc_leadactivity_previousoriginleadactivityfid",ID:"Field-8",Disabled:false,Type:"Ddl",DataType:"SINGLESELECT_TABLE",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+$('#Field-5').CheckBoxX()
+$('#Field-5').on('change',
+function(){
+onFieldChange(toggleReminder,$(this),$(this).checked(),Erp.GetField($(this).attr('id')));
+});
+Erp.FieldInfo.push({Name:"tbl_sc_leadactivity_setreminder",ID:"Field-5",Disabled:false,Type:"Bool",DataType:"CHECKBOX",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:true,Data:null});
+Erp.FieldInfo.push({Name:"tbl_sc_leadactivity_reminder",ID:"html_reminder",Disabled:false,Type:"",DataType:"TEXT",CustomRender:true,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:"",OnLoad:(typeof LoadRecurrenceData=='function'?LoadRecurrenceData:null),OnSave:(typeof GetRule=='function'?GetRule:null)});
+DbReferences.push({Type:"Simple",Id:"db_fld_0",Columns:"user.users_pid"});window.db_fld_0='';
+DbReferences.push({Type:"Simple",Id:"db_fld_1",Columns:"user.users_pid"});window.db_fld_1='';
+DbReferences.push({Type:"Simple",Id:"db_fld_2",Columns:"company.company_pid"});window.db_fld_2='';
+
+FunctionList.push({Name:'LoadFunction',Refs:['db_fld_0']});
+FunctionList.push({Name:'SaveFunction',Refs:['db_fld_0','db_fld_2']});
+FunctionList.push({Name:'',Refs:['db_fld_0']});
+
+DbReferences.push({Id:"leadactivitycategory",Type:"Value",OnDemand:0,EntityId:"",Columns:"",Xml:"<Subquery Table=\"tbl_SC_leadactivitycategory\" Target=\"8f61d72f-29f6-4973-946c-993476171574\" TargetType=\"Single\" EntityPath=\"\" Summary=\"First\" Logic=\"1\"\><Condition Name=\"207f2106-b2dd-476d-a0df-64c1ce18096a\" EntityPath=\"\" Operator=\"EqualTo\" Value=\"Followup\" ValueSrc=\"Input\" WFName=\"\" SessionID=\"\" Srno=\"1\"\></Condition\><Sort\><ColInfo\></ColInfo\></Sort\><Parameters\></Parameters\></Subquery\>",AlwaysLoad:false });window.leadactivitycategory='';
+DbReferences.push({Id:"getTaskDetail",Type:"Table",OnDemand:1,EntityId:"tbl_SC_leadactivity",Columns:"",Xml:"<Layout\><Grid Id=\"tbl_SC_leadactivity\"\><ColInfo\><Cols Type=\"\" Name=\"16fe29a7-1cde-4093-a58b-85e66aeb3e61\" EntityPath=\"\" Title=\"leadactivity_pid\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"5e294de6-3ef4-4829-b531-233ab1af4cc0\" EntityPath=\"lead:tbl_SC_lead\" Title=\"lead_pid\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"88b49913-d873-486f-a98d-7ca8e01c96f3\" EntityPath=\"product:tbl_SC_product\" Title=\"product_pid\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"ca95a817-97ab-4598-840b-e6274783abfb\" EntityPath=\"\" Title=\"followupdate\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"08a5f307-09b2-469a-a0d4-6b94909be8d3\" EntityPath=\"followuptypename:tbl_SC_followuptype\" Title=\"followuptype_pid\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"8ef7921d-b073-4ceb-93f2-e2a618e2dbd2\" EntityPath=\"\" Title=\"feeddescription\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"95d8eedc-a551-47d1-9bfe-68ffc8d881df\" EntityPath=\"\" Title=\"isproductwiseactivity\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\></ColInfo\></Grid\></Layout\><Filter Limit=\"\" Id=\"tbl_SC_leadactivity\" Logic=\"1 and 2\"\><Condition Name=\"16fe29a7-1cde-4093-a58b-85e66aeb3e61\" EntityPath=\"\" Operator=\"EqualTo\" Value=\"LeadActId\" ValueSrc=\"Parameter\" ValueEntityPath=\"\" WFEID=\"\" WFName=\"\" SessionID=\"\" Srno=\"1\"\></Condition\><Condition Name=\"5e294de6-3ef4-4829-b531-233ab1af4cc0\" EntityPath=\"lead:tbl_SC_lead\" Operator=\"EqualTo\" Value=\"lead_id\" ValueSrc=\"Parameter\" ValueEntityPath=\"\" WFEID=\"\" WFName=\"\" SessionID=\"\" Srno=\"2\"\></Condition\><Sort\><ColInfo\></ColInfo\></Sort\><Parameters\><Param Key=\"LeadActId\" /\><Param Key=\"lead_id\" /\></Parameters\></Filter\>",AlwaysLoad:false });window.getTaskDetail='';
+ mxEntityList={};
+
+
+
+};
+var mode = "";
+var ActivityStatus = "";
+var act_pid = "";
+var mainoriginleadactivityfid ="";
+
+Erp.OnLoad.Register(LoadFunction);
+
+function LoadFunction(){
+  
+  
+   Erp.SetFieldValue('@tasktype','Call');
+  
+  $("#rowLeadActivity").css('display','none');
+  $('#rowLead').css('display','none');   
+  $('#FollowRow2').css('display','none');
+  $('#FollowRow3').css('display','none');
+  
+  Erp.SetFieldValue('@lead',Fn.GetProp('lead_ID'));
+   Erp.SetFieldValue('@taskassigneduser',db_fld_0);
+  mode = Fn.GetProp('mode');
+  ActivityStatus = Fn.GetProp('ActivityStatus');
+  act_pid = Fn.GetProp('act_pid');
+  mainoriginleadactivityfid = Fn.GetProp('mainoriginleadactivityfid');
+  if (mainoriginleadactivityfid == ""){
+      mainoriginleadactivityfid = act_pid ;
+  }
+  if (ActivityStatus != ""){
+    $('#Table-2').removeAttr('style');
+  }
+  
+  if(ActivityStatus == "FollowupReshedule")
+  {
+    Erp.SetParam(window,'lead_id',Fn.GetProp('lead_ID'));
+    Erp.SetParam(window,'LeadActId',act_pid);
+    Erp.LoadVariable('getTaskDetail',getTaskDetails); 
+  }
+  
+  Erp.SetFieldValue('@leadactivitycategory',leadactivitycategory);
+  //Erp.SetFieldValue('@activitydate',Fn.Now());
+ 
+  if(Erp.LayoutMode=="A")
+  {
+    Erp.SetDisplay('html_reminder',false);
+    Erp.SetFieldValue('@mainoriginleadactivityfid',mainoriginleadactivityfid);
+    Erp.SetFieldValue('@previousoriginleadactivityfid',act_pid);
+  }
+  if(Erp.LayoutMode=="E")
+  {    
+    toggleReminder();
+    Erp.SetDisplay('viewProduct',Fn.CBool(Erp.GetFieldValue('@tbl_sc_leadactivity_isproductwiseactivity')));
+  }
+   $('#txt_note')[0].setAttribute("rows","2");
+  
+  if (Fn.GetProp('FromWindow') == "AddLead")
+   {
+      Erp.SetDisplay('Button-1',false);
+   }
+}
+
+function getTaskDetails()
+{
+  var Tasklen = getTaskDetail.length;  
+  
+  //Erp.SetFieldValue('@followupdate',getTaskDetail[0]["followupdate"]);
+  Erp.SetFieldValue('@feeddescription',getTaskDetail[0]["feeddescription"]);
+  //Erp.SetFieldValue('@followuptypename',getTaskDetail[0]["followuptype_pid"]);
+  Erp.SetFieldValue('@isproductwiseactivity',getTaskDetail[0]["isproductwiseactivity"]);
+  if(Erp.GetFieldValue('@tbl_sc_leadactivity_isproductwiseactivity'))
+  {
+    Erp.SetFieldValue('@product',getTaskDetail[0]["product_pid"]);
+    ShowProductField();
+  }
+}
+
+
+function toggleReminder()
+{
+  Erp.SetDisplay('html_reminder',Fn.CBool(Erp.GetFieldValue('@tbl_sc_leadactivity_setreminder')));
+}
+Erp.OnSave.Register(SaveFunction);
+function SaveFunction(){
+  
+  if (Erp.GetFieldValue('@followupdate') == null)
+  { 
+     Erp.ShowMessage ("Please Add Task Date First");
+     return false ;
+  }
+  
+   if (Erp.GetFieldValue('@feeddescription') == "")
+  { 
+     Erp.ShowMessage ("Please Add Description First");
+     return false ;
+  }
+  
+  
+  /*var rulexml ="";
+  var Recurrencetype ="";
+      rulexml=GetRule('','',Erp.GetField('@reminder'));
+  console.log(rulexml);
+  
+  if(Fn.Contains(rulexml,'FREQ=HOURLY'))
+     Recurrencetype="<Hourly StartDate=\"\" StartTime=\"\" NoEndDate= \"1\" Hours=\"1\"></Hourly>";
+  
+  if(Fn.Contains(rulexml,'FREQ=MINUTELY'))
+     Recurrencetype="<Minutely StartDate=\"\" StartTime=\"\" NoEndDate= \"1\" Min=\"1\"></Minutely>";
+  
+  if(Fn.Contains(rulexml,'FREQ=DAILY'))
+     Recurrencetype="<Daily StartDate=\"\" StartTime=\"\" NoEndDate= \"1\" Interval=\"2\" Everyday=\"1\"></Daily>";
+  if(Fn.Contains(rulexml,'FREQ=WEEKLY'))
+     Recurrencetype="<Weekly StartDate=\"\" StartTime=\"\" NoEndDate= \"1\" Sunday= \"0\" Monday= \"1\" Tuesday= \"0\" Wednesday= \"0\" Thursday= \"0\" Friday= \"0\" Saturday= \"0\"></Weekly>";
+  if(Fn.Contains(rulexml,'FREQ=MONTHLY'))
+     Recurrencetype="<Monthly StartDate=\"\" StartTime=\"\" NoEndDate= \"1\" MonthlyType= \"1\" DayType=\"F\" Month =\"2\" Day =\"1\"></Monthly>";
+  
+   if(Fn.Contains(rulexml,'FREQ=YEARLY'))
+     Recurrencetype="<Yearly StartDate=\"\" StartTime=\"\" NoEndDate= \"1\" YearlyType= \"0\" Year=\"1\" ></Yearly>";
+  
+ var newrulexml="";
+  newrulexml="<Recurrence>";
+  newrulexml+=Recurrencetype;
+  newrulexml+="</Recurrence>";
+     alert(newrulexml);
+  return false;*/
+  if (ActivityStatus != ""){
+    var remark = Erp.GetFieldText('RemarkForPreviousActivity');
+    if (remark == ""){
+      Erp.ShowMessage("Please Enter Remark First");
+      return false;
+    }
+    else {
+      var ent = new Erp.Entity('tbl_SC_leadactivity',act_pid);
+      ent.ModifiedBy = db_fld_0;
+      ent.CompanyID = db_fld_2;
+      //ent.MetaData=_app.MetaData;
+      ent.Data('activitystatus',ActivityStatus);
+      ent.Data('leadfeedbackstatusremark',Erp.GetFieldText('RemarkForPreviousActivity'));
+      Erp.SaveEntity([ent]);
+      Erp.SetFieldValue('RemarkForPreviousActivity',"");
+      return true;
+    }
+  }
+  else{
+    return true;
+  }
+}
+Erp.OnSaveSuccess.Register(SaveSuccessFunction);
+function SaveSuccessFunction(){
+  entitySuccess();
+  
+  
+}
+function entitySuccess()
+{
+ if (mode == 'WindowActivityType')
+  {
+      parent.loadleadactivitywindow();
+    parent.Erp.ShowMessage('Activity Added Successfully','success');
+    parent.Erp.CloseWindow();
+  }
+  else
+  {
+    parent.Erp.ShowMessage('Activity Added Successfully','success');
+    parent.loadleadactivitywindow();
+    parent.Erp.RefreshWindow('winaction');
+  } 
+}
+$('#btnCancel').click( function () {
+
+  parent.LoadFunction();
+  if (mode == 'WindowActivityType'){
+    parent.Erp.CloseWindow();
+  }
+  else {
+     parent.Erp.RefreshWindow('winaction');
+  }
+}
+                     );
+function closewin(){
+  if (mode == 'WindowActivityType')
+  {
+      parent.loadleadactivitywindow();
+    parent.Erp.ShowMessage('Activity Added Successfully','success');
+    parent.Erp.CloseWindow();
+  }
+  else
+  {
+      parent.loadleadactivitywindow();
+     Erp.CloseWindow();
+  }
+}
+
+function ShowProductField() {
+     Erp.SetDisplay('@product',Fn.CBool(Erp.GetFieldValue('@tbl_sc_leadactivity_isproductwiseactivity')));
+}
+
+function Ontypechkvaltotext ()
+{
+var ele = document.getElementsByName('Taskcode');
+var i = ele.length;
+for (var j = 0; j < i; j++) {
+    if (ele[j].checked) { //index has to be j.
+       Erp.SetFieldValue('@tasktype',""+$(ele[j]).val()+"");
+    }
+}
+}
+
+
+
+
+
+
+function GetRule(elem,data, fld) {
+ 
+  var RecRule = "";
+  RecRule += "DTSTART:@STARTDATE\r\n";
+  RecRule += "DTEND:@ENDDATE\r\n";
+  RecRule += GetRuleType(fld.Info.ID);
+  return RecRule;
+}
+function GetRuleType(id) {
+  
+  var RRule = "";
+  if ($("#" + id + "_rbtnHourly").checked()) {
+    RRule = "RRULE:FREQ=HOURLY";
+    RRule = getEndby(RRule, id);
+    RRule += ";INTERVAL=" + $("#" + id + "_txtEveryHour").val() + "\r\n";
+  }
+  else if ($("#" + id + "_rbtnDaily").checked()) {
+    RRule = "RRULE:FREQ=DAILY";
+    RRule = getEndby(RRule, id);
+    if ($("#" + id + "_rbtnday").checked()) {
+      RRule += ";INTERVAL=" + $("#" + id + "_txtEveryday").val() + ";BYDAY=SU,MO,TU,WE,TH,FR,SA" + "\r\n";
+    }
+    else {
+      RRule += ";BYDAY=MO,TU,WE,TH,FR" + "\r\n";
+    }
+  }
+  else if ($("#" + id + "_rbtnWeekly").checked()) {
+    RRule = "RRULE:FREQ=WEEKLY";
+    RRule = getEndby(RRule, id);
+    RRule += ";INTERVAL=" + $("#" + id + "_txtEveryWeek").val();
+    RRule += ";BYDAY=";
+    var Checkday = "";
+    if ($("#" + id + "_chkSun").checked())
+      Checkday += "SU,";
+    if ($("#" + id + "_chkMon").checked())
+      Checkday += "MO,";
+    if ($("#" + id + "_chkTue").checked())
+      Checkday += "TU,";
+    if ($("#" + id + "_chkWed").checked())
+      Checkday += "WE,";
+    if ($("#" + id + "_chkThur").checked())
+      Checkday += "TH,";
+    if ($("#" + id + "_chkFri").checked())
+      Checkday += "FR,";
+    if ($("#" + id + "_chkSat").checked())
+      Checkday += "SA,";
+    Checkday = Checkday.substring(0, Checkday.length - 1);
+    RRule += Checkday;
+    RRule += ";WKST=" + "\r\n";
+  }
+  else if ($("#" + id + "_rbtnMonthly").checked()) {
+    RRule = "RRULE:FREQ=MONTHLY";
+    RRule = getEndby(RRule, id);
+    if ($("#" + id + "_radMonthtype1").checked()) {
+      RRule += ";INTERVAL=" + $("#" + id + "_txtmonthcount").val() + ";BYMONTHDAY=" + $("#" + id + "_txtdaycount").val();
+    }
+    else {
+      RRule += ";INTERVAL=" + $("#" + id + "_txtmonthcount2").val() + ";BYSETPOS=" + $("#" + id + "_radDayCount>option:selected").val() + ";BYDAY=" + $("#" + id + "_radDayType>option:selected").val();
+    }
+  }
+  else if ($("#" + id + "_rbtnYearly").checked()) {
+    RRule = "RRULE:FREQ=YEARLY";
+    RRule = getEndby(RRule, id);
+    if ($("#" + id + "_radYearType1").checked()) {
+      RRule += ";BYMONTHDAY=" + $("#" + id + "_txtYearDayCount").val() + ";BYMONTH=" + $("#" + id + "_radmonth>option:selected").val();
+    }
+    else {
+      RRule += ";BYSETPOS=" + $("#" + id + "_radYearDayCount>option:selected").val() + ";BYDAY=" + $("#" + id + "_radYearDayType>option:selected").val() + ";BYMONTH=" + $("#" + id + "_radYearmonth>option:selected").val();
+    }
+  }
+  return RRule;
+}
+function getEndby(RRule, id) {
+  if ($("#" + id + "_radEndAfter").checked()) {
+    RRule += ";COUNT=" + $("#" + id + "_txtOccurrence").val();
+  }
+  else if ($("#" + id + "_radEndBy").checked()) {
+    //var date = $("#datepickerEndBy").val().replace(/\-/g, "");
+    var date = $("#" + id + "_datepickerEndBy").val().split('/');
+    RRule += ";UNTIL=" + date[2] + date[1] + date[0] + "T000000Z";
+  }
+  return RRule;
+}
+function ShowPanel(type,id) {
+  $("#" + id + "_Hourly").css("display", "none");
+  $("#" + id + "_Daily").css("display", "none");
+  $("#" + id + "_Weekly").css("display", "none");
+  $("#" + id + "_Monthly").css("display", "none");
+  $("#" + id + "_Yearly").css("display", "none");
+  $("#" + id + "_"+ type).css("display", "block");
+}
+function LoadRecurrenceData(fld, data, fldInfo) {
+
+  var id = fldInfo.Info.ID;
+  $("#" + id + "_datepickerEndBy").datepicker({
+    showOn: "both", buttonImage: "../images/date.png", buttonImageOnly: true, dateFormat: 'dd/mm/yy', scrollbar: true, dropdown: false
+  }
+                                             );
+  $("#" + id + "_txtEveryHour").autoNumeric('init',{
+    mDec :0,aSep :''}
+                                           );
+  $("#" + id + "_txtEveryday").autoNumeric('init',{
+    mDec :0,aSep :''}
+                                          );
+  $("#" + id + "_txtEveryWeek").autoNumeric('init',{
+    mDec :0,aSep :''}
+                                           );
+  $("#" + id + "_txtmonthcount").autoNumeric('init',{
+    mDec :0,aSep :''}
+                                            );
+  $("#" + id + "_txtmonthcount2").autoNumeric('init',{
+    mDec :0,aSep :''}
+                                             );
+  $("#" + id + "_txtYearDayCount").autoNumeric('init',{
+    mDec :0,aSep :''}
+                                              );
+  $("#" + id + "_Hourly").css("display", "none");
+  $("#" + id + "_Daily").css("display", "none");
+  $("#" + id + "_Weekly").css("display", "none");
+  $("#" + id + "_Monthly").css("display", "none");
+  $("#" + id + "_Yearly").css("display", "none");
+  if ($.isEmpty(data))
+    return;
+  var rule = data.split("\n")[2];
+  //var rule = "RRULE:FREQ=YEARLY;UNTIL=20140410T000000Z;BYSETPOS=4;BYDAY=MO,TU,WE,TH,FR;BYMONTH=5";
+  if (rule.indexOf("HOURLY") > -1) {
+    $("#" + id + "_rbtnHourly").attr("checked", "checked");
+    $("#" + id + "_Hourly").css("display", "block");
+    SetHourlyData(rule, id);
+    SetEndBy(rule, id);
+  }
+  else if (rule.indexOf("DAILY") > -1) {
+    $("#" + id + "_rbtnDaily").attr("checked", "checked");
+    $("#" + id + "_Daily").css("display", "block");
+    SetDailyyData(rule, id);
+    SetEndBy(rule, id);
+  }
+  else if (rule.indexOf("WEEKLY") > -1) {
+    $("#" + id + "_rbtnWeekly").attr("checked", "checked");
+    $("#" + id + "_Weekly").css("display", "block");
+    SetWeeklyData(rule, id);
+    SetEndBy(rule);
+  }
+  else if (rule.indexOf("MONTHLY") > -1) {
+    $("#" + id + "_rbtnMonthly").attr("checked", "checked");
+    $("#" + id + "_Monthly").css("display", "block");
+    SetMonthlyData(rule, id);
+    SetEndBy(rule, id);
+  }
+  else if (rule.indexOf("YEARLY") > -1) {
+    $("#" + id + "_rbtnYearly").attr("checked", "checked");
+    $("#" + id + "_Yearly").css("display", "block");
+    SetYearlyData(rule, id);
+    SetEndBy(rule, id);
+  }
+}
+function SetEndBy(rule,id) {
+  var Hash = GetHashRuleValue(rule, id);
+  if (rule.indexOf("COUNT") > -1) {
+    $("#" + id + "_radEndAfter").attr("checked", "checked");
+    $("#" + id + "_txtOccurrence").val(Hash.COUNT)
+  }
+  else if (rule.indexOf("UNTIL") > -1) {
+    $("#" + id + "_radEndBy").attr("checked", "checked");
+    var dtEnddate = Hash.UNTIL.substring(0, 8);
+    var newdate = dtEnddate.substring(6) + "/" + dtEnddate.substring(4, 6) + "/" + dtEnddate.substring(0, 4)
+    $("#" + id + "_datepickerEndBy").val(newdate);
+  }
+  else {
+    $("#" + id + "_radNoEndDate").attr("checked", "checked");
+  }
+}
+function SetHourlyData(rule, id) {
+  var Hash = GetHashRuleValue(rule, id);
+  $("#" + id + "_txtEveryHour").val(Hash.INTERVAL);
+}
+function SetDailyyData(rule, id) {
+  var Hash = GetHashRuleValue(rule, id);
+  if (rule.indexOf("INTERVAL") > -1) {
+    $("#" + id + "_rbtnday").attr("checked", "checked");
+    $("#" + id + "_txtEveryday").val(Hash.INTERVAL)
+  }
+  else {
+    $("#" + id + "_rbtnWeekday").attr("checked", "checked");
+  }
+}
+function SetWeeklyData(rule, id) {
+  var Hash = GetHashRuleValue(rule, id);
+  $("#" + id + "_txtEveryWeek").val(Hash.INTERVAL)
+  var days = Hash.BYDAY;
+  if (days.indexOf("SU") > -1)
+    $("#" + id + "_chkSun").attr("checked", "checked");
+  if (days.indexOf("MO") > -1)
+    $("#" + id + "_chkMon").attr("checked", "checked");
+  if (days.indexOf("TU") > -1)
+    $("#" + id + "_chkTue").attr("checked", "checked");
+  if (days.indexOf("WE") > -1)
+    $("#" + id + "_chkWed").attr("checked", "checked");
+  if (days.indexOf("TH") > -1)
+    $("#" + id + "_chkThur").attr("checked", "checked");
+  if (days.indexOf("FR") > -1)
+    $("#" + id + "_chkFri").attr("checked", "checked");
+  if (days.indexOf("SA") > -1)
+    $("#" + id + "_chkSat").attr("checked", "checked");
+}
+function SetMonthlyData(rule, id) {
+  var Hash = GetHashRuleValue(rule, id);
+  if (rule.indexOf("BYMONTHDAY") > -1) {
+    $("#" + id + "_radMonthtype1").attr("checked", "checked");
+    $("#" + id + "_txtdaycount").val(Hash.BYMONTHDAY)
+    $("#" + id + "_txtmonthcount").val(Hash.INTERVAL)
+  }
+  else {
+    $("#" + id + "_radMonthType2").attr("checked", "checked");
+    $("select#" + id + "_radDayCount").val(Hash.BYSETPOS);
+    $("select#" + id + "_radDayType").val(Hash.BYDAY);
+    $("#" + id + "_txtmonthcount2").val(Hash.INTERVAL);
+  }
+}
+function SetYearlyData(rule, id) {
+  var Hash = GetHashRuleValue(rule, id);
+  if (rule.indexOf("BYMONTHDAY") > -1) {
+    $("#" + id + "_radYearType1").attr("checked", "checked");
+    $("select#" + id + "_radmonth").val(Hash.BYMONTH);
+    $("#" + id + "_txtYearDayCount").val(Hash.BYMONTHDAY)
+  }
+  else {
+    $("#" + id + "_radYearType2").attr("checked", "checked");
+    $("select#" + id + "_radYearDayCount").val(Hash.BYSETPOS);
+    $("select#" + id + "_radYearDayType").val(Hash.BYDAY);
+    $("select#" + id + "_radYearmonth").val(Hash.BYMONTH);
+  }
+}
+function GetHashRuleValue(rule, id) {
+  var type = rule.replace("RRULE:", "").split(';');
+  var Hash = {
+  };
+  for (i = 0; i < type.length; i++) {
+    var aa = type[i].split('=');
+    Hash[aa[0]] = aa[1];
+  }
+  return Hash;
+}
+
+

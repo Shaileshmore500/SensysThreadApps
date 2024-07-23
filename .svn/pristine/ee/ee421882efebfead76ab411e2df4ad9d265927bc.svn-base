@@ -1,0 +1,21 @@
+function CheckSystemRecord_FA()
+{  
+  var gridrows=Erp.Grid.GetSelectedRows('dgData');
+  for(var i =0;i<gridrows.length;i++)
+  {
+    if(Fn.CBool(Erp.Grid.GetEditorValue('dgData','issystemrecord',gridrows[i])))
+    {
+     Erp.ShowMessage("can not delete system defined records");
+    return false;
+    }
+  } 
+  return true;
+}
+
+Erp.OnLoad.Register(function() {
+  
+   Erp.RegisterEvent('btn-dgData-Delete','click',CheckSystemRecord_FA);
+                    });
+
+
+

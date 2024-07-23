@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="http://reg.sensysindia.com/sensysservices/ThreadServices.asmx?wsdl" docRef="http://reg.sensysindia.com/sensysservices/ThreadServices.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://reg.sensysindia.com/sensysservices/ThreadServices.asmx" xmlns:q1="sensysindia" binding="q1:ThreadServicesSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://reg.sensysindia.com/sensysservices/ThreadServices.asmx" xmlns:q2="sensysindia" binding="q2:ThreadServicesSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

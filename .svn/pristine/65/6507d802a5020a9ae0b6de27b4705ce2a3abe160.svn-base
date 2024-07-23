@@ -1,0 +1,13 @@
+<root>
+ <links>
+   <link name="Daily" href="http://www.telerik.com">
+	   <link name="Yahoo" href="http://www.yahoo.com">
+		   <link name="MSN" href="http://www.msn.com"/>
+	   </link>
+     <link name="Purchase" href="http://www.telerik.com/purchase" />
+     <link name="Support" href="http://www.telerik.com/support" />
+     <link name="Client.Net" href="http://www.telerik.com/clientnet" />
+   </link>
+ </links>
+	
+</root>

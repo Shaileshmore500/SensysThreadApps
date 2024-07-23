@@ -1,0 +1,487 @@
+function InitUI() {$('#PageTitle').children('._i').html('&#xF0E8;').next().html("Incoming Call");PkIds=[];
+$('#newCust').on('change',
+function(){
+onFieldChange(setUser,$(this),$(this).checked(),Erp.GetField($(this).attr('id')));
+});
+Erp.FieldInfo.push({Name:"tbl_sc_lead_newaccount",ID:"newCust",Disabled:false,Type:"Bool",DataType:"CHECKBOX",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+$('#existCust').on('change',
+function(){
+onFieldChange(setUser,$(this),$(this).checked(),Erp.GetField($(this).attr('id')));
+});
+Erp.FieldInfo.push({Name:"tbl_sc_lead_existingaccount",ID:"existCust",Disabled:false,Type:"Bool",DataType:"CHECKBOX",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+Erp.FieldInfo.push({Name:"tbl_sc_lead_companyname",ID:"Field-32",Disabled:false,Type:"Text",DataType:"TEXT",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+var ddl=$('#Field-30');ddl.parent().addClass('ui-list');ddl.data('FieldID','79e4eb79-dff6-4321-b456-730a95428a4e');ddl.data('LookupCode','');ddl.data('Eids','tbl_SC_contact');ddl.data('FieldType','SINGLESELECT_TABLE');ddl.data('Multi',false);enableKeyboardForList(ddl);ddl.parent().on('click',function(){showSearchList($(this));});
+Erp.FieldInfo.push({Name:"tbl_sc_lead_contact",ID:"Field-30",Disabled:false,Type:"Ddl",DataType:"SINGLESELECT_TABLE",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+var ddl=$('#Field-31');ddl.parent().addClass('ui-list');ddl.data('FieldID','b8ba91cc-5879-4f6c-ae16-6d5c552f8f38');ddl.data('LookupCode','');ddl.data('Eids','tbl_SC_account');ddl.data('FieldType','SINGLESELECT_TABLE');ddl.data('Multi',false);enableKeyboardForList(ddl);ddl.parent().on('click',function(){showSearchList($(this));});
+Erp.FieldInfo.push({Name:"tbl_sc_lead_account",ID:"Field-31",Disabled:false,Type:"Ddl",DataType:"SINGLESELECT_TABLE",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+var ddl=$('#lblsalutation');ddl.parent().addClass('ui-list');ddl.data('FieldID','afdb78cd-f8b8-4aca-9c1e-abb71970a656');ddl.data('LookupCode','');ddl.data('Eids','tbl_SC_salutation');ddl.data('FieldType','SINGLESELECT_TABLE');ddl.data('Multi',false);enableKeyboardForList(ddl);ddl.parent().on('click',function(){showSearchList($(this));});
+Erp.FieldInfo.push({Name:"tbl_sc_lead_salutation",ID:"lblsalutation",Disabled:false,Type:"Ddl",DataType:"SINGLESELECT_TABLE",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+Erp.FieldInfo.push({Name:"tbl_sc_lead_contactpersonname",ID:"Field-3",Disabled:false,Type:"Text",DataType:"TEXT",CustomRender:false,Mandatory:true,IsDescriptive:true,ReqForCalc:false,Data:null});
+$('#html_mobile').mask("9999999999");
+Erp.FieldInfo.push({Name:"tbl_sc_lead_mobile1",ID:"html_mobile",Disabled:false,Type:"Text",DataType:"TEXT",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+$('#Field-7').mask("9999999999");
+Erp.FieldInfo.push({Name:"tbl_sc_lead_mobile2",ID:"Field-7",Disabled:false,Type:"Text",DataType:"TEXT",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+Erp.FieldInfo.push({Name:"tbl_sc_lead_personalemail",ID:"Field-4",Disabled:false,Type:"Text",DataType:"EMAIL",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+var ddl=$('#Field-12');ddl.parent().addClass('ui-list');ddl.data('FieldID','bfb55b4e-1eb2-4c27-b0cb-b10c2483e0ae');ddl.data('LookupCode','LU_activeCampaign');ddl.data('Eids','tbl_SC_campaign');ddl.data('FieldType','SINGLESELECT_TABLE');ddl.data('Multi',false);enableKeyboardForList(ddl);ddl.parent().on('click',function(){showSearchList($(this));});
+Erp.FieldInfo.push({Name:"tbl_sc_lead_assigned_campaign",ID:"Field-12",Disabled:false,Type:"Ddl",DataType:"SINGLESELECT_TABLE",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+var ddl=$('#ddlLSource');ddl.parent().addClass('ui-list');ddl.data('FieldID','c246794b-518c-4f48-8c57-87a592e9c992');ddl.data('LookupCode','');ddl.data('Eids','tbl_SC_enquirysource');ddl.data('FieldType','SINGLESELECT_TABLE');ddl.data('Multi',false);enableKeyboardForList(ddl);ddl.parent().on('click',function(){showSearchList($(this));});
+$('#ddlLSource').on('selectchange',function(){onFieldChange(Set_LESource,$(this), {RecordID:$(this).data('RecordID'),EntityID:$(this).data('EntityID'),Text:$(this).val(),Keys:$(this).data('Keys'),CurrentRow:$(this).data('CurrentRow')}, Erp.GetField($(this).attr('id'))   );});
+Erp.FieldInfo.push({Name:"tbl_sc_lead_assigned_enquirysource",ID:"ddlLSource",Disabled:false,Type:"Ddl",DataType:"SINGLESELECT_TABLE",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:true,Data:null});
+var ddl=$('#ddl_LeadSubSource');ddl.parent().addClass('ui-list');ddl.data('FieldID','47b12d7e-8b63-479d-ae68-9a716c64cf7a');ddl.data('LookupCode','lu_subsource');ddl.data('Eids','tbl_SC_enquirysubsource');ddl.data('FieldType','SINGLESELECT_TABLE');ddl.data('Multi',false);enableKeyboardForList(ddl);ddl.parent().on('click',function(){showSearchList($(this));});
+Erp.FieldInfo.push({Name:"tbl_sc_lead_assigned_enquirysubsource",ID:"ddl_LeadSubSource",Disabled:false,Type:"Ddl",DataType:"SINGLESELECT_TABLE",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+$('#chk_EndUser').on('change',
+function(){
+onFieldChange(chkPurpose_checked,$(this),$(this).checked(),Erp.GetField($(this).attr('id')));
+});
+Erp.FieldInfo.push({Name:"tbl_sc_lead_isenduser",ID:"chk_EndUser",Disabled:false,Type:"Bool",DataType:"CHECKBOX",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+$('#chk_Investor').on('change',
+function(){
+onFieldChange(chkPurpose_checked,$(this),$(this).checked(),Erp.GetField($(this).attr('id')));
+});
+Erp.FieldInfo.push({Name:"tbl_sc_lead_isinvestor",ID:"chk_Investor",Disabled:false,Type:"Bool",DataType:"CHECKBOX",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+$('#Field-47').autoNumeric('init',{vMin:'-79228162514264337593543950335',vMax:'79228162514264337593543950335',mDec :2,aPad :false,aSep :''});
+Erp.FieldInfo.push({Name:"tbl_sc_lead_budgetmin",ID:"Field-47",Disabled:false,Type:"Number",DataType:"DECIMAL",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+$('#Field-48').autoNumeric('init',{vMin:'-79228162514264337593543950335',vMax:'79228162514264337593543950335',mDec :2,aPad :false,aSep :''});
+Erp.FieldInfo.push({Name:"tbl_sc_lead_budgetmax",ID:"Field-48",Disabled:false,Type:"Number",DataType:"DECIMAL",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+var ddl=$('#Field-5');ddl.data('FieldID','a7bd13d6-99aa-4895-aead-c810fb98dcb9');ddl.data('FieldType','MULTISELECT_TABLE');ddl.data('Eids','tbl_SC_product');ddl.data('LookupCode','');ddl.data('Multi',true);ddl.multiSelect({ onItemAdding:onMixSelectItemAdding,onChange: null, onDropDownShowing: showSearchList});
+Erp.FieldInfo.push({Name:"tbl_sc_lead_interestedproducts",ID:"Field-5",Disabled:false,Type:"Multi",DataType:"MULTISELECT_TABLE",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+var ddl=$('#Field-43');ddl.data('FieldID','07950d6a-d1e0-4da1-89f9-d0286e6140e4');ddl.data('FieldType','MULTISELECT_TABLE');ddl.data('Eids','tbl_SC_locationpreferences');ddl.data('LookupCode','');ddl.data('Multi',true);ddl.multiSelect({ onItemAdding:onMixSelectItemAdding,onChange: null, onDropDownShowing: showSearchList});
+Erp.FieldInfo.push({Name:"tbl_sc_lead_locationpreferences",ID:"Field-43",Disabled:false,Type:"Multi",DataType:"MULTISELECT_TABLE",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+var ddl=$('#Field-44');ddl.data('FieldID','fdc94d76-17ae-4efa-b531-46860583bd69');ddl.data('FieldType','MULTISELECT_TABLE');ddl.data('Eids','tbl_SC_bedroompreferences');ddl.data('LookupCode','');ddl.data('Multi',true);ddl.multiSelect({ onItemAdding:onMixSelectItemAdding,onChange: null, onDropDownShowing: showSearchList});
+Erp.FieldInfo.push({Name:"tbl_sc_lead_bedroompreferences",ID:"Field-44",Disabled:false,Type:"Multi",DataType:"MULTISELECT_TABLE",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+var ddl=$('#Field-45');ddl.parent().addClass('ui-list');ddl.data('FieldID','8e8d59ce-a528-4d6b-bebc-dda833305608');ddl.data('LookupCode','');ddl.data('Eids','tbl_SC_posessionrange');ddl.data('FieldType','SINGLESELECT_TABLE');ddl.data('Multi',false);enableKeyboardForList(ddl);ddl.parent().on('click',function(){showSearchList($(this));});
+Erp.FieldInfo.push({Name:"tbl_sc_lead_posessionrangefrom",ID:"Field-45",Disabled:false,Type:"Ddl",DataType:"SINGLESELECT_TABLE",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+var ddl=$('#Field-46');ddl.parent().addClass('ui-list');ddl.data('FieldID','e8a7e02a-a2ad-4527-bb39-1b0a54c40d51');ddl.data('LookupCode','');ddl.data('Eids','tbl_SC_posessionrange');ddl.data('FieldType','SINGLESELECT_TABLE');ddl.data('Multi',false);enableKeyboardForList(ddl);ddl.parent().on('click',function(){showSearchList($(this));});
+Erp.FieldInfo.push({Name:"tbl_sc_lead_posessionrangeto",ID:"Field-46",Disabled:false,Type:"Ddl",DataType:"SINGLESELECT_TABLE",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+var ddl=$('#Field-1');ddl.data('FieldID','71821a71-9ee7-4fe3-8e10-bd73eafd9fe2');ddl.data('FieldType','MULTISELECT_TABLE');ddl.data('Eids','tbl_SC_leadtag');ddl.data('LookupCode','');ddl.data('Multi',true);ddl.multiSelect({ onItemAdding:onMixSelectItemAdding,onChange: null, onDropDownShowing: showSearchList});
+Erp.FieldInfo.push({Name:"tbl_sc_lead_leadtag",ID:"Field-1",Disabled:false,Type:"Multi",DataType:"MULTISELECT_TABLE",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+var ddl=$('#ddlStage');ddl.parent().addClass('ui-list');ddl.data('FieldID','d7898e93-7639-49bf-81a6-a3703b7e311f');ddl.data('LookupCode','');ddl.data('Eids','tbl_SC_leadstage');ddl.data('FieldType','SINGLESELECT_TABLE');ddl.data('Multi',false);enableKeyboardForList(ddl);ddl.parent().on('click',function(){showSearchList($(this));});
+Erp.FieldInfo.push({Name:"tbl_sc_lead_current_leadstage",ID:"ddlStage",Disabled:false,Type:"Ddl",DataType:"SINGLESELECT_TABLE",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+Erp.FieldInfo.push({Name:"tbl_sc_lead_sourcetag",ID:"Field-2",Disabled:false,Type:"Text",DataType:"TEXT",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+Erp.FieldInfo.push({Name:"tbl_sc_lead_address1",ID:"Field-15",Disabled:false,Type:"Text",DataType:"TEXT",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+Erp.FieldInfo.push({Name:"tbl_sc_lead_address2",ID:"Field-16",Disabled:false,Type:"Text",DataType:"TEXT",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+Erp.FieldInfo.push({Name:"tbl_sc_lead_address3",ID:"Field-17",Disabled:false,Type:"Text",DataType:"TEXT",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+$('#Field-9').mask("999-9999999");
+Erp.FieldInfo.push({Name:"tbl_sc_lead_homephone",ID:"Field-9",Disabled:false,Type:"Text",DataType:"TEXT",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+var ddl=$('#ddl_Country');ddl.parent().addClass('ui-list');ddl.data('FieldID','1f645ea0-8e21-42e8-9656-12079e7d46da');ddl.data('LookupCode','');ddl.data('Eids','tbl_CORE_countrylist');ddl.data('FieldType','SINGLESELECT_TABLE');ddl.data('Multi',false);enableKeyboardForList(ddl);ddl.parent().on('click',function(){showSearchList($(this));});
+$('#ddl_Country').on('selectchange',function(){onFieldChange(setLead_PerCountry,$(this), {RecordID:$(this).data('RecordID'),EntityID:$(this).data('EntityID'),Text:$(this).val(),Keys:$(this).data('Keys'),CurrentRow:$(this).data('CurrentRow')}, Erp.GetField($(this).attr('id'))   );});
+Erp.FieldInfo.push({Name:"tbl_sc_lead_country",ID:"ddl_Country",Disabled:false,Type:"Ddl",DataType:"SINGLESELECT_TABLE",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:true,Data:null});
+var ddl=$('#ddl_PerStateList');ddl.parent().addClass('ui-list');ddl.data('FieldID','42e7e518-d377-4a4a-b39b-bd051a6a5a3c');ddl.data('LookupCode','Lu_SC_Lead_Per_State');ddl.data('Eids','tbl_CORE_statelist');ddl.data('FieldType','SINGLESELECT_TABLE');ddl.data('Multi',false);enableKeyboardForList(ddl);ddl.parent().on('click',function(){showSearchList($(this));});
+Erp.FieldInfo.push({Name:"tbl_sc_lead_state",ID:"ddl_PerStateList",Disabled:false,Type:"Ddl",DataType:"SINGLESELECT_TABLE",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+Erp.FieldInfo.push({Name:"tbl_sc_lead_city",ID:"Field-18",Disabled:false,Type:"Text",DataType:"TEXT",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+$('#Field-19').mask("999999");
+Erp.FieldInfo.push({Name:"tbl_sc_lead_pincode",ID:"Field-19",Disabled:false,Type:"Text",DataType:"TEXT",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+Erp.FieldInfo.push({Name:"tbl_sc_lead_ethnicity",ID:"Field-29",Disabled:false,Type:"Text",DataType:"TEXT",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+Erp.FieldInfo.push({Name:"tbl_sc_lead_occupation",ID:"Field-28",Disabled:false,Type:"Text",DataType:"TEXT",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+Erp.FieldInfo.push({Name:"tbl_sc_lead_offcaddress1",ID:"Field-8",Disabled:false,Type:"Text",DataType:"TEXT",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+Erp.FieldInfo.push({Name:"tbl_sc_lead_offcaddress2",ID:"Field-10",Disabled:false,Type:"Text",DataType:"TEXT",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+Erp.FieldInfo.push({Name:"tbl_sc_lead_offcaddress3",ID:"Field-11",Disabled:false,Type:"Text",DataType:"TEXT",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+$('#Field-26').mask("999-9999999");
+Erp.FieldInfo.push({Name:"tbl_sc_lead_officephone",ID:"Field-26",Disabled:false,Type:"Text",DataType:"TEXT",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+var ddl=$('#ddl_off_Country');ddl.parent().addClass('ui-list');ddl.data('FieldID','17e86e14-e5bd-4387-acc3-a0841dff5ed7');ddl.data('LookupCode','');ddl.data('Eids','tbl_CORE_countrylist');ddl.data('FieldType','SINGLESELECT_TABLE');ddl.data('Multi',false);enableKeyboardForList(ddl);ddl.parent().on('click',function(){showSearchList($(this));});
+$('#ddl_off_Country').on('selectchange',function(){onFieldChange(setLead_OffCountry,$(this), {RecordID:$(this).data('RecordID'),EntityID:$(this).data('EntityID'),Text:$(this).val(),Keys:$(this).data('Keys'),CurrentRow:$(this).data('CurrentRow')}, Erp.GetField($(this).attr('id'))   );});
+Erp.FieldInfo.push({Name:"tbl_sc_lead_offccountry",ID:"ddl_off_Country",Disabled:false,Type:"Ddl",DataType:"SINGLESELECT_TABLE",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:true,Data:null});
+var ddl=$('#ddl_Off_StateList');ddl.parent().addClass('ui-list');ddl.data('FieldID','c1195b87-f9df-44f3-8ffc-6fbc66faa2df');ddl.data('LookupCode','Lu_SC_Lead_OfficeState');ddl.data('Eids','tbl_CORE_statelist');ddl.data('FieldType','SINGLESELECT_TABLE');ddl.data('Multi',false);enableKeyboardForList(ddl);ddl.parent().on('click',function(){showSearchList($(this));});
+Erp.FieldInfo.push({Name:"tbl_sc_lead_offcstate",ID:"ddl_Off_StateList",Disabled:false,Type:"Ddl",DataType:"SINGLESELECT_TABLE",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+Erp.FieldInfo.push({Name:"tbl_sc_lead_offccity",ID:"Field-22",Disabled:false,Type:"Text",DataType:"TEXT",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+$('#Field-23').mask("999999");
+Erp.FieldInfo.push({Name:"tbl_sc_lead_offcpincode",ID:"Field-23",Disabled:false,Type:"Text",DataType:"TEXT",CustomRender:false,Mandatory:false,IsDescriptive:false,ReqForCalc:false,Data:null});
+$('#TabParent-3').tabs({activate: function( event, ui ) { Erp.RedrawLayout();}});
+$('#WindowTask').iframeAutoHeight({minHeight:50,heightOffset:10,triggerFunctions:[function(resizeFunction, iframe){$('#WindowTask').on('resize',function () { resizeFunction(iframe);});}]});
+$('#WindowSiteVisit').iframeAutoHeight({minHeight:50,heightOffset:10,triggerFunctions:[function(resizeFunction, iframe){$('#WindowSiteVisit').on('resize',function () { resizeFunction(iframe);});}]});
+$('#CollParent-4 > div').accordion({ heightStyle: "content",collapsible: true,activate: function( event, ui ) { Erp.RedrawLayout();}});
+DbReferences.push({Type:"Simple",Id:"db_fld_0",Columns:"company.industrytype.enablecompanyfield"});window.db_fld_0='';
+
+FunctionList.push({Name:'LoadFunction',Refs:['db_fld_0']});
+
+DbReferences.push({Id:"CampaignFromvPhone1",Type:"Value",OnDemand:1,EntityId:"",Columns:"",Xml:"<Subquery Table=\"tbl_SC_campaigndetails\" Target=\"2e03382b-c403-4f3f-9084-95edfffbd4a0\" TargetType=\"Single\" EntityPath=\"campaign:tbl_SC_campaign\" Summary=\"None\" Logic=\"1\"\><Condition Name=\"92dd2c3e-8c05-4686-b829-a2edfeae6144\" EntityPath=\"cdvphone:tbl_SC_vphone\" Operator=\"EqualTo\" Value=\"vphone\" ValueSrc=\"Parameter\" ValueEntityPath=\"\" WFEID=\"\" WFName=\"\" SessionID=\"\" Srno=\"1\"\></Condition\><Sort\><ColInfo\></ColInfo\></Sort\><Parameters\><Param Key=\"vphone\" /\></Parameters\></Subquery\>",AlwaysLoad:false });window.CampaignFromvPhone1='';
+DbReferences.push({Id:"vphone",Type:"Value",OnDemand:0,EntityId:"",Columns:"",Xml:"<Subquery Table=\"tbl_CLT_calldatarecordings\" Target=\"bd60abcc-213e-4e51-ad9b-5cf82e0c85a0\" TargetType=\"Single\" EntityPath=\"\" Summary=\"None\" Logic=\"1\"\><Condition Name=\"6922a3f0-9dbb-497a-ab60-1cf38268ce20\" EntityPath=\"\" Operator=\"EqualTo\" Value=\"{_tel_logid}\" ValueSrc=\"Input\" WFName=\"\" SessionID=\"\" Srno=\"1\"\></Condition\><Sort\><ColInfo\></ColInfo\></Sort\><Parameters\></Parameters\></Subquery\>",AlwaysLoad:false });window.vphone='';
+DbReferences.push({Id:"CampaignFromvPhone",Type:"Table",OnDemand:0,EntityId:"tbl_SC_campaigndetails",Columns:"",Xml:"<Layout\><Grid Id=\"tbl_SC_campaigndetails\"\><ColInfo\><Cols Type=\"\" Name=\"2e03382b-c403-4f3f-9084-95edfffbd4a0\" EntityPath=\"campaign:tbl_SC_campaign\" Title=\"campaign_pid\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"92dd2c3e-8c05-4686-b829-a2edfeae6144\" EntityPath=\"cdvphone:tbl_SC_vphone\" Title=\"vphoneno\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"11ba08d4-118b-44d7-b597-462a4c216a64\" EntityPath=\"\" Title=\"cdenquirysource\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\><Cols Type=\"\" Name=\"122c8eae-59d8-4906-9c94-27c524345f98\" EntityPath=\"\" Title=\"enquirysubsource\" Sort=\"\" Width=\"75\" ID=\"#GUID#\" WFCode=\"\" Status=\"1\" Join=\"\" JoinLogic=\"\"\></Cols\></ColInfo\></Grid\></Layout\><Filter Limit=\"\" Id=\"tbl_SC_campaigndetails\" Logic=\"1 and 2\"\><Condition Name=\"92dd2c3e-8c05-4686-b829-a2edfeae6144\" EntityPath=\"cdvphone:tbl_SC_vphone\" Operator=\"EqualTo\" Value=\"vphone\" ValueSrc=\"Parameter\" ValueEntityPath=\"\" WFEID=\"\" WFName=\"\" SessionID=\"\" Srno=\"1\"\></Condition\><Condition Name=\"7c679a55-6ebb-4eab-bdd8-58cb1f2d9eb6\" EntityPath=\"campaigncategory:tbl_SC_campaigncategory\" Operator=\"EqualTo\" Value=\"Telephony\" ValueSrc=\"Input\" WFName=\"\" SessionID=\"\" Srno=\"2\"\></Condition\><Sort\><ColInfo\></ColInfo\></Sort\><Parameters\><Param Key=\"vphone\" /\></Parameters\></Filter\>",AlwaysLoad:false });window.CampaignFromvPhone='';
+DbReferences.push({Id:"leadactivitycategoryNotes",Type:"Value",OnDemand:1,EntityId:"",Columns:"",Xml:"<Subquery Table=\"tbl_SC_leadactivitycategory\" Target=\"8f61d72f-29f6-4973-946c-993476171574\" TargetType=\"Single\" EntityPath=\"\" Summary=\"None\" Logic=\"1\"\><Condition Name=\"dda032f3-fe67-4e26-a1c8-975fa8944dc3\" EntityPath=\"\" Operator=\"EqualTo\" Value=\"Notes\" ValueSrc=\"Input\" WFName=\"\" SessionID=\"\" Srno=\"1\"\></Condition\><Sort\><ColInfo\></ColInfo\></Sort\><Parameters\></Parameters\></Subquery\>",AlwaysLoad:false });window.leadactivitycategoryNotes='';
+DbReferences.push({Id:"getSalutation",Type:"Value",OnDemand:1,EntityId:"",Columns:"",Xml:"<Subquery Table=\"tbl_SC_salutation\" Target=\"b169ad7b-071c-46a4-9a33-c71f96c54b33\" TargetType=\"Single\" EntityPath=\"\" Summary=\"None\" Logic=\"1\"\><Condition Name=\"4bd24a15-2a46-47f7-9f62-1665ee9ae01b\" EntityPath=\"\" Operator=\"EqualTo\" Value=\"Mr.\" ValueSrc=\"Input\" WFName=\"\" SessionID=\"\" Srno=\"1\"\></Condition\><Sort\><ColInfo\></ColInfo\></Sort\><Parameters\></Parameters\></Subquery\>",AlwaysLoad:false });window.getSalutation='';
+DbReferences.push({Id:"getLeadStage",Type:"Value",OnDemand:1,EntityId:"",Columns:"",Xml:"<Subquery Table=\"tbl_SC_leadstage\" Target=\"28ef0eb1-d758-409b-bc93-1a0d3311b3eb\" TargetType=\"Single\" EntityPath=\"\" Summary=\"None\" Logic=\"2 and 3\"\><Condition Name=\"60a0e5bd-9c84-4b2f-89e1-e16b4b21f367\" EntityPath=\"\" Operator=\"EqualTo\" Value=\"True\" ValueSrc=\"CheckBox\" ValueEntityPath=\"\" WFEID=\"\" WFName=\"\" SessionID=\"\" Srno=\"2\"\></Condition\><Condition Name=\"4b0a45cc-f1a8-41f9-b5e9-22c545b22521\" EntityPath=\"recordtype:tbl_SC_recordtype\" Operator=\"EqualTo\" Value=\"L\" ValueSrc=\"Input\" WFName=\"\" SessionID=\"\" Srno=\"3\"\></Condition\><Sort\><ColInfo\></ColInfo\></Sort\><Parameters\></Parameters\></Subquery\>",AlwaysLoad:false });window.getLeadStage='';
+DbReferences.push({Id:"leadactivitycategoryFollowUp",Type:"Value",OnDemand:1,EntityId:"",Columns:"",Xml:"<Subquery Table=\"tbl_SC_leadactivitycategory\" Target=\"8f61d72f-29f6-4973-946c-993476171574\" TargetType=\"Single\" EntityPath=\"\" Summary=\"None\" Logic=\"1\"\><Condition Name=\"dda032f3-fe67-4e26-a1c8-975fa8944dc3\" EntityPath=\"\" Operator=\"EqualTo\" Value=\"Followup\" ValueSrc=\"Input\" WFName=\"\" SessionID=\"\" Srno=\"1\"\></Condition\><Sort\><ColInfo\></ColInfo\></Sort\><Parameters\></Parameters\></Subquery\>",AlwaysLoad:false });window.leadactivitycategoryFollowUp='';
+DbReferences.push({Id:"leadactivitycategorySiteVisit",Type:"Value",OnDemand:1,EntityId:"",Columns:"",Xml:"<Subquery Table=\"tbl_SC_leadactivitycategory\" Target=\"8f61d72f-29f6-4973-946c-993476171574\" TargetType=\"Single\" EntityPath=\"\" Summary=\"None\" Logic=\"1\"\><Condition Name=\"dda032f3-fe67-4e26-a1c8-975fa8944dc3\" EntityPath=\"\" Operator=\"EqualTo\" Value=\"Site Visit\" ValueSrc=\"Input\" WFName=\"\" SessionID=\"\" Srno=\"1\"\></Condition\><Sort\><ColInfo\></ColInfo\></Sort\><Parameters\></Parameters\></Subquery\>",AlwaysLoad:false });window.leadactivitycategorySiteVisit='';
+DbReferences.push({Id:"leadactivitycategorycall",Type:"Value",OnDemand:0,EntityId:"",Columns:"",Xml:"<Subquery Table=\"tbl_SC_leadactivitycategory\" Target=\"8f61d72f-29f6-4973-946c-993476171574\" TargetType=\"Single\" EntityPath=\"\" Summary=\"None\" Logic=\"1\"\><Condition Name=\"207f2106-b2dd-476d-a0df-64c1ce18096a\" EntityPath=\"\" Operator=\"EqualTo\" Value=\"Calls\" ValueSrc=\"Input\" WFName=\"\" SessionID=\"\" Srno=\"1\"\></Condition\><Sort\><ColInfo\></ColInfo\></Sort\><Parameters\></Parameters\></Subquery\>",AlwaysLoad:false });window.leadactivitycategorycall='';
+DbReferences.push({Id:"leadactivitycategoryType",Type:"Value",OnDemand:0,EntityId:"",Columns:"",Xml:"<Subquery Table=\"tbl_SC_leadactivitytype\" Target=\"5c3d6232-db81-4066-a756-734784e909ec\" TargetType=\"Single\" EntityPath=\"\" Summary=\"None\" Logic=\"1 and 2\"\><Condition Name=\"d6bb82b1-a1ca-48cd-82d2-2adfda699677\" EntityPath=\"\" Operator=\"EqualTo\" Value=\"incoming\" ValueSrc=\"Input\" WFName=\"\" SessionID=\"\" Srno=\"1\"\></Condition\><Condition Name=\"207f2106-b2dd-476d-a0df-64c1ce18096a\" EntityPath=\"leadactivitycategory:tbl_SC_leadactivitycategory\" Operator=\"EqualTo\" Value=\"Calls\" ValueSrc=\"Input\" WFName=\"\" SessionID=\"\" Srno=\"2\"\></Condition\><Sort\><ColInfo\></ColInfo\></Sort\><Parameters\></Parameters\></Subquery\>",AlwaysLoad:false });window.leadactivitycategoryType='';
+ mxEntityList={};
+
+
+
+};
+var mode;
+
+
+
+function Clickmenu(el,data)
+ {
+    Erp.SetDisplay("table-other",false);
+    Erp.SetDisplay("table-basic",false);
+    Erp.SetDisplay("table-lead",false); 
+    Erp.SetDisplay("table-"+data.value,true);
+ }
+
+
+Erp.OnLoad.Register(LoadFunction);
+function LoadFunction(){
+   Erp.SetDisplay('hidecomptr',Fn.CBool(db_fld_0));
+  //$("#row_user_acc_contact").hide();
+  //$("label[lblsalutation']").text("Mr");
+//  Erp.SetFieldValue('lblsalutation','Mr');
+  if(Erp.LayoutMode=="A")
+  {
+  Erp.LoadVariable('getSalutation',setSalutation);
+    Erp.LoadVariable('getLeadStage',setLeadStage);
+  }
+  if(Fn.GetProp('mode')=="fromcall")
+  {
+    //parent.Erp.CloseWindow();
+    Erp.SetParam(window,'vphone',vphone);
+    Erp.LoadVariable('CampaignFromvPhone',true);
+    Erp.SetFieldValue('@assigned_campaign',CampaignFromvPhone[0]["campaign_pid"]);
+    Erp.SetFieldValue('@assigned_enquirysource',CampaignFromvPhone[0]["cdenquirysource"]);
+    Erp.SetFieldValue('@assigned_enquirysubsource',CampaignFromvPhone[0]["enquirysubsource"]);
+    Erp.SetEnable('@assigned_campaign',false);
+    Erp.SetEnable('@assigned_enquirysource',false);
+    Erp.SetEnable('@assigned_enquirysubsource',false);
+    Erp.SetFieldValue('@mobile1',Fn.GetProp('Phone').substr(Fn.GetProp('Phone').length-10));
+    
+    
+  }
+     Erp.LoadVariable('leadactivitycategoryNotes',true);
+     Erp.LoadVariable('leadactivitycategoryFollowUp',true);
+     Erp.LoadVariable('leadactivitycategorySiteVisit',true);
+  
+
+if(Erp.LayoutMode=="E")
+{
+  
+if(Fn.IsEmpty(Erp.GetFieldValue('@contact'))&&Fn.IsEmpty(Erp.GetFieldValue('@account')))
+{
+    $("#row_user_acc_contact").hide();
+}
+  else if(Fn.IsEmpty(Erp.GetFieldValue('@contact')))
+  {
+    $("#cell_contact_l").hide();
+$("#cell_contact_f").hide();  
+
+  
+  }
+  else if(Fn.IsEmpty(Erp.GetFieldValue('@account')))
+  {
+    $("#cell_acc_l").hide();
+$("#cell_acc_f").hide();  
+
+  
+  }
+  
+  else
+  {
+   // $("#existCust").checked(true);
+  }
+}
+  else if(Erp.LayoutMode=="A")
+  {
+  	$("#newCust").checked(true);
+     $("#row_user_acc_contact").hide();
+   
+  }
+  else{}
+//Erp.OpenWindow({"Action":"VIEWFORM","Entity":"tbl_SC_leadactivity","Form":"sch_visit","Refresh":false,"Global":false,"Title":"","Params":"pid="+Erp.RecordID},'Window-1');
+//Erp.OpenWindow({"Action":"VIEWFORM","Entity":"tbl_SC_leadactivity","Form":"V_FollowUp","Refresh":false,"Global":false,"Title":"","Params":"","Location":"Popup","PopHt":"400","PopWd":"700"},'WgAddFollowup');
+//Erp.OpenWindow({"Action":"VIEWFORM","Entity":"tbl_SC_leadactivity","Form":"view_todays_activity","Refresh":false,"Global":false,"Title":"","Params":""},'Window-3');
+
+/*Erp.CreateField('CHECKBOX',{Label: 'New Field', Id:'Field999', Parent:'parentCtr', Width:200, ShowBorder:true, Mandatory:true, Tooltip:'New Field Tooltip'});
+  Erp.RegisterEvent('Field999','change',abcdf);*/
+//Erp.RegisterEvent('ReadMail','click',ReadCampaignMail)
+  
+  
+      Erp.OpenWindow({"Action":"ADDFORM","Entity":"tbl_SC_leadactivity","Form":"Add_Follow_Up","Refresh":false,"Global":false,"Title":"Task","Params":"_noPadding=1&FromWindow=AddLead"} ,'WindowTask');
+      Erp.CreateField('MULTILINE',{Label: '', Id:'note', Parent:'parentCtr',ShowBorder:true, Tooltip:'Note'});
+    //  Erp.OpenWindow({"Action":"ADDFORM","Entity":"tbl_SC_leadactivity","Form":"LeadActivityNote","Refresh":false,"Global":false,"Title":"Notes","Params":"_noPadding=1&FromWindow=AddLead"},'WindowNote');
+      Erp.OpenWindow({"Action":"ADDFORM","Entity":"tbl_SC_leadactivity","Form":"Add_Visit_Site","Refresh":false,"Global":false,"Title":"Site Visit","Params":"_noPadding=1&FromWindow=AddLead"},'WindowSiteVisit');
+     $("#CollapsiblePanelTask").css("display","none");
+     $("#CollapsiblePanelSiteVisit").css("display","none"); 
+    
+    $("#CollapsiblePanelNote").css("height","60px"); 
+    $("#CollapsiblePanelTask").css("height","187px");
+    $("#CollapsiblePanelSiteVisit").css("height","230px");
+}
+
+function setSalutation()
+{
+Erp.SetFieldValue('@salutation',getSalutation);
+}
+
+function setLeadStage()
+{
+  Erp.SetFieldValue('@current_leadstage',getLeadStage);
+}
+
+function chkPurpose_checked(sender)
+{ 
+ 
+  if(sender["context"].id =="chk_EndUser")
+  {
+  if($("#chk_EndUser").checked())
+    $("#chk_Investor").checked(false);
+  }
+  
+  if(sender["context"].id =="chk_Investor")
+  {
+  if($("#chk_Investor").checked())
+    $("#chk_EndUser").checked(false);
+  }
+}
+
+
+function Add_SiteVisit()
+{
+  Erp.SaveWindow();
+  mode="fromvisit";	  
+}
+
+function Add_Followup()
+{
+  Erp.SaveWindow();
+  mode="FromFolloup";
+}
+
+function AddActivity ()
+{ 
+  Erp.SaveWindow();
+  mode="AddActivity";
+}
+
+
+function entitySuccess()
+{
+  
+}
+
+Erp.OnSave.Register(SaveFunction);
+function SaveFunction(){
+  var checkifanyfieldhasval = checkifanyfieldhasvalue ();
+  if (checkifanyfieldhasval == false)
+   { 
+    
+     var followupdate = $("#WindowTask")[0].contentWindow.Erp.GetFieldValue('@followupdate');
+     if (followupdate == null){
+        Erp.ShowMessage("Please Add Task Date First For Add Task");
+        return false;
+     }
+     var feeddescription = $("#WindowTask")[0].contentWindow.Erp.GetFieldValue('@feeddescription');
+       if (feeddescription == ""){
+        Erp.ShowMessage("Please Add Task Description First For Add Task");
+         return false;
+     }
+
+  }
+  var checkifanyfieldhasvaluesvisit = checkifanyfieldhasvalueSitevisit()
+  if (checkifanyfieldhasvaluesvisit == false)
+  {
+   
+     var product = $("#WindowSiteVisit")[0].contentWindow.Erp.GetFieldValue('@product');;
+     if (product == ""){
+        Erp.ShowMessage("Please Select Product First For Add Site Visit");
+        return false;
+     }
+     var schedulestart = $("#WindowSiteVisit")[0].contentWindow.Erp.GetFieldValue('@schedulestart');;
+     if (schedulestart == null){
+        Erp.ShowMessage("Please Add Schedule Start Time First For Add Site Visit");
+        return false;
+     }
+  }
+  else {
+   
+     return true;
+    
+  }
+}
+
+
+function checkifanyfieldhasvalue (){
+    var followupdate = $("#WindowTask")[0].contentWindow.Erp.GetFieldValue('@followupdate');
+     if (followupdate != null){ 
+        return false;
+     }
+     var feeddescription = $("#WindowTask")[0].contentWindow.Erp.GetFieldValue('@feeddescription');
+       if (feeddescription != ""){
+         return false;
+     }
+
+  
+  else {
+     return true;
+  }
+  
+}
+
+
+function checkifanyfieldhasvalueSitevisit (){
+   
+    var product = $("#WindowSiteVisit")[0].contentWindow.Erp.GetFieldValue('@product');
+     if (product != ""){ 
+        return false;
+     }
+     var schedulestart = $("#WindowSiteVisit")[0].contentWindow.Erp.GetFieldValue('@schedulestart');
+       if (schedulestart != null){
+         return false;
+     }
+   
+  
+  else {
+     return true;
+  }
+  
+}
+
+
+
+
+
+
+Erp.OnSaveSuccess.Register(SaveSuccessFunction);
+function SaveSuccessFunction(){
+  var feeddescription = $("#WindowTask")[0].contentWindow.Erp.GetFieldValue('@feeddescription');
+  var followupdate = $("#WindowTask")[0].contentWindow.Erp.GetFieldValue('@followupdate');
+  
+  if(feeddescription!="" && followupdate!=""){
+    $("#WindowTask")[0].contentWindow.Erp.SetFieldValue('@lead',Erp.RecordID);
+    //$("#WindowTask")[0].contentWindow.Erp.SetFieldValue('@leadactivitycategory',leadactivitycategoryFollowUp);
+  $("#WindowTask")[0].contentWindow.Erp.SaveWindow();
+  
+  }
+  var product = $("#WindowSiteVisit")[0].contentWindow.Erp.GetFieldValue('@product');
+      if (product != ""){
+         $("#WindowSiteVisit")[0].contentWindow.Erp.SetFieldValue('@lead',Erp.RecordID);
+   // $("#WindowTask")[0].contentWindow.Erp.SetFieldValue('@leadactivitycategory',leadactivitycategorySiteVisit);
+  $("#WindowSiteVisit")[0].contentWindow.Erp.SaveWindow();
+        
+      }
+    /* var followupdate = $("#WindowTask")[0].contentWindow.Erp.GetFieldValue('@followupdate');
+     if (followupdate != null)
+       Erp.SetParam(window,'follwupdate',followupdate);
+    
+     
+     var feeddescription = $("#WindowTask")[0].contentWindow.Erp.GetFieldValue('@feeddescription');
+   if (feeddescription != null)
+       Erp.SetParam(window,'feeddescription',feeddescription);
+  
+     var followuptypename = $("#WindowTask")[0].contentWindow.Erp.GetFieldValue('@tasktype');
+   if (followuptypename != null)
+       Erp.SetParam(window,'followuptypename',followuptypename);
+   var followuptypename = $("#WindowTask")[0].contentWindow.Erp.GetFieldValue('@tasktype');
+   if (followuptypename != null)
+       Erp.SetParam(window,'followuptypename',followuptypename);
+   var isproductwiseactivity = $("#WindowTask")[0].contentWindow.Erp.GetFieldValue('@isproductwiseactivity');
+   if (Fn.CBool(isproductwiseactivity))
+       Erp.SetParam(window,'isproductwiseactivity',isproductwiseactivity);
+  
+  var product = $("#WindowTask")[0].contentWindow.Erp.GetFieldValue('@product');
+   if (product != null)
+       Erp.SetParam(window,'product',product);
+  
+  var taskassigneduser = $("#WindowTask")[0].contentWindow.Erp.GetFieldValue('@taskassigneduser');
+   if (taskassigneduser != null)
+       Erp.SetParam(window,'taskassigneduser',taskassigneduser);
+  Erp.SetParam(window,'leadactivitycategoryFollowUp',leadactivitycategoryFollowUp)
+  
+  
+  ent1.Data('product',$("#WindowTask")[0].contentWindow.Erp.GetFieldValue('@product'));
+    
+     var ent1 = new Erp.Entity('tbl_SC_leadactivity');
+     ent1.Data('lead',Erp.RecordID);
+    
+     ent1.Data('followupdate',followupdate);
+     ent1.Data('feeddescription',feeddescription);
+     ent1.Data('tasktype',followuptypename);
+     ent1.Data('isproductwiseactivity',$("#WindowTask")[0].contentWindow.Erp.GetFieldValue('@isproductwiseactivity'));
+     ent1.Data('product',$("#WindowTask")[0].contentWindow.Erp.GetFieldValue('@product'));
+     ent1.Data('taskassigneduser',$("#WindowTask")[0].contentWindow.Erp.GetFieldValue('@taskassigneduser'));
+     ent1.Data('leadactivitycategory',leadactivitycategoryFollowUp);
+     ent1.Save(entitySuccess);*/
+  
+  
+    /*  var product = $("#WindowSiteVisit")[0].contentWindow.Erp.GetFieldValue('@product');
+      if (product != ""){
+        
+          var ent2 = new Erp.Entity('tbl_SC_leadactivity');
+           ent2.Data('lead',Erp.RecordID);
+       
+        ent2.Data('product',$("#WindowSiteVisit")[0].contentWindow.Erp.GetFieldValue('@product'));
+        ent2.Data('schedulestart',$("#WindowSiteVisit")[0].contentWindow.Erp.GetFieldValue('@schedulestart'));
+        ent2.Data('scheduleend',$("#WindowSiteVisit")[0].contentWindow.Erp.GetFieldValue('@scheduleend'));
+        ent2.Data('ispickuprequired',$("#WindowSiteVisit")[0].contentWindow.Erp.GetFieldValue('@ispickuprequired'));
+        ent2.Data('pickupdate',$("#WindowSiteVisit")[0].contentWindow.Erp.GetFieldValue('@pickupdate'));
+        ent2.Data('pickuplocation',$("#WindowSiteVisit")[0].contentWindow.Erp.GetFieldValue('@pickuplocation'));
+        ent2.Data('visitconfirmation',$("#WindowSiteVisit")[0].contentWindow.Erp.GetFieldValue('@visitconfirmation'));
+        ent2.Data('leadactivitycategory',leadactivitycategorySiteVisit);
+        ent2.Save(entitySuccess); 
+ }*/
+  
+  /*------Insert data into LeadOwnerHistory table------*/
+  
+  	
+  
+  /*-----------------End-------------------------------*/
+  
+}
+
+
+Erp.OnClose.Register(OnCloseFunction);
+function OnCloseFunction(){
+Erp.OpenWindow({"Action":"EDITFORM","Entity":"tbl_SC_lead","Form":"Layout Lead Real Estate V2_follup_design","RecordID":Erp.RecordID,"Refresh":false,"Global":false,"Title":"","Params":"","Location":"Self"});
+}
+
+Erp.Grid.OnRowClick('Grid-3',GridRowClick);
+function GridRowClick(gridId,args)
+{
+  alert('');
+Erp.OpenWindow({"Action":"ADDFORM","Entity":"tbl_SC_leadactivity","Form":"LEAD_ACTIVITY","Refresh":false,"Global":false,"Title":"LEAD ACTIVITY","Params":"","Location":"Self"});
+}
+
+/*------Function for dropdown value in Enquiry subSource------*/
+function Set_LESource()
+{
+  Erp.SetFieldValue('@assigned_enquirysubsource','');
+  var LsubSoutceValue = Erp.GetFieldValue('@tbl_sc_lead_assigned_enquirysource');
+  Erp.SetParam('@assigned_enquirysubsource','vSubSource',LsubSoutceValue);
+}
+/*----function end------*/
+
+function setLead_PerCountry()
+{
+  Erp.SetFieldValue('ddl_PerStateList','');
+  var PerStateList = Erp.GetFieldValue('@tbl_sc_lead_country');
+  Erp.SetParam('ddl_PerStateList','Lead_Per_State_list',PerStateList);
+}
+ 
+function setLead_OffCountry()
+{
+    Erp.SetFieldValue('ddl_Off_StateList','');
+    var OffStateList = Erp.GetFieldValue('@tbl_sc_lead_offccountry');
+    Erp.SetParam('ddl_Off_StateList','Lead_Off_StateList',OffStateList);
+}
+
+function setUser(sender)
+{
+
+  if(sender[0].id=="newCust")
+  {
+  $("#row_user_acc_contact").hide();
+  $("#existCust").checked(false);
+  
+  }
+  else if(sender[0].id=="existCust")
+  {
+  $("#row_user_acc_contact").show();
+  $("#newCust").checked(false);
+  }
+  else
+  {
+    
+  }
+    
+}
+

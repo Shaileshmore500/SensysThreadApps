@@ -1,0 +1,825 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="SensysIndia" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="SensysIndia" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="SensysIndia">
+      <s:element name="ActivateApp">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="assignedSoftwares" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="compCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="compName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActivateAppResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ActivateAppResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AssignPermissionsToClient">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="softwareList" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="permissions" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="compGuid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AssignPermissionsToClientResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AssignPermissionsToClientResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestService">
+        <s:complexType />
+      </s:element>
+      <s:element name="TestServiceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TestServiceResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegisterClient">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="compID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="compName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="compCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="database" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="param" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RegisterClientResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RegisterClientResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TerminateConnection">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cdKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TerminateConnectionResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetDataSet">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetDataSetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDataSetResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetChatData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetChatDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetChatDataResult" type="tns:ChatEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ChatEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CdKey" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ConnectionClosed" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="DataBase" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DataString" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CompanyName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CompanyCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Params" type="tns:ArrayOfString" />
+          <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ChatMessage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SQLQuery" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientMessageQueue" type="tns:ArrayOfMessage" />
+          <s:element minOccurs="0" maxOccurs="1" name="SupportMessageQueue" type="tns:ArrayOfMessage" />
+          <s:element minOccurs="0" maxOccurs="1" name="SqlQueue" type="tns:ArrayOfQuery" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfMessage">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Message" nillable="true" type="tns:Message" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Message">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MessageString" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UniqueKey" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Displayed" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfQuery">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Query" nillable="true" type="tns:Query" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Query">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SQLQuery" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Data" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UniqueKey" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Answered" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Processing" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ScriptType" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsNonQuery" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasErrors" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Params" type="tns:ArrayOfString" />
+          <s:element minOccurs="1" maxOccurs="1" name="RecordsRetrieved" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TablesRetrieved" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateChatEntityFromClient">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="remoteCl" type="tns:ChatEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateChatEntityFromClientResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UpdateClientFromServer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cht" type="tns:ChatEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateClientFromServerResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="PushClientMessage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cht" type="tns:ChatEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="msg" type="tns:Message" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PushClientMessageResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="PushSupportMessage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cht" type="tns:ChatEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="msg" type="tns:Message" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PushSupportMessageResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="PushSqlQueries">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cht" type="tns:ChatEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="qry" type="tns:Query" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PushSqlQueriesResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetResourceUnlockCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="resID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="compName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="compCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="companyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="compGuid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cdKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="resourceKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ip" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="versionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="versionNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="param" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetResourceUnlockCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetResourceUnlockCodeResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="outputCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="outputMessage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetResourceUnlockCodeMultiple">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="enableLogging" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="resIDs" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="compName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="compCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="companyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="compGuid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cdKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ip" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="versionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="versionNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="param" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetResourceUnlockCodeMultipleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetResourceUnlockCodeMultipleResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="outputCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="outputMessage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ClaimGUID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cdKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="compName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="compCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ip" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="versionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="param" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ClaimGUIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ClaimGUIDResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="guid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="outputMessage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegisterCompany">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cdKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="compName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="compCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="compGuid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="companyMachineCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="firstTime" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="param" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegisterCompanyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RegisterCompanyResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="companyUnlockCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="outputMessage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeRegisterCompany">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cdKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="compName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="compCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="compGuid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="param" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeRegisterCompanyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeRegisterCompanyResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="outputMessage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ActivateAppSoapIn">
+    <wsdl:part name="parameters" element="tns:ActivateApp" />
+  </wsdl:message>
+  <wsdl:message name="ActivateAppSoapOut">
+    <wsdl:part name="parameters" element="tns:ActivateAppResponse" />
+  </wsdl:message>
+  <wsdl:message name="AssignPermissionsToClientSoapIn">
+    <wsdl:part name="parameters" element="tns:AssignPermissionsToClient" />
+  </wsdl:message>
+  <wsdl:message name="AssignPermissionsToClientSoapOut">
+    <wsdl:part name="parameters" element="tns:AssignPermissionsToClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="TestServiceSoapIn">
+    <wsdl:part name="parameters" element="tns:TestService" />
+  </wsdl:message>
+  <wsdl:message name="TestServiceSoapOut">
+    <wsdl:part name="parameters" element="tns:TestServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="RegisterClientSoapIn">
+    <wsdl:part name="parameters" element="tns:RegisterClient" />
+  </wsdl:message>
+  <wsdl:message name="RegisterClientSoapOut">
+    <wsdl:part name="parameters" element="tns:RegisterClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="TerminateConnectionSoapIn">
+    <wsdl:part name="parameters" element="tns:TerminateConnection" />
+  </wsdl:message>
+  <wsdl:message name="TerminateConnectionSoapOut">
+    <wsdl:part name="parameters" element="tns:TerminateConnectionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDataSetSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDataSet" />
+  </wsdl:message>
+  <wsdl:message name="GetDataSetSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDataSetResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetChatDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetChatData" />
+  </wsdl:message>
+  <wsdl:message name="GetChatDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetChatDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateChatEntityFromClientSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateChatEntityFromClient" />
+  </wsdl:message>
+  <wsdl:message name="UpdateChatEntityFromClientSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateChatEntityFromClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateClientFromServerSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateClientFromServer" />
+  </wsdl:message>
+  <wsdl:message name="UpdateClientFromServerSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateClientFromServerResponse" />
+  </wsdl:message>
+  <wsdl:message name="PushClientMessageSoapIn">
+    <wsdl:part name="parameters" element="tns:PushClientMessage" />
+  </wsdl:message>
+  <wsdl:message name="PushClientMessageSoapOut">
+    <wsdl:part name="parameters" element="tns:PushClientMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="PushSupportMessageSoapIn">
+    <wsdl:part name="parameters" element="tns:PushSupportMessage" />
+  </wsdl:message>
+  <wsdl:message name="PushSupportMessageSoapOut">
+    <wsdl:part name="parameters" element="tns:PushSupportMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="PushSqlQueriesSoapIn">
+    <wsdl:part name="parameters" element="tns:PushSqlQueries" />
+  </wsdl:message>
+  <wsdl:message name="PushSqlQueriesSoapOut">
+    <wsdl:part name="parameters" element="tns:PushSqlQueriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetResourceUnlockCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetResourceUnlockCode" />
+  </wsdl:message>
+  <wsdl:message name="GetResourceUnlockCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetResourceUnlockCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetResourceUnlockCodeMultipleSoapIn">
+    <wsdl:part name="parameters" element="tns:GetResourceUnlockCodeMultiple" />
+  </wsdl:message>
+  <wsdl:message name="GetResourceUnlockCodeMultipleSoapOut">
+    <wsdl:part name="parameters" element="tns:GetResourceUnlockCodeMultipleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ClaimGUIDSoapIn">
+    <wsdl:part name="parameters" element="tns:ClaimGUID" />
+  </wsdl:message>
+  <wsdl:message name="ClaimGUIDSoapOut">
+    <wsdl:part name="parameters" element="tns:ClaimGUIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="RegisterCompanySoapIn">
+    <wsdl:part name="parameters" element="tns:RegisterCompany" />
+  </wsdl:message>
+  <wsdl:message name="RegisterCompanySoapOut">
+    <wsdl:part name="parameters" element="tns:RegisterCompanyResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeRegisterCompanySoapIn">
+    <wsdl:part name="parameters" element="tns:DeRegisterCompany" />
+  </wsdl:message>
+  <wsdl:message name="DeRegisterCompanySoapOut">
+    <wsdl:part name="parameters" element="tns:DeRegisterCompanyResponse" />
+  </wsdl:message>
+  <wsdl:portType name="DataStreamerSoap">
+    <wsdl:operation name="ActivateApp">
+      <wsdl:input message="tns:ActivateAppSoapIn" />
+      <wsdl:output message="tns:ActivateAppSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AssignPermissionsToClient">
+      <wsdl:input message="tns:AssignPermissionsToClientSoapIn" />
+      <wsdl:output message="tns:AssignPermissionsToClientSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestService">
+      <wsdl:input message="tns:TestServiceSoapIn" />
+      <wsdl:output message="tns:TestServiceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterClient">
+      <wsdl:input message="tns:RegisterClientSoapIn" />
+      <wsdl:output message="tns:RegisterClientSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TerminateConnection">
+      <wsdl:input message="tns:TerminateConnectionSoapIn" />
+      <wsdl:output message="tns:TerminateConnectionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataSet">
+      <wsdl:input message="tns:GetDataSetSoapIn" />
+      <wsdl:output message="tns:GetDataSetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetChatData">
+      <wsdl:input message="tns:GetChatDataSoapIn" />
+      <wsdl:output message="tns:GetChatDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateChatEntityFromClient">
+      <wsdl:input message="tns:UpdateChatEntityFromClientSoapIn" />
+      <wsdl:output message="tns:UpdateChatEntityFromClientSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateClientFromServer">
+      <wsdl:input message="tns:UpdateClientFromServerSoapIn" />
+      <wsdl:output message="tns:UpdateClientFromServerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PushClientMessage">
+      <wsdl:input message="tns:PushClientMessageSoapIn" />
+      <wsdl:output message="tns:PushClientMessageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PushSupportMessage">
+      <wsdl:input message="tns:PushSupportMessageSoapIn" />
+      <wsdl:output message="tns:PushSupportMessageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PushSqlQueries">
+      <wsdl:input message="tns:PushSqlQueriesSoapIn" />
+      <wsdl:output message="tns:PushSqlQueriesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetResourceUnlockCode">
+      <wsdl:input message="tns:GetResourceUnlockCodeSoapIn" />
+      <wsdl:output message="tns:GetResourceUnlockCodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetResourceUnlockCodeMultiple">
+      <wsdl:input message="tns:GetResourceUnlockCodeMultipleSoapIn" />
+      <wsdl:output message="tns:GetResourceUnlockCodeMultipleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ClaimGUID">
+      <wsdl:input message="tns:ClaimGUIDSoapIn" />
+      <wsdl:output message="tns:ClaimGUIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterCompany">
+      <wsdl:input message="tns:RegisterCompanySoapIn" />
+      <wsdl:output message="tns:RegisterCompanySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeRegisterCompany">
+      <wsdl:input message="tns:DeRegisterCompanySoapIn" />
+      <wsdl:output message="tns:DeRegisterCompanySoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DataStreamerSoap" type="tns:DataStreamerSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ActivateApp">
+      <soap:operation soapAction="SensysIndia/ActivateApp" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AssignPermissionsToClient">
+      <soap:operation soapAction="SensysIndia/AssignPermissionsToClient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestService">
+      <soap:operation soapAction="SensysIndia/TestService" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterClient">
+      <soap:operation soapAction="SensysIndia/RegisterClient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TerminateConnection">
+      <soap:operation soapAction="SensysIndia/TerminateConnection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataSet">
+      <soap:operation soapAction="SensysIndia/GetDataSet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChatData">
+      <soap:operation soapAction="SensysIndia/GetChatData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateChatEntityFromClient">
+      <soap:operation soapAction="SensysIndia/UpdateChatEntityFromClient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateClientFromServer">
+      <soap:operation soapAction="SensysIndia/UpdateClientFromServer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PushClientMessage">
+      <soap:operation soapAction="SensysIndia/PushClientMessage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PushSupportMessage">
+      <soap:operation soapAction="SensysIndia/PushSupportMessage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PushSqlQueries">
+      <soap:operation soapAction="SensysIndia/PushSqlQueries" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetResourceUnlockCode">
+      <soap:operation soapAction="SensysIndia/GetResourceUnlockCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetResourceUnlockCodeMultiple">
+      <soap:operation soapAction="SensysIndia/GetResourceUnlockCodeMultiple" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClaimGUID">
+      <soap:operation soapAction="SensysIndia/ClaimGUID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterCompany">
+      <soap:operation soapAction="SensysIndia/RegisterCompany" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeRegisterCompany">
+      <soap:operation soapAction="SensysIndia/DeRegisterCompany" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DataStreamerSoap12" type="tns:DataStreamerSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ActivateApp">
+      <soap12:operation soapAction="SensysIndia/ActivateApp" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AssignPermissionsToClient">
+      <soap12:operation soapAction="SensysIndia/AssignPermissionsToClient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestService">
+      <soap12:operation soapAction="SensysIndia/TestService" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterClient">
+      <soap12:operation soapAction="SensysIndia/RegisterClient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TerminateConnection">
+      <soap12:operation soapAction="SensysIndia/TerminateConnection" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataSet">
+      <soap12:operation soapAction="SensysIndia/GetDataSet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChatData">
+      <soap12:operation soapAction="SensysIndia/GetChatData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateChatEntityFromClient">
+      <soap12:operation soapAction="SensysIndia/UpdateChatEntityFromClient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateClientFromServer">
+      <soap12:operation soapAction="SensysIndia/UpdateClientFromServer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PushClientMessage">
+      <soap12:operation soapAction="SensysIndia/PushClientMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PushSupportMessage">
+      <soap12:operation soapAction="SensysIndia/PushSupportMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PushSqlQueries">
+      <soap12:operation soapAction="SensysIndia/PushSqlQueries" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetResourceUnlockCode">
+      <soap12:operation soapAction="SensysIndia/GetResourceUnlockCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetResourceUnlockCodeMultiple">
+      <soap12:operation soapAction="SensysIndia/GetResourceUnlockCodeMultiple" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClaimGUID">
+      <soap12:operation soapAction="SensysIndia/ClaimGUID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterCompany">
+      <soap12:operation soapAction="SensysIndia/RegisterCompany" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeRegisterCompany">
+      <soap12:operation soapAction="SensysIndia/DeRegisterCompany" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DataStreamer">
+    <wsdl:port name="DataStreamerSoap" binding="tns:DataStreamerSoap">
+      <soap:address location="http://reg.sensysindia.com/sensysservices/datastreamer.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DataStreamerSoap12" binding="tns:DataStreamerSoap12">
+      <soap12:address location="http://reg.sensysindia.com/sensysservices/datastreamer.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,76 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Default.master.cs" Inherits="SensysErp.Meta.Default" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+     <%# HelperLib.Web.WebResources.GetResource("~/Scripts/modernizr.js")%>
+
+    <%# HelperLib.Web.WebResources.GetResource("~/css/normalize.css")%>
+    <%# HelperLib.Web.WebResources.GetResource("~/fonts/font.css")%>   
+    <%# HelperLib.Web.WebResources.GetResource("~/css/CustomControl/CustomControl.css")%>
+
+    <%# HelperLib.Web.WebResources.GetResource("~/Scripts/System.js")%>
+     <%# HelperLib.Web.WebResources.GetResource("~/Scripts/jquery.js")%>
+     <%# HelperLib.Web.WebResources.GetResource("~/Scripts/jquery-ui-1.10.3.custom.min.js")%>
+     <%# HelperLib.Web.WebResources.GetResource("~/Scripts/jqHelper.js")%>
+     <%# HelperLib.Web.WebResources.GetResource("~/Scripts/UiHelper.js")%>
+     <%# HelperLib.Web.WebResources.GetResource("~/Scripts/CustomControls.js")%>
+     <%# HelperLib.Web.WebResources.GetResource("~/Scripts/moment.min.js")%>
+    <script>
+        function changeTheme(theme) {
+            $("#lnkTheme").attr("href", "../Css/" + theme + "/jquery-ui-1.10.3.custom.css?ts=" + (new Date() / 1))
+            $(document.documentElement).removeClass("GreyTheme DarkTheme BlueGlossTheme GreenTheme OrangeTheme RedTheme").addClass(theme + "Theme")
+
+        }
+        function RefreshGrid(id) {
+            if (typeof id == "undefined")
+                id = $(".RadGrid").eq(0).attr("id");
+            RadGrid_Refresh(id);
+        }
+        function RefreshParent(close, id) {
+            if (window.opener && typeof window.opener.RefreshGrid == "function") {
+                window.opener.RefreshGrid(id);
+                if (close)
+                    closeForm();
+            }
+            else if (window.frameElement && typeof parent.RefreshGrid == "function") {
+                if (close)
+                    closeForm();
+
+                if (parent && typeof parent.toggleDetailsForm == "function")
+                    window.setTimeout(function () { parent.RefreshGrid(id); }, 800);
+                else
+                    parent.RefreshGrid(id);
+            }
+        }
+        function closeForm() {
+            if (window.frameElement && $(window.frameElement).parent().hasClass("Popup")) {
+                $(window.frameElement).parent().prev().remove();
+                $(window.frameElement).parent().remove();
+            }
+            else if (parent && typeof parent.toggleDetailsForm == "function")
+                parent.toggleDetailsForm(false);
+
+            else
+                window.close();
+        }
+    </script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+         <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true"></asp:ScriptManager>
+          <%= HelperLib.Web.WebResources.GetResource("~/css/base.css")%>
+        <%= HelperLib.Web.WebResources.GetResource("~/css/form.css")%>
+    <div style="height:100%">
+       
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+       
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>

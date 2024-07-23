@@ -1,0 +1,1549 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using HelperLib.Conversion;
+using HelperLib.View;
+using HelperLib.Controller;
+using HelperLib.Extensions;
+using Telerik.Web;
+using Telerik.Web.UI;
+using Telerik.Web.Design;
+using ErpModel.Model;
+using System.Data;
+using HelperLib.Data;
+using System.Web.Services;
+using System.Xml;
+using System.Text;
+using ErpModel.Enums;
+using ErpModel.Core;
+
+using ErpModel.Globals;
+using Erp.Base.Security;
+
+namespace SensysErp.Meta
+{
+    [ACL(AccessPermissions = Permission.View_SystemConfiguration,
+                 DataEntryPermissions = Permission.Modify_SystemConfiguration | Permission.Modify_SystemDefinedObjects | Permission.Create_Reports | Permission.Limit_ReportCount | Permission.Limit_ReportPerEntityCount
+                 )]
+    public partial class ReportDesigner : BasePage, IView
+    {
+        #region Properties
+
+        public string PageType
+        {
+            get { return QS("PageType").C2Str(); }
+        }
+
+        public string EntityID
+        {
+            get { return QS("EID").C2Str(); }
+        }
+        public string PageMode
+        {
+            get { return QS("PageMode").C2Str(); }
+        }
+        public string SrNo
+        {
+            get { return QS("SrNo").C2Str(); }
+        }
+
+        public string Module
+        {
+            get { return QS("Module").C2Str(); }
+        }
+        public string ItemID
+        {
+            get { return QS("ID").C2Str(); }
+        }
+        public string LayoutType
+        {
+            get { return QS("LT").C2Str(); }
+        }
+        #endregion
+
+        #region variables
+        public StringBuilder script = new StringBuilder();
+        int fieldCntr = 0;
+        #endregion
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            Ctr = new Controller(this);
+            Ctr.DataModel = new M_Reports();
+            string scrFieldInfo = "  strData = [" + "" + "];";
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), Guid.NewGuid().ToString(), scrFieldInfo, true);
+            AllowDataEntry(ItemID, lbnSave);
+            AllowDataEntry("", lbnSaveAs);
+            btnSaveProp.Visible = lbnSave.Visible || lbnSaveAs.Visible;
+            #region Page Events
+            if (!IsPostBack)
+            {
+                LoadLists();
+                LoadTree();
+                LoadCommonProps();
+                if (PageType == "E" || PageType == "V" || QS("Mode").C2Str().ToLower() == "existing")
+                {
+                    if (QS("Mode").C2Str().ToLower() != "existing")
+                    {
+                        renderReport(ItemID);
+                        Window.SetValue(this, "ReportId", QS("ID").C2Str());
+                    }
+                    else
+                        renderReport(QS("RID").C2Str());
+                }
+                else
+                {
+                    if (!QS("TID").IsBlank())
+                        renderReport(QS("TID"));
+                    else
+                        LoadBlankReport();
+                    Window.SetValue(this, "ReportId", "");
+                }
+
+                SetLayout();
+            }
+            #endregion
+        }
+
+        #region Private Methods
+        public void LoadTree()
+        {
+            if (QS("FID").ToLower() != "template")
+            {
+                Hash = new Dictionary<string, object>();
+                Hash["@TableName"] = EntityID;
+                Hash["Type"] = "LoadFieldInfoTree";
+
+                LiteSet ls = Ctr.ToSet(Hash);
+                LiteTable ltParents = ls.Tables["tbl_parents"];
+                LiteTable ltmainParents = ls.Tables["tbl_mainparents"];
+                LiteTable ltParentsWithPk = ls.Tables["tbl_parentswithpk"];
+
+                #region load parents for main tree
+                if (ltmainParents != null)
+                {
+                    for (int j = 0; j < ltmainParents.Rows.Count; j++)
+                    {
+                        RadTreeNode mainnode = new RadTreeNode();
+                        mainnode.Text = ltmainParents.Rows[j]["DisplayName"].C2Str();
+                        mainnode.Value = ltmainParents.Rows[j]["TableName"].C2Str();
+                        mainnode.Attributes.Add("IsParent", "1");
+                        mainnode.Attributes.Add("dragparam", "fld");
+                        mainnode.Attributes.Add("fieldtype", "-999");
+                        mainnode.Attributes.Add("ParentTable", ltmainParents.Rows[j]["TableName"].C2Str());
+                        tvRelated.Nodes.Add(mainnode);
+                    }
+                }
+                #endregion
+
+                #region load parents tree for dragging
+                if (ltmainParents != null)
+                {
+                    for (int j = 0; j < ltmainParents.Rows.Count; j++)
+                    {
+                        RadTreeNode mainnode = new RadTreeNode();
+                        mainnode.Text = ltmainParents.Rows[j]["DisplayName"].C2Str();
+                        mainnode.Value = ltmainParents.Rows[j]["TableName"].C2Str();
+                        mainnode.Attributes.Add("IsParent", "1");
+                        mainnode.Attributes.Add("dragparam", "fld");
+                        mainnode.Attributes.Add("ParentTable", ltmainParents.Rows[j]["TableName"].C2Str());
+                        mainnode.Attributes.Add("fieldtype", "-999");
+                        rtvFieldItems.Nodes.Add(mainnode);
+                    }
+                }
+                #endregion
+
+                if (ltParents != null)
+                {
+                    #region load parents for main tree
+                    for (int j = 0; j < tvRelated.Nodes.Count; j++)
+                    {
+                        RadTreeNode mainnode = tvRelated.Nodes[j];
+                        List<LiteRow> rows = ltParents.Select(row => C.Eq(row["TableName"], mainnode.Value));
+
+                        for (int l = 0; l < rows.Count; l++)
+                        {
+                            RadTreeNode node1 = new RadTreeNode(rows[l]["DisplayName"].C2Str(), rows[l]["FieldInfo_pid"].C2Str());
+                            node1.Attributes.Add("IsParent", rows[l]["IsParent"].C2Int().C2Str());
+                            if (rows[l]["IsParent"].C2Int() == 1)
+                            {
+                                node1.Attributes.Add("ParentTable", rows[l]["ParentTable"].C2Str());
+                                node1.Value = rows[l]["ParentTable"].C2Str();
+                                node1.ExpandMode = TreeNodeExpandMode.WebService;
+                            }
+                            node1.Attributes.Add("dragparam", "fld");
+                            node1.Attributes.Add("FieldName", rows[l]["FieldName"].C2Str());
+                            node1.Attributes.Add("FieldID", rows[l]["FieldInfo_pid"].C2Str());
+                            //node1.Attributes.Add("FieldType", rows[l]["FieldType"].C2Str());
+                            node1.Attributes.Add("fieldtype", rows[l]["FieldType"].C2Str());
+                            mainnode.Nodes.Add(node1);
+                        }
+                        AddUserNodes(mainnode, EntityID);
+
+                    }
+                    #endregion
+
+                    #region load childs tree for dragging
+                    for (int j = 0; j < rtvFieldItems.Nodes.Count; j++)
+                    {
+                        RadTreeNode mainnode = rtvFieldItems.Nodes[j];
+                        List<LiteRow> rows = ltParents.Select(row => C.Eq(row["TableName"], mainnode.Value));
+
+                        for (int l = 0; l < rows.Count; l++)
+                        {
+                            RadTreeNode node1 = new RadTreeNode(rows[l]["DisplayName"].C2Str(), rows[l]["FieldInfo_pid"].C2Str());
+                            node1.Attributes.Add("IsParent", rows[l]["IsParent"].C2Int().C2Str());
+                            if (rows[l]["IsParent"].C2Int() == 1)
+                            {
+                                node1.Attributes.Add("ParentTable", rows[l]["ParentTable"].C2Str());
+                                node1.Value = rows[l]["ParentTable"].C2Str();
+                                node1.ExpandMode = TreeNodeExpandMode.WebService;
+                            }
+                            node1.Attributes.Add("dragparam", "fld");
+                            node1.Attributes.Add("FieldName", rows[l]["FieldName"].C2Str());
+                            node1.Attributes.Add("FieldID", rows[l]["FieldInfo_pid"].C2Str());
+                            //node1.Attributes.Add("FieldType", rows[l]["FieldType"].C2Str());
+                            node1.Attributes.Add("fieldtype", rows[l]["FieldType"].C2Str());
+                            mainnode.Nodes.Add(node1);
+
+                        }
+                        AddUserNodes(mainnode, EntityID);
+
+                    }
+
+
+                    #endregion
+                }
+            }
+            if (EntityID != "tbl_CORE_Company" || QS("FID").ToLower() == "template")
+            {
+                RadTreeNode node = new RadTreeNode("Company Data", "tbl_CORE_Company");
+                node.Attributes.Add("FieldName", "company_fid");
+                node.ExpandMode = TreeNodeExpandMode.WebService;
+                node.Attributes.Add("IsParent", "1");
+                node.Attributes.Add("dragparam", "company");
+                node.Attributes.Add("fieldtype", "-999");
+                node.Attributes.Add("ParentTable", "tbl_CORE_Company");
+                node.Value = "tbl_CORE_Company";
+                rtvFieldItems.Nodes.Add(node);
+                node = new RadTreeNode("Company Data", "tbl_CORE_Company");
+                node.Attributes.Add("FieldName", "company_fid");
+                node.ExpandMode = TreeNodeExpandMode.WebService;
+                node.Attributes.Add("IsParent", "1");
+                node.Attributes.Add("ParentTable", "tbl_CORE_Company");
+                node.Attributes.Add("dragparam", "company");
+                node.Attributes.Add("fieldtype", "-999");
+                node.Value = "tbl_CORE_Company";
+                tvRelated.Nodes.Add(node);
+
+            }
+        }
+
+        private void AddUserNodes(RadTreeNode mainnode, string tblName)
+        {
+            RadTreeNode node = new RadTreeNode();
+            if (mainnode.Value != "tbl_CORE_Company")
+            {
+                node = new RadTreeNode("Company", "tbl_CORE_Company");
+                node.Attributes.Add("FieldName", "company_fid");
+                node.ExpandMode = TreeNodeExpandMode.WebService;
+                node.Attributes.Add("IsParent", "1");
+                node.Attributes.Add("ParentTable", "tbl_CORE_Company");
+                node.Value = "tbl_CORE_Company";
+                node.Attributes.Add("dragparam", "fld");
+                mainnode.Nodes.Add(node);
+
+            }
+
+            node = new RadTreeNode("Created Date", tblName + "_createdDate");
+            node.Attributes.Add("FieldName", "createdDate");
+            node.Attributes.Add("IsParent", "0");
+            node.Attributes.Add("IsWorkflow", "0");
+            node.Attributes.Add("ParentTable", tblName);
+            node.Attributes.Add("FieldType", "datetime");
+            node.Attributes.Add("dragparam", "fld");
+            mainnode.Nodes.Add(node);
+
+
+            node = new RadTreeNode("Created By", "tbl_SYS_Users");
+            node.Attributes.Add("FieldName", "createdBy_User_Fid");
+            node.ExpandMode = TreeNodeExpandMode.WebService;
+            node.Attributes.Add("IsParent", "1");
+            node.Attributes.Add("ParentTable", "tbl_SYS_Users");
+            node.Value = "tbl_SYS_Users";
+            node.Attributes.Add("dragparam", "fld");
+            mainnode.Nodes.Add(node);
+
+            node = new RadTreeNode("Owned By", "tbl_SYS_Users");
+            node.Attributes.Add("FieldName", "OwnerUser_Fid");
+            node.ExpandMode = TreeNodeExpandMode.WebService;
+            node.Attributes.Add("IsParent", "1");
+            node.Attributes.Add("ParentTable", "tbl_SYS_Users");
+            node.Value = "tbl_SYS_Users";
+            node.Attributes.Add("dragparam", "fld");
+            mainnode.Nodes.Add(node);
+
+
+            node = new RadTreeNode("Modified Date", tblName + "_modifiedDate");
+            node.Attributes.Add("FieldName", "modifiedDate");
+            node.Attributes.Add("IsParent", "0");
+            node.Attributes.Add("IsWorkflow", "0");
+            node.Attributes.Add("dragparam", "fld");
+            node.Attributes.Add("ParentTable", tblName);
+            node.Attributes.Add("FieldType", "datetime");
+            mainnode.Nodes.Add(node);
+
+            node = new RadTreeNode("Modified By", "tbl_SYS_Users");
+            node.Attributes.Add("FieldName", "modifiedBy_User_Fid");
+            node.ExpandMode = TreeNodeExpandMode.WebService;
+            node.Attributes.Add("IsParent", "1");
+            node.Attributes.Add("dragparam", "fld");
+            node.Attributes.Add("ParentTable", "tbl_SYS_Users");
+            node.Value = "tbl_SYS_Users";
+            mainnode.Nodes.Add(node);
+
+            node = new RadTreeNode("Is Locked", tblName + "_IsLocked");
+            node.Attributes.Add("FieldName", "IsLocked");
+            node.Attributes.Add("IsParent", "0");
+            node.Attributes.Add("IsWorkflow", "0");
+            node.Attributes.Add("ParentTable", tblName);
+            node.Attributes.Add("dragparam", "fld");
+            node.Attributes.Add("FieldType", "checkbox");
+            mainnode.Nodes.Add(node);
+        }
+        private void LoadLists()
+        {
+            Hash = new Dictionary<string, object>();
+            Hash["Type"] = "LoadImageResources";
+            LiteTable lt = Ctr.ToTable(Hash);
+            SetListData(ddlImageResources, lt, "ResourceName", "Resources_Pid");
+        }
+        private void loadAggregates()
+        {
+            foreach (ErpModel.Enums.Aggregates r in Enum.GetValues(typeof(Aggregates)))
+            {
+                ListItem li = new ListItem();
+                li.Text = r.C2Str();
+                li.Value = r.C2Str();
+                ddlTypes.Items.Add(li);
+            }
+        }
+        private void LoadBlankReport()
+        {
+            var html = "<div id='divReportSections' class='mainreport'>";
+            html += "<div id='pageheadercntr' >";
+            html += "<div id='PageHeader'   class='reportsection pageHeader' data-d--Style='font-weight:bold;'><div  class='sectionheadings' ><span>Page Header</span></div><div class='sectionStyle' dragparam='lbl'><div style='font-weight:bold;' class='fieldBorder'></div></div></div>";
+            html += "</div>";
+            RenderScript(null, "PageHeader", "rPHeader", "lbl", "-999", "", "");
+
+            html += "<div id='reportheadercntr' >";
+            html += "<div id='ReportHeader'    class='reportsection reportHeader' data-d--Style='font-weight:bold;'><div  class='sectionheadings' ><span>Report Header</span></div><div class='sectionStyle' dragparam='lbl'><div style='font-weight:bold;' class='fieldBorder'></div></div></div>";
+            html += " </div>";
+            RenderScript(null, "ReportHeader", "rHeader", "lbl", "-999", "", "");
+
+            html += "<div id='reportdetailcntr' >";
+            html += "<div id='ReportDetail' dragparam='fld'  class='reportsection reportDetail'><div  class='sectionheadings'><span>Report Detail</span></div><div class='sectionStyle' dragparam='fld'><div class='fieldBorder'></div></div></div>";
+            html += " </div>";
+            RenderScript(null, "ReportDetail", "rDetail", "fld", "-999", "", "");
+
+            html += "<div id='reportfootercntr' >";
+            html += " <div id='ReportFooter'   class='reportsection reportFooter' ><div class='sectionheadings' ><span>Report Footer</span></div><div class='sectionStyle' dragparam='lbl'><div class='fieldBorder'></div></div></div>";
+            html += " </div>";
+            RenderScript(null, "ReportFooter", "rFooter", "lbl", "-999", "", "");
+
+            html += "<div id='pagefootercntr' >";
+            html += " <div id='PageFooter'   class='reportsection pageFooter' ><div class='sectionheadings' ><span>Page Footer</span></div><div class='sectionStyle' dragparam='lbl'><div class='fieldBorder'></div></div></div>";
+            html += " </div>";
+            RenderScript(null, "PageFooter", "rPFooter", "lbl", "-999", "", "");
+
+
+            html += " </div>";
+            reportContent.Text = html;
+            string scr = "$(window).load(registerLayoutObjects);function registerLayoutObjects(){var fld;" + script.ToString() + "}";
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), Guid.NewGuid().ToString(), scr, true);
+        }
+        private void LoadCommonProps()
+        {
+            string[] arrPageSize = "Custom,Letter,A2,A3,A4,A5,A6,B4,B5,DSheet,Standard11x17,Standard10 x 14,TabloidExtra,Ledger,Legal,Statement,Executive,Folio,Note,PersonalEnvelope,MonarchEnvelope".Split(',');
+            ddlPageSize.DataSource = arrPageSize;
+            ddlPageSize.DataBind();
+
+            ifrmRole.Src = "../System/GrantPermission.aspx?_ns=1&RID=" + ItemID + "&RType=Report&PageType=" + PageType;
+
+            Window.SetValue(this, "sid", System.Guid.NewGuid());
+            Window.SetValue(this, "complFilterId", System.Guid.NewGuid());
+            Window.SetValue(this, "cfid", System.Guid.NewGuid());
+            Window.SetValue(this, "subreportfilter", System.Guid.NewGuid());
+            Window.SetValue(this, "SubFilter", System.Guid.NewGuid());
+            loadAggregates();
+        }
+        #endregion
+
+        #region IView Members
+
+        void IView.Notify(string strMessage, string excMessage, HelperLib.Enums.Result resultType, string errorCode)
+        {
+            ShowMessage(ActionMessage1, resultType, strMessage, excMessage, errorCode);
+
+        }
+        public void SetLayout()
+        {
+
+            if (!IsPostBack)
+            {
+
+            }
+
+        }
+
+        #endregion
+
+        #region view mode functions
+        private string renderReport(string reportId)
+        {
+            string reportXml = "";
+            Hash = new Dictionary<string, object>();
+            Hash["@ID"] = reportId;
+            Hash["Type"] = "LoadReportItem";
+            LiteTable ltReportData = Ctr.ToTable(Hash);
+            if (ltReportData != null)
+            {
+                reportXml = ltReportData.Rows[0]["ReportXML"].C2Str();
+                if (QS("TID").IsBlank())
+                {
+                    SetTextData(lblTitle, ltReportData.Rows[0]["ReportName"].C2Str());
+                    SetTextData(hdnReportName, ltReportData.Rows[0]["ReportName"].C2Str());
+                    SetTextData(hdnDesc, ltReportData.Rows[0]["ReportDescription"].C2Str());
+                    SetTextData(txtResVersion, ltReportData.Rows[0]["ResourceVersion"].C2Str());
+                }
+                XmlDocument doc = new XmlDocument();
+                doc.LoadXml(reportXml);
+
+                SetCommonProperties(doc);
+
+                XmlNodeList filterNode = doc.SelectNodes("Layout/Grid/Filter");
+                if (filterNode.Count > 0)
+                {
+                    string filterXml = filterNode[0].OuterXml.C2Str();
+                    hdnFilter.Value = filterXml;
+                }
+
+                XmlNodeList CompulsoryfilterNode = doc.SelectNodes("Layout/Grid/CompulsoryFilter/Filter");
+                if (CompulsoryfilterNode.Count > 0)
+                {
+                    string CompulsoryfilterXml = CompulsoryfilterNode[0].OuterXml.C2Str();
+                    hdnCompulsoryFilter.Value = CompulsoryfilterXml;
+                }
+
+                StringBuilder strCol = new StringBuilder();
+
+                string entityId = ltReportData.Rows[0]["Entity_Fid"].C2Str();
+                Entity ent = new Entity(LayoutTypes.Report, entityId, "", "");
+                LiteSet lsMeta = ent.LoadMetaData();
+
+                Hash = new Dictionary<string, object>();
+                Hash["Type"] = "LoadImageResources";
+                LiteTable dtResourcData = Ctr.ToTable(Hash);
+
+                StringBuilder tbl = new StringBuilder();
+                LiteTable dtFieldInfo = lsMeta.Tables["tbl_META_FieldInfo"];
+
+                dtFieldInfo.PrimaryKey = new LiteColumn[] { dtFieldInfo.Columns["FieldInfo_pid"] };
+                dtResourcData.PrimaryKey = new LiteColumn[] { dtResourcData.Columns["Resources_Pid"] };
+                tbl.Append(GetMainReportDiv(doc));
+                tbl.Append(GetPageHeaderSection(doc, dtFieldInfo, dtResourcData));
+                tbl.Append(GetReportHeaderSection(doc, dtFieldInfo, dtResourcData));
+                tbl.Append(GetGroupHeaderSections(doc, dtFieldInfo, dtResourcData));
+                tbl.Append(GetReportDetailSection(doc, dtFieldInfo, dtResourcData));
+                tbl.Append(GetSubReport(doc, dtFieldInfo, entityId, dtResourcData));
+                tbl.Append(GetGroupFooterSections(doc, dtFieldInfo, dtResourcData));
+                tbl.Append(GetReportFooterSection(doc, dtFieldInfo, dtResourcData));
+                tbl.Append(GetPageFooterSection(doc, dtFieldInfo, dtResourcData));
+                getCfData(doc, dtFieldInfo);
+
+
+                #region report sort
+                ///
+                XmlNodeList reportSortList = doc.SelectNodes("Layout/Grid/Sort/ColInfo/Cols");
+                StringBuilder strReportSort = new StringBuilder();
+
+                for (int j = 0; j < reportSortList.Count; j++)
+                {
+                    XmlNode sortItem = reportSortList[j];
+                    LiteRow lrSort = dtFieldInfo.Rows.Find(C.Attr(sortItem, "Name"));
+                    if (lrSort != null)
+                    {
+                        strReportSort.Append("{");
+                        strReportSort.Append("Name:\"" + lrSort["DisplayName"].C2Str() + "\"");
+                        strReportSort.Append(",Sort:\"" + sortItem.Attributes["Sort"].Value.C2Str() + "\"");
+                        strReportSort.Append(",EntityPath:\"" + sortItem.Attributes["EntityPath"].Value.C2Str() + "\"");
+                        strReportSort.Append(",FID:\"" + sortItem.Attributes["Name"].Value.C2Str() + "\"");
+                        strReportSort.Append("},");
+                    }
+                }
+                string scrSortInfo = "  ArrReportSortData[\"Report\"] = [" + strReportSort.ToString() + "];";
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), Guid.NewGuid().ToString(), scrSortInfo, true);
+
+                #endregion
+
+                //GetSubreport();
+                tbl.AppendLine(" </div>");
+                reportContent.Text = tbl.ToString();
+                //xlist = doc.SelectNodes("Layout");
+                Window.SetValue(this, "fieldCntr", fieldCntr + 1);
+
+                string scr = "$(window).load(registerLayoutObjects);function registerLayoutObjects(){var fld;" + script.ToString() + "}";
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), Guid.NewGuid().ToString(), scr, true);
+            }
+
+
+            return reportXml.ToString();
+        }
+        private void SetCommonProperties(XmlDocument doc)
+        {
+            XmlNode gridNode = doc.SelectSingleNode("Layout/Grid");
+            if (gridNode != null)
+            {
+                ddlAmountIn.SelectedValue = C.Attr(gridNode, "AmountIn");
+                ddlNumFormat.SelectedValue = C.Attr(gridNode, "NumberFormat");
+                ddlDateFormat.SelectedValue = C.Attr(gridNode, "DateFormat");
+            }
+            XmlNode psNode = doc.SelectSingleNode("Layout/Grid/PageSetting");
+            if (psNode != null)
+            {
+                ddlPageSize.SelectedValue = C.Attr(psNode, "PageSize");
+
+                if (C.Attr(psNode, "PageSize") == "Custom")
+                {
+                    SetTextData(txtWidth, C.Attr(psNode, "PageWidth"));
+                    SetTextData(txtHeight, C.Attr(psNode, "PageHeight"));
+                }
+                string pageOrientation = C.Attr(psNode, "PageOrientation");
+
+                if (pageOrientation == "Portrait")
+                    rdoPortrait.Checked = true;
+                else
+                    rdoLandscape.Checked = true;
+
+                SetTextData(txtTopMargin, C.Attr(psNode, "Top"));
+                SetTextData(txtLeftMargin, C.Attr(psNode, "Left"));
+                SetTextData(txtRightMargin, C.Attr(psNode, "Right"));
+                SetTextData(txtBottomMargin, C.Attr(psNode, "Bottom"));
+            }
+
+            #region default style
+            //XmlNode styleNode = doc.SelectSingleNode("Layout/Grid/DefaultStyle/GroupHeader");
+            //if (styleNode != null)
+            //    hdnGroupHeader.Value = C.Attr(styleNode, "LabelStyle");
+
+            //styleNode = doc.SelectSingleNode("Layout/Grid/DefaultStyle/Item");
+            //if (styleNode != null)
+            //    hdnItem.Value = C.Attr(styleNode, "LabelStyle");
+
+            //styleNode = doc.SelectSingleNode("Layout/Grid/DefaultStyle/GroupFooter");
+            //if (styleNode != null)
+            //    hdnGroupFooter.Value = C.Attr(styleNode, "LabelStyle");
+
+            //styleNode = doc.SelectSingleNode("Layout/Grid/DefaultStyle/ReportHeader");
+            //if (styleNode != null)
+            //    hdnReportHeader.Value = C.Attr(styleNode, "LabelStyle");
+
+            //styleNode = doc.SelectSingleNode("Layout/Grid/DefaultStyle/ReportFooter");
+            //if (styleNode != null)
+            //    hdnReportFooter.Value = C.Attr(styleNode, "LabelStyle");
+
+            //styleNode = doc.SelectSingleNode("Layout/Grid/DefaultStyle/PageHeader");
+            //if (styleNode != null)
+            //    hdnPageHeader.Value = C.Attr(styleNode, "LabelStyle");
+
+            //styleNode = doc.SelectSingleNode("Layout/Grid/DefaultStyle/PageFooter");
+            //if (styleNode != null)
+            //    hdnPageFooter.Value = C.Attr(styleNode, "LabelStyle");
+
+            //styleNode = doc.SelectSingleNode("Layout/Grid/DefaultStyle/SubreportHeader");
+            //if (styleNode != null)
+            //    hdnSubReportHeader.Value = C.Attr(styleNode, "LabelStyle");
+
+            //styleNode = doc.SelectSingleNode("Layout/Grid/DefaultStyle/SubreportItem");
+            //if (styleNode != null)
+            //    hdnSubreportDetail.Value = C.Attr(styleNode, "LabelStyle");
+
+            //styleNode = doc.SelectSingleNode("Layout/Grid/DefaultStyle/SubreportFooter");
+            //if (styleNode != null)
+            //    hdnSubreportFooter.Value = C.Attr(styleNode, "LabelStyle");
+            #endregion
+        }
+        private void getCfData(XmlDocument doc, LiteTable dtFieldInfo)
+        {
+
+            XmlNodeList xCfNodes = doc.SelectNodes("Layout/Grid/Styles/StyleRoot");
+            if (xCfNodes != null)
+            {
+                for (int c = 0; c < xCfNodes.Count; c++)
+                {
+                    StringBuilder strCf = new StringBuilder();
+                    XmlNode CfItem = xCfNodes[c];
+
+                    string key = C.Attr(CfItem, "key");
+                    XmlNodeList styleList = CfItem.SelectNodes("Style");
+                    if (styleList != null)
+                    {
+                        for (int p = 0; p < styleList.Count; p++)
+                        {
+                            XmlNode styleItem = styleList[p];
+                            XmlNode filterItem = styleItem.SelectSingleNode("Filter");
+
+                            XmlNode cssItem = styleItem.SelectSingleNode("Css");
+                            string style = C.Attr(cssItem, "LabelStyle");
+                            string query = C.Attr(styleItem, "query");
+                            string visible = C.Attr(cssItem, "Visible").C2Int().C2Str();
+                            string border = C.Attr(cssItem, "Border").C2Str();
+                            string padding = C.Attr(cssItem, "Padding").C2Str();
+
+                            strCf.Append("{");
+                            strCf.Append("DispCond:\"" + (filterItem == null ? "" : GetQuery(filterItem.OuterXml.C2Str(), dtFieldInfo)) + "\"");
+                            strCf.Append(",Style:\"" + style + "\"");
+                            strCf.Append(",filterXml:" + (filterItem == null ? "\"\"":C.JSEncode(filterItem.OuterXml.C2Str()) )+ "");
+                            strCf.Append(",Key:\"" + key + "\"");
+                            strCf.Append(",EntityPath:\"" + C.Attr(CfItem, "EntityPath") + "\"");
+                            strCf.Append(",Value:\"" + C.Attr(CfItem, "Name") + "\"");
+                            strCf.Append(",Name:\"" + C.Attr(CfItem, "Name") + "\"");
+                            strCf.Append(",Visible:\"" + visible + "\"");
+                            strCf.Append(",Border:\"" + border + "\"");
+                            strCf.Append(",Padding:\"" + padding + "\"");
+                            strCf.Append("},");
+                        }
+                    }
+
+
+
+                    string scrCFInfo = "  arrCondFormat[\"" + key + "\"] = [" + strCf.ToString() + "];";
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), Guid.NewGuid().ToString(), scrCFInfo, true);
+
+
+
+                }
+            }
+        }
+        private string GetQuery(string subXml, LiteTable ltFieldInfo)
+        {
+            StringBuilder strFilter = new StringBuilder();
+            XmlDocument doc1 = new XmlDocument();
+            doc1.LoadXml(subXml);
+            XmlNode xlist = doc1.ChildNodes[0];
+
+            ltFieldInfo.PrimaryKey = new LiteColumn[] { ltFieldInfo.Columns["FieldInfo_pid"] };
+            for (int i = 0; i < xlist.ChildNodes.Count; i++)
+            {
+                var child = xlist.ChildNodes[i];
+                if (!C.Eq(child.Name, "Condition"))
+                    continue;
+                LiteRow lr = ltFieldInfo.Rows.Find(C.Attr(child, "Name"));
+                string name = (lr["DisplayName"].C2Str().IsBlank() ? lr["FieldName"].C2Str() : lr["DisplayName"].C2Str());
+
+                if (strFilter.Length == 0)
+                    strFilter.Append("  ( [" + name + "] " + C.Attr(child, "Operator") + " '" + C.Attr(child, "Value") + "' )");
+                else
+                    strFilter.Append(" and ( [" + name + "] " + C.Attr(child, "Operator") + " '" + C.Attr(child, "Value") + "' )");
+            }
+            return strFilter.ToString();
+
+        }
+        private int setParameterArray(string innerXml, LiteTable dtFieldInfo, LiteTable dtMain, int s)
+        {
+            string inner = "<SubReport>" + innerXml + "</SubReport>";
+            inner = inner.Trim();
+            XmlDocument docPrm = new XmlDocument();
+            docPrm.LoadXml(inner);
+            XmlNodeList parlist = docPrm.SelectNodes("SubReport/SubreportFilter");
+            int RelatedRecord = 0;
+            if (parlist != null)
+            {
+                RelatedRecord = C.Attr(parlist[0], "RelatedRecord").C2Int();
+            }
+            XmlNodeList parameterlist = docPrm.SelectNodes("SubReport/SubreportFilter/Condition");
+            StringBuilder strPrmArr = new StringBuilder();
+
+            for (int j = 0; j < parameterlist.Count; j++)
+            {
+                XmlNode parameterItem = parameterlist[j];
+                LiteRow lrSub = dtMain.Rows.Find(C.Attr(parameterItem, "Value"));
+                LiteRow lrMain = dtMain.Rows.Find(C.Attr(parameterItem, "Name"));
+                // string[] arrSort = new string[4];
+
+                if (lrMain != null)
+                {
+                    strPrmArr.Append("{");
+                    strPrmArr.Append("mainID:\"" + parameterItem.Attributes["Name"].Value.C2Str() + "\"");
+                    strPrmArr.Append(",mainText:\"" + (lrMain["DisplayName"].C2Str() == "" ? lrMain["FieldName"].C2Str() : lrMain["DisplayName"].C2Str()) + "\"");
+                    strPrmArr.Append(",EP:\"" + parameterItem.Attributes["EntityPath"].Value.C2Str() + "\"");
+                    strPrmArr.Append(",subID:\"" + parameterItem.Attributes["Value"].Value.C2Str() + "\"");
+                    strPrmArr.Append(",subText:\"" + (lrSub["DisplayName"].C2Str() == "" ? lrSub["FieldName"].C2Str() : lrSub["DisplayName"].C2Str()) + "\"");
+                    strPrmArr.Append(",subEP:\"" + parameterItem.Attributes["ValueEntityPath"].Value.C2Str() + "\"");
+                    strPrmArr.Append("},");
+                }
+                //detailsection = "<span data--Name='" + lr["DisplayName"].C2Str() + "' id='" + C.Attr(child, "id") + "' data--Value='" + C.Attr(child, "Name") + "' Suppress'" + C.Attr(child, "Suppress") + "' data--Entity-Path='" + C.Attr(child, "EntityPath") + "' width='" + C.Attr(child, "Width") + " px' title='" + C.Attr(child, "Title") + "' class='gridCell'><span><a href='javascript:void(0)'>X</a></span><span>" + C.Attr(child, "Title") + "</span><span class='widthInd'>" + C.Attr(child, "Width") + "</span></span>";
+            }
+            string scrSortInfo = "  ArrParameterData[\"Subreport" + (s) + "\"] = [" + strPrmArr.ToString() + "];";
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), Guid.NewGuid().ToString(), scrSortInfo, true);
+            return RelatedRecord;
+        }
+        private string GetSubReport(XmlDocument doc, LiteTable dtMain, string mainEntity, LiteTable dtResource)
+        {
+            StringBuilder subreport1 = new StringBuilder();
+            XmlNodeList xlist = doc.SelectNodes("Layout/Grid/SubReport");
+
+            for (int s = 0; s < xlist.Count; s++)
+            {
+
+                XmlNode child = xlist[s];
+                string subi = C.Attr(child, "Cntr");
+                int RelatedRecord = 0;
+                string type = C.Attr(child, "Type");
+                string entityId = C.Attr(child, "Id");
+                string style = C.Attr(child, "LabelStyle");
+                string Suppress = C.Attr(child, "Suppress");
+                Entity ent = new Entity(LayoutTypes.Report, entityId, "", "");
+                LiteSet lsMeta = ent.LoadMetaData();
+                Window.SetValue(this, "subi", (s + 1));
+                LiteTable dtFieldInfo = lsMeta.Tables["tbl_META_FieldInfo"];
+                dtFieldInfo.PrimaryKey = new LiteColumn[] { dtFieldInfo.Columns["FieldInfo_pid"] };
+                DataTable dtTableInfo = lsMeta.Tables["tbl_META_Entities"].ToDataTable();
+                RelatedRecord = setParameterArray(child.InnerXml.C2Str(), dtFieldInfo, dtMain, C.Int(subi));
+                LiteTable dtResourcData = lsMeta.Tables["tbl_resources"];
+                if (s == 0)
+                    subreport1.Append("<div id='DivSubSections' >");
+
+                if (type == "blank")
+                {
+
+                    string innerXml = "<SubReport>" + child.InnerXml.C2Str() + "</SubReport>";
+                    innerXml = innerXml.Trim();
+                    XmlDocument doc1 = new XmlDocument();
+                    doc1.LoadXml(innerXml);
+
+                    #region get subreport header section
+
+                    string subHdr = "";
+                    string name = C.Attr(child, "Id");
+                    XmlNodeList xlistsrh1 = doc1.SelectNodes("SubReport/ReportHeader");
+                    subreport1.Append("<div class='subreport'  data--Suppress='" + Suppress + "' data-style='" + style + "'  id='Subreport" + subi + "' data--Related-Record='" + RelatedRecord + "' data--Related-Id='" + name + "' data-cntr='" + subi + "' grpName='" + name + "' data-rep-Type='blank' data-report-Id=''>");
+
+                    DataRow tblDr = dtTableInfo.SelectSingle("entity_pid = '" + name + "'");
+                    string subreportname = tblDr["DisplayName"].C2Str();
+                    RadTreeNode newRtNode = new RadTreeNode();
+
+                    RadTreeNode existingNode = rtvFieldItems.FindNodeByAttribute("dragparam", "subfield-" + name);
+                    if (existingNode == null)
+                    {
+                        newRtNode.Text = subreportname;
+                        newRtNode.Value = name;
+                        newRtNode.ExpandMode = TreeNodeExpandMode.WebService;
+                        newRtNode.Attributes.Add("dragparam", "subfield-" + name);
+                        newRtNode.Attributes.Add("dragparam_id", name);
+                        newRtNode.Attributes.Add("IsParent", "1");
+                        newRtNode.Attributes.Add("IsSubReport", "1");
+
+                        rtvFieldItems.Nodes.Add(newRtNode);
+                    }
+
+                    subreport1.Append("<div id='subreportheadercntr' >");
+                    for (int sr = 0; sr < xlistsrh1.Count; sr++)
+                    {
+
+
+                        style = C.Attr(xlistsrh1[sr], "LabelStyle");
+                        Suppress = C.Attr(xlistsrh1[sr], "Suppress");
+
+                        subreport1.Append("<div class='reportsection  SubreportHeader' data-@-Type='subhdr' style='width:" + C.Attr(xlistsrh1[sr], "Width") + "px;' defaultFont='" + C.Attr(xlistsrh1[sr], "defaultFont") + "' SctCss='" + C.Attr(xlistsrh1[sr], "SctCss") + "'  data-ref='" + C.Attr(xlistsrh1[sr], "Ref") + "' data--Suppress='" + Suppress + "' data-style='" + style + "'  id='" + C.Attr(xlistsrh1[sr], "ID") + "' data--Related-Record='" + RelatedRecord + "' data--Related-Id='" + name + "' data-cntr='" + subi + "' grpName='" + name + "' data-rep-Type='blank' data-report-Id='' >");
+                        subreport1.Append("<div onclick='Highlight(this,event)' class='sectionheadings'><span>Subreport Header" + "{" + subreportname + "}" + (s + 1) + (sr > 0 ? "- " + (sr.C2Int() + 1) : "") + "</span></div>");
+                        string height = (C.Attr(xlistsrh1[sr], "Height").IsBlank() ? "25px" : (C.Attr(xlistsrh1[sr], "Height").C2Int() ).C2Str() + "px");
+                        subreport1.Append("<div class='sectionStyle' defaultFont='" + C.Attr(xlistsrh1[sr], "defaultFont") + "' data-@-Type='subhdr' style='height:" + height + ";" + C.Attr(xlistsrh1[sr], "SctCss") + "'  dragparam='subfield-" + name + "'><div class='fieldBorder' style='" + C.Attr(xlistsrh1[sr], "LabelStyle") + (C.IsBlank(C.Attr(xlistsrh1[sr], "LabelBorder")) ? "" : "border:inherit;") + "'>");
+
+                        subreport1.Append(GetOtherObjectData(xlistsrh1[sr], dtResourcData, dtFieldInfo, ""));
+                        subreport1.Append("</div></div></div>");
+                    }
+                    subreport1.Append("</div>");
+                    #endregion
+
+                    #region get subreport detail section
+
+                    string subDtl = "";
+                    XmlNodeList xlistsd1 = doc1.SelectNodes("SubReport/ReportDetail");
+                    XmlNode xFilter = doc1.SelectSingleNode("SubReport/Filter");
+                    string filterXml1 = (xFilter != null ? xFilter.OuterXml : "");
+                    name = C.Attr(child, "Id");
+
+                    subreport1.Append("<div id='subreportdetailcntr' >");
+                    for (int sd = 0; sd < xlistsd1.Count; sd++)
+                    {
+
+                        style = C.Attr(xlistsd1[sd], "LabelStyle");
+                        Suppress = C.Attr(xlistsd1[sd], "Suppress");
+
+                        subreport1.Append("<div class='reportsection SubreportDetail' defaultFont='" + C.Attr(xlistsd1[sd], "defaultFont") + "' data-@-Type='subdtl' style='width:" + C.Attr(xlistsd1[sd], "Width") + "px;' SctCss='" + C.Attr(xlistsd1[sd], "SctCss") + "' data-ref='" + C.Attr(xlistsd1[sd], "Ref") + "' data--Suppress='" + Suppress + "' data-style='" + style + "'  id='" + C.Attr(xlistsd1[sd], "ID") + "' data--Related-Record='" + RelatedRecord + "' data--Related-Id='" + name + "' data-cntr='" + subi + "' grpName='" + name + "' data-rep-Type='blank' data-report-Id='' >");
+                        subreport1.Append("<div onclick='Highlight(this,event)' class='sectionheadings'><span>Subreport Detail" + "{" + subreportname + "}" + (s + 1) + (sd > 0 ? "- " + (sd.C2Int() + 1) : "") + "</span>&nbsp;&nbsp;&nbsp;<a href='javascript:void(0)' style='color:gray' onclick='AddParameter(this,\"AddParameter\")'  frmid='" + subi + "' >Add Parameter</a>&nbsp;&nbsp;&nbsp;<a href='javascript:void(0)' style='color:gray' onclick='AddSubreportFilter(this)'  frmid='" + subi + "' fid='" + name + "' >Add Filter</a><input type='hidden' id='hdnSubFilter" + subi + "' value='" + filterXml1 + "' /></div>");
+                        string height = (C.Attr(xlistsd1[sd], "Height").IsBlank() ? "25px" : (C.Attr(xlistsd1[sd], "Height").C2Int() ).C2Str() + "px");
+                        subreport1.Append("<div class='sectionStyle' defaultFont='" + C.Attr(xlistsd1[sd], "defaultFont") + "' data-@-Type='subdtl' style='height:" + height + ";" + C.Attr(xlistsd1[sd], "SctCss") + "' dragparam='subfield-" + name + "' dragparam_id='" + name + "'><div class='fieldBorder' style='" + C.Attr(xlistsd1[sd], "LabelStyle") + (C.IsBlank(C.Attr(xlistsd1[sd], "LabelBorder")) ? "" : "border:inherit;") + "'>");
+                        subreport1.Append(GetOtherObjectData(xlistsd1[sd], dtResource, dtFieldInfo, "subfield-" + name));
+                        subreport1.Append("</div></div></div>");
+                    }
+                    subreport1.Append("</div>");
+                    #endregion
+
+                    #region get subreport footer section
+
+                    string subftr = "";
+                    XmlNodeList xlistftr1 = doc1.SelectNodes("SubReport/ReportFooter");
+                    name = C.Attr(child, "Id");
+                    subreport1.Append("<div id='subreportfootercntr' >");
+                    for (int sf = 0; sf < xlistftr1.Count; sf++)
+                    {
+
+                        XmlNodeList xlistftr = xlistftr1[sf].SelectNodes("ColInfo/Label");
+
+                        style = C.Attr(xlistftr1[sf], "LabelStyle");
+                        Suppress = C.Attr(xlistftr1[sf], "Suppress");
+
+                        subreport1.Append("<div class='reportsection  SubreportFooter' defaultFont='" + C.Attr(xlistftr1[sf], "defaultFont") + "' data-@-Type='subftr' style='width:" + C.Attr(xlistftr1[sf], "Width") + "px;' SctCss='" + C.Attr(xlistftr1[sf], "SctCss") + "' data-ref='" + C.Attr(xlistftr1[sf], "Ref") + "' data--Suppress='" + Suppress + "' data-style='" + style + "'  id='" + C.Attr(xlistftr1[sf], "ID") + "' data--Related-Record='" + RelatedRecord + "' data--Related-Id='" + name + "' data-cntr='" + subi + "' grpName='" + name + "' data-rep-Type='blank' data-report-Id='' >");
+                        subreport1.Append("<div onclick='Highlight(this,event)'  class='sectionheadings'><span>Subreport Footer" + "{" + subreportname + "}" + (s + 1) + (sf > 0 ? "- " + (sf.C2Int() + 1) : "") + "</span></div>");
+                        string height = (C.Attr(xlistftr1[sf], "Height").IsBlank() ? "25px" : (C.Attr(xlistftr1[sf], "Height").C2Int() ).C2Str() + "px");
+                        subreport1.Append("<div class='sectionStyle' defaultFont='" + C.Attr(xlistftr1[sf], "defaultFont") + "' data-@-Type='subftr' style='height:" + height + ";" + C.Attr(xlistftr1[sf], "SctCss") + "' dragparam='subfield-" + name + "'><div class='fieldBorder' style='" + C.Attr(xlistftr1[sf], "LabelStyle") + (C.IsBlank(C.Attr(xlistftr1[sf], "LabelBorder")) ? "" : "border:inherit;") + "'>");
+
+                        subreport1.Append(GetOtherObjectData(xlistftr1[sf], dtResourcData, dtFieldInfo, ""));
+                        subreport1.Append("</div></div></div>");
+                    }
+                    subreport1.Append("</div>");
+                    subreport1.Append("</div>");
+                    #endregion
+                    //string filterXml = child.SelectSingleNode("Filter").OuterXml.ToString();
+                    subreport1.Append("<div style='display:none;height:100%;width:100%' id='iframectr-" + subi + "' class='iframectr formSettings'><iframe style='height:98%;width:100%'  frameborder='0' id='iframe-" + subi + "' EID='" + entityId + "' src='EntityTree.aspx?EID=" + entityId + "&dragparam=subfield-" + name + "' ></iframe> <input type='button' onclick='$(\"#iframectr-" + subi + "\").HideModal();' style='float:right' class='RedButton' value='X' /></div>");
+                    // subreport1.Append("<input  id='txt-" + subi + "' value='" + filterXml + "' style='display:none' text='" + filterXml + "' />");
+                }
+                else
+                {
+                    Dictionary<string, object> data = new Dictionary<string, object>();
+                    data["@EntityId"] = mainEntity;
+                    data["Type"] = "LoadRelatedSR";
+                    LiteTable lt = Ctr.ToTable(data);
+                    lt.PrimaryKey = new LiteColumn[] { lt.Columns["Report_Pid"] };
+
+                    LiteRow lrESR = lt.Rows.Find(C.Attr(child, "ReportID"));
+                    string reportName = "";
+                    if (lrESR != null)
+                    {
+                        reportName = lrESR["ReportName"].C2Str();
+                    }
+                    string name = C.Attr(child, "Id");
+                    RelatedRecord = setParameterArray(child.InnerXml.C2Str(), dtFieldInfo, dtMain, s);
+                    subreport1.Append("<div class='reportsection subreport' style='width:" + C.Attr(child, "Width") + "px;' id='" + C.Attr(child, "ID") + "' data--Suppress='" + Suppress + "' data-style='" + style + "'  data--Related-Record='" + RelatedRecord + "' data--Related-Id='" + name + "'  id='Subreport" + subi + "' data-rep-Type='existing' data-report-Id='" + C.Attr(child, "ReportID") + "' SctCss='" + C.Attr(child, "SctCss") + "' data-cntr='" + subi + "'  >");
+                    subreport1.Append("<div onclick='Highlight(this,event)' class='sectionheadings'><span>Subreport " + subi + "{" + reportName + "}</span>&nbsp;&nbsp;&nbsp;<a href='javascript:void(0)' onclick='AddParameter(this,\"AddParameter\")' style='color:gray'  frmid='" + subi + "' >Add Parameter</a>&nbsp;&nbsp;&nbsp;<a href='javascript:void(0)' style='color:gray' onclick='AddSubreportFilter(this)'  frmid='" + subi + "' fid='" + name + "' >Add Filter</a><input type='hidden' id='hdnSubFilter" + subi + "' /></div></div>");
+                    subreport1.Append("<div style='display:none;height:100%;width:100%' id='iframectr-" + subi + "' class='iframectr formSettings'><iframe  frameborder='0'  style='height:100%;width:100%' id='iframe-" + subi + "' EID='" + name + "' src='EntityTree.aspx?EID=" + name + "&dragparam=subfield-" + name + "'  ></iframe> <input type='button' onclick='$(\"#iframectr-" + subi + "\").HideModal();' style='float:right' class='RedButton' value='X' /></div>");
+                    RenderScript(null, "Subreport" + subi, "rsubReport", "", "-999", "", "");
+                }
+            }
+
+            if (!C.IsBlank(subreport1))
+                subreport1.Append("</div>");
+            return subreport1.ToString();
+        }
+        private string getSectionDivs(XmlDocument doc, LiteTable dtFieldInfo, string sectionID, string sectionClass, string sectionType, bool isButton, string heading, string dragparam, LiteTable dtResource)
+        {
+            StringBuilder Section = new StringBuilder();
+
+            XmlNodeList xlist = doc.SelectNodes("Layout/Grid/" + sectionID);
+            Section.Append("<div id='" + sectionID.ToLower() + "cntr' >");
+            if (xlist != null && xlist.Count > 0)
+            {
+                for (int rh = 0; rh < xlist.Count; rh++)
+                {
+                    Section.Append("<div id='" + C.Attr(xlist[rh], "ID") + "' class='reportsection " + sectionClass
+                        + "'  style='width:" + C.Attr(xlist[rh], "Width") + "px;' data-cntr='" + (rh + 1) + "' data--Suppress='" + C.Attr(xlist[rh], "Suppress") + "' data-ref='" + C.Attr(xlist[rh], "Ref") + "' data-d-style='"
+                        + C.Attr(xlist[rh], "LabelStyle") + "' SctCss='" + C.Attr(xlist[rh], "SctCss") + "' defaultFont='" + C.Attr(xlist[rh], "defaultFont") + "' data-d-border='"
+                        + C.Attr(xlist[rh], "LabelBorder") + @"'  >");
+                    string labelborder = C.Attr(xlist[rh], "LabelBorder");
+                    Section.Append(@"<div class='sectionheadings'><span>" + (rh <= 0 ? heading : heading + " " + (rh + 1)) + "</span>");
+
+                    string height = (C.Attr(xlist[rh], "Height").IsBlank() ? "25px" : (C.Attr(xlist[rh], "Height").C2Int() ) + "px");
+
+                    Section.Append(" </div><div class='sectionStyle' defaultFont='" + C.Attr(xlist[rh], "defaultFont") + "' style='height:" + height + ";" + C.Attr(xlist[rh], "SctCss") + "' dragparam='" + dragparam + "'  height='" + (C.Attr(xlist[rh], "Height").IsBlank() ? "25px" : C.Attr(xlist[rh], "Height")) + "' ><div class='fieldBorder'  style='" + C.Attr(xlist[rh], "LabelStyle") + (C.IsBlank(C.Attr(xlist[rh], "LabelBorder")) ? "" : "border:inherit;") + "' >");
+                    string HeaderXml = "<" + sectionID + ">" + xlist[rh].InnerXml.C2Str() + "</" + sectionID + ">";
+                    HeaderXml = HeaderXml.Trim();
+                    XmlDocument doc1 = new XmlDocument();
+                    doc1.LoadXml(HeaderXml);
+                    string drag = "";
+                    if (sectionID.ToLower() == "pagefooter" || sectionID.ToLower() == "reportfooter")
+                        drag = "lbl";
+                    else
+                        drag = "fld";
+                    Section.Append(GetOtherObjectData(xlist[rh], dtResource, dtFieldInfo, ""));
+                    Section.AppendLine("</div></div></div>");
+                    RenderScript(null, (rh <= 0 ? sectionID : (sectionID + rh)), sectionType, dragparam, "-999", "", "");
+                }
+            }
+            Section.Append("</div>");
+            return Section.ToString();
+        }
+
+
+        private string GetMainReportDiv(XmlDocument doc)
+        {
+            string str = "<div id='divReportSections' class='mainreport'>";
+            XmlNodeList lines = doc.SelectNodes("Layout/Grid/VLines/VLine");
+            for (int i = 0; i < lines.Count; i++)
+            {
+                str += getLine(lines[i], false);
+                RenderScript(lines[i], C.Attr(lines[i], "id"), "vline", "vline", C.Attr(lines[i], "fieldtype").C2Str(), C.Attr(lines[i], "mimetype").C2Str(), C.Attr(lines[i], "sizing").C2Str());
+                string k = C.Attr(lines[i], "id").C2Str().Split('-')[1];
+                int f = (k.C2Int() + 1);
+                if (f >= fieldCntr)
+                    fieldCntr = f;
+            }
+            XmlNodeList tabels = doc.SelectNodes("Layout/Grid/Tables/Table");
+            for (int i = 0; i < tabels.Count; i++)
+            {
+                str += getTable(tabels[i]);
+                RenderScript(tabels[i], C.Attr(tabels[i], "id"), "table", "table", C.Attr(tabels[i], "fieldtype").C2Str(), C.Attr(tabels[i], "mimetype").C2Str(), C.Attr(tabels[i], "sizing").C2Str());
+                string k = C.Attr(tabels[i], "id").C2Str().Split('-')[1];
+                int f = (k.C2Int() + 1);
+                if (f >= fieldCntr)
+                    fieldCntr = f;
+            }
+            return str;
+        }
+        private string GetPageFooterSection(XmlDocument doc, LiteTable dtFieldInfo, LiteTable dtResource)
+        {
+            StringBuilder detailSection = new StringBuilder();
+            XmlNode xlist = doc.SelectSingleNode("Layout/Grid/PageFooter");
+            detailSection.Append(getSectionDivs(doc, dtFieldInfo, "PageFooter", "pageFooter", "rPFooter", false, "Page Footer", "lbl", dtResource));
+            return detailSection.ToString();
+        }
+        private string GetPageHeaderSection(XmlDocument doc, LiteTable dtFieldInfo, LiteTable dtResource)
+        {
+            StringBuilder detailSection = new StringBuilder();
+
+            XmlNode xlist = doc.SelectSingleNode("Layout/Grid/PageHeader");
+            detailSection.Append(getSectionDivs(doc, dtFieldInfo, "PageHeader", "pageHeader", "rPHeader", false, "Page Header", "lbl", dtResource));
+            return detailSection.ToString();
+        }
+        private string GetReportHeaderSection(XmlDocument doc, LiteTable dtFieldInfo, LiteTable dtResource)
+        {
+            StringBuilder detailSection = new StringBuilder();
+
+            XmlNode xlist = doc.SelectSingleNode("Layout/Grid/ReportHeader");
+            detailSection.Append(getSectionDivs(doc, dtFieldInfo, "ReportHeader", "reportHeader", "rHeader", false, "Report Header", "lbl", dtResource));
+            return detailSection.ToString();
+        }
+        private string GetReportDetailSection(XmlDocument doc, LiteTable dtFieldInfo, LiteTable dtResource)
+        {
+            StringBuilder detailSection = new StringBuilder();
+            XmlNode xlist = doc.SelectSingleNode("Layout/Grid/ReportDetail");
+            detailSection.Append(getSectionDivs(doc, dtFieldInfo, "ReportDetail", "reportDetail", "rDetail", true, "Report Detail", "fld", dtResource));
+
+            return detailSection.ToString();
+        }
+        private string GetGroupHeaderSections(XmlDocument doc, LiteTable dtFieldInfo, LiteTable dtResource)
+        {
+            string groupXml = "";
+            XmlNodeList xlist = doc.SelectNodes("Layout/Grid/GroupInfo/Group");
+            for (int i = 0; i < xlist.Count; i++)
+            {
+                XmlNode child = xlist[i];
+                Window.SetValue(this, "grpCntr", (i + 1));
+
+                LiteRow lr = dtFieldInfo.Rows.Find(C.Attr(child, "Name"));
+
+                string groupHeaderXml = "<Group>" + child.InnerXml.C2Str() + "</Group>";
+
+                groupHeaderXml = groupHeaderXml.Trim();
+
+
+                XmlDocument doc1 = new XmlDocument();
+                doc1.LoadXml(groupHeaderXml);
+
+                #region sort
+                ///
+                XmlNodeList sortlist = doc1.SelectNodes("Group/Sort/ColInfo/Cols");
+                StringBuilder strSortArr = new StringBuilder();
+
+                for (int j = 0; j < sortlist.Count; j++)
+                {
+                    XmlNode sortItem = sortlist[j];
+                    LiteRow lrSort = dtFieldInfo.Rows.Find(C.Attr(sortItem, "Name"));
+                    // string[] arrSort = new string[4];
+
+                    if (lrSort != null)
+                    {
+                        strSortArr.Append("{");
+                        strSortArr.Append("Name:\"" + lrSort["DisplayName"].C2Str() + "\"");
+                        strSortArr.Append(",Sort:\"" + sortItem.Attributes["Sort"].Value.C2Str() + "\"");
+                        strSortArr.Append(",EntityPath:\"" + sortItem.Attributes["EntityPath"].Value.C2Str() + "\"");
+                        strSortArr.Append(",FID:\"" + sortItem.Attributes["Name"].Value.C2Str() + "\"");
+                        strSortArr.Append("},");
+                    }
+                    //detailsection = "<span data--Name='" + lr["DisplayName"].C2Str() + "' id='" + C.Attr(child, "id") + "' data--Value='" + C.Attr(child, "Name") + "' Suppress'" + C.Attr(child, "Suppress") + "' data--Entity-Path='" + C.Attr(child, "EntityPath") + "' width='" + C.Attr(child, "Width") + " px' title='" + C.Attr(child, "Title") + "' class='gridCell'><span><a href='javascript:void(0)'>X</a></span><span>" + C.Attr(child, "Title") + "</span><span class='widthInd'>" + C.Attr(child, "Width") + "</span></span>";
+                }
+                string scrSortInfo = "  ArrSortData[\"GroupHeader" + (i + 1) + "\"] = [" + strSortArr.ToString() + "];";
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), Guid.NewGuid().ToString(), scrSortInfo, true);
+
+                #endregion
+
+
+
+                XmlNodeList xlist11 = child.SelectNodes("GroupHeader");
+                if (xlist11.Count > 0)
+                    groupXml += "<div class='Group' data-cntr='" + (i + 1) + "'>";
+                for (int g = 0; g < xlist11.Count; g++)
+                {
+                    groupXml += "<div class='reportsection GroupHeader  GroupHeader" + (i + 1) + "' defaultFont='" + C.Attr(xlist11[g], "defaultFont") + "' style='width:" + C.Attr(xlist11[g], "Width") + "px;'  data--Suppress='" + C.Attr(xlist11[g], "Suppress") + "' data-ref='" + C.Attr(xlist11[g], "Ref") + "' data-d-style='" + C.Attr(xlist11[g], "LabelStyle") + "' data-d-border='" + C.Attr(xlist11[g], "LabelBorder") + "' data-style='" + C.Attr(xlist11[g], "LabelStyle") + C.Attr(xlist11[g], "LabelBorder") + "' data-cntr='" + (i + 1) + "' data-grp-Name='" + lr["DisplayName"] + "' data-grp-I-D='" + C.Attr(child, "Name") + "' SctCss='" + C.Attr(xlist11[g], "SctCss") + "' data-grp-Path='" + C.Attr(child, "EntityPath") + "' id='" + C.Attr(xlist11[g], "ID") + "' >";
+                    groupXml += "<div class='sectionheadings'><span>Group Header" + "{" + lr["DisplayName"] + "}" + (i + 1) + (g > 0 ? "-" + g : "") + "</span>";
+
+                    if (g == 0)
+                        groupXml += "&nbsp;&nbsp;&nbsp;<a href='javascript:void(0)' style='color:gray' onclick='DeleteGroup(\"" + i + "\");jQuery.Event(event).stopPropagation();'   >Delete</a>";
+
+                    groupXml += "</div>";
+                    string height = (C.Attr(xlist11[g], "Height").IsBlank() ? "25px" : (C.Attr(xlist11[g], "Height").C2Int()).C2Str() + "px");
+                    groupXml += "<div class='sectionStyle' defaultFont='" + C.Attr(xlist11[g], "defaultFont") + "'  dragparam='fld' height='" + height + "' style='height:" + height + ";" + C.Attr(xlist11[g], "SctCss") + "' ><div class='fieldBorder' style='" + C.Attr(xlist11[g], "LabelStyle") + (C.IsBlank(C.Attr(xlist11[g], "LabelBorder")) ? "" : "border:inherit;") + "' >";
+
+                    groupXml += GetOtherObjectData(xlist11[g], dtResource, dtFieldInfo, "");
+                    groupXml += "</div></div></div>";
+                    RenderScript(xlist[i], "GroupHeader" + (i + 1), "rSection", "fld", "-999", "", "");
+                }
+                if (xlist11.Count > 0)
+                    groupXml += "</div>";
+
+            }
+            return groupXml;
+        }
+        private string GetGroupFooterSections(XmlDocument doc, LiteTable dtFieldInfo, LiteTable dtResource)
+        {
+            string groupXml = "";
+            XmlNodeList xlist = doc.SelectNodes("Layout/Grid/GroupInfo/Group");
+            for (int i = xlist.Count - 1; i >= 0; i--)
+            {
+                XmlNode child = xlist[i];
+                LiteRow lr = dtFieldInfo.Rows.Find(C.Attr(child, "Name"));
+
+
+                string groupHeaderXml = "<Group>" + child.InnerXml.C2Str() + "</Group>";
+                groupHeaderXml = groupHeaderXml.Trim();
+                XmlDocument doc1 = new XmlDocument();
+                doc1.LoadXml(groupHeaderXml);
+
+
+
+
+                XmlNodeList xlist11 = child.SelectNodes("GroupFooter");
+                if (xlist11.Count > 0)
+                    groupXml += "<div class='Group' data-cntr='" + (i + 1) + "'>";
+                for (int g = 0; g < xlist11.Count; g++)
+                {
+
+                    groupXml += "<div class='reportsection GroupFooter  GroupFooter" + (i + 1) + "' defaultFont='" + C.Attr(xlist11[g], "defaultFont") + "' style='width:" + C.Attr(xlist11[g], "Width") + "px;' data-ref='" + C.Attr(xlist11[g], "Ref") + "' data--Suppress='" + C.Attr(xlist11[g], "Suppress") + "' SctCss='" + C.Attr(xlist11[g], "SctCss") + "' data-d-style='" + C.Attr(xlist11[g], "LabelStyle") + "' data-d-border='" + C.Attr(xlist11[g], "LabelBorder") + "' data-style='" + C.Attr(xlist11[g], "LabelStyle") + C.Attr(xlist11[g], "LabelBorder") + "' data-cntr='" + (i + 1) + "'  id='" + C.Attr(xlist11[g], "ID") + "' >";
+                    groupXml += "<div class='sectionheadings'><span>Group Footer" + "{" + lr["DisplayName"] + "}" + (i + 1) + (g > 0 ? "-" + g : "") + "</span></div>";
+
+                    string height = (C.Attr(xlist11[g], "Height").IsBlank() ? "25px" : (C.Attr(xlist11[g], "Height").C2Int()).C2Str() + "px");
+                    groupXml += "<div class='sectionStyle' defaultFont='" + C.Attr(xlist11[g], "defaultFont") + "' style='height:" + height + ";" + C.Attr(xlist11[g], "SctCss") + "'><div class='fieldBorder' style='" + C.Attr(xlist11[g], "LabelStyle") + (C.IsBlank(C.Attr(xlist11[g], "LabelBorder")) ? "" : "border:inherit;") + "' >";
+
+                    groupXml += GetOtherObjectData(xlist11[g], dtResource, dtFieldInfo, "");
+                    groupXml += "</div></div></div>";
+                    RenderScript(xlist[i], "GroupFooter" + (i + 1), "rGrpFtr", "lbl", "-999", "", "");
+                }
+                if (xlist11.Count > 0)
+                    groupXml += "</div>";
+            }
+            return groupXml;
+        }
+        private string GetReportFooterSection(XmlDocument doc, LiteTable dtFieldInfo, LiteTable dtResource)
+        {
+
+            StringBuilder detailSection = new StringBuilder();
+
+            XmlNode xlist = doc.SelectSingleNode("Layout/Grid/ReportFooter");
+            detailSection.Append(getSectionDivs(doc, dtFieldInfo, "ReportFooter", "reportFooter", "rFooter", false, "Report Footer", "lbl", dtResource));
+            return detailSection.ToString();
+        }
+        private string getLabel(XmlNode child)
+        {
+
+            // RenderScript(child);
+            string lable = "";
+            string style = "";
+
+            if (C.Attr(child, "defaultFont").ToLower() == "1")
+                style = "";
+
+            style = C.Attr(child, "LabelStyle");
+            style += C.Attr(child, "LabelBorder");
+            string title = GetPath(null, C.Attr(child, "Title"), null, "LBL");
+            string footerParams = "";
+            string dragParams = "";
+            if (!C.Attr(child, "global").IsBlank())
+            {
+                if (C.Attr(child, "global").ToLower() == "pagecount" || C.Attr(child, "global").ToLower() == "pagenumber")
+                {
+                    footerParams = "pageFooter";
+                    dragParams = "xyz";
+                }
+            }
+            else
+                dragParams = "lbl";
+
+            style += " width:" + C.Attr(child, "Width") + "px;height:" + C.Attr(child, "Height") + "px;top:" + C.Attr(child, "Top") + "px;left:" + C.Attr(child, "Left") + "px;";
+            lable = "<span class='reportObject Label' dragparam='" + dragParams + "' data-@-Type='Label' global='" + C.Attr(child, "global").ToLower() + "'  data-global='" + C.Attr(child, "global") + "' defaultFont='" + C.Attr(child, "defaultFont") + "'   data-d-Style='" + C.Attr(child, "LabelStyle") + "'  data-d-Border='" + C.Attr(child, "LabelBorder")
+                + "'  id='" + C.Attr(child, "id") + "' title='" + title + "' footerParams='" + footerParams + "'  data--Suppress='" + C.Attr(child, "Suppress") + "' data--Value='" + C.Attr(child, "Name") + "'   data-title='" + C.Attr(child, "Title")
+                + "'  style='" + style + "'><span class='spnName'>" + C.Attr(child, "Title") + "</span></span>";
+            return lable;
+        }
+        private string getTable(XmlNode child)
+        {
+
+            string line = "";
+            string style = "";
+            style = C.Attr(child, "LabelStyle");
+            style += C.Attr(child, "LabelBorder");
+            style += " height:" + C.Attr(child, "Height") + "px; width:" + C.Attr(child, "Width") + "px;top:" + C.Attr(child, "Top") + "px;left:" + C.Attr(child, "Left") + "px;overflow: visible;";
+            line = "<span class='table' data--Suppress='" + C.Attr(child, "Suppress") + "'  global='table' dragparam='table' data-@-Type='table'  data-global='" + C.Attr(child, "global") + "' data-d-Border='" + C.Attr(child, "LabelBorder") + "'   id='" + C.Attr(child, "id") + "'    style='" + style + "' data-start='" + C.Attr(child, "start") + "' data-end='" + C.Attr(child, "end") + "' data-starttop='" + C.Attr(child, "starttop") + "' data-endbottom='" + C.Attr(child, "endbottom") + "'></span>";
+            return line;
+        }
+        private string getLine(XmlNode child, bool isHorizontal)
+        {
+
+            // RenderScript(child);
+            string line = "";
+            string style = "";
+            //if (C.Attr(child, "LabelStyle").ToLower() == "default")
+            //    style = "";
+            //else
+            //    style = C.Attr(child, "LabelStyle");
+            if (!C.Attr(child, "LabelBorder").IsBlank())
+                style += C.Attr(child, "LabelBorder");
+            if (isHorizontal)
+            {
+                style += " width:" + C.Attr(child, "Width") + "px;top:" + C.Attr(child, "Top") + "px;left:" + C.Attr(child, "Left") + "px;overflow: visible;";
+                line = "<span class='line-h line' defaultFont='" + C.Attr(child, "defaultFont") + "' data--Suppress='" + C.Attr(child, "Suppress") + "'  global='hline' dragparam='hline' data-@-Type='line'  data-global='" + C.Attr(child, "global") + "' data-d-Border='" + C.Attr(child, "LabelBorder") + "'    id='" + C.Attr(child, "id") + "'    style='" + style + "' data-linecntr='" + C.Attr(child, "linecntr") + "'></span>";
+            }
+            else
+            {
+                style += " height:" + C.Attr(child, "Height") + "px;top:" + C.Attr(child, "Top") + "px;left:" + C.Attr(child, "Left") + "px;overflow: visible;";
+                line = "<span class='line-v line' defaultFont='" + C.Attr(child, "defaultFont") + "' data--Suppress='" + C.Attr(child, "Suppress") + "'  global='vline' dragparam='vline' data-@-Type='vline'  data-global='" + C.Attr(child, "global") + "' data-d-Border='" + C.Attr(child, "LabelBorder") + "'   id='" + C.Attr(child, "id") + "'    style='" + style + "' data-start='" + C.Attr(child, "start") + "' data-end='" + C.Attr(child, "end") + "' data-starttop='" + C.Attr(child, "starttop") + "' data-endbottom='" + C.Attr(child, "endbottom") + "'></span>";
+            }
+            return line;
+        }
+        private string getOtherData(XmlNode child, LiteTable ltResource, string dragparam)
+        {
+            // RenderScript(child);
+            string image = "";
+            string style = "";
+            style = C.Attr(child, "LabelStyle");
+            style += C.Attr(child, "LabelBorder");
+            LiteRow lr = ltResource.Rows.Find(C.Attr(child, "Name"));
+            style += " width:" + C.Attr(child, "Width") + "px;height:" + C.Attr(child, "Height") + "px;top:" + C.Attr(child, "Top") + "px;left:" + C.Attr(child, "Left") + "px;background-repeat: no-repeat;background-image:url(\"../getresource.ashx?fld=ResourceData&id=" + lr["Resources_pid"].C2Str() + "&eid=tbl_core_resources\");";
+            string title = GetPath(null, lr["ResourceName"].C2Str(), null, "IMG");
+            image = "<span class='reportObject Image' dragparam='" + dragparam + "'  data-@-Type='Image'  defaultFont='" + C.Attr(child, "defaultFont") + "'    data-d-Style='" + C.Attr(child, "LabelStyle") + "' data-d-Border='" + C.Attr(child, "LabelBorder")
+                + "'  data--Name='"
+                + lr["ResourceName"].C2Str()
+                + "' data--Type='" + C.Attr(child, "Type")
+                + "' id='" + C.Attr(child, "id") + "' title='" + title + "' defaultFont='" + C.Attr(child, "defaultFont") + "' data--Value='" + C.Attr(child, "Name")
+                + "' data--Suppress='" + C.Attr(child, "Suppress") + "'  data-title='" + C.Attr(child, "Title")
+                + "'  style='" + style + "'><span class='spnName'>"
+                + lr["ResourceName"].C2Str()
+                + "</span></span>";
+
+            return image;
+        }
+
+        public string GetPath(XmlNode child, string displayName, LiteTable ltFieldInfo, string dragparam)
+        {
+            if (child == null)
+                return displayName;
+            string entityPath = C.Attr(child, "EntityPath");
+            string rootNode = C.Attr(child, "mainnode");// = vRelated.Nodes[0].Text;
+            RadTreeNode mainparent = new RadTreeNode();
+
+            if (rootNode == "tbl_SYS_Users")
+                mainparent = rtvFieldItems.FindNodeByAttribute("dragparam", "subfield-" + rootNode);
+            if (mainparent == null)
+                mainparent = rtvFieldItems.FindNodeByValue(rootNode);
+            if (mainparent != null)
+                rootNode = mainparent.Text;
+
+
+            string str = "";
+
+
+            string[] arr = entityPath.Split(':');
+            for (int i = 0; i < arr.Length - 1; i++)
+            {
+                string[] arrData = arr[i].Split('>');
+                if (arrData.Length > 1)
+                {
+
+                    LiteRow arrlr = ltFieldInfo.SelectFirst(lr => C.Eq(lr["TableName"], arrData[0]) && C.Eq(lr["FieldName"], arrData[1]));
+                    if (arrlr != null && arrlr["DisplayName"].C2Str() != "")
+                        str += arrlr["DisplayName"].C2Str() + "\\";
+                    else if (C.Eq(arrData[1], "createdBy_User_Fid"))
+                    {
+                        str += "Created By" + "\\";
+                    }
+                    else if (C.Eq(arrData[1], "ownerUser_Fid"))
+                    {
+                        str += "Owned By" + "\\";
+                    }
+                    else if (C.Eq(arrData[1], "modifiedBy_User_Fid"))
+                    {
+                        str += "Modified By" + "\\";
+                    }
+                    else if (C.Eq(arrData[1], "company_fid"))
+                    {
+                        str += "Company" + "\\";
+                    }
+
+                }
+                else if (arrData.Length == 1)
+                {
+                    LiteRow arrlr = ltFieldInfo.SelectFirst(lr => C.Eq(lr["FieldName"], arrData[0]));
+                    if (arrlr != null && arrlr["DisplayName"].C2Str() != "")
+                        str += arrlr["DisplayName"].C2Str() + "\\";
+                    else if (C.Eq(arrData[0], "createdBy_User_Fid"))
+                    {
+                        str += "Created By" + "\\";
+                    }
+                    else if (C.Eq(arrData[0], "ownerUser_Fid"))
+                    {
+                        str += "Owned By" + "\\";
+                    }
+                    else if (C.Eq(arrData[0], "modifiedBy_User_Fid"))
+                    {
+                        str += "Modified By" + "\\";
+                    }
+                    else if (C.Eq(arrData[0], "company_fid"))
+                    {
+                        str += "Company" + "\\";
+                    }
+                    else
+                        str += arrData[0];
+                    // str += arrData[i] + "\\";
+                }
+            }
+            if (str == "\\" || str == "")
+                str = rootNode + "\\" + displayName;
+            else
+                str = rootNode + "\\" + str + displayName;
+            return str.Trim('\\');
+        }
+
+        private string getDetailSection(XmlNode child, LiteTable ltFieldInfo, string dragparam)
+        {
+
+            // RenderScript(child);
+            LiteRow lr = ltFieldInfo.Rows.Find(C.Attr(child, "Name"));
+            if (lr == null)
+                return "";
+            string detailsection = "";
+            string style = "";
+
+            if (C.Attr(child, "defaultFont").ToLower() == "1")
+                style = "font-size: 12px; font-family: Verdana;";
+
+            style = C.Attr(child, "LabelStyle");
+
+
+            style += C.Attr(child, "LabelBorder");
+            string displayName = (lr["DisplayName"].C2Str() == "" ? lr["FieldName"].C2Str() : lr["DisplayName"].C2Str());
+            if (!C.Attr(child, "Summary").IsBlank())
+            {
+                displayName = C.Attr(child, "Summary") + "(" + displayName + ")";
+                dragparam = "lbl";
+            }
+            string dataGlobal = ""; bool isCompany = false;
+            if (child.Name.ToLower() == "globalcols")
+            {
+                dataGlobal += "data-company='1'";
+                isCompany = true;
+            }
+            else
+            {
+                isCompany = false;
+                dataGlobal += "data-company='0'";
+            }
+
+            string title = GetPath(child, displayName, ltFieldInfo, dragparam);
+            style += " width:" + C.Attr(child, "Width") + "px;height:" + C.Attr(child, "Height") + "px;top:" + C.Attr(child, "Top") + "px;left:" + C.Attr(child, "Left") + "px;";
+            detailsection = "<span class='reportObject Field' dragparam='" + dragparam + "'  data-@-Type='Field'    data-d-Style='" + C.Attr(child, "LabelStyle") + "' data-d-Border='" + C.Attr(child, "LabelBorder")
+                + "'  data--Name='"
+                + (lr["DisplayName"].C2Str() == "" ? lr["FieldName"].C2Str() : lr["DisplayName"].C2Str())
+                + "' " + dataGlobal + " data--Ref='" + C.Attr(child, "Ref") + "' data--Type='" + C.Attr(child, "Type")
+                + "' id='" + C.Attr(child, "id") + "' data-mainnode='" + C.Attr(child, "mainnode") + "' data--Value='" + C.Attr(child, "Name")
+                + "' data--Suppress='" + C.Attr(child, "Suppress") + "' defaultFont='" + C.Attr(child, "defaultFont") + "' data--Entity-Path='"
+                + C.Attr(child, "EntityPath") + "'  title='" + title + "'  data-title='" + C.Attr(child, "Title")
+                + "'  style='" + style + "'>"
+                + displayName
+                + "</span>";
+            return detailsection;
+        }
+        public void RenderScript(XmlNode node, string divID, string HtmlId, string dragparam, string datatype, string mimetype, string sizing)
+        {
+            string str = @"fld=$(""#{0}"");   
+                            fld.data(""@Type"", ""{1}"");  
+                            fld.data(""@FieldName"", ""{2}"");    
+                            fld.data(""Chk"", ""{3}""); 
+                            fld.data(""Summary"", ""{4}"");
+                             fld.data(""dragparam"", ""{5}""); 
+                             fld.data(""fieldtype"", ""{6}"");
+                             fld.data(""mimetype"", ""{7}"");
+                             fld.data(""sizing"", ""{8}"");";
+
+            if (HtmlId == "Field")
+            {
+
+                str = string.Format(str,
+                    divID, HtmlId, "", C.Attr(node, "Chk"), C.Attr(node, "Summary"), dragparam, datatype, mimetype, sizing);
+            }
+            else
+            {
+                str = string.Format(str,
+                 divID, HtmlId, "", "", "", dragparam, datatype, mimetype, sizing);
+            }
+            //if (HtmlId.ToLower() == "field" || HtmlId.ToLower() == "image" || HtmlId.ToLower() == "label")
+            //    str += "_makeResizableDraggableCols(fld);";
+            //else if (HtmlId == "line")
+            //    str += "_makeResizableHLineObject(fld)";
+            //else if (HtmlId == "vline")
+            //    str += "_makeResizableVLineObject(fld)";
+            //else if (HtmlId == "table")
+            //    str += "_makeResizableTable(fld)";
+            script.AppendLine(str);
+        }
+        #endregion
+
+        #region Button Events
+        protected void btnTreeLoad_Click(object sender, EventArgs e)
+        {
+            LoadTree();//
+        }
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+            Hash = new Dictionary<string, object>();
+
+            if (PageType == "A")
+            {
+                Hash["@AID"] = QS("AID").C2Str();
+                Hash["@FID"] = QS("FID").C2Str();
+                Hash["Type"] = "InsertEntity";
+                Ctr.Create(Hash);
+            }
+            else
+            {
+                Hash["Type"] = "UpdateEntity";
+                Ctr.Update(Hash);
+            }
+
+        }
+        #endregion
+
+        public string GetOtherObjectData(XmlNode sourceNode, LiteTable dtResource, LiteTable dtFieldInfo, string dragParam)
+        {
+            StringBuilder Section = new StringBuilder();
+            XmlNodeList xlist1 = sourceNode.SelectNodes("ColInfo/Cols");
+            if (C.IsBlank(dragParam))
+                dragParam = "fld";
+            for (int i = 0; i < xlist1.Count; i++)
+            {
+
+                Section.Append(getDetailSection(xlist1[i], dtFieldInfo, dragParam));
+                RenderScript(xlist1[i], C.Attr(xlist1[i], "id"), "Field", dragParam, C.Attr(xlist1[i], "fieldtype").C2Str(), C.Attr(xlist1[i], "mimetype").C2Str(), C.Attr(xlist1[i], "sizing").C2Str());
+                if (C.Attr(xlist1[i], "id").Contains("Field-"))
+                {
+                    string k = C.Attr(xlist1[i], "id").C2Str().Split('-')[1];
+                    int f = (k.C2Int() + 1);
+                    if (f >= fieldCntr)
+                        fieldCntr = f;
+
+
+                }
+            }
+            xlist1 = sourceNode.SelectNodes("ColInfo/GlobalCols");
+            dragParam = "company";
+
+            for (int i = 0; i < xlist1.Count; i++)
+            {
+
+                Section.Append(getDetailSection(xlist1[i], dtFieldInfo, dragParam));
+                RenderScript(xlist1[i], C.Attr(xlist1[i], "id"), "Field", dragParam, C.Attr(xlist1[i], "fieldtype").C2Str(), C.Attr(xlist1[i], "mimetype").C2Str(), C.Attr(xlist1[i], "sizing").C2Str());
+                if (C.Attr(xlist1[i], "id").Contains("Field-"))
+                {
+                    string k = C.Attr(xlist1[i], "id").C2Str().Split('-')[1];
+                    int f = (k.C2Int() + 1);
+                    if (f >= fieldCntr)
+                        fieldCntr = f;
+
+
+                }
+            }
+
+            XmlNodeList xlist11 = sourceNode.SelectNodes("ColInfo/Label");
+            dragParam = "lbl";
+            for (int i = 0; i < xlist11.Count; i++)
+            {
+                Section.Append(getLabel(xlist11[i]));
+
+                RenderScript(xlist11[i], C.Attr(xlist11[i], "id"), "Label", dragParam, C.Attr(xlist11[i], "fieldtype").C2Str(), C.Attr(xlist11[i], "mimetype").C2Str(), C.Attr(xlist11[i], "sizing").C2Str());
+                string k = C.Attr(xlist11[i], "id").C2Str().Split('-')[1];
+                int f = (k.C2Int() + 1);
+                if (f >= fieldCntr)
+                    fieldCntr = f;
+            }
+            xlist11 = sourceNode.SelectNodes("ColInfo/Image");
+            for (int i = 0; i < xlist11.Count; i++)
+            {
+                Section.Append(getOtherData(xlist11[i], dtResource, "Image"));
+                RenderScript(xlist11[i], C.Attr(xlist11[i], "id"), "Image", "Image", C.Attr(xlist11[i], "fieldtype").C2Str(), C.Attr(xlist11[i], "mimetype").C2Str(), C.Attr(xlist11[i], "sizing").C2Str());
+                string k = C.Attr(xlist11[i], "id").C2Str().Split('-')[1];
+                int f = (k.C2Int() + 1);
+                if (f >= fieldCntr)
+                    fieldCntr = f;
+            }
+
+            xlist11 = sourceNode.SelectNodes("ColInfo/HLine");
+            for (int i = 0; i < xlist11.Count; i++)
+            {
+                Section.Append(getLine(xlist11[i], true));
+                RenderScript(xlist11[i], C.Attr(xlist11[i], "id"), "line", "hline", C.Attr(xlist11[i], "fieldtype").C2Str(), C.Attr(xlist11[i], "mimetype").C2Str(), C.Attr(xlist11[i], "sizing").C2Str());
+                string k = C.Attr(xlist11[i], "id").C2Str().Split('-')[1];
+                int f = (k.C2Int() + 1);
+                if (f >= fieldCntr)
+                    fieldCntr = f;
+            }
+
+
+            return Section.ToString();
+        }
+
+
+        #region web method
+        [System.Web.Services.WebMethod(EnableSession = true)]
+        public static RadTreeNodeData[] GetNodes(RadTreeNodeData node, object context)
+        {
+            List<RadTreeNodeData> result = new List<RadTreeNodeData>();
+            M_Layout la = new M_Layout();
+            Dictionary<string, object> hsh = new Dictionary<string, object>();
+            hsh["Type"] = "LoadParentFields";
+            hsh["@ParentID"] = node.Value;
+            LiteTable lt = la.ToTable(hsh);
+            for (int i = 0; i < lt.Rows.Count; i++)
+            {
+                LiteRow lr = lt.Rows[i];
+                RadTreeNodeData itemData = new RadTreeNodeData();
+                itemData.Text = lr["DisplayName"].C2Str();
+                itemData.Value = lr["FieldInfo_Pid"].C2Str();
+                itemData.Attributes.Add("ParentTable", lr["ParentTable"].C2Str());
+                itemData.Attributes.Add("FieldName", lr["FieldName"].C2Str());
+                //itemData.Attributes.Add("FieldType", lr["FieldType"].C2Str());
+                itemData.Attributes.Add("fieldtype", lr["FieldType"].C2Str());
+                itemData.Attributes.Add("FieldID", lr["FieldInfo_Pid"].C2Str());
+                itemData.Attributes.Add("dragparam", node.Attributes["dragparam"]);
+
+                if (node.Attributes["dragparam"].C2Str().Contains("subfield"))
+                {
+                    itemData.Attributes.Add("dragparam_id", node.Attributes["dragparam_id"]);
+
+                }
+                if (lr["isParent"].C2Bool())
+                {
+                    itemData.Value = lr["ParentTable"].C2Str();
+                    itemData.ExpandMode = TreeNodeExpandMode.WebService;
+                    itemData.Attributes.Add("IsParent", "1");
+                }
+
+                result.Add(itemData);
+            }
+            return result.ToArray();
+        }
+        [System.Web.Services.WebMethod(EnableSession = true)]
+        public static RadComboBoxItemData[] GetRelatedEntities(object context)
+        {
+            IDictionary<string, object> contextDictionary = (IDictionary<string, object>)context;
+            Dictionary<string, object> data = new Dictionary<string, object>();
+            data["@EntityId"] = contextDictionary["@EntityId"];
+            data["Type"] = contextDictionary["Type"];
+            M_Reports la = new M_Reports();
+            LiteTable lt = la.ToTable(data);
+            List<RadComboBoxItemData> result = new List<RadComboBoxItemData>(lt.Rows.Count);
+            foreach (LiteRow row in lt.Rows)
+            {
+                RadComboBoxItemData itemData = new RadComboBoxItemData();
+                itemData.Text = row["DisplayName"].ToString();
+                itemData.Value = row["entity_Pid"].ToString();
+                result.Add(itemData);
+            }
+
+            return result.ToArray();
+        }
+        [WebMethod]
+        public static RadComboBoxItemData[] GetRelatedSR(object context)
+        {
+            IDictionary<string, object> contextDictionary = (IDictionary<string, object>)context;
+            Dictionary<string, object> data = new Dictionary<string, object>();
+            data["@EntityId"] = contextDictionary["@EntityId"];
+            data["Type"] = contextDictionary["Type"];
+            M_Reports la = new M_Reports();
+            LiteTable lt = la.ToTable(data);
+            List<RadComboBoxItemData> result = new List<RadComboBoxItemData>(lt.Rows.Count);
+            foreach (LiteRow row in lt.Rows)
+            {
+                RadComboBoxItemData itemData = new RadComboBoxItemData();
+                itemData.Text = row["ReportName"].ToString();
+                itemData.Value = row["report_Pid"].ToString();
+                itemData.Attributes.Add("entityId", row["entity_fid"].ToString());
+                result.Add(itemData);
+            }
+
+            return result.ToArray();
+        }
+        [WebMethod(EnableSession = true)]
+        public static Dictionary<string, object> Execute(Dictionary<string, object> data, string[] arrRole, List<ErpModel.Model.M_Reports.PermissionItem> Permission)
+        {
+            if (data["Type"].ToString() == "SaveReport")
+            {
+                if (!AllowDataEntry(data["@ReportID"].C2Str(), typeof(ReportDesigner), data["au"].C2Str()))
+                    return null;            
+                //System.IO.File.WriteAllText(HttpContext.Current.Server.MapPath("layout.xml"), HelperLib.Conversion.C.Str(data["xml"]));
+                M_Reports la = new M_Reports();
+                data["ArrRole"] = arrRole;
+                data["Permission"] = Permission;
+                la.Save(data);
+
+                data["@Xml"] = "";
+                HttpContext.Current.Session.Add("FilterData", "");
+
+                return data;
+            }
+
+            return null;
+        }
+        [WebMethod(EnableSession = true)]
+        public static Dictionary<string, object> SetFilterSession(Dictionary<string, object> data)
+        {
+            HttpContext.Current.Session.Add("FilterData" + data["SID"].C2Str(), data);
+            return data;
+        }//
+        [WebMethod(EnableSession = true)]
+        public static Dictionary<string, object> SetCFFilterSession(Dictionary<string, object> data)
+        {
+            HttpContext.Current.Session.Add("CFFilterData" + data["SID"].C2Str(), data);
+            return data;
+        }
+        [WebMethod(EnableSession = true)]
+        public static Dictionary<string, object> SetSubreportFilterSession(Dictionary<string, object> data)
+        {
+            HttpContext.Current.Session.Add("SubFltrData" + data["SID"].C2Str(), data);
+            return data;
+        }
+        #endregion
+
+    }
+}

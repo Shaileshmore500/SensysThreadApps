@@ -1,0 +1,388 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using DevExpress.Spreadsheet;
+using System.IO;
+using Erp.Base.ScriptInterface;
+using Erp.Common;
+using HelperLib.DAL;
+using System.Data;
+using HelperLib.Extensions;
+using System.Text.RegularExpressions;
+using System.Text;
+using HelperLib.Conversion;
+using System.IO.Compression;
+using CsvHelper;
+using System.Globalization;
+using CsvHelper.Configuration;
+
+namespace App_Rs.Apps.App_Rs
+{
+    public class GenerateReport : ImplEntityScript, IEntityScript
+    {
+        ApplicationInfo _app;
+        IDBConfiguration _cfg;
+        public StringBuilder ErrorList;
+        Erp.Base.ScriptInterface.ErpScriptObject _erp;
+        public void Init(ApplicationInfo app, IDBConfiguration cfg)
+        {
+            _app = app;
+            _cfg = cfg;
+            _erp = new Erp.Base.ScriptInterface.ErpScriptObject(_app, _cfg);
+        }
+        public void RunReport(string instanceID)
+        {
+            string error = "";
+            Dictionary<string, object> dicParams = new Dictionary<string, object>();
+            DataSet ds = _erp.ExecuteSql<DataSet>(@"
+--[dt_configurationparameterdetail]
+select spparametername,parametervalue from tbl_RS_configurationparameterdetail where generatereport_fid = @instanceID;
+--[dt_generatereport]
+select configuration_fid from tbl_RS_generatereport where 	generatereport_pid=@instanceID;
+"
+                                                  ,
+                                                  new Dictionary<string, object>() {
+                                              {
+                                                "@CompanyID", _app.CompanyID }
+                                              ,
+                                              {
+                                                "@instanceID" ,instanceID}
+                                                  }
+                                                  , out error);
+            DataTable dt_details = ds.Tables["dt_configurationparameterdetail"];
+            if (dt_details.Rows.Count > 0)
+            {
+                for (var i = 0;
+                     i < dt_details.Rows.Count;
+                     i++)
+                {
+                    dicParams.Add(dt_details.Rows[i]["spparametername"].C2Str(), dt_details.Rows[i]["parametervalue"]);
+                }
+            }
+            generateReport(ds.Tables["dt_generatereport"].Rows[0]["configuration_fid"].C2Str(), dicParams);
+        }
+        public void generateReport(string configid, Dictionary<string, object> dicParams)
+        {
+            ErrorList = new StringBuilder();
+            Dictionary<string, byte[]> dic_result = GenerateReportBytes(configid, dicParams);
+            if ((Fn.IsEmpty(dic_result) || dic_result.Count <= 0) || !Fn.IsEmpty(ErrorList))
+                return;
+           
+                var ent = new ErpEntity("tbl_RS_configuration", configid, _cfg);
+                ent.LoadEntity();
+                var isSaveDisk = ent["savelocationdisk"].C2Bool();
+                var configName = ent["configurationtext"].C2Str();
+                var isSaveDB = ent["savelocation_db"].C2Bool();
+                var isSaveEmail = ent["savelocation_email"].C2Bool();
+                var iszip = ent["iszipfile"].C2Bool();
+                var folderstructure = Fn.IsEmpty(ent["folderstructure"].C2Str()) ? "" : Path.GetDirectoryName(Path.GetDirectoryName(ent["folderstructure"].C2Str()));
+                var emailconfig = ent["emailconfig_fid"];
+                var emailids = ent["emailids"];
+                var emailattachments = "";
+                var zipFileName = Fn.IsEmpty(ent["zipfilename"].C2Str()) ? configName : ent["zipfilename"].C2Str();
+                if (zipFileName.Contains("[@datetime]"))
+                    zipFileName.Replace("[@datetime]", DateTime.Now.ToString("yyyymmdd HHmmsstt"));
+                var zipFilePath = Fn.IsEmpty(ent["zipfilepath"].C2Str()) ? _app.TempDirectory + "\\Zip Reports" : ent["zipfilepath"].C2Str();
+                var isDeleteOriginalFile = ent["isdeleteoriginalfile"].C2Bool();
+            try
+            {
+                if (!Directory.Exists(zipFilePath))
+                    Directory.CreateDirectory(zipFilePath);
+
+
+
+
+
+                var zipArchive = new ZipArchive(File.Create($"{ zipFilePath }\\{Path.GetFileNameWithoutExtension(zipFileName)}.zip"), ZipArchiveMode.Create);
+                foreach (KeyValuePair<string, byte[]> dic in dic_result)
+                {
+                    byte[] excelBytes = dic.Value;
+                    var filepath = dic.Key;
+                    if (isSaveDisk || isSaveEmail)
+                    {
+                        if (!Directory.Exists(Path.GetDirectoryName(dic.Key)))
+                        {
+                            Directory.CreateDirectory(Path.GetDirectoryName(dic.Key));
+                        }
+
+                        File.WriteAllBytes(dic.Key, excelBytes);
+
+                    }
+                    if (isSaveEmail || iszip)
+                    {
+                        if (isSaveEmail)
+                            emailattachments += $"{dic.Key},";
+                        zipArchive.CreateEntryFromFile(dic.Key, Path.GetFileName(dic.Key));
+
+                    }
+                    if (isDeleteOriginalFile)
+                    {
+                        if (File.Exists(dic.Key))
+                            File.Delete(dic.Key);
+                    }
+
+
+
+                    if (isSaveDB)
+                    {
+                        var entity = new ErpEntity("tbl_RS_reportdata", "", _cfg);
+                        entity["reportdata"] = excelBytes;
+                        entity["triggereddate"] = Fn.Today();
+                        entity["reportdata_preview"] = Path.GetFileName(dic.Key);
+                        entity.CreatedBy = _app.CurrentUserID;
+                        entity.CompanyID = _app.CompanyID;
+                        entity.MetaData = _app.MetaData;
+                        bool success = entity.Save();
+                    }
+                }
+                zipArchive.Dispose();
+                if (isSaveEmail && !Fn.IsEmpty(emailattachments))
+                {
+                    //emailconfig = "ea3dd541-ee62-4f11-a878-cb692c7aac20";
+                    //emailids = "shmore500@gmail.com,sensys.mayurdalvi@gmail.com";
+
+                    var status = _erp.SendMail(new Dictionary<string, object>() {
+                                              {"UserID",_app.CurrentUserID},
+                                              {"RecordID","rec1,rec2"},
+                                              {"EmailConfigID",emailconfig},
+                                              {"EmailSubject","Report"},
+                                              {"EmailBody","This is Generated report"},
+                                              {"EmailTo",emailids},
+                                              {"EmailCc",""},
+                                              {"EmailBcc",""},
+                                               {"Attachments", emailattachments.TrimEnd(',')},
+                            //zipFilePath+"\\"+ Path.GetFileNameWithoutExtension(zipFileName)+".zip" },
+                                              {"ForceSend",true}});
+                    //emailconfigid:"ea3dd541-ee62-4f11-a878-cb692c7aac20"
+
+                }
+            }
+            catch (Exception e)
+            {
+                ErrorList.Append("  {   \"ConfigurationName\" : " + C.JsonDataEncode(configName) + " , \"Error\" : " + C.JsonDataEncode(e.Message) + " } ");
+            }
+        }
+       
+        // this method return  dictionary of byte array and file path
+        public Dictionary<string, byte[]> GenerateReportBytes(string ConfigurationID, Dictionary<string, object> dicParams)
+        {
+            System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
+            sw.Start();
+            StringBuilder log = new StringBuilder();
+            ExportFileHelper exportFileHelper = new ExportFileHelper();
+            Dictionary<string, byte[]> dic_ByteData = new Dictionary<string, byte[]>();
+            //Workbook workbook;
+            //MemoryStream stream;
+            Dictionary<string, byte[]> dic_ReportData = new Dictionary<string, byte[]>();
+            addToLog("1:" + sw.ElapsedMilliseconds + " - " + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt"));
+            var dssetting = GetConfigDT(ConfigurationID, _erp, _app, _cfg);
+            addToLog("2:" + sw.ElapsedMilliseconds + " - " + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt"));
+            if (dssetting == null || dssetting.Tables["tbl_config"].Rows.Count == 0)
+            {
+                return null;
+            }
+            var tbl_config = dssetting.Tables["tbl_config"];
+            var tbl_configdetails = dssetting.Tables["tbl_configdetails"];
+            string spname = tbl_config.Rows[0]["rsspname"].C2Str();
+            string outputPath = tbl_config.Rows[0]["folderstructure"].C2Str();
+            int dataStratingpos = tbl_config.Rows[0]["datastartingposition"].C2Int();
+            var _given_excelByte = tbl_config.Rows[0]["excelattachment"];
+            string templateName = tbl_config.Rows[0]["templatename"].C2Str();
+            string configName = tbl_config.Rows[0]["configurationtext"].C2Str();
+            string sheetname = tbl_config.Rows[0]["sheetname"].C2Str();
+            string prerequisitespname = tbl_config.Rows[0]["prerequisitespname"].C2Str();
+            bool enablecopyinsertrow = tbl_config.Rows[0]["enablecopyinsertrow"].C2Bool();
+            bool isCustomeTemplate = tbl_config.Rows[0]["iscustometemplate"].C2Bool();
+            string fileExtension = C.DefaultValue(tbl_config.Rows[0]["filetype"].C2Str(), "xls");
+            bool isencryptedfile = tbl_config.Rows[0]["isencryptedfile"].C2Bool();
+            string password = tbl_config.Rows[0]["filepassword"].C2Str();
+            string delimeter = Fn.IsEmpty(tbl_config.Rows[0]["csvdelimeter"].C2Str()) ? "," : tbl_config.Rows[0]["csvdelimeter"].C2Str();
+            bool issupresscolumnname = tbl_config.Rows[0]["issupresscolumnname"].C2Bool();
+            string filePath = "";
+            var actualFilePath = "";
+            var dtr = new HelperLib.DAL.MSDataTier(_cfg);
+
+            //if (!Fn.IsEmpty(prerequisitespname))
+            //{
+            //    //DataTable dt_prerequestedsp = dtr.GetDataTable(prerequisitespname, dicParams);
+            //    DataTable dt_prerequestedsp = dtr.GetDataTable(prerequisitespname, null);
+            //    if (!Fn.IsEmpty(dtr.ErrorMessage))
+            //    {
+            //        ErrorList.Append("  {   \"ConfigurationName\" : " + C.JsonDataEncode(configName) + " , \"Error\" : " + C.JsonDataEncode(dtr.ErrorMessage) + " } ");
+            //        return null;
+            //    }
+            //    //else if (dt_prerequestedsp.Rows.Count <= 0)
+            //    //{
+            //    //    ErrorList.Append("  {   \"ConfigurationName\" : " + C.JsonDataEncode(configName) + " , \"Error\" : " + C.JsonDataEncode("You can not generate report due to security level") + " } ");
+            //    //    return null;
+
+            //    //}
+            //}
+            if (Fn.IsEmpty(outputPath))
+                outputPath = _app.StorageDirectory + "\\Reports";
+
+            if (templateName.Contains("."))
+                filePath = outputPath + "\\" + templateName;
+            else
+                filePath = outputPath + "\\" + templateName + "." + fileExtension;
+            addToLog("3:" + sw.ElapsedMilliseconds + " - " + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt"));
+            //FilePath = "E:\\pravin\\ThreadApp\\ThreadApp\\Store\\Reports\\temp_[@@departmentname].xls";
+
+            MatchCollection matches = Regex.Matches(filePath, @"\[(.*?)\]");
+            DataTable combinationdt = new DataTable();
+            string err = "";
+            addToLog("4:" + sw.ElapsedMilliseconds + " - " + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt"));
+            DataTable maindt = dtr.GetDataTable(spname, dicParams);
+            addToLog("5:" + sw.ElapsedMilliseconds + " - " + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt"));
+            if (maindt == null || maindt.Rows.Count == 0)
+            {
+                ErrorList.Append("  {   \"ConfigurationName\" : " + C.JsonDataEncode(configName) + " , \"Error\" : " + C.JsonDataEncode("Data Not Found in Stored Procedure For Generate Report....") + " } ");
+                return null;
+            }
+            HashSet<String> set_sortVariable = new HashSet<string>();
+            string sortorder = "";
+            if (matches.Count > 0)
+            {
+
+                for (var i = 0;
+                     i < matches.Count;
+                     i++)
+                {
+                    var colName = matches[i].Value.C2Str().Replace("[", "").Replace("]", "");
+                    //.Replace("@", "");
+                    if (colName.Contains("@@"))
+                    {
+                        set_sortVariable.Add(matches[i].Value.C2Str().Replace("[@@", "").Replace("]", ""));
+                        sortorder += matches[i].Value.C2Str().Replace("[@@", "").Replace("]", "") + " asc ,";
+                    }
+                    else if (colName.Contains("@"))
+                    {
+                        if (matches[i].Value.C2Str().Contains("@datetime"))
+                        {
+                            string currentTimestamp = DateTime.Now.ToString("yyyyMMddhhmmss");
+                            filePath = filePath.Replace(matches[i].Value.C2Str(), currentTimestamp);
+                        }
+                        else if (maindt.Columns.Contains(colName.Replace("@", "")))
+                            filePath = filePath.Replace(matches[i].Value.C2Str(), maindt.Rows[0][colName.Replace("@", "")].C2Str());
+                        else if (dicParams.ContainsKey("@" + colName.Replace("@", "")))
+                            filePath = filePath.Replace(matches[i].Value.C2Str(), dicParams[matches[i].Value.C2Str().Replace("[", "").Replace("]", "")].C2Str());
+                        else
+                            filePath = filePath.Replace(matches[i].Value.C2Str(), "");
+                    }
+                }
+            }
+            addToLog("6:" + sw.ElapsedMilliseconds + " - " + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt"));
+
+
+            #region Read Excel or Create Excel
+            //Byte[] excelBytes = null;
+
+
+            //if user uploade the excel with configuration details
+            //if (!Fn.IsEmpty(_given_excelByte) && isCustomeTemplate)
+            //{
+            //    excelBytes = (Byte[])_given_excelByte;
+            //}
+            ////if user not uploade the excel but get configuration details
+            //else if (tbl_configdetails.Rows.Count > 0)
+            //{
+            //    try
+            //    {
+            //        workbook = new Workbook();
+            //        Worksheet worksheet = workbook.Worksheets[0];
+            //        if (!issupresscolumnname)
+            //        {
+            //            for (var _i = 0; _i < tbl_configdetails.Rows.Count; _i++)
+            //            {
+            //                worksheet.Cells[dataStratingpos - 1, tbl_configdetails.Rows[_i]["columnnumber"].C2Int()].Value = tbl_configdetails.Rows[_i]["displayname"].C2Str();
+            //            }
+            //        }
+            //        using (MemoryStream stream2 = new MemoryStream())
+            //        {
+            //            stream2.Position = 0;
+            //            workbook.SaveDocument(stream2, DocumentFormat.Xls);
+            //            excelBytes = stream2.ToArray();
+            //        }
+            //        addToLog("7:" + sw.ElapsedMilliseconds + " - " + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt"));
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        ErrorList.Append("  {   \"ConfigurationName\" : " + C.JsonDataEncode(configName) + " , \"Error\" : " + C.JsonDataEncode(e) + " } ");
+            //    }
+            //}
+
+            #endregion
+            addToLog("8:" + sw.ElapsedMilliseconds + " - " + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt"));
+            DataView dataView = maindt.DefaultView;
+            bool iscomdt = true;
+            if (set_sortVariable.Count > 0)
+            {
+                combinationdt = dataView.ToTable(true, set_sortVariable.ToArray());
+                addToLog("9:" + sw.ElapsedMilliseconds + " - " + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt"));
+            }
+            else
+            {
+                combinationdt.Columns.Add("dum");
+                DataRow dr = combinationdt.NewRow();
+                dr["dum"] = "dummy";
+                combinationdt.Rows.Add();
+                iscomdt = false;
+            }
+            maindt.DefaultView.Sort = sortorder.TrimEnd(',');
+
+            if (fileExtension == "csv")
+            {
+                return exportFileHelper.getCSVByte(_app, _cfg, filePath, maindt, combinationdt, matches, iscomdt, delimeter, issupresscolumnname, tbl_configdetails, sw, ErrorList);
+            }
+            else if (fileExtension == "xls" || fileExtension == "xlsx")
+            {
+                return exportFileHelper.getExcelByte(_app, _cfg, filePath, maindt, combinationdt, tbl_configdetails, tbl_config, matches, iscomdt, sw, ErrorList);
+
+            }
+
+
+
+
+            addToLog("16:" + sw.ElapsedMilliseconds + " - " + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt"));
+            sw.Stop();
+            File.WriteAllText(_app.TempDirectory + "\\log" + DateTime.Now.ToString("yyyy-MM-dd hhmmsstt") + ".txt", log.C2Str());
+            return dic_ByteData;
+        }
+
+        
+
+
+
+
+
+        public void addToLog(string log)
+        {
+            File.AppendAllText(_app.TempDirectory + "\\rptlog.txt", log.C2Str() + "\r\n-----------------------------------------------------\r\n");
+        }
+        //get Configuration dataset
+        public DataSet GetConfigDT(string ConfigId, ErpScriptObject _erp, ApplicationInfo _app, IDBConfiguration _cfg)
+        {
+            string sqlsetting = @"
+--[tbl_config]
+select tbl_RS_spmaster.spname as rsspname,
+(select spname from tbl_RS_spmaster where spmaster_pid=tbl_RS_configuration.prerequisitesp_fid) as prerequisitespname,
+tbl_RS_configuration.* from tbl_RS_configuration
+left join tbl_RS_spmaster on spmaster_fid=spmaster_pid
+WHERE tbl_RS_configuration.company_fid = @CompanyID and configuration_pid=@configurationID;
+--[tbl_configdetails]
+select * from tbl_RS_configurationdetails     
+WHERE company_fid = @CompanyID and configuration_fid=@configurationID
+";
+            string Error = "";
+            DataSet DtRs = new DataSet();
+            DtRs = _erp.ExecuteSql<DataSet>(sqlsetting, new Dictionary<string, object>() {
+        {
+          "@CompanyID", _app.CompanyID }
+        ,{
+          "@configurationID" ,ConfigId}
+      }
+                                            , out Error);
+            return DtRs;
+        }
+    }
+}

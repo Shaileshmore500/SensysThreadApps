@@ -1,0 +1,3 @@
+<RedisForDevx  EnableRedisForDevControls="true" database="0" connectionString="localhost:6379,abortConnect=False"
+               EnableSqlForDevControls="false" sqlConnectionString="">
+  </RedisForDevx>

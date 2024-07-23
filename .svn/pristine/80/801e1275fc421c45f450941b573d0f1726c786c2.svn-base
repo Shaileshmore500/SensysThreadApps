@@ -1,0 +1,620 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HelperLib</name>
+    </assembly>
+    <members>
+        <member name="T:HelperLib.Configurator.HCfg">
+            <summary>
+            This class should be initialised before using any of the classes in this library
+            </summary>
+        </member>
+        <member name="M:HelperLib.Configurator.HCfg.CreateDBConfiguration(System.String,HelperLib.Data.DatabaseEngine)">
+            <summary>
+            A persistent DBConfiguration is created here which is used through out the session.
+            This method should be called in your Model.Configure.Configurator
+            </summary>
+            <param name="connString"></param>
+            <param name="dbEngine"></param>
+        </member>
+        <member name="M:HelperLib.Configurator.HCfg.RegisterStoreClasses(System.String)">
+            <summary>
+            Register classes who's properties will be dynamically replaced in a string(Refer DataStore.ReplaceGlobals method).To be initialised once in your Application Start
+            </summary>
+            <param name="classNames">a csv of class names and store type.eg: Session:Users,Application:AppManager,Cache:Config</param>
+        </member>
+        <member name="P:HelperLib.Configurator.HCfg.DBConfig">
+            <summary>
+            Retrieves the underlying session based DBConfiguration object
+            </summary>
+        </member>
+        <member name="P:HelperLib.Configurator.HCfg.NewDatatier">
+            <summary>
+            A new IDataTier is created based on the persistent underlying DBConfiguration
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:HelperLib.Conversion.C.ReorderDependents(System.Data.DataTable,System.String,System.String,System.String)" -->
+        <member name="M:HelperLib.Conversion.C.Encrypt(System.Object,System.String)">
+            <summary>
+            Fast Encryption
+            </summary>
+            <param name="str"></param>
+            <param name="pass"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HelperLib.Conversion.C.Decrypt(System.Object,System.String)">
+            <summary>
+            fast Decryption
+            </summary>
+            <param name="str"></param>
+            <param name="pass"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HelperLib.Conversion.C.JSEncode(System.Object)">
+            <summary>
+            Returns JS formatted string wrapped in double quotes
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="F:HelperLib.DAL.BaseDataTier.FBEGIN">
+            <summary>
+            Begining posotion of field list
+            </summary>
+        </member>
+        <member name="F:HelperLib.DAL.BaseDataTier.FEND">
+            <summary>
+            End position of field list
+            </summary>
+        </member>
+        <member name="F:HelperLib.DAL.BaseDataTier.JOIN">
+            <summary>
+            Placeholder for join
+            </summary>
+        </member>
+        <member name="T:HelperLib.DAL.IDBConfiguration">
+            <summary>
+            Summary description for DBConnStrings.
+            </summary>
+        </member>
+        <member name="T:HelperLib.DAL.MSDataTier">
+            <summary>
+            
+            Summary description for DataTier.
+            </summary>
+        </member>
+        <member name="M:HelperLib.DAL.MSDataTier.#ctor(HelperLib.DAL.IDBConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="cfg">cfg should be a persistent object such as session object or static variable</param>
+        </member>
+        <member name="M:HelperLib.DAL.MSDataTier.#ctor(System.String)">
+            <summary>
+            A non persistent DBConfiguration is created at runtime for this instance
+            </summary>        
+        </member>
+        <member name="M:HelperLib.DAL.MSDataTier.#ctor">
+            <summary>
+            Default implementation requires a DBConfiguration to be already created through Configurator.CreateDBConfiguration
+            </summary>
+        </member>
+        <member name="M:HelperLib.DAL.MSDataTier.GetSQLVersion">
+            <summary>
+            Returns the version of currently connected SQL server.Initialized only once.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HelperLib.DAL.MSDataTier.GetPagedTable(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32,System.Int32,System.String,System.String,System.Int32@)">
+            <summary>
+            Get only required number of records from the database
+            </summary>
+            <param name="strsql">Sql To be fired</param>
+            <param name="pageIndex">The  position of the current page</param>
+            <param name="recordCount">Number of records per page</param>
+            <param name="indexColumn">The unique field in the query</param>
+            <param name="sortKey">Fields on which sorting is done.If no field specified then indexColumn is used </param>
+            <param name="totalRecords">The actual number of records in the database is returned</param>
+            <param name="s">Error messages if any</param>
+            <returns></returns>
+        </member>
+        <member name="M:HelperLib.DAL.MSDataTier.GetPagedTable(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32,System.Int32,System.String,System.String,System.Int32@,System.Boolean)">
+            <summary>
+            Get only required number of records from the database
+            </summary>
+            <param name="strsql">Sql To be fired</param>
+            <param name="pageIndex">The  position of the current page</param>
+            <param name="recordCount">Number of records per page</param>
+            <param name="indexColumn">The unique field in the query</param>
+            <param name="sortKey">Fields on which sorting is done.If no field specified then indexColumn is used </param>
+            <param name="totalRecords">The actual number of records in the database is returned</param>
+            <param name="keepSysCols">Keep the "_RowNum" column internally used for paging.</param>
+            <param name="s">Error messages if any</param>
+            <returns></returns>
+        </member>
+        <member name="M:HelperLib.DAL.MSDataTier.GetPagedJSON(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32,System.Int32,System.String,System.String,System.Int32@)">
+            <summary>
+            Returns JSON encoded string
+            </summary>
+            <param name="strsql">Sql To be fired</param>
+            <param name="pageIndex">The  position of the current page</param>
+            <param name="recordCount">Number of records per page</param>
+            <param name="indexColumn">The unique field in the query</param>
+            <param name="sortKey">Fields on which sorting is done.If no field specified then indexColumn is used </param>
+            <param name="totalRecords">The actual number of records in the database is returned</param>
+            <param name="keepSysCols">Keep the "_RowNum" column internally used for paging.</param>
+            <param name="s">Error messages if any</param>
+            <returns></returns>
+        </member>
+        <member name="M:HelperLib.DAL.MSDataTier.GetPagedJSON(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32,System.Int32,System.String,System.String,System.Int32@,System.Boolean,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Returns JSON encoded string
+            </summary>
+            <param name="strsql">Sql To be fired</param>
+            <param name="pageIndex">The  position of the current page</param>
+            <param name="recordCount">Number of records per page</param>
+            <param name="indexColumn">The unique field in the query</param>
+            <param name="sortKey">Fields on which sorting is done.If no field specified then indexColumn is used </param>
+            <param name="totalRecords">The actual number of records in the database is returned</param>
+            <param name="keepSysCols">Keep the "_RowNum" column internally used for paging.</param>
+            <param name="columns">list of columns from the source that will be encoded<para>Example: column1|column2|column3</para></param>
+            <param name="columnDataFormats">Formating to be applied to the column data<para>Example: column1:dd-MM-yyyy|column2:#.##|column3:#,###</para></param>
+            <param name="defaultDateFormat">Default format applied to any DateTime Column<para>Example: dd-MM-yyyy</para></param>
+            <param name="ignoreColumnNameCase">All column names will be converted to lower case.</param>   
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HelperLib.DAL.MSDataTier.RecordsFound(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            checks whether the query returns any records or not.
+            </summary>
+            <param name="strsql"></param>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HelperLib.DAL.MSDataTier.ExecuteSP(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            TODO. needs review.
+            </summary>
+            <param name="procName"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HelperLib.Data.DataHelper.GetPagedRecords(System.Data.DataTable,System.Int32,System.Int32)">
+            <summary>
+            returns an Array of paged records
+            </summary>
+            <param name="dt">source Datatable</param>
+            <param name="pageIndex">The  position of the current page</param>
+            <param name="recordCount">Number of records per page</param>
+            <returns></returns>
+        </member>
+        <member name="M:HelperLib.Data.DataHelper.JsonSerialize(System.Object,System.String,System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Returns a JSON Encoded string
+            </summary>        
+            <param name="data">data should be a DataTable or DataView or DataRow[]</param>
+            <param name="columns">list of columns from the source that will be encoded<para>Example: column1|column2|column3</para></param>
+            <param name="columnDataFormats">Formating to be applied to the column data<para>Example: column1:dd-MM-yyyy|column2:#.##|column3:#,###</para></param>
+            <param name="defaultDateFormat">Default format applied to any DateTime Column<para>Example: dd-MM-yyyy</para></param>
+            <param name="ignoreSysCols">Ignore any columns that have ColumnName begining with "_" character</param>
+            <param name="ignoreColumnNameCase">All column names will be converted to lower case.</param>   
+            <returns></returns>
+        </member>
+        <member name="M:HelperLib.Extensions.BaseExtensions.IsEmpty(System.Object)">
+            <summary>
+            Checks if the object is null or is empty string.white-spaces are not considered empty
+            </summary>
+            <param name="o"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HelperLib.Extensions.BaseExtensions.IsBlank(System.Object)">
+            <summary>
+            Checks if the object is null or is empty string or has only white-spaces
+            </summary>
+            <param name="o"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HelperLib.Extensions.DataExtensions.HasColumn(System.Data.IDataRecord,System.String)">
+            <summary>
+            Checks whether column exists in the datareader
+            </summary>
+        </member>
+        <member name="M:HelperLib.Extensions.DataExtensions.ToPagedRecords(System.Data.DataTable,System.Int32,System.Int32)">
+            <summary>
+            returns an Array of paged records
+            </summary>
+            <param name="pageIndex">The  position of the current page</param>
+            <param name="recordCount">Number of records per page</param>
+            <returns></returns>
+        </member>
+        <member name="M:HelperLib.Extensions.DataExtensions.SelectSingle(System.Data.DataTable,System.String)">
+            <summary>
+            Gets a  System.Data.DataRow  that matches the filter criteria
+            in order of primary key (or lacking one, order of addition.) </summary>       
+            <param name="filterExpression">The criteria to use to filter the rows.</param>
+            <returns></returns>
+        </member>
+        <member name="M:HelperLib.Extensions.DataExtensions.SelectSingle(System.Data.DataTable,System.String,System.String)">
+            <summary>
+            Gets a  System.Data.DataRow  that matches the filter criteria
+            in the specified sort order.</summary>       
+            <param name="filterExpression">The criteria to use to filter the rows.</param>
+            <param name="sort">A string specifying the column and sort direction.</param> 
+            <returns></returns>
+        </member>
+        <member name="M:HelperLib.Extensions.DataExtensions.ToJSON(System.Data.Common.DbDataReader,System.Int32@,System.Int32,System.String,System.String,System.String,System.Boolean,System.Boolean,System.Boolean)">
+             <summary>
+             Returns a JSON Encoded string.
+            </summary>        
+             <param name="totalRecords">return the actual number of records found</param>
+             <param name="columns">list of columns from the source that will be encoded<para>Example: column1|column2|column3</para></param>
+             <param name="columnDataFormats">Formating to be applied to the column data<para>Example: column1:dd-MM-yyyy|column2:#.##|column3:#,###</para></param>
+             <param name="defaultDateFormat">Default format applied to any DateTime Column<para>Example: dd-MM-yyyy</para></param>
+             <param name="ignoreSysCols">Ignore any columns that have ColumnName begining with "_" character</param>
+             <param name="ignoreColumnNameCase">All column names will be converted to lower case.</param>   
+        </member>
+        <member name="M:HelperLib.Extensions.DataExtensions.ToJSON(System.Data.DataTable,System.String,System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Returns a JSON Encoded string
+            </summary>        
+            <param name="columns">list of columns from the source that will be encoded<para>Example: column1|column2|column3</para></param>
+            <param name="columnDataFormats">Formating to be applied to the column data<para>Example: column1:dd-MM-yyyy|column2:#.##|column3:#,###</para></param>
+            <param name="defaultDateFormat">Default format applied to any DateTime Column<para>Example: dd-MM-yyyy</para></param>
+            <param name="ignoreSysCols">Ignore any columns that have ColumnName begining with "_" character</param>
+            <param name="ignoreColumnNameCase">All column names will be converted to lower case.</param>   
+        </member>
+        <member name="M:HelperLib.Extensions.DataExtensions.ToJSON(System.Data.DataTable,System.String)">
+            <summary>
+            Returns a JSON Encoded string
+            </summary>        
+            <param name="columns">list of columns from the source that will be encoded<para>Example: column1|column2|column3</para></param>
+        </member>
+        <member name="M:HelperLib.Extensions.DataExtensions.ToJSON(System.Data.DataTable)">
+            <summary>
+            Returns a JSON Encoded string
+            </summary>        
+        </member>
+        <member name="M:HelperLib.Extensions.DataExtensions.ToJSON(HelperLib.Data.LiteTable,System.String,System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Returns a JSON Encoded string
+            </summary>        
+            <param name="columns">list of columns from the source that will be encoded<para>Example: column1|column2|column3</para></param>
+            <param name="columnDataFormats">Formating to be applied to the column data<para>Example: column1:dd-MM-yyyy|column2:#.##|column3:#,###</para></param>
+            <param name="defaultDateFormat">Default format applied to any DateTime Column<para>Example: dd-MM-yyyy</para></param>
+            <param name="ignoreSysCols">Ignore any columns that have ColumnName begining with "_" character</param>
+            <param name="ignoreColumnNameCase">All column names will be converted to lower case.</param>   
+        </member>
+        <member name="M:HelperLib.Extensions.DataExtensions.ToJSON(HelperLib.Data.LiteTable,System.String)">
+            <summary>
+            Returns a JSON Encoded string
+            </summary>        
+            <param name="columns">list of columns from the source that will be encoded<para>Example: column1|column2|column3</para></param>
+        </member>
+        <member name="M:HelperLib.Extensions.DataExtensions.ToJSON(HelperLib.Data.LiteTable)">
+            <summary>
+            Returns a JSON Encoded string
+            </summary>        
+        </member>
+        <member name="M:HelperLib.Extensions.DataExtensions.ToJSON(HelperLib.Data.LiteTable,System.String,System.String)">
+            <summary>
+            Returns a JSON Encoded string
+            </summary>        
+            <param name="columns">list of columns from the source that will be encoded<para>Example: column1|column2|column3</para></param>
+            <param name="columnDataFormats">Formating to be applied to the column data<para>Example: column1:dd-MM-yyyy|column2:#.##|column3:#,###</para></param>
+            <param name="defaultDateFormat">Default format applied to any DateTime Column<para>Example: dd-MM-yyyy</para></param>
+            <param name="ignoreSysCols">Ignore any columns that have ColumnName begining with "_" character</param>
+            <param name="ignoreColumnNameCase">All column names will be converted to lower case.</param>   
+        </member>
+        <member name="M:HelperLib.Extensions.DataExtensions.ToJSON(System.Data.DataRow[],System.String,System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Returns a JSON Encoded string
+            </summary>        
+            <param name="columns">list of columns from the source that will be encoded<para>Example: column1|column2|column3</para></param>
+            <param name="columnDataFormats">Formating to be applied to the column data<para>Example: column1:dd-MM-yyyy|column2:#.##|column3:#,###</para></param>
+            <param name="defaultDateFormat">Default format applied to any DateTime Column<para>Example: dd-MM-yyyy</para></param>
+            <param name="ignoreSysCols">Ignore any columns that have ColumnName begining with "_" character</param>
+            <param name="ignoreColumnNameCase">All column names will be converted to lower case.</param>   
+        </member>
+        <member name="M:HelperLib.Extensions.DataExtensions.ToJSON(System.Data.DataView,System.String,System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Returns a JSON Encoded string
+            </summary>
+            <param name="columns">list of columns from the source that will be encoded<para>Example: column1|column2|column3</para></param>
+            <param name="columnDataFormats">Formating to be applied to the column data<para>Example: column1:dd-MM-yyyy|column2:#.##|column3:#,###</para></param>
+            <param name="defaultDateFormat">Default format applied to any DateTime Column<para>Example: dd-MM-yyyy</para></param>
+            <param name="ignoreSysCols">Ignore any columns that have ColumnName begining with "_" character</param>
+            <param name="ignoreColumnNameCase">All column names will be converted to lower case.</param>   
+        </member>
+        <member name="F:HelperLib.Queries.QueryBase.FBEGIN">
+            <summary>
+            Begining posotion of field list
+            </summary>
+        </member>
+        <member name="F:HelperLib.Queries.QueryBase.FEND">
+            <summary>
+            End position of field list
+            </summary>
+        </member>
+        <member name="F:HelperLib.Queries.QueryBase.JOIN">
+            <summary>
+            Placeholder for join
+            </summary>
+        </member>
+        <member name="M:HelperLib.ORM.BaseORM.#ctor">
+            <summary>
+            Default implementation requires a DBConfiguration to be already created through HelperLib.Configurator.CreateDBConfiguration
+            </summary>
+        </member>
+        <member name="M:HelperLib.Data.ColumnInfo.SetUniqueConstraints(System.String[])">
+            <summary>
+            <para>Record will not be inserted/updated if same value exists in database.</para>
+            <para>If no parameter is sent then value will be checked against entire table</para>
+            <para>else value is checked in combination with columns passed as parameters</para>
+            </summary>
+            <example>
+            SetUniqueConstraints("company_fid") will check uniqueness for a specific company
+            </example>
+            <param name="columns"></param>
+        </member>
+        <member name="M:HelperLib.Data.ColumnInfo.SetDeleteConstraints(System.String[])">
+            <summary>
+            <para>Record will not be deleted if same value is referred elsewhere</para>
+            <para>Usage1:SetDeleteConstraints("TABLENAME>FIELDNAME")</para>
+            <para>Usage2:SetDeleteConstraints("TABLENAME[DISPLAY NAME]>FIELDNAME")</para>
+            </summary>
+            <param name="constraints"></param>
+        </member>
+        <member name="M:HelperLib.Data.ColumnInfo.SetDeleteCascade(System.String[])">
+            <summary>
+            <para>Record will deleted from other tables if same value is referred in that table</para>
+            <para>Usage:SetDeleteCascade("TABLENAME>FIELDNAME")</para>
+            </summary>
+            <param name="constraints"></param>
+        </member>
+        <member name="T:HelperLib.DatabaseCompare.Column">
+            <summary>
+            Summary description for Column.
+            </summary>
+            
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:HelperLib.DatabaseCompare.Column.CompareTo(HelperLib.DatabaseCompare.Column)" -->
+        <member name="T:HelperLib.DatabaseCompare.Constraint">
+            <summary>
+            Summary description for Column.
+            </summary>
+            
+        </member>
+        <member name="T:HelperLib.DatabaseCompare.DatabaseObject">
+            <summary>
+            Summary description for DatabaseObject.
+            </summary>
+            
+        </member>
+        <member name="T:HelperLib.DatabaseCompare.ForeignKey">
+            <summary>
+            Summary description for Column.
+            </summary>
+            
+        </member>
+        <member name="T:HelperLib.DatabaseCompare.Function">
+            <summary>
+            Summary description for Function.
+            </summary>
+            
+        </member>
+        <member name="T:HelperLib.DatabaseCompare.MsDatabase">
+            <summary>
+            Summary description for Database.
+            </summary>
+        </member>
+        <member name="M:HelperLib.DatabaseCompare.MsDatabase.AlterColumn(HelperLib.DatabaseCompare.Column,System.String,System.String)">
+            <summary>
+            isnull true is only checked.not null columns cannot be created easily
+            </summary>
+            <param name="clm"></param>
+            <param name="tbl"></param>
+            <param name="otype"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HelperLib.DatabaseCompare.MyDatabase">
+            <summary>
+            Summary description for Database.
+            </summary>
+            
+        </member>
+        <member name="T:HelperLib.DatabaseCompare.StoredProc">
+            <summary>
+            Summary description for StoredProc.
+            </summary>
+            
+        </member>
+        <member name="T:HelperLib.DatabaseCompare.Trigger">
+            <summary>
+            Summary description for StoredProc.
+            </summary>
+            
+        </member>
+        <member name="T:HelperLib.DatabaseCompare.UserTable">
+            <summary>
+            Summary description for UserTable.
+            </summary>
+            
+        </member>
+        <member name="T:HelperLib.DatabaseCompare.View">
+            <summary>
+            Summary description for View.
+            </summary>
+            
+        </member>
+        <member name="T:HelperLib.Store.DataStore">
+            <summary>
+            Provides static methods for storing and retrieving data in a platform independent manner.
+            </summary>
+        </member>
+        <member name="F:HelperLib.Store.DataStore.RegisterClasses">
+            <summary>
+            Register classes that will be dynamically replaced in a string.To be initialised in your Application Start
+            </summary>
+        </member>
+        <member name="M:HelperLib.Store.DataStore.SetTemp(System.String,System.Object,System.Int32)">
+            <summary>
+            data is stored in cache for specified amount of minutes
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
+            <param name="minutes"></param>
+        </member>
+        <member name="M:HelperLib.Store.DataStore.GetTemp(System.String)">
+            <summary>
+            retrieves the data stored in the cache
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HelperLib.Store.DataStore.Get(HelperLib.Store.DataStore.Storage,System.String)">
+            <summary>
+            retrieves the data stored in the specified storage medium
+            </summary>
+            <param name="store"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HelperLib.Store.DataStore.Get(System.String)">
+            <summary>
+            This method tries to retrieve the first occurence of data from  any of the storage medium.
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HelperLib.Store.DataStore.ReplaceGlobals(System.String)">
+            <summary>
+            This method replaces all occurences of the properties of classes specified through HCfg.RegisterStoreClasses
+            eg: @Users.CompanyID will be replaced as actual value of the property Users.CompanyID
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="P:HelperLib.Store.DataStore.Local">
+            <summary>
+            This provides a private store that is individual to a user.
+            </summary>
+        </member>
+        <member name="P:HelperLib.Store.DataStore.Global">
+            <summary>
+            This provides a application wide store 
+            </summary>
+        </member>
+        <member name="F:HelperLib.Store.DataStore.Storage.Session">
+            <summary>
+            Data will be stored in an Asp.Net Session variable for Web Platform and a global static variable for Windows Platform
+            </summary>
+        </member>
+        <member name="F:HelperLib.Store.DataStore.Storage.Cache">
+            <summary>
+            Data will be stored in an Asp.Net Cache variable for Web Platform and a global static variable for Windows Platform
+            </summary>
+        </member>
+        <member name="F:HelperLib.Store.DataStore.Storage.Application">
+            <summary>
+            Data will be stored in an Asp.Net Application variable for Web Platform and a global static variable for Windows Platform
+            </summary>
+        </member>
+        <member name="F:HelperLib.Store.DataStore.Storage.Static">
+            <summary>
+            Data will be stored in an Asp.Net Application variable for Web Platform and a global static variable for Windows Platform
+            This is same as Storage.Application
+            </summary>
+        </member>
+        <member name="F:HelperLib.Store.DataStoreSettings.EnableRedisCache">
+            <summary>
+            Cache will be stored on Redis Server
+            </summary>
+        </member>
+        <member name="F:HelperLib.Store.DataStoreSettings.CacheExpiration">
+            <summary>
+            Default Expiration In Minutes for Cache Values
+            </summary>
+        </member>
+        <member name="F:HelperLib.Store.DataStoreSettings.MirrorCacheExpiration">
+            <summary>
+            Default Expiration In Minutes for Http Cache Values
+            </summary>
+        </member>
+        <member name="F:HelperLib.Store.DataStoreSettings.GlobalCacheExpiration">
+            <summary>
+            Cache Key Expiration In Minutes For Global Cache Values
+            </summary>
+        </member>
+        <member name="F:HelperLib.Store.DataStoreSettings.SessionCacheExpiration">
+            <summary>
+            Cache Key Expiration In Minutes For Session Cache Values
+            </summary>
+        </member>
+        <member name="M:HelperLib.Store.DataStoreSettings.LoadFromConfiguration">
+            <summary>
+            Default values are loaded from web.config/app.config
+            </summary>
+        </member>
+        <member name="P:HelperLib.Store.DataStoreSettings.EnableRedisCacheForSession">
+            <summary>
+            Session Data Will Be saved In Redis cache only
+            </summary>
+        </member>
+        <member name="P:HelperLib.Store.DataStoreSettings.MirrorSessionInRedisCache">
+            <summary>
+            Session Data Will Be mirrored In Redis cache.if sesion expires data is reloaded in session from redis cache
+            </summary>
+        </member>
+        <member name="P:HelperLib.Store.DataStoreSettings.MirrorMemoryCacheInRedisCache">
+            <summary>
+            Http Cache Data Will Be mirrored In Redis cache.if runtime cache expires data is reloaded in session from redis cache
+            </summary>
+        </member>
+        <member name="P:HelperLib.Store.DataStoreSettings.EnableRedisCacheForGlobalVars">
+            <summary>
+            Application Data Will Be stored In Cache Instead of Application Variable
+            </summary>
+        </member>
+        <member name="M:HelperLib.Web.WebResources.ResolveUrl(System.String)">
+            <summary>
+            Returns a site relative HTTP path from a partial path starting out with a ~.
+            Same syntax that ASP.Net internally supports but this method can be used
+            outside of the Page framework.
+            
+            Works like Control.ResolveUrl including support for ~ syntax
+            but returns an absolute URL.
+            </summary>
+            <param name="originalUrl">Any Url including those starting with ~</param>
+            <returns>relative url</returns>
+        </member>
+        <member name="M:HelperLib.Web.WebResources.ResolveServerUrl(System.String,System.Boolean)">
+            <summary>
+            This method returns a fully qualified absolute server Url which includes
+            the protocol, server, port in addition to the server relative Url.
+            
+            Works like Control.ResolveUrl including support for ~ syntax
+            but returns an absolute URL.
+            </summary>
+            <param name="ServerUrl">Any Url, either App relative or fully qualified</param>
+            <param name="forceHttps">if true forces the url to use https</param>
+            <returns></returns>
+        </member>
+        <member name="M:HelperLib.Web.WebResources.ResolveServerUrl(System.String)">
+            <summary>
+            This method returns a fully qualified absolute server Url which includes
+            the protocol, server, port in addition to the server relative Url.
+            
+            It work like Page.ResolveUrl, but adds these to the beginning.
+            This method is useful for generating Urls for AJAX methods
+            </summary>
+            <param name="ServerUrl">Any Url, either App relative or fully qualified</param>
+            <returns></returns>
+        </member>
+        <member name="M:HelperLib.Web.WebResources.ForceUriToHttps(System.Uri)">
+            <summary>
+            Forces the Uri to use https
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ReportData" targetNamespace="http://tempuri.org/Stub.xsd" xmlns:mstns="http://tempuri.org/Stub.xsd" xmlns="http://tempuri.org/Stub.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ReportData" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ReportData" msprop:Generator_UserDSName="ReportData">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dt-1" msprop:Generator_TableClassName="_dt_1DataTable" msprop:Generator_TableVarName="_tabledt_1" msprop:Generator_RowChangedName="_dt_1RowChanged" msprop:Generator_TablePropName="_dt_1" msprop:Generator_RowDeletingName="_dt_1RowDeleting" msprop:Generator_RowChangingName="_dt_1RowChanging" msprop:Generator_RowEvHandlerName="_dt_1RowChangeEventHandler" msprop:Generator_RowDeletedName="_dt_1RowDeleted" msprop:Generator_RowClassName="_dt_1Row" msprop:Generator_UserTableName="dt-1" msprop:Generator_RowEvArgName="_dt_1RowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Field1" msprop:Generator_ColumnVarNameInTable="columnField1" msprop:Generator_ColumnPropNameInRow="Field1" msprop:Generator_ColumnPropNameInTable="Field1Column" msprop:Generator_UserColumnName="Field1" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="dt-2" msprop:Generator_TableClassName="_dt_2DataTable" msprop:Generator_TableVarName="_tabledt_2" msprop:Generator_RowChangedName="_dt_2RowChanged" msprop:Generator_TablePropName="_dt_2" msprop:Generator_RowDeletingName="_dt_2RowDeleting" msprop:Generator_RowChangingName="_dt_2RowChanging" msprop:Generator_RowEvHandlerName="_dt_2RowChangeEventHandler" msprop:Generator_RowDeletedName="_dt_2RowDeleted" msprop:Generator_RowClassName="_dt_2Row" msprop:Generator_UserTableName="dt-2" msprop:Generator_RowEvArgName="_dt_2RowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Field1" msprop:Generator_ColumnVarNameInTable="columnField1" msprop:Generator_ColumnPropNameInRow="Field1" msprop:Generator_ColumnPropNameInTable="Field1Column" msprop:Generator_UserColumnName="Field1" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="dt-3" msprop:Generator_TableClassName="_dt_3DataTable" msprop:Generator_TableVarName="_tabledt_3" msprop:Generator_RowChangedName="_dt_3RowChanged" msprop:Generator_TablePropName="_dt_3" msprop:Generator_RowDeletingName="_dt_3RowDeleting" msprop:Generator_RowChangingName="_dt_3RowChanging" msprop:Generator_RowEvHandlerName="_dt_3RowChangeEventHandler" msprop:Generator_RowDeletedName="_dt_3RowDeleted" msprop:Generator_RowClassName="_dt_3Row" msprop:Generator_UserTableName="dt-3" msprop:Generator_RowEvArgName="_dt_3RowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Field1" msprop:Generator_ColumnVarNameInTable="columnField1" msprop:Generator_ColumnPropNameInRow="Field1" msprop:Generator_ColumnPropNameInTable="Field1Column" msprop:Generator_UserColumnName="Field1" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="dt-4" msprop:Generator_TableClassName="_dt_4DataTable" msprop:Generator_TableVarName="_tabledt_4" msprop:Generator_TablePropName="_dt_4" msprop:Generator_RowDeletingName="_dt_4RowDeleting" msprop:Generator_RowChangingName="_dt_4RowChanging" msprop:Generator_RowEvHandlerName="_dt_4RowChangeEventHandler" msprop:Generator_RowDeletedName="_dt_4RowDeleted" msprop:Generator_UserTableName="dt-4" msprop:Generator_RowChangedName="_dt_4RowChanged" msprop:Generator_RowEvArgName="_dt_4RowChangeEvent" msprop:Generator_RowClassName="_dt_4Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Field1" msprop:Generator_ColumnVarNameInTable="columnField1" msprop:Generator_ColumnPropNameInRow="Field1" msprop:Generator_ColumnPropNameInTable="Field1Column" msprop:Generator_UserColumnName="Field1" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="dt-5" msprop:Generator_TableClassName="_dt_5DataTable" msprop:Generator_TableVarName="_tabledt_5" msprop:Generator_TablePropName="_dt_5" msprop:Generator_RowDeletingName="_dt_5RowDeleting" msprop:Generator_RowChangingName="_dt_5RowChanging" msprop:Generator_RowEvHandlerName="_dt_5RowChangeEventHandler" msprop:Generator_RowDeletedName="_dt_5RowDeleted" msprop:Generator_UserTableName="dt-5" msprop:Generator_RowChangedName="_dt_5RowChanged" msprop:Generator_RowEvArgName="_dt_5RowChangeEvent" msprop:Generator_RowClassName="_dt_5Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Field1" msprop:Generator_ColumnVarNameInTable="columnField1" msprop:Generator_ColumnPropNameInRow="Field1" msprop:Generator_ColumnPropNameInTable="Field1Column" msprop:Generator_UserColumnName="Field1" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="dt-6" msprop:Generator_TableClassName="_dt_6DataTable" msprop:Generator_TableVarName="_tabledt_6" msprop:Generator_TablePropName="_dt_6" msprop:Generator_RowDeletingName="_dt_6RowDeleting" msprop:Generator_RowChangingName="_dt_6RowChanging" msprop:Generator_RowEvHandlerName="_dt_6RowChangeEventHandler" msprop:Generator_RowDeletedName="_dt_6RowDeleted" msprop:Generator_UserTableName="dt-6" msprop:Generator_RowChangedName="_dt_6RowChanged" msprop:Generator_RowEvArgName="_dt_6RowChangeEvent" msprop:Generator_RowClassName="_dt_6Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Field1" msprop:Generator_ColumnVarNameInTable="columnField1" msprop:Generator_ColumnPropNameInRow="Field1" msprop:Generator_ColumnPropNameInTable="Field1Column" msprop:Generator_UserColumnName="Field1" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="dt-7" msprop:Generator_TableClassName="_dt_7DataTable" msprop:Generator_TableVarName="_tabledt_7" msprop:Generator_TablePropName="_dt_7" msprop:Generator_RowDeletingName="_dt_7RowDeleting" msprop:Generator_RowChangingName="_dt_7RowChanging" msprop:Generator_RowEvHandlerName="_dt_7RowChangeEventHandler" msprop:Generator_RowDeletedName="_dt_7RowDeleted" msprop:Generator_UserTableName="dt-7" msprop:Generator_RowChangedName="_dt_7RowChanged" msprop:Generator_RowEvArgName="_dt_7RowChangeEvent" msprop:Generator_RowClassName="_dt_7Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Field1" msprop:Generator_ColumnVarNameInTable="columnField1" msprop:Generator_ColumnPropNameInRow="Field1" msprop:Generator_ColumnPropNameInTable="Field1Column" msprop:Generator_UserColumnName="Field1" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="dt-8" msprop:Generator_TableClassName="_dt_8DataTable" msprop:Generator_TableVarName="_tabledt_8" msprop:Generator_TablePropName="_dt_8" msprop:Generator_RowDeletingName="_dt_8RowDeleting" msprop:Generator_RowChangingName="_dt_8RowChanging" msprop:Generator_RowEvHandlerName="_dt_8RowChangeEventHandler" msprop:Generator_RowDeletedName="_dt_8RowDeleted" msprop:Generator_UserTableName="dt-8" msprop:Generator_RowChangedName="_dt_8RowChanged" msprop:Generator_RowEvArgName="_dt_8RowChangeEvent" msprop:Generator_RowClassName="_dt_8Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Field1" msprop:Generator_ColumnVarNameInTable="columnField1" msprop:Generator_ColumnPropNameInRow="Field1" msprop:Generator_ColumnPropNameInTable="Field1Column" msprop:Generator_UserColumnName="Field1" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="dt-9" msprop:Generator_TableClassName="_dt_9DataTable" msprop:Generator_TableVarName="_tabledt_9" msprop:Generator_TablePropName="_dt_9" msprop:Generator_RowDeletingName="_dt_9RowDeleting" msprop:Generator_RowChangingName="_dt_9RowChanging" msprop:Generator_RowEvHandlerName="_dt_9RowChangeEventHandler" msprop:Generator_RowDeletedName="_dt_9RowDeleted" msprop:Generator_UserTableName="dt-9" msprop:Generator_RowChangedName="_dt_9RowChanged" msprop:Generator_RowEvArgName="_dt_9RowChangeEvent" msprop:Generator_RowClassName="_dt_9Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Field1" msprop:Generator_ColumnVarNameInTable="columnField1" msprop:Generator_ColumnPropNameInRow="Field1" msprop:Generator_ColumnPropNameInTable="Field1Column" msprop:Generator_UserColumnName="Field1" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

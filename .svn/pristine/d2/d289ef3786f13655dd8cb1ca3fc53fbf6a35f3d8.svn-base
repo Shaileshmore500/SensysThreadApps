@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,user-scalable=yes" />
+    <script src="../Scripts/jquery.js"></script>
+    <script src="../Scripts/json2.js"></script>
+  
+</head>
+<body>
+    <div id="divEditor">
+        <span>Choose Mode</span><br />
+        <label>Organisation Key<input type="radio" name="source" checked onclick="showUrl()" id="rdoKey" /></label>
+        <label>Url Based<input type="radio" name="source" onclick="showUrl()" id="rdoUrl" /></label><br />
+
+        <div id="divKey" style="display:none">
+            <input type="text" placeholder="Enter Key" id="txtKey" />
+        </div>
+        <div id="divUrl"  style="display:none">
+            <input type="text" placeholder="Enter Url" id="txtUrl" />
+            <input type="text" placeholder="Enter Key" id="txtUrlKey" />
+            <label>Secure Site<input type="checkbox" id="chkSecure" /></label><br />
+        </div>
+        <a href="javascript:void(0)" onclick="ValidateUrl()">Validate</a>
+        <div id="divDbList" style="display: none">
+
+            <div id="divDb">
+                <label>Select Database</label>
+                <select onchange="loadComp()" id="ddlDb"></select></div>
+            <div id="divComp">
+                <label>Select Company</label>
+                <select id="ddlComp"></select></div>
+        </div>
+
+    </div>
+
+
+    <a href="javascript:void(0)" onclick="SaveSettings()">Save Settings</a>
+
+</body>
+<script>
+    var arrDbList = [{ text: "Database 1", val: "db1", items: ["comp1", "comp2"] }, { text: "Database 2", val: "db2", items: ["comp3", "comp4"] }];
+    function ValidateUrl() {
+        var url = "";
+        $.ajax({
+            crossDomain: true,
+            type: "GET",
+            url: "http://52.66.166.119/EServer2/core/erpapi.asmx/GetCompList",
+            data: {key: "Z0002489"},
+            contentType: "application/json; charset=utf-8",
+            dataType: "jsonp",
+            success: function (r) { console.log(r); },
+            failure: function (r) { alert(r); }
+        });
+
+
+        //show loader
+        window.setTimeout(function () {
+            //remove loader
+            $("#ddlDb").empty();
+            $("#ddlDb").append("<option value='0'>Please Select</option>")
+            $("#ddlComp").empty();
+            $("#ddlComp").append("<option value='0'>Please Select</option>")
+            for (var i = 0; i < arrDbList.length; i++) {
+                $("#ddlDb").append("<option value='" + arrDbList[i].val + "'>" + arrDbList[i].text + "</option>")
+            }
+            $("#divDbList").show();
+        }, 5000);
+    }
+    showUrl()
+    function showUrl() {
+        if ($("#rdoKey").is(":checked")) {
+            $("#divKey").show(); $("#divUrl").hide();
+        }
+        else {
+            $("#divKey").hide(); $("#divUrl").show();
+        }
+    }
+    function loadComp() {
+        $("#ddlComp").empty();
+        $("#ddlComp").append("<option value='0'>Please Select</option>")
+        for (var i = 0; i < arrDbList.length; i++) {
+            if (arrDbList[i].val == $("#ddlDb").val()) {
+                for (var x = 0; x < arrDbList[i].items.length; x++)
+                    $("#ddlComp").append("<option value='" + arrDbList[i].items[x] + "'>" + arrDbList[i].items[x] + "</option>")
+                break;
+            }
+        }
+    }
+    function SaveSettings() {
+        var data = "{\"Type\": \"SaveSettings\", \"Mode\": \"" + ($("#rdoKey").is(":checked") ? "KEY" : "URL") + "\", \"Key\": \"" + ($("#rdoKey").is(":checked") ? $("#txtKey").val() : $("#txtUrlKey").val()) + "\", \"Url\": \"" + $("#txtUrlKey").val() + "\", \"Secure\": \"" + ($("#chkSecure").is(":checked") ? 1 : 0)
+            + "\", \"Db\": \"" + $("#ddlDb").val() + "\", \"DbTitle\": \"" + $("#ddlDb").find("option:selected").text() + "\", \"CompanyCode\": \"" + $("#ddlComp").val() + "\"}";
+        console.log(data)
+
+        //jsBridge.invokeAction(data);
+        Native("callback", {
+            Type: "SaveSettings",
+            Key: $("#txtKey").val(),
+            Secure: $("#chkSecure").is(":checked") ? 1 : 0,
+            CompanyCode: $("#txtCompCode").val()
+        });
+    }
+
+    function NativeLoaded() {
+        Native("callback", { Type: "GetData" })
+    }
+
+    function __nativeLoaded() {
+        if (typeof Native != "function") {
+            window.setTimeout(__nativeLoaded, 100);
+            return false;
+        }
+        NativeLoaded();
+        return true;
+    }
+    __nativeLoaded();
+    function LoadData(data) {
+        //$(document.body).append("<span>"+data+"</span>")
+        try {
+            data = JSON.parse(data);
+        } catch (e) { alert(e.message); data = null; }
+        if (data) {
+            $("#txtKey").val(data.Key);
+            $("#txtCompCode").val(data.CompanyCode);
+            $("#chkSecure").checked(data.Secure == 1);
+        }
+
+        showUrl()
+    }
+</script>
+</html>

@@ -1,0 +1,226 @@
+var Telephony = {};
+Telephony.UserActive = false;
+
+var apiKeys=[{api:"fd5f7891-dcf2-4df8-887e-bbbd2b494a82"}];
+Telephony.ConnectClientToAgent = function(opt) {
+    opt = $.extend({
+        entityId: "",
+        recordId: "",
+        tag: "",
+        callback: null,
+        btn: null
+    }, opt);
+    if (!opt.recordId)
+        return;
+    if (opt.btn && $(opt.btn).hasClass("spinIcon"))
+        return;
+    if (opt.btn)
+        $(opt.btn).addClass("spinIcon");
+    $("#teleCallingFeedbackWidget").remove();
+    //Erp.ShowBusyMessage("Please Wait...")
+    Erp.ExecuteTaskScript('ac89fcd2-4aad-47e9-9941-4374138a65cc', {
+            '@Entity': opt.entityId,
+            '@ID': opt.recordId,
+            '@Tag': opt.tag,
+            '_CallType': "CALL"
+        },
+        function(r) {
+            if (opt.btn)
+                $(opt.btn).removeClass("spinIcon");
+            ConnectClientToAgentCallback(r);
+            if (typeof opt.callback == "function")
+                opt.callback(r);
+        }
+    );
+}
+
+function ConnectClientToAgentCallback(result) {
+    //Erp.HideBusyMessage();
+    if (!result || !result["Success"])
+        Erp.ShowMessage((result || Fn.IsEmpty(result["Error"]) ? "Error Occured" : result["Error"]), "error");
+    else {
+        Erp.ShowMessage("Call Placed Successfully", "success");
+        if (result["EnableFeedback"])
+            Telephony.CreateWidget(result["LogID"], result["FeedbackForm"]);
+    }
+
+}
+
+
+Telephony.DialNumber = function(num, callback) {
+    Erp.ExecuteTaskScript('ac89fcd2-4aad-47e9-9941-4374138a65cc', {
+            'DialTo': num,
+            '_CallType': "DIALNUMBER"
+        },
+        function(r) {
+            if (typeof callback == "function")
+                callback(r);
+        }
+    );
+}
+
+Telephony.RegisterUser = function(callback) {
+    Erp.ExecuteTaskScript('ac89fcd2-4aad-47e9-9941-4374138a65cc', {
+        'RegisterUser': true
+    }, function(r) {
+        Telephony.UserActive = true;
+        console.log(r);
+        Telephony.BeginPolling();
+        if (typeof callback == "function")
+            callback();
+    });
+}
+Telephony.DeRegisterUser = function(callback) {
+    Erp.ExecuteTaskScript('ac89fcd2-4aad-47e9-9941-4374138a65cc', {
+        'DeRegisterUser': true
+    }, function(r) {
+        Telephony.UserActive = false;
+        console.log(r);
+        if (typeof callback == "function")
+            callback();
+    });
+}
+var __callbackSet = false;
+
+Telephony.BeginPolling = function(callback) {
+    if (__callbackSet)
+        return;
+    __callbackSet = true;
+  for(var i=0;i<apiKeys.length;i++){
+    var URL = "https://konnect.knowlarity.com:8100/update-stream/"+apiKeys[i]["api"]+"/konnect"
+    var source = new EventSource(URL);
+    source.onmessage = function(event) {
+        var data = JSON.parse(event.data)
+        console.log('Received an event .......');
+        console.log(data);
+		if(data["event_type"]!="ORIGINATE")
+          return;
+        Erp.ExecuteTaskScript('ac89fcd2-4aad-47e9-9941-4374138a65cc', {
+            "CheckPopupAvailable": true,
+            "@Uid": data.uuid,
+            "UserNumber": data.agent_number
+        }, function(d) {
+          	if(d && d["PopupData"])
+            	Telephony._ShowIncomingPopup(JSON.parse(d["PopupData"]));
+        });
+    }
+  }
+    Erp.WebApi.Connect(Users.UserID + "_CallPopup", true, 1, function(d) {
+        Telephony._ShowIncomingPopup(d);
+    });
+}
+
+Telephony._ShowIncomingPopup = function(d) {
+    if (!Telephony.UserActive)
+        return;
+    console.log(d);
+    if (!d || Fn.IsEmpty(d.Entity))
+        return;
+    var qry = "&_tel_recid=" + d.RecordID + (Fn.IsEmpty(d.RecordID) ? "&Phone=" + d.Phone : "") + "&_tel_logid=" + d["LogID"];
+    if (d["EnableFeedback"] == 1) {
+        qry += "&_tel_fb=1&_tel_fbf=" + encodeURIComponent(d["FeedbackForm"]);
+    }
+    var code = d.Layout;
+    code = code.Replace("#ID#", d.RecordID);
+    if (code.indexOf("{") > -1 && code.indexOf("}") > -1 && code.indexOf(":") > -1) {
+        code = JSON.parse(code);
+        code.Params = $.defaultVal(code.Params, "") + qry;
+        Erp.OpenWindow(code);
+    } else {
+        Erp.OpenWindow({
+            Entity: d.Entity,
+            "Action": (Fn.IsEmpty(d.RecordID) ? "ADDFORM" : "EDITFORM"),
+            "Form": code,
+            "RecordID": d.RecordID,
+            "Params": qry,
+            "Location": "NEW"
+        })
+    }
+}
+
+Telephony.ShowButton = function(ids, entity, callback) {
+    ids = (ids ? ids : "__asdfg");
+    //ids maybe blank
+    if (Fn.IsEmpty(ids) || Fn.IsEmpty(entity))
+        return;
+    var arr = ids.split(',');
+    ids = "";
+    for (var i = 0; i < arr.length; i++) {
+        if (!Fn.IsEmpty(arr[i]))
+            ids += "#" + arr[i] + ",";
+    }
+    ids = ids.Trim(',');
+    $(ids).hide();
+    Erp.ExecuteTaskScript('ac89fcd2-4aad-47e9-9941-4374138a65cc', {
+        'CheckApplicable': true,
+        "@Entity": entity
+    }, function(r) {
+        if (r && r["Visible"])
+            $(ids).show();
+        if (typeof callback == "function")
+            callback(r["Visible"]);
+    });
+}
+
+
+$(function() {
+    if ($.QS("_tel_fb")) {
+        Telephony.CreateWidget($.QS("_tel_logid"), decodeURIComponent($.QS("_tel_fbf")));
+    };
+});
+
+Telephony.CreateWidget = function(id, code) {
+    $("#teleCallingFeedbackWidget").remove();
+    var w = $("<a id='teleCallingFeedbackWidget'  title='Add Feedback' onclick='Telephony.CheckLog(this)' href='javascript:void(0)' " +
+        "style='position: fixed;bottom: 18px;left: 18px;z-index: 1000;font-family: fontawesome;text-decoration: none;font-size: 26px;background: #009250;color: #b6ffd1;display: block;border-radius: 50%;width: 65px;height: 65px;border: solid 1px #808080;box-shadow: 0 0 16px #adadad;outline:none !important;padding-top: 18px;padding-left: 18px;box-sizing: border-box;' " +
+        "><span style='position: absolute;font-size: 45px;left: 5px;bottom: 0px;'>&#xf095;</span><span style='position: absolute;top: 13px;left: 26px;'>&#xf0f6;</span></a>");
+    w.data('LogID', id);
+    code = code.Replace("#ID#", id);
+    if (code.indexOf("{") > -1 && code.indexOf("}") > -1 && code.indexOf(":") > -1)
+        code = JSON.parse(code);
+    w.data("Form", code);
+    $(document.body).append(w);
+}
+
+Telephony.CheckLog = function(a) {
+    a = $(a);
+    if (a.hasClass("spinIcon"))
+        return;
+    a.addClass("spinIcon").children().hide();
+    Erp.ExecuteTaskScript('ac89fcd2-4aad-47e9-9941-4374138a65cc', {
+        "CheckLogAvailability": true,
+        "@LogID": a.data("LogID")
+    }, function(r) {
+        a.removeClass("spinIcon").children().show();
+        if (!r) {
+            Erp.ShowMessage("Error Occured", "error");
+            a.remove();
+        } else if (r["Available"] == 0) {
+            Erp.ShowMessage("Feedback cannot be set", "alert");
+            a.remove();
+        } else if (r["Available"] == -1) {
+            Erp.ShowMessage("Log not available yet.<br/>Please try again.", "alert");
+        } else if (r["Available"] == 1) {
+            var code = a.data("Form");
+            if (typeof code == "object")
+                Erp.OpenWindow(code);
+            else
+                Erp.OpenWindow({
+                    "Action": "EDITFORM",
+                    "Entity": "tbl_CLT_calldatarecordings",
+                    "Form": $.defaultVal(code, "feedback"),
+                    "RecordID": a.data("LogID"),
+                    "Title": "Add Feedback",
+                    "Location": "Popup",
+                    "PopHt": "400",
+                    "PopWd": "500"
+                });
+        } else {
+            Erp.ShowMessage("Error Occured", "error");
+            a.remove();
+        }
+    });
+}
+
+
+

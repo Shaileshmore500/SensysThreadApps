@@ -1,0 +1,621 @@
+﻿#pnlTopBg
+{
+	position: absolute;
+	z-index: 103;
+	height: 63px;
+	left: 0;
+	top: 0;
+	right: 0;
+	background-color:#081428;
+	background-image: url(../images/topbg.png);
+    background-repeat: repeat;
+    /*background-position: 0 -65px;*/
+    /*background-size: contain;*/
+}
+	#pnlTopBg.small
+	{
+		height:33px;
+		overflow:hidden;
+		background-size: contain;
+	}
+	#pnlTopBg:before
+	{
+	content: "";
+    background-color:#444444;
+    opacity: 0.7;
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+	background-image: url(../images/dot.png);
+	}
+	.BlueGlossTheme #pnlTopBg:before
+	{
+		background-color: #1E3B6F;
+	}
+	.GreenTheme #pnlTopBg:before
+	{
+		background-color: #0E4A09;
+	}
+	.OrangeTheme #pnlTopBg:before
+	{
+		background-color: #522A08;
+	}
+	.RedTheme #pnlTopBg:before
+	{
+		background-color: #6D0E00;
+	}
+	.DarkTheme #pnlTopBg:before
+	{
+		background-color: #444444;
+	}
+	
+#topBar
+{
+	position: relative;
+	z-index: 104;	
+	height: 30px;
+	background-color: #000;
+}
+
+#hoverHidePnl
+{
+	position: absolute;
+	z-index: 10000;
+	top: 142px;
+	left: 282px;
+	right: 0;
+	bottom: 0;
+	display: none;
+}
+
+#FirstLevel
+{
+	height: 42px;
+	background-color: #616060;
+	padding-top: 3px;
+	margin-right: 235px;
+	position: relative;
+	z-index: 105;
+}
+
+#SecondLevel
+{
+	height:52px;
+	
+	background: #fcfcfc;
+	display: none;
+	position: relative;
+	padding-left: 20px;
+	padding-right: 30px;
+	z-index: 105;
+	box-shadow: inset 0 0 20px #ccc;
+}
+.DarkTheme #SecondLevel
+{
+	    background-color: #353535;
+    box-shadow: none;
+    color: #d8d8d8;
+}
+
+#divCollapseH
+{
+	position: absolute;
+	height: 8px;
+	left: 0px;
+	right: 0px;
+	bottom: 0;
+	cursor: row-resize;
+	z-index: 10;
+}
+
+	#divCollapseH:hover
+	{
+		background-color: #FFB84E;
+	}
+
+#ThirdLevel
+{
+	width: 200px;
+	position: absolute;
+	border-right: solid 2px #636161;
+	bottom: 0px;
+	left: 0px;
+	background-color: #3C3C3C;
+	z-index: 105;
+	
+}
+.HideDash #ThirdLevel
+{
+	box-shadow: 1px 0px 15px #F4F4F4;
+}
+
+#divCollapseV
+{
+	position: absolute;
+	width: 8px;
+	right: 0px;
+	top: 0;
+	bottom: 0;
+	cursor: col-resize;
+	z-index: 10;
+}
+
+	#divCollapseV:hover1
+	{
+		background-color: #FFB84E;
+	}
+
+	.verticalTitle
+	{
+		
+		font-size: 35px;
+		font-weight: bold;
+		background-color: #006890;
+		color: #FFF;
+		text-align: center;
+		font-family: ArchivoNarrow;
+		word-wrap: break-word;
+		letter-spacing: 6px;
+		text-transform: uppercase;
+		overflow: hidden;
+		position: absolute !important;
+	}
+#divCollapseV.verticalTitle
+{
+	width: 35px;
+}
+.menuItem, .menuItemGroup
+{
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	text-transform: capitalize;
+}
+
+#FirstLevel,
+#SecondLevel .menuSet
+{
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+#SecondLevel .menuSet
+{
+	overflow: hidden;
+	white-space: nowrap;
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+#FirstLevel .menuItem .menuIcon {
+    font-family: fontawesome;
+    margin-right: 5px;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    display: inline-block;
+    background: black;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 31px;
+}
+#FirstLevel .menuItem
+{
+	height: 40px;
+	display: inline-block;
+	padding: 0px 10px 0px 10px;
+	line-height: 40px;
+	font-weight: bold;
+	font-size: 13px;
+	text-decoration: none;
+	color: #CCC;
+	vertical-align: middle;
+	margin-right: 2px;
+	border: solid 2px transparent;
+	border-bottom: none;
+	color: #CCC;
+	background: #6c717c; /* Old browsers */
+	outline:none !important;
+	
+}
+
+	#FirstLevel .menuItem.selected
+	{
+		color: #00FFE0;
+		text-shadow: 0px 1px 17px #FFF;
+		background: #f5f5f5;
+		
+	}
+
+
+
+#SecondLevel .menuItem
+{
+    min-width: 65px;
+    border: solid 1px transparent;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 11px;
+    font-weight: bold;
+    font-family: Arial;
+    position: relative;
+    margin-right: 5px;    
+    height: 100%;
+    box-sizing: border-box;
+    padding: 0 4px;
+    color: inherit;
+}
+
+
+#ThirdLevel .menuItem:last-child
+{
+	margin-bottom:10px;
+}
+
+
+#SecondLevel .menuItem .menuTxt {
+    font-weight: normal;
+    line-height: 40px;
+    white-space: nowrap;
+    font-size: 15px;
+    font-family: ArchivoNarrow;
+    display: inline-block;
+    vertical-align: top;
+}
+
+
+#SecondLevel .menuItem .menuIcon
+{
+    font-family: fontawesome;
+    display: inline-block;
+    font-size: 14px;
+    width: 20px;
+    font-weight: normal;
+    line-height: 40px;
+    vertical-align: top;
+    text-align: center;
+    margin-right: 1px;
+}
+
+
+#ThirdLevel .menuItem
+{
+	padding: 0 10px;
+	display: block;
+	padding-left: 15px;
+	display: block;
+	font-family:nunitoregular;
+	font-size: 13px;
+	text-decoration: none;
+	color: #A3A3A3;
+	min-height: 22px;
+	line-height: 22px;
+	outline: none;
+	text-indent: -12px;
+    padding-left: 20px;
+	border-left: solid 3px rgba(0, 0, 0, 0);
+}
+
+	#ThirdLevel .menuItem.selected,
+	#ThirdLevel .menuItem:hover
+	{
+		/*text-shadow: 0px 0px 14px #ffaeae;*/
+		color: #ff0500;
+		text-decoration: underline;
+		font-family: nunitobold;
+		transition:color 0.25s;
+	}
+	#ThirdLevel .menuItem.selected
+	{
+		border-left-color:#ff0500;
+	}
+
+		#ThirdLevel .menuItem:hover:before,
+		#ThirdLevel .menuItem:hover:after
+		{
+			display: none;
+		}
+
+		#ThirdLevel .menuItem.selected:hover:before,
+		#ThirdLevel .menuItem.selected:hover:after
+		{
+			display: initial !important;
+		}
+
+.menuItemGroup
+{
+	display: block;
+    background-color: #212121;
+    color: #B8B8B8;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 3px 0;
+    min-height: 21px;
+    font-family: nunitolight;
+    margin-bottom: 1px;
+    text-indent: -26px;
+    padding-left: 28px;
+	cursor:pointer;
+}
+	.menuItemGroup .toggle
+	{
+		vertical-align:middle;
+	}
+.menuItemGroup .toggle:after
+{
+	
+	content: "\f13a";
+	font-size:22px;
+	font-family:fontawesome;
+	margin-right:5px;
+	cursor:pointer;
+}
+		.menuItemGroup .toggle.down:after
+		{
+			content:"\f139";
+		}
+.secondLevelTitle
+{
+	position: absolute !important;
+    top: 0;
+    left: 0;
+	display: block;
+	width: 100%;
+	font-size: 25px;
+	background-color: #006890;
+	color: #FFF;
+	text-align: center;
+	overflow: hidden;
+	font-family: ArchivoNarrow;
+	padding: 7px 0;
+	background-image: url(../images/gloss.png);
+	background-position: 0 -46px;
+}
+#ThirdLevel .menuSet
+{
+	display: block;    
+    overflow-y: auto;   
+    padding-top: 42px;
+    box-sizing: border-box;
+}
+
+#spnAppTitle
+{
+	display: inline-block;
+	width: 150px;
+	height: 30px;
+	background-image: url(../images/threadlogo.png);
+	background-repeat: no-repeat;
+	vertical-align: middle;
+	margin-left: 5px;
+	position:absolute;
+	left:0;
+	top:0;
+}
+
+.lnkCompany
+{
+	color: #fff;
+	font-family: ArchivoNarrow;
+	font-size: 20px;
+	line-height: 30px;
+	display: inline-block;
+	min-width: 200px;
+	vertical-align: middle;
+	margin-left: 140px;
+	text-decoration: none;
+	text-align: center;
+	outline: none !important;
+	text-transform:capitalize;
+	position:relative;
+	padding:0 10px;
+}
+	.lnkCompany.lnkActive:before
+	{
+		display: block;
+		content: "";
+		background-color: #000;
+		opacity:0.6;
+		border-radius: 0 0 15px 15px;
+		position: absolute;
+		top: -30px;
+		height: 100%;
+		left: 0;
+		right: 0;
+		z-index: -1;
+		transition: 0.5s;
+	}
+.lnkCompany.lnkActive:hover:before,
+.lnkCompany.lnkActive:focus:before
+{
+	top:0;
+	transition:0.5s;
+}
+	.lnkCompany.lnkActive:hover,
+	.lnkCompany.lnkActive:focus
+	{
+		color:cyan;
+		border-bottom:none;
+	}
+
+	
+
+.ScrollBtn
+{
+	position: absolute;
+	display: block;
+
+	text-align: center;
+	z-index: 10000;
+	font-family: fontawesome;
+	text-decoration: none;
+	outline:none !important;
+	color: #000;
+}
+	.ScrollBtn.disable
+	{
+		opacity:0.1;
+	}
+
+.DarkTheme .ScrollBtn,
+.DarkTheme #lt1,.DarkTheme #rt1
+{
+	color: #ab9b7d;
+}
+
+#lt1, #rt1
+{
+	height: 20px;
+	width: 20px;
+	top: 38px;
+	line-height: 20px;
+	font-size:17px;
+	outline:none !important;
+	color: #efefef;
+}
+
+#lt1
+{
+	right: 215px;
+    top: 29px;
+}
+
+#rt1
+{
+	right: 215px;
+    top: 44px;
+}
+
+#lt2, #rt2
+{
+	height: 28px;
+    width: 26px;
+    font-size: 25px;
+    line-height: 30px;
+    top: 7px;
+	right: 0px;
+	outline:none !important;
+}
+
+#lt2
+{
+	
+}
+
+#rt2
+{
+	top: 40px;
+}
+
+#lt1, #lt2
+{
+
+}
+
+#rt1, #rt2
+{
+
+}
+
+
+
+/* -------------------------Dark THEME---------------------------*/
+
+
+Html.DarkTheme
+{
+	background-color: #404040;
+}
+
+
+
+.DarkTheme #FirstLevel .menuItem
+{
+	background: #616161;
+	border-color: #8F8F8F;
+}
+
+	.DarkTheme #FirstLevel .menuItem.selected
+	{
+		color: #00FFE0;
+		background: #3C3C3C;
+		border-color: #00AC90;
+	}
+
+.DarkTheme #SecondLevel .menuItem.selected {
+    color: #ffca00 !important;
+}
+    .DarkTheme #SecondLevel .menuItem:hover
+{
+	    color: #fff !important;   
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffc247+0,ee9f00+50,feb420+100 */
+background: #ffc247; /* Old browsers */
+background: -moz-linear-gradient(top, #ffc247 0%, #ee9f00 50%, #feb420 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #ffc247 0%,#ee9f00 50%,#feb420 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #ffc247 0%,#ee9f00 50%,#feb420 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffc247', endColorstr='#feb420',GradientType=0 ); /* IE6-9 */
+}
+
+.DarkTheme #ThirdLevel
+{
+	box-shadow: 1px 0px 15px #2D2C2C;
+	border-right: solid 2px #3C3C3C;
+}
+
+	
+
+	.DarkTheme #ThirdLevel .menuItem.selected,
+	.DarkTheme #ThirdLevel .menuItem:hover
+	{
+		color: #7AFFE0;
+		/*text-shadow: 0px 0px 15px #4ab7b2;*/
+	}
+	.DarkTheme #ThirdLevel .menuItem.selected
+	{
+		border-left-color:#7AFFE0;
+	}
+
+.DarkTheme #usrPanel:hover .inner
+{
+	box-shadow: 0 5px 5px #000;
+}
+
+.DarkTheme #divCommands
+{
+	background-color: #404040;
+	box-shadow: 1px 5px 9px #3C3C3C;
+}
+
+	.DarkTheme #divCommands .win-cmd
+	{
+		color: #6F6F6F;
+		text-shadow: none;
+	}
+
+		.DarkTheme #divCommands .win-cmd.active
+		{
+			color: #2AA9B4;
+		}
+
+			.DarkTheme #divCommands .win-cmd.active:hover
+			{
+				color: #02E6FA;
+				text-shadow: none;
+			}
+
+	.DarkTheme #divCommands .win-title
+	{
+		color: #BBB;
+		text-shadow: none;
+	}
+
+		.DarkTheme #divCommands .win-title:before
+		{
+			color: #BBB;
+			text-shadow: none;
+		}
+

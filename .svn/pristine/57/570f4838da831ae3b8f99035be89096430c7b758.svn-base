@@ -1,0 +1,77 @@
+function CalcSpace()
+{
+  Erp.SetFieldValue('@space',Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_height')*Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_width'));
+  CalcAmounts();
+ CalcmediaAmounts();
+}
+
+
+function CalcAmounts()
+{
+	if(db_3fbaea0c834b4909badf24e688bcef28=="EM")
+{
+Erp.SetFieldValue('@amount',Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_fct')*Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_rate'));
+}
+else
+{
+	Erp.SetFieldValue('@amount',Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_space')*Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_rate'));
+  	Erp.SetFieldValue('@positionpremiumamount',Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_amount')*Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_positionpremiumrate')/100);
+}
+
+  Erp.SetFieldValue('@finalamount',Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_amount')+Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_positionpremiumamount'));
+  Erp.SetFieldValue('@tax',Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_finalamount')*Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_taxrate')/100);
+  Erp.SetFieldValue('@tax1',Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_finalamount')*Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_taxrate1')/100);
+  Erp.SetFieldValue('@tax2',Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_finalamount')*Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_taxrate2')/100);
+ if (Erp.EntityID!='tbl_AA0001_releaseorderdetails')
+  Erp.SetFieldValue('@payable',Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_finalamount')+Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_tax')+Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_tax1')+Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_tax2'));
+else
+  Erp.SetFieldValue('@netamount',Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_finalamount')+Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_tax')+Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_tax1')+Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_tax2'));
+//calcposrate();
+  
+}
+function CalcmediaAmounts()
+{
+	Erp.SetFieldValue('@mediaamount',Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_space')*db_a86a46a7d8c243bc90ef09772e291d96);
+  	Erp.SetFieldValue('@mediapositionpremiumamount',db_a428e3bcca3949638d30b9674d729b43*db_78e3ff9b5bdf4e15a2300525f9c64f17/100);
+
+  Erp.SetFieldValue('@mediafinalamount',db_a428e3bcca3949638d30b9674d729b43+db_b4344fd27adf454b8e1be5f92e0753e6);
+  Erp.SetFieldValue('@mediatax',db_7eb4e4821f3043308817caceb7fc53df*db_6a844f47eb904aaaa21ddc85e8828383/100);
+  Erp.SetFieldValue('@mediatax1',db_7eb4e4821f3043308817caceb7fc53df*db_3a093fe8dc864615a15943feb4ff7231/100);
+   Erp.SetFieldValue('@mediatax2',db_7eb4e4821f3043308817caceb7fc53df*db_51dd02751a164a24a9a42187a2909204/100);
+  Erp.SetFieldValue('@mediapayable',db_7eb4e4821f3043308817caceb7fc53df+db_470f3c236c474fbcab88106adf870985+db_dd3e2d79908f4f12b2efe9ef4845c1f4+db_6904931796ce494c9a90232a21fa1944);
+
+  
+}
+function CalcclientAmounts()
+{
+	Erp.SetFieldValue('@clientamount',Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_space')*Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_clientrate'));
+  	Erp.SetFieldValue('@clientpositionpremiumamount',Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_clientamount')*Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_clientpositionpremiumrate')/100);
+
+  Erp.SetFieldValue('@clientfinalamount',Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_clientamount')+Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_clientpositionpremiumamount'));
+  Erp.SetFieldValue('@clienttax',Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_clientfinalamount')*Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_clienttaxrate')/100);
+  Erp.SetFieldValue('@clienttax1',Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_clientfinalamount')*Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_clienttaxrate1')/100);
+   Erp.SetFieldValue('@clienttax2',Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_clientfinalamount')*Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_clienttaxrate2')/100);
+  Erp.SetFieldValue('@clientpayble',Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_clientfinalamount')+Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_clienttax')+Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_clienttax1')+Erp.GetFieldValue('@tbl_aa0001_releaseorderdetails_clienttax2'));
+
+  
+}
+FunctionList.push({Name:'CalcSpace',Refs:['db_3fbaea0c834b4909badf24e688bcef28','db_a86a46a7d8c243bc90ef09772e291d96','db_a428e3bcca3949638d30b9674d729b43','db_78e3ff9b5bdf4e15a2300525f9c64f17','db_a428e3bcca3949638d30b9674d729b43','db_b4344fd27adf454b8e1be5f92e0753e6','db_7eb4e4821f3043308817caceb7fc53df','db_6a844f47eb904aaaa21ddc85e8828383','db_7eb4e4821f3043308817caceb7fc53df','db_3a093fe8dc864615a15943feb4ff7231','db_7eb4e4821f3043308817caceb7fc53df','db_51dd02751a164a24a9a42187a2909204','db_7eb4e4821f3043308817caceb7fc53df','db_470f3c236c474fbcab88106adf870985','db_dd3e2d79908f4f12b2efe9ef4845c1f4','db_6904931796ce494c9a90232a21fa1944']});
+FunctionList.push({Name:'CalcAmounts',Refs:['db_3fbaea0c834b4909badf24e688bcef28']});
+FunctionList.push({Name:'CalcmediaAmounts',Refs:['db_a86a46a7d8c243bc90ef09772e291d96','db_a428e3bcca3949638d30b9674d729b43','db_78e3ff9b5bdf4e15a2300525f9c64f17','db_a428e3bcca3949638d30b9674d729b43','db_b4344fd27adf454b8e1be5f92e0753e6','db_7eb4e4821f3043308817caceb7fc53df','db_6a844f47eb904aaaa21ddc85e8828383','db_7eb4e4821f3043308817caceb7fc53df','db_3a093fe8dc864615a15943feb4ff7231','db_7eb4e4821f3043308817caceb7fc53df','db_51dd02751a164a24a9a42187a2909204','db_7eb4e4821f3043308817caceb7fc53df','db_470f3c236c474fbcab88106adf870985','db_dd3e2d79908f4f12b2efe9ef4845c1f4','db_6904931796ce494c9a90232a21fa1944']});
+
+DbReferences.push({Type:"Simple",Id:"db_3fbaea0c834b4909badf24e688bcef28",Columns:"field.media.mediatype.mediatypecode"});window.db_3fbaea0c834b4909badf24e688bcef28='';
+DbReferences.push({Type:"Simple",Id:"db_a86a46a7d8c243bc90ef09772e291d96",Columns:"field.mediarate"});window.db_a86a46a7d8c243bc90ef09772e291d96='';
+DbReferences.push({Type:"Simple",Id:"db_a428e3bcca3949638d30b9674d729b43",Columns:"field.mediaamount"});window.db_a428e3bcca3949638d30b9674d729b43='';
+DbReferences.push({Type:"Simple",Id:"db_78e3ff9b5bdf4e15a2300525f9c64f17",Columns:"field.mediapositionpremiumrate"});window.db_78e3ff9b5bdf4e15a2300525f9c64f17='';
+DbReferences.push({Type:"Simple",Id:"db_81165e3e44184694954d447d3d950472",Columns:"field.mediaamount"});window.db_81165e3e44184694954d447d3d950472='';
+DbReferences.push({Type:"Simple",Id:"db_b4344fd27adf454b8e1be5f92e0753e6",Columns:"field.mediapositionpremiumamount"});window.db_b4344fd27adf454b8e1be5f92e0753e6='';
+DbReferences.push({Type:"Simple",Id:"db_7eb4e4821f3043308817caceb7fc53df",Columns:"field.mediafinalamount"});window.db_7eb4e4821f3043308817caceb7fc53df='';
+DbReferences.push({Type:"Simple",Id:"db_6a844f47eb904aaaa21ddc85e8828383",Columns:"field.mediataxrate"});window.db_6a844f47eb904aaaa21ddc85e8828383='';
+DbReferences.push({Type:"Simple",Id:"db_ca6fe5032f51445e8dcb02c67a68209f",Columns:"field.mediafinalamount"});window.db_ca6fe5032f51445e8dcb02c67a68209f='';
+DbReferences.push({Type:"Simple",Id:"db_3a093fe8dc864615a15943feb4ff7231",Columns:"field.mediataxrate1"});window.db_3a093fe8dc864615a15943feb4ff7231='';
+DbReferences.push({Type:"Simple",Id:"db_618cb52702884544829a413d2d99896e",Columns:"field.mediafinalamount"});window.db_618cb52702884544829a413d2d99896e='';
+DbReferences.push({Type:"Simple",Id:"db_51dd02751a164a24a9a42187a2909204",Columns:"field.mediataxrate2"});window.db_51dd02751a164a24a9a42187a2909204='';
+DbReferences.push({Type:"Simple",Id:"db_67b68b9d4a2f4763858396f4bca24100",Columns:"field.mediafinalamount"});window.db_67b68b9d4a2f4763858396f4bca24100='';
+DbReferences.push({Type:"Simple",Id:"db_470f3c236c474fbcab88106adf870985",Columns:"field.mediatax"});window.db_470f3c236c474fbcab88106adf870985='';
+DbReferences.push({Type:"Simple",Id:"db_dd3e2d79908f4f12b2efe9ef4845c1f4",Columns:"field.mediatax1"});window.db_dd3e2d79908f4f12b2efe9ef4845c1f4='';
+DbReferences.push({Type:"Simple",Id:"db_6904931796ce494c9a90232a21fa1944",Columns:"field.mediatax2"});window.db_6904931796ce494c9a90232a21fa1944='';
